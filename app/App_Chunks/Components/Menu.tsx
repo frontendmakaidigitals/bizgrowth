@@ -43,7 +43,7 @@ const Menu = () => {
             <AnimatePresence>
               {openDropdown === menu.name && (
                 <motion.div
-                  className="absolute flex flex-col  left-0 z-30  bg-white shadow-md p-4 space-y-2"
+                  className="absolute flex flex-col  left-0 z-30  bg-white shadow-xl rounded-sm p-4 space-y-2"
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
