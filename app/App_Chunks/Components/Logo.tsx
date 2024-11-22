@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const Logo = () => {
+const Logo = ({ className }: { className?: string }) => {
   return (
-    <div>Logo</div>
-  )
-}
+    <p className={`text-3xl relative font-Satoshi font-[600] ${className}`}>Logo</p>
+  );
+};
 
-export default Logo
+export default Logo;
