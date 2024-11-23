@@ -18,7 +18,7 @@ const Menu = () => {
           <Link
             key={index}
             href={menu.href}
-            className="px-3 py-1 hover:bg-slate-100 transition-all duration-300 rounded-md"
+            className="px-3 py-1 hover:bg-slate-100 xl:text-sm transition-all duration-300 rounded-md"
           >
             {menu.name}
           </Link>
@@ -29,7 +29,7 @@ const Menu = () => {
             onMouseEnter={() => setOpenDropdown(menu.name)} // Set dropdown to open when hovered
             onMouseLeave={() => setOpenDropdown(null)} // Close dropdown when mouse leaves
           >
-            <p className="px-3 py-1 cursor-default transition-all duration-300 hover:bg-slate-100 flex items-center rounded-md gap-1">
+            <p className="px-3 py-1 xl:text-sm cursor-default transition-all duration-300 hover:bg-slate-100 flex items-center rounded-md gap-1">
               {menu.name}{" "}
               <IoChevronDown
                 className="mt-1"

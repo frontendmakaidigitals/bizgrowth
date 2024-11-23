@@ -46,7 +46,7 @@ const Menu = () => {
             <Link
               key={index}
               href={menu.href}
-              className="text-lg font-semibold  p-2 w-full text-left"
+              className="text-lg  font-semibold  p-2 w-full text-left"
               onClick={() => (window.location.href = menu.href)} // Close menu on item click
             >
               {menu.name}
