@@ -45,10 +45,12 @@ const Page = () => {
     <div className=" my-14">
       <div className="container font-Satoshi">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div>
-            <p className=" ">About Us</p>
+          <div className="order-2 lg:order-1">
+            <p className=" px-3 text-slate-900  font-medium mb-4 bg-slate-100 w-fit py-1 rounded-full">
+              About Us
+            </p>
 
-            <h1 className="xl:text-4xl xl:mt-4">
+            <h1 className="text-3xl xl:text-4xl xl:mt-4">
               Welcome to BIZ Growth Consultancy, your trusted partner in setting
               up and growing your business in the UAE.
             </h1>
@@ -68,20 +70,20 @@ const Page = () => {
               launch.
             </h3>
           </div>
-          <div className="relative">
-            <div className="w-full shadow-xl h-[500px] xl:h-[550px] relative overflow-hidden rounded-xl z-10">
+          <div className="relative order-1 lg:order-2">
+            <div className="w-full shadow-xl h-[300px] xl:h-[550px] relative overflow-hidden rounded-xl z-10">
               <img
                 className="w-full h-full object-cover"
                 src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               />
             </div>
-            <div className="shadow absolute xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-[#81D4FA] h-full" />
+            <div className="shadow absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-[#81D4FA] h-full" />
           </div>
         </div>
       </div>
       <div className="container grid grid-cols-1 my-20 lg:grid-cols-2 gap-10">
         <div className="font-Satoshi bg-slate-100 p-5">
-          <div className="w-full h-[400px]  overflow-hidden">
+          <div className="w-full h-[300px] lg:h-[400px]  overflow-hidden">
             <img
               className="w-full h-full object-cover"
               src={
@@ -89,7 +91,9 @@ const Page = () => {
               }
             />
           </div>
-          <h1 className=" text-4xl font-semibold mt-5">Our Mission</h1>
+          <h1 className="text-2xl lg:text-3xl font-semibold mt-5">
+            Our Mission
+          </h1>
 
           <p className=" my-3">
             To empower upcoming business by providing comprehensive and
@@ -97,7 +101,7 @@ const Page = () => {
           </p>
         </div>
         <div className="font-Satoshi  bg-slate-100 p-5">
-          <div className="w-full h-[400px]  overflow-hidden">
+          <div className="w-full h-[300px] lg:h-[400px]  overflow-hidden">
             <img
               className="w-full h-full object-cover"
               src={
@@ -105,7 +109,9 @@ const Page = () => {
               }
             />
           </div>
-          <h1 className=" text-4xl font-semibold mt-5">Our Vision</h1>
+          <h1 className=" text-2xl lg:text-3xl font-semibold mt-5">
+            Our Vision
+          </h1>
 
           <p className="my-3">
             To be the leading provider of business setup services in the UAE,
