@@ -5,11 +5,11 @@ import { FaSquareFacebook } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 import { BsTwitterX } from "react-icons/bs";
 import { BsYoutube } from "react-icons/bs";
-import { BsFillTelephoneFill } from "react-icons/bs";
+
 export interface WidgetFooterMenu {
   id: string;
   title: string;
-  menus: any;
+  menus: { href: string; label: string }[];
 }
 
 const widgetMenus: WidgetFooterMenu[] = [

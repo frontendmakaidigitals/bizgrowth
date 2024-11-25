@@ -3,9 +3,9 @@ import Link from "next/link";
 const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href={"/"}>
-      <p className={`text-3xl relative font-Satoshi font-[600] ${className}`}>
-        Logo
-      </p>
+      <div className="h-[60px]">
+        <img className="w-auto h-full" src={"/PrimaryLogo/Logo.png"} />
+      </div>
     </Link>
   );
 };

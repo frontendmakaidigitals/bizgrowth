@@ -3,15 +3,6 @@ import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 import Heading from "./Heading";
 const BusinessSteps = () => {
-  const steps = [
-    "Consult Business Setup Expert Consultants at BIZ Growth",
-    "Choose Jurisdiction and Type of Business",
-    "Choose Business Name",
-    "Submit Documents for Approval",
-    "Trade License Setup",
-    "Open Corporate Bank Account",
-    "Set Up Your Office with BIZ Growth",
-  ];
 
   const data = [
     {

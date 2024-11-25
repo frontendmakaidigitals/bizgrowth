@@ -12,7 +12,7 @@ const Navbar = () => {
 
         <MobileMenu />
         <div className="hidden lg:flex items-center gap-4 ">
-          <button className="flex items-center gap-2 px-3 py-1 bg-slate-50 shadow-md xl:text-sm rounded-full">
+          <button className="flex items-center gap-2 px-3 py-1 bg-slate-50 hover:shadow-md transition-all duration-300 border border-gray-200 xl:text-sm rounded-full">
             <div className=" xl:size-8 p-1 bg-slate-200 rounded-full">
               <img
                 className="w-full h-full object-cover"

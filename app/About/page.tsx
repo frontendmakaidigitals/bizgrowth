@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+
+import Button from "../App_Chunks/Components/Button";
 const Page = () => {
   const selfPraise = [
     {
@@ -69,6 +70,7 @@ const Page = () => {
               legal formalities, ensuring a smooth and efficient business
               launch.
             </h3>
+            <Button className="mt-3">Learn More</Button>
           </div>
           <div className="relative order-1 lg:order-2">
             <div className="w-full shadow-xl h-[300px] xl:h-[550px] relative overflow-hidden rounded-xl z-10">
