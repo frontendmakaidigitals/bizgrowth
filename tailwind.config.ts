@@ -19,7 +19,7 @@ export default {
   			SplineSans: ["Spline Sans , sans-serif"]
   		},
   		container: {
-  			center: 'true',
+  			center: true,
   			padding: '2rem',
   			screens: {
   				sm: '100%',
