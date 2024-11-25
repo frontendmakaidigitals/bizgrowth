@@ -3,7 +3,7 @@ import Link from "next/link";
 const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href={"/"}>
-      <div className="h-[60px]">
+      <div className={`h-[60px] ${className}`}>
         <img className="w-auto h-full" src={"/PrimaryLogo/Logo.png"} />
       </div>
     </Link>

@@ -61,7 +61,11 @@ const Menu = () => {
 };
 
 // Accordion component for handling dropdown-style sections
-const AccordionMenu = ({ menu }: { menu: any }) => {
+const AccordionMenu = ({
+  menu,
+}: {
+  menu: { name: string; points?: string[]; href: string; dropdown: boolean };
+}) => {
   return (
     <div className="w-full">
       <Accordion type="single" collapsible className="w-full">

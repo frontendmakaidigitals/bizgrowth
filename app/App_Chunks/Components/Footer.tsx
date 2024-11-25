@@ -45,19 +45,21 @@ const Footer: React.FC = () => {
           {menu.title}
         </h2>
         <ul className="mt-5 list-disc space-y-4">
-          {menu.menus.map((item: any, index: number) => (
-            <div key={index} className="px-4">
-              <li className="text-gray-50">
-                <a
-                  key={index}
-                  className="rounded-xl px-2 py-1 text-gray-100 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                  href={item.href}
-                >
-                  {item.label}
-                </a>
-              </li>
-            </div>
-          ))}
+          {menu.menus.map(
+            (item: { href: string; label: string }, index: number) => (
+              <div key={index} className="px-4">
+                <li className="text-gray-50">
+                  <a
+                    key={index}
+                    className="rounded-xl px-2 py-1 text-gray-100 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                    href={item.href}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              </div>
+            )
+          )}
         </ul>
       </div>
     );
