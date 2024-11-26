@@ -9,12 +9,12 @@ const HeroSection = () => {
         <video autoPlay loop muted className="w-full h-full object-cover">
           <source src="/media/Header VIDEO.mp4" type="video/mp4" />
         </video>
-        <div className="bg-slate-900/30 flex justify-start  items-end w-full h-full absolute top-0 left-0 ">
-          <div className=" container py-20  flex flex-col justify-start items-start gap-5">
-            <h1 className="text-white w-2/3 text-6xl font-Satoshi font-[600]">
+        <div className="bg-slate-900/30 flex justify-center  items-center w-full h-full absolute top-0 left-0 ">
+          <div className=" container py-20  flex flex-col justify-center items-center gap-5">
+            <h1 className="text-white w-2/3 text-center text-6xl font-Satoshi font-[600]">
               FROM IDEA TO INCORPORATION YOUR BUSINESS SETUP PARTNER
             </h1>
-            <h2 className="text-white w-2/3 text-2xl font-Satoshi font-[400]">
+            <h2 className="text-white w-2/3 text-center text-2xl font-Satoshi font-[400]">
               Lead your way to Success by partnering with BIZ GROWTH. We are
               experts in empowering your business ideas into action.
             </h2>
