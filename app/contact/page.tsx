@@ -111,7 +111,7 @@ const Page = () => {
             </p>
           </div>
           <div className="w-full flex items-center gap-3">
-            {social.map((item, index) => {
+            {social.map((item) => {
               return (
                 <div
                   className="size-10 text-2xl text-[#244010] flex items-center justify-center rounded-full bg-green-400"
