@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-
+import { motion } from "framer-motion";
 import Button from "../App_Chunks/Components/Button";
+import Heading from "../App_Chunks/Components/Heading";
 const Page = () => {
   const selfPraise = [
     {
@@ -41,7 +42,83 @@ const Page = () => {
       desc: "We offer competitive pricing and transparent fee structures to get your business running.",
     },
   ];
-
+  const histories = [
+    {
+      id: 0,
+      title: "Our Mission",
+      desc: (
+        <p>
+          At BizGrowth, our mission is to empower upcoming business by providing
+          comprehensive and personalized set-up solutions that accelerate growth
+          and success. We attempt to simplify the process of setting up and
+          registering businesses by offering expert guidance, tailored
+          solutions, and unparalleled customer support. Our goal is to help
+          professionals and companies navigate the complexities of company
+          formation which helps them to focus on their core objectives and
+          achieve long-term success. Through innovation, integrity, and a
+          commitment to excellence, we aim to be the trusted partner in every
+          step of your business journey.
+        </p>
+      ),
+    },
+    {
+      id: 1,
+      title: "Our Vision",
+      desc: (
+        <p>
+          At BizGrowth, to be the leading provider of business setup services in
+          the UAE, recognized for our expertise, reliability, and customer
+          satisfaction. We envision a future where every business, regardless of
+          the size or industry of the company, can easily navigate the
+          complexities of registration and compliance with government policies,
+          and empowering the companies to thrive in a global marketplace.
+          Through continuous innovation, expert support, and a commitment to
+          customer success, we aim to help turn ideas into reality, enabling
+          entrepreneurs to focus on building their empire while we take care of
+          the details.
+        </p>
+      ),
+    },
+    {
+      id: 2,
+      title: "Our Commitment",
+      desc: (
+        <p>
+          At BIZ Growth, we are committed to providing exceptional service and
+          unwavering support to our clients throughout their business Set up and
+          ongoing journey. We commit to deliver efficient, transparent, and
+          hassle-free solutions tailored to each company’s unique needs. Our
+          team of expert consultants is dedicated to ensuring that every process
+          is completed accurately, on time, and in full compliance with all
+          legal requirements. We are passionate about empowering entrepreneurs
+          and businesses with the knowledge, tools, and resources they need to
+          succeed. By upholding the highest standards of integrity,
+          professionalism, and customer service, we aim to be a trusted partner
+          in helping you bring your business vision to life.
+        </p>
+      ),
+    },
+    {
+      id: 3,
+      title: "Our Work Culture",
+      desc: (
+        <p>
+          At Biz Growth, our work culture is fabricated on collaboration,
+          innovation, and a deep commitment to customer success. We encourage an
+          environment where teamwork flourish, where each team member’s
+          expertise and ideas are valued, and where we continuously learn and
+          grow together. Our culture emphasizes transparency, uprightness, and
+          accountability, ensuring that we always act in the best interest of
+          our clients. We celebrate diversity, creativity, and proactive
+          problem-solving, empowering our team to take initiative and drive
+          positive change. With a shared vision of supporting investors,
+          entrepreneurs and businesses, we strive to create a positive,
+          inclusive, and dynamic workplace that inspires excellence in every
+          aspect of our work.
+        </p>
+      ),
+    },
+  ];
   return (
     <div className=" my-14">
       <div className="container font-Satoshi">
@@ -83,58 +160,30 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="container grid grid-cols-1 my-20 lg:grid-cols-2 gap-10">
-        <div className="font-Satoshi bg-[#dcedc8] p-5 rounded-lg">
-          <div className="w-full h-[300px] lg:h-[400px]  overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src={
-                "https://images.unsplash.com/photo-1521316730702-829a8e30dfd0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              }
-            />
-          </div>
-          <h1 className="text-2xl lg:text-3xl font-semibold mt-5">
-            Our Mission
-          </h1>
-
-          <p className=" my-3">
-            At BizGrowth, our mission is to empower upcoming business by
-            providing comprehensive and personalized set-up solutions that
-            accelerate growth and success. We attempt to simplify the process of
-            setting up and registering businesses by offering expert guidance,
-            tailored solutions, and unparalleled customer support. Our goal is
-            to help professionals and companies navigate the complexities of
-            company formation which helps them to focus on their core objectives
-            and achieve long-term success. Through innovation, integrity, and a
-            commitment to excellence, we aim to be the trusted partner in every
-            step of your business journey.
-          </p>
+      <div className="w-full py-14  my-20 relative">
+        <Heading className="w-full !text-center relative z-10">Title</Heading>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <img
+            src={"/media/cardBg.svg"}
+            className="w-full h-full object-cover"
+          />
         </div>
-        <div className="font-Satoshi  bg-[#dcedc8] p-5 rounded-lg">
-          <div className="w-full h-[300px] lg:h-[400px]  overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src={
-                "https://images.unsplash.com/photo-1724525647065-f948fc102e68?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              }
-            />
-          </div>
-          <h1 className=" text-2xl lg:text-3xl font-semibold mt-5">
-            Our Vision
-          </h1>
-
-          <p className="my-3">
-            At BizGrowth, to be the leading provider of business setup services
-            in the UAE, recognized for our expertise, reliability, and customer
-            satisfaction. We envision a future where every business, regardless
-            of the size or industry of the company, can easily navigate the
-            complexities of registration and compliance with government
-            policies, and empowering the companies to thrive in a global
-            marketplace. Through continuous innovation, expert support, and a
-            commitment to customer success, we aim to help turn ideas into
-            reality, enabling entrepreneurs to focus on building their empire
-            while we take care of the details.
-          </p>
+        <div className="container mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {histories.map((item) => (
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              transition={{ type: "spring", duration: 0.6, bounce: 0.5 }}
+              key={item.id}
+              className=" p-6 rounded-xl border border-slate-400 bg-[#c0e19b] relative overflow-hidden "
+            >
+              <div className="relative z-10">
+                <h1 className="text-3xl text-[#1a2e0c] font-Satoshi font-bold flex items-center gap-3">
+                  <span>{item.id + 1}.)</span> {item.title}
+                </h1>
+                <div className="mt-3 font-Satoshi ">{item.desc}</div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 

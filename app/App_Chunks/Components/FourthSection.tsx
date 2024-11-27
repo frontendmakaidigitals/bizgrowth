@@ -100,12 +100,14 @@ const FourthSection = () => {
         {services.slice(0, servicesToShow).map((service, index) => (
           <div
             key={index}
-            className="w-full hover:shadow-lg transition-all duration-300 flex justify-between items-start flex-col gap-6 bg-[#dcedc8] p-3 rounded-xl"
+            className="w-full hover:shadow-lg transition-all  duration-300 bg-[#dcedc8] p-3 rounded-xl"
           >
-            <div className="size-14 text-[#244010] flex justify-center items-center overflow-hidden rounded-full bg-slate-50">
-              {service.icon}
+            <div className="w-full h-[100px]">
+              <div className="size-14 text-[#244010] flex justify-center items-center overflow-hidden rounded-full bg-slate-50">
+                {service.icon}
+              </div>
             </div>
-            <div>
+            <div className="flex flex-col justify-between items-start">
               <p className="text-left font-Satoshi font-[600] text-xl">
                 {service.title}
               </p>
