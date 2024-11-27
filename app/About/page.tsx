@@ -8,37 +8,37 @@ const Page = () => {
     {
       title: "Expertise and Experience",
       color: "#FFF59D",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/multitasking-businessman-3d-icon-download-in-png-blend-fbx-gltf-file-formats--doing-skill-work-person-financial-pack-people-icons-4703421.png?f=webp",
+      img: "/icon/reputation.png",
       desc: "With years of experience in the UAE’s Investment Potential, we understand the intricacies of local laws and regulations, giving you the confidence to move forward with your business plans.",
     },
     {
       title: "Tailored Solutions",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/business-solution-3d-icon-download-in-png-blend-fbx-gltf-file-formats--innovative-idea-creative-corporate-pack-icons-6068189.png",
+      img: "/icon/solution.png",
       desc: "Every business is different, and we pride ourselves on offering customized services that align with your business goals. From free zone setups to mainland and offshore company formations, we have the expertise to advise you on the best option for your business.",
     },
     {
       title: "End-to-End Service",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/report-paper-3d-icon-download-in-png-blend-fbx-gltf-file-formats--analytics-logo-statistics-analysis-financial-audit-pack-business-icons-9325412.png",
+      img: "/icon/travel.png",
       desc: "From the initial consultation to post-setup support, we handle every aspect of your company formation process. This includes documentation, visas, banking assistance, office space, and more—ensuring a hassle-free experience.",
     },
     {
       title: "Local and International Knowledge",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/knowledge-3d-icon-download-in-png-blend-fbx-gltf-file-formats--education-study-learning-book-school-technology-pack-science-icons-6308128.png",
+      img: "/icon/idea.png",
       desc: "Our team combines deep local insights with international best practices, ensuring that we provide solutions that are both practical and in line with global standards.",
     },
     {
       title: "Commitment to Your Success",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/success-3d-icon-download-in-png-blend-fbx-gltf-file-formats--done-goal-load-successful-pack-user-interface-icons-5448958.png?f=webp",
+      img: "/icon/success.png",
       desc: "At BIZ Growth, your success is our priority. We go above and beyond to provide ongoing support as your business evolves in the UAE market.",
     },
     {
       title: "Personalized Service",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/customer-support-agent-rating-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--call-logo-care-review-service-pack-services-illustrations-6220942.png?f=webp",
+      img: "/icon/customer-service.png",
       desc: "We are committed to delivering high-quality services and exceeding your expectations.",
     },
     {
       title: "Cost-Effective Solutions",
-      img: "https://cdn3d.iconscout.com/3d/premium/thumb/money-savings-3d-icon-download-in-png-blend-fbx-gltf-file-formats--saving-hand-coin-cash-on-finance-gesture-pack-business-icons-4839935.png",
+      img: "/icon/finance-and-business.png",
       desc: "We offer competitive pricing and transparent fee structures to get your business running.",
     },
   ];
@@ -160,21 +160,15 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="w-full py-14  my-20 relative">
+      <div className="w-full py-14  my-20 relative bg-lime-50">
         <Heading className="w-full !text-center relative z-10">Title</Heading>
-        <div className="absolute top-0 left-0 w-full h-full">
-          <img
-            src={"/media/cardBg.svg"}
-            className="w-full h-full object-cover"
-          />
-        </div>
         <div className="container mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
           {histories.map((item) => (
             <motion.div
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.03, background: "#c1daa5" }}
               transition={{ type: "spring", duration: 0.6, bounce: 0.5 }}
               key={item.id}
-              className=" p-6 rounded-xl border border-slate-400 bg-[#c0e19b] relative overflow-hidden "
+              className=" p-6 rounded-xl border border-slate-400  relative overflow-hidden "
             >
               <div className="relative z-10">
                 <h1 className="text-3xl text-[#1a2e0c] font-Satoshi font-bold flex items-center gap-3">
@@ -192,11 +186,14 @@ const Page = () => {
 
         <div className="grid grid-cols-1 my-16 lg:grid-cols-3 gap-4">
           {selfPraise.map((item, index) => (
-            <div key={index} className="bg-[#dcedc8] p-4 rounded-xl">
-              <div className="w-full aspect-[4/3] bg-slate-200/80 mb-3">
+            <div
+              key={index}
+              className="bg-slat-50 p-4 text-[#244010] rounded-xl bg-[#dcedc8]"
+            >
+              <div className="size-14 p-2 rounded-full bg-[#c5e1a5] mb-3">
                 <img className="w-full h-full object-contain" src={item.img} />
               </div>
-              <h1 className="font-semibold text-2xl">{item.title}</h1>
+              <h1 className="font-semibold text-2xl ">{item.title}</h1>
               <p className="mt-2">{item.desc}</p>
             </div>
           ))}
