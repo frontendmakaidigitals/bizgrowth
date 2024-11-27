@@ -1,11 +1,17 @@
 import React from "react";
 import Button from "../App_Chunks/Components/Button";
-import Heading from "../App_Chunks/Components/Heading";
+
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 const Page = () => {
+  const social = [
+    <FaFacebook />,
+    <FaSquareInstagram />,
+    <FaSquareXTwitter />,
+    <FaYoutube />,
+  ];
   return (
     <div className=" mb-20">
       <div className="container  mt-1">
@@ -102,18 +108,13 @@ const Page = () => {
             </p>
           </div>
           <div className="w-full flex items-center gap-3">
-            {[
-              <FaFacebook />,
-              <FaSquareInstagram />,
-              <FaSquareXTwitter />,
-              <FaYoutube />,
-            ].map((_, index) => {
+            {social.map((item, index) => {
               return (
                 <div
                   className="size-10 text-2xl text-[#244010] flex items-center justify-center rounded-full bg-green-400"
                   key={index}
                 >
-                  {_}
+                  {item}
                 </div>
               );
             })}

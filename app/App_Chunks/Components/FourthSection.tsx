@@ -11,7 +11,6 @@ import { GoLaw } from "react-icons/go";
 import { HiOutlineTableCells } from "react-icons/hi2";
 import { GoSponsorTiers } from "react-icons/go";
 import { MdAssistant } from "react-icons/md";
-import { GiArchiveResearch } from "react-icons/gi";
 import { MdDesignServices } from "react-icons/md";
 import { RiGovernmentFill } from "react-icons/ri";
 import { TbReceiptTax } from "react-icons/tb";

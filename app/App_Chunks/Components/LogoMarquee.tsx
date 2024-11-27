@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const reviews = [
+const logos = [
   {
     name: "Jack",
     username: "@jack",
@@ -53,7 +53,7 @@ const reviews = [
 ];
 
 const LogoMarquee = () => {
-  const [logos, setLogos] = useState(reviews);
+  
  
  
 
