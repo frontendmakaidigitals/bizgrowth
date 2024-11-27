@@ -169,7 +169,7 @@ const Page = () => {
               whileHover={{ scale: 1.03, background: "#c1daa5" }}
               transition={{ type: "spring", duration: 0.6, bounce: 0.5 }}
               key={item.id}
-              className=" p-6 rounded-xl border border-slate-400  relative overflow-hidden "
+              className=" p-6 rounded-xl border border-[#488020] relative overflow-hidden "
             >
               <div className="relative z-10">
                 <h1 className="text-3xl text-[#1a2e0c] font-Satoshi font-bold flex items-center gap-3">
