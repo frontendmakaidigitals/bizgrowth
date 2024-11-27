@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "./Logo";
-import MobileMenu from "./MobileMenu";
 import Menu from "./Menu";
 import Button from "./Button";
 const Navbar = () => {
@@ -10,7 +9,7 @@ const Navbar = () => {
         <Logo className="relative z-[5]" />
         <Menu />
 
-        <MobileMenu />
+        
         <div className="hidden lg:block ">
           <Button className="xl:text-md bg-gradient-to-tr from-lime-300 text-green-950  to-lime-500 font-[600]">
             Cost Calculator
