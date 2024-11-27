@@ -7,10 +7,13 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 const Page = () => {
   const social = [
-    <FaFacebook />,
-    <FaSquareInstagram />,
-    <FaSquareXTwitter />,
-    <FaYoutube />,
+    { icon: <FaFacebook />, id: 0 },
+    { icon: <FaSquareInstagram />, id: 1 },
+    { icon: <FaSquareXTwitter />, id: 2 },
+    {
+      icon: <FaYoutube />,
+      id: 3,
+    },
   ];
   return (
     <div className=" mb-20">
@@ -112,9 +115,9 @@ const Page = () => {
               return (
                 <div
                   className="size-10 text-2xl text-[#244010] flex items-center justify-center rounded-full bg-green-400"
-                  key={index}
+                  key={item.id}
                 >
-                  {item}
+                  {item.icon}
                 </div>
               );
             })}

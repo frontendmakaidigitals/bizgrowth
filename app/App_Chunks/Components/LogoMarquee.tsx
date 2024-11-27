@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 const logos = [
   {
@@ -53,10 +53,6 @@ const logos = [
 ];
 
 const LogoMarquee = () => {
-  
- 
- 
-
   return (
     <>
       {/* Inline style for animation */}
