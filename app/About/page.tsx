@@ -107,7 +107,7 @@ const Page = () => {
             company formation which helps them to focus on their core objectives
             and achieve long-term success. Through innovation, integrity, and a
             commitment to excellence, we aim to be the trusted partner in every
-            step of your business journey."
+            step of your business journey.
           </p>
         </div>
         <div className="font-Satoshi  bg-[#dcedc8] p-5 rounded-lg">
