@@ -5,7 +5,6 @@ import { IoChevronDown } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion"; // Import motion
 import { Menus } from "./Menus"; // Import Menus
 import Link from "next/link";
-
 const Menu = () => {
   // State to handle visibility of dropdowns individually
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -18,18 +17,18 @@ const Menu = () => {
           <Link
             key={index}
             href={menu.href}
-            className="px-3 py-1 hover:bg-slate-100 xl:text-sm transition-all duration-300 rounded-md"
+            className="px-3 py-1 text-[#12250a] hover:bg-[#dcedc8] font-[600] xl:text-md transition-all duration-300 rounded-md"
           >
             {menu.name}
           </Link>
         ) : (
           <div
             key={index}
-            className="relative group"
+            className="group relative"
             onMouseEnter={() => setOpenDropdown(menu.name)} // Set dropdown to open when hovered
             onMouseLeave={() => setOpenDropdown(null)} // Close dropdown when mouse leaves
           >
-            <p className="px-3 py-1 xl:text-sm cursor-default transition-all duration-300 hover:bg-slate-100 flex items-center rounded-md gap-1">
+            <p className="px-3 py-1 xl:text-md text-[#12250a] hover:bg-[#dcedc8] font-[600] cursor-default transition-all duration-300  flex items-center rounded-md gap-1">
               {menu.name}{" "}
               <IoChevronDown
                 className="mt-1"
@@ -43,21 +42,62 @@ const Menu = () => {
             <AnimatePresence>
               {openDropdown === menu.name && (
                 <motion.div
-                  className="absolute flex flex-col  left-0 z-30  bg-white shadow-xl rounded-sm p-4 space-y-2"
+                  className={`absolute flex flex-col top-10 left-0 z-30 bg-[#c5e1a5] 
+    ${index === 3 ? "max-w-5xl" : index === 2 ? "w-[800px]" : "w-[600px]"} 
+    shadow-xl rounded-sm p-6`}
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {menu.points?.map((point, idx) => (
-                    <Link
-                      key={idx}
-                      href={`/${point.toLowerCase().replace(" ", "-")}`}
-                      className="cursor-pointer hover:bg-gray-100 p-2"
+                  {index !== 3 ? (
+                    <div
+                      className={`grid  ${
+                        index == 2 ? "grid-cols-4" : "grid-cols-3"
+                      } gap-5`}
                     >
-                      {point}
-                    </Link>
-                  ))}
+                      {menu.points?.map((point: any, pointIndex) => (
+                        <div key={pointIndex}>
+                          <p className="text-xl text-[#1e3d11] font-[600]">
+                            {point.title}
+                          </p>
+                          <ul>
+                            {point.points.map(
+                              (item: string, itemIndex: number) => (
+                                <Link key={itemIndex} href="/">
+                                  <li className="mt-2 hover:underline flex text-[#12250a] items-center gap-2">
+                                    {item}
+                                  </li>
+                                </Link>
+                              )
+                            )}
+                          </ul>
+                        </div>
+                      ))}
+                      {index == 2 && (
+                        <div className="w-full h-full bg-slate-200">
+                          <img
+                            className="w-full h-full object-cover"
+                            src={"/media/menu.jpg"}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      {menu.points?.map((point: any, pointIndex) => (
+                        <div key={pointIndex}>
+                          <ul>
+                            <Link href="/">
+                              <li className="mt-2 hover:underline text-[#12250a] flex items-center gap-2">
+                                {point}
+                              </li>
+                            </Link>
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

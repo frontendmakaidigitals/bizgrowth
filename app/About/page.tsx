@@ -47,7 +47,7 @@ const Page = () => {
       <div className="container font-Satoshi">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="order-2 lg:order-1">
-            <p className=" px-3 text-slate-900  font-medium mb-4 bg-slate-100 w-fit py-1 rounded-full">
+            <p className=" px-3 text-slate-900  font-medium mb-4 bg-[#dcedc8] w-fit py-1 rounded-lg ">
               About Us
             </p>
 
@@ -79,12 +79,12 @@ const Page = () => {
                 src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               />
             </div>
-            <div className="shadow absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-[#81D4FA] h-full" />
+            <div className="shadow absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-lime-300 h-full" />
           </div>
         </div>
       </div>
       <div className="container grid grid-cols-1 my-20 lg:grid-cols-2 gap-10">
-        <div className="font-Satoshi bg-slate-100 p-5">
+        <div className="font-Satoshi bg-[#dcedc8] p-5 rounded-lg">
           <div className="w-full h-[300px] lg:h-[400px]  overflow-hidden">
             <img
               className="w-full h-full object-cover"
@@ -98,11 +98,19 @@ const Page = () => {
           </h1>
 
           <p className=" my-3">
-            To empower upcoming business by providing comprehensive and
-            personalized set-up solutions that accelerate growth and success.
+            At BizGrowth, our mission is to empower upcoming business by
+            providing comprehensive and personalized set-up solutions that
+            accelerate growth and success. We attempt to simplify the process of
+            setting up and registering businesses by offering expert guidance,
+            tailored solutions, and unparalleled customer support. Our goal is
+            to help professionals and companies navigate the complexities of
+            company formation which helps them to focus on their core objectives
+            and achieve long-term success. Through innovation, integrity, and a
+            commitment to excellence, we aim to be the trusted partner in every
+            step of your business journey."
           </p>
         </div>
-        <div className="font-Satoshi  bg-slate-100 p-5">
+        <div className="font-Satoshi  bg-[#dcedc8] p-5 rounded-lg">
           <div className="w-full h-[300px] lg:h-[400px]  overflow-hidden">
             <img
               className="w-full h-full object-cover"
@@ -116,9 +124,16 @@ const Page = () => {
           </h1>
 
           <p className="my-3">
-            To be the leading provider of business setup services in the UAE,
-            recognized for our expertise, reliability, and customer
-            satisfaction.
+            At BizGrowth, to be the leading provider of business setup services
+            in the UAE, recognized for our expertise, reliability, and customer
+            satisfaction. We envision a future where every business, regardless
+            of the size or industry of the company, can easily navigate the
+            complexities of registration and compliance with government
+            policies, and empowering the companies to thrive in a global
+            marketplace. Through continuous innovation, expert support, and a
+            commitment to customer success, we aim to help turn ideas into
+            reality, enabling entrepreneurs to focus on building their empire
+            while we take care of the details.
           </p>
         </div>
       </div>
@@ -128,7 +143,7 @@ const Page = () => {
 
         <div className="grid grid-cols-1 my-16 lg:grid-cols-3 gap-4">
           {selfPraise.map((item, index) => (
-            <div key={index} className="bg-slate-100 p-4 rounded-xl">
+            <div key={index} className="bg-[#dcedc8] p-4 rounded-xl">
               <div className="w-full aspect-[4/3] bg-slate-200/80 mb-3">
                 <img className="w-full h-full object-contain" src={item.img} />
               </div>

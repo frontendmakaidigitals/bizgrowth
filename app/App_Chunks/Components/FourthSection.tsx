@@ -15,57 +15,73 @@ import { GiArchiveResearch } from "react-icons/gi";
 import { MdDesignServices } from "react-icons/md";
 import { RiGovernmentFill } from "react-icons/ri";
 import { TbReceiptTax } from "react-icons/tb";
+import Heading from "./Heading";
 const FourthSection = () => {
   const services = [
     {
       title: "Company Formation",
       icon: <FaBuilding className="text-2xl" />,
+      desc: "Form your company effortlessly with our guidance on the legal process of establishing your business entity.",
     },
     {
       title: "Company Incorporation",
       icon: <PiBuildingOfficeFill className="text-2xl" />,
+      desc: "We handle the whole process of incorporating your business, from choosing a legal structure to registering with relevant authorities. ",
     },
     {
       title: "Bank Account Assistance",
       icon: <MdOutlineAccountBalance className="text-2xl" />,
+      desc: "We guide you in opening and managing bank account for smooth financial transactions for your business.",
     },
-    { title: "Visa Processing", icon: <FaPassport className="text-2xl" /> },
-    { title: "PRO Services", icon: <FaUserTie className="text-2xl" /> },
+    {
+      title: "Visa Processing",
+      icon: <FaPassport className="text-2xl" />,
+      desc: "We process the visa applications and immigration procedures for a smooth business operations",
+    },
+    {
+      title: "PRO Services",
+      icon: <FaUserTie className="text-2xl" />,
+      desc: "We provide translation, interpretation, and document attestation, to facilitate international business operations.",
+    },
     {
       title: "Office Space Solutions",
       icon: <PiOfficeChairBold className="text-2xl" />,
+      desc: " We help you get the apt office space solutions, from virtual offices to fully- furnished, & serviced workspaces. ",
     },
     {
       title: "Legal and Advisory Services",
       icon: <GoLaw className="text-2xl" />,
+      desc: "We provide comprehensive legal and advisory services to support your business. ",
     },
     {
       title: "VAT Services",
       icon: <TbReceiptTax className="text-2xl" />,
+      desc: " We provide comprehensive VAT services, including registration, compliance, and refund claims. ",
     },
     {
       title: "Accounting & Bookkeeping",
       icon: <HiOutlineTableCells className="text-2xl" />,
+      desc: " We provide efficient accounting and book keeping services to manage your financial records ",
     },
     {
-      title: "Business Sponsorship and Local Partner Services",
+      title: "Golden Visa",
       icon: <GoSponsorTiers className="text-2xl" />,
+      desc: "We assist with Golden Visa application process, helping you secure long-term residency ",
     },
     {
-      title: "Corporate Banking Assistance",
+      title: "Wealth Management",
       icon: <MdAssistant className="text-2xl" />,
-    },
-    {
-      title: "Business Consultation & Market Research",
-      icon: <GiArchiveResearch className="text-2xl" />,
+      desc: "We provide comprehensive wealth management services, including investment planning, portfolio management and retirement planning",
     },
     {
       title: "Design & Marketing Services",
       icon: <MdDesignServices className="text-2xl" />,
+      desc: " We provide creative design solutions and effective marketing strategies to promote your brand online & offline",
     },
     {
       title: "Government Permit & Approval",
       icon: <RiGovernmentFill className="text-2xl" />,
+      desc: "We assist in obtaining government permits and approvals required for your business operations",
     },
   ];
 
@@ -77,24 +93,28 @@ const FourthSection = () => {
 
   return (
     <div className="container mb-20">
-      <h1 className="text-2xl lg:text-4xl font-Satoshi font-[600]">
-        YOUR ONE-STOP SHOP FOR BUSINESS SOLUTIONS!
-      </h1>
+      <Heading className="!text-center w-full">
+        Your <span className="text-[#7cb342]">ONE-STOP</span> shop for business
+        solutions!
+      </Heading>
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5">
         {services.slice(0, servicesToShow).map((service, index) => (
           <div
             key={index}
-            className="w-full hover:shadow-lg transition-all duration-300 flex justify-between flex-col h-[200px] bg-slate-200 p-3 rounded-xl"
+            className="w-full hover:shadow-lg transition-all duration-300 flex justify-between items-start flex-col gap-6 bg-[#dcedc8] p-3 rounded-xl"
           >
-            <div className="size-14 flex justify-center items-center overflow-hidden rounded-full bg-slate-50">
+            <div className="size-14 text-[#244010] flex justify-center items-center overflow-hidden rounded-full bg-slate-50">
               {service.icon}
             </div>
             <div>
-              <p className="text-left font-Satoshi font-[500] text-xl">
+              <p className="text-left font-Satoshi font-[600] text-xl">
                 {service.title}
               </p>
-              <div>
-                <button className="text-blue-500">Read more</button>
+              <p className="text-sm">{service.desc}</p>
+              <div className="mt-6">
+                <button className="text-[#244010] bg-lime-300 px-3 py-1 rounded-lg font-Satoshi font-[500]">
+                  Read more
+                </button>
               </div>
             </div>
           </div>

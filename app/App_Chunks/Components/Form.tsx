@@ -1,17 +1,18 @@
 import React from "react";
 import Heading from "./Heading";
+import Button from "./Button";
 const Form = () => {
   return (
-    <div className="w-full bg-yellow-300 py-14 ">
+    <div className="w-full py-14 bg-no-repeat bg-center bg-cover bg-[url('/media/rm183-techi-11.jpg')]">
       <div className=" container">
-        <Heading>Get in touch with us</Heading>
+        <Heading className="!text-center w-full">Get in touch with us</Heading>
 
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10  mt-8">
-          <div className="h-full bg-pink-100 w-auto">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10 mt-12">
+          <div className="h-full w-auto overflow-hidden rounded-xl">
             <img
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain "
               src={
-                "https://cdni.iconscout.com/illustration/premium/thumb/contact-us-illustration-download-in-svg-png-gif-file-formats--call-logo-laptop-helping-customer-service-pack-network-communication-illustrations-2912018.png"
+                "https://img.freepik.com/free-vector/organic-flat-feedback-concept-illustrated_23-2148952275.jpg?t=st=1732604512~exp=1732608112~hmac=00389f9b05dc07b4d0f7e21754b78a6f018c09c8f1db206ca9aa3587dcb745a3&w=900"
               }
             />
           </div>
@@ -53,12 +54,9 @@ const Form = () => {
                 className="resize-none bg-slate-100 rounded-lg focus:shadow-md focus:outline-dashed  h-28 px-4 py-2 mt-1"
               />
             </div>
-            <button
-              type="submit"
-              className="px-4 mt-4 py-2 bg-blue-300 hover:bg-blue-400 rounded-lg "
-            >
+            <Button className="px-4 mt-4 py-2 bg-blue-300 hover:bg-blue-400 rounded-lg ">
               Submit
-            </button>
+            </Button>
           </form>
         </div>
       </div>

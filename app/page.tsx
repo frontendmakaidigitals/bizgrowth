@@ -12,7 +12,7 @@ export default function Home() {
       <TabularSection />
       <ThirdSection />
       <FourthSection />
-      <BusinessSteps />
+
       <LogoMarquee />
       <Form />
     </div>

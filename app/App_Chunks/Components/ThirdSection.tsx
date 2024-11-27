@@ -11,7 +11,7 @@ const ThirdSection = () => {
             "https://images.unsplash.com/photo-1524758870432-af57e54afa26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }
         />
-        <div className="shadow-xl absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-[#81D4FA] h-full" />
+        <div className="shadow-xl absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-[#dbfdb6] h-full" />
       </div>
       <div className="">
         <h1 className="text-2xl lg:text-4xl font-Satoshi font-[600]">

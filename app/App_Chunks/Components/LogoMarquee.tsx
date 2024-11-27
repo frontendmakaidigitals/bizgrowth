@@ -1,5 +1,5 @@
-import React from "react";
-import Marquee from "@/components/ui/marquee";
+"use client";
+import React, { useEffect, useState } from "react";
 
 const reviews = [
   {
@@ -50,43 +50,77 @@ const reviews = [
     body: "I'm at a loss for words. This is amazing. I love it.",
     img: "/Logos/Oasis.png",
   },
-  {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Logos/RAKEZ_Logo.jpg",
-  },
-  {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Logos/RAKEZ---Channel-Partner-Service-Partner.jpg",
-  },
-  {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Logos/UAQ_freezone_Logo-1.png",
-  },
 ];
 
 const LogoMarquee = () => {
+  const [logos, setLogos] = useState(reviews);
+ 
+ 
+
   return (
-    <div className="mb-20">
-      {" "}
-      <Marquee pauseOnHover className="[--duration:20s]">
-        {reviews.map((review, index) => (
+    <>
+      {/* Inline style for animation */}
+      <style jsx>{`
+        @keyframes marqueeAnimation {
+          0% {
+            transform: translateY(100%); /* Start from bottom */
+          }
+          100% {
+            transform: translateY(-100%); /* Move to top */
+          }
+        }
+
+        .animate-marquee {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          animation: marqueeAnimation 2s linear infinite;
+        }
+
+        /* Stagger delay for each logo */
+        .animate-marquee:nth-child(1) {
+          animation-delay: 0s;
+        }
+        .animate-marquee:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+        .animate-marquee:nth-child(3) {
+          animation-delay: 1s;
+        }
+        .animate-marquee:nth-child(4) {
+          animation-delay: 1.5s;
+        }
+        .animate-marquee:nth-child(5) {
+          animation-delay: 2s;
+        }
+        .animate-marquee:nth-child(6) {
+          animation-delay: 2.5s;
+        }
+        .animate-marquee:nth-child(7) {
+          animation-delay: 3s;
+        }
+        .animate-marquee:nth-child(8) {
+          animation-delay: 3.5s;
+        }
+      `}</style>
+
+      <div className="mb-20 grid grid-cols-2 lg:grid-cols-4 gap-14 place-items-center container">
+        {logos.slice(0, 8).map((review, index) => (
           <div
             key={index}
-            className=" bg-white border overflow-hidden border-gray-300  rounded-lg flex justify-center items-center"
+            className="w-full h-32 flex items-center justify-center border border-slate-300 rounded-sm overflow-hidden relative"
           >
-            <div className="w-[200px]">
-              <img className=" w-full h-full object-cover " src={review.img} />
+            <div className="relative w-full h-full">
+              <img
+                src={review.img}
+                alt={`Logo for ${review.name}`}
+                className="animate-marquee w-full h-full object-contain absolute"
+              />
             </div>
           </div>
         ))}
-      </Marquee>
-    </div>
+      </div>
+    </>
   );
 };
 
