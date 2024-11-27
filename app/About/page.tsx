@@ -124,7 +124,8 @@ const Page = () => {
       <div className="container font-Satoshi">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="order-2 lg:order-1">
-            <p className=" px-3 text-slate-900  font-medium mb-4 bg-[#dcedc8] w-fit py-1 rounded-lg ">
+            <p className=" px-3 text-slate-900 flex items-center gap-2 font-medium mb-4 bg-[#dcedc8] w-fit py-1 rounded-lg ">
+              <div className="size-2 rounded-full bg-[#244010]"></div>
               About Us
             </p>
 
