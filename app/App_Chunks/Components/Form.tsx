@@ -33,16 +33,25 @@ const Form = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
               <div className="grid grid-cols-1">
-                <label className="font-[500] text-xl ">Company</label>
-                <div>
+                <label className="font-[500] text-xl ">
+                  Select business activitiy
+                </label>
+                <div className="w-full">
                   <Select>
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a fruit" />
+                    <SelectTrigger className="w-full mt-1 h-10 bg-slate-950/10 border-0 ">
+                      <SelectValue
+                        className="placehodler:text-slate-600"
+                        placeholder="Select Business Activity"
+                      />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className=" bg-[#c5e1a5] text-slate-950">
                       <SelectGroup>
-                        <SelectLabel>Fruits</SelectLabel>
-                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem
+                          value="apple"
+                          
+                        >
+                          Apple
+                        </SelectItem>
                         <SelectItem value="banana">Banana</SelectItem>
                         <SelectItem value="blueberry">Blueberry</SelectItem>
                         <SelectItem value="grapes">Grapes</SelectItem>
