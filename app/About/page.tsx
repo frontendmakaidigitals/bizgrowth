@@ -119,6 +119,11 @@ const Page = () => {
       ),
     },
   ];
+  const data = [
+    { val: 12, title: "years of Expertise" },
+    { val: 150, title: "Countries Serving" },
+    { val: 10, title: "Happy Customers" },
+  ];
   return (
     <div className=" my-14">
       <div className="container font-Satoshi">
@@ -159,6 +164,27 @@ const Page = () => {
             </div>
             <div className="shadow absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-lime-300 h-full" />
           </div>
+        </div>
+      </div>
+
+      <div className="container w-full my-32">
+        <Heading className="w-full !text-center">
+          Your Trusted Partner for Business Journey in UAE
+        </Heading>
+
+        <div className="grid grid-cols-3 place-items-center gap-6 my-14">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center gap-1"
+            >
+              <p className="text-7xl font-SplineSans font-bold text-[#1e440f]">
+                {item.val}
+                {index <= 1 ? "+" : "k"}
+              </p>
+              <p className="text-xl font-Satoshi">{item.title}</p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="w-full py-14  my-20 relative bg-lime-50">
