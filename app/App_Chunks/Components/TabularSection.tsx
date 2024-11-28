@@ -52,7 +52,7 @@ const TabularSection = () => {
   return (
     <div className="w-full h-full mb-20 container">
       <Heading className="!text-center w-full">
-        Choose your Jurisdiction
+        Choose your <span className="text-lime-500 font-Synonym">Jurisdiction</span>
       </Heading>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
         {tabs.map((tab, index) => (

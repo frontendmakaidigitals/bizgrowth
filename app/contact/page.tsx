@@ -1,6 +1,14 @@
 import React from "react";
 import Button from "../App_Chunks/Components/Button";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel,
+} from "@/components/ui/select";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
@@ -54,7 +62,7 @@ const Page = () => {
               <input
                 type="text"
                 placeholder="Enter Name"
-                className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 rounded-lg w-full p-2"
+                className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
               />
             </div>
             <div className="mt-4">
@@ -64,19 +72,31 @@ const Page = () => {
               <input
                 type="text"
                 placeholder="Enter Email"
-                className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 rounded-lg w-full p-2"
+                className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
               />
             </div>
             <div className="grid mt-4 grid-cols-1 lg:grid-cols-2 gap-3">
-              <div>
-                <label>
-                  Company <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter Company Name"
-                  className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 rounded-lg w-full p-2"
-                />
+              <div className="grid grid-cols-1">
+                <label className=" ">Select business activitiy</label>
+                <div className="w-full">
+                  <Select>
+                    <SelectTrigger className="w-full mt-1 h-10 bg-slate-950/10 border-0 ">
+                      <SelectValue
+                        className="placehodler:text-slate-600"
+                        placeholder="Select Business Activity"
+                      />
+                    </SelectTrigger>
+                    <SelectContent className=" bg-[#c5e1a5] text-slate-950">
+                      <SelectGroup>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <div className="">
                 <label>
@@ -85,7 +105,7 @@ const Page = () => {
                 <input
                   type="text"
                   placeholder="Enter your Contact"
-                  className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 rounded-lg w-full p-2"
+                  className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
                 />
               </div>
             </div>
@@ -95,7 +115,7 @@ const Page = () => {
               </label>
               <textarea
                 placeholder="Enter your message here"
-                className="border h-40 resize-none border-dashed bg-gray-950/10 mt-1 border-gray-400 rounded-lg w-full p-2"
+                className="border h-40 resize-none border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
               />
             </div>
             <div className="mt-4">

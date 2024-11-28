@@ -93,8 +93,8 @@ const FourthSection = () => {
   return (
     <div className="container mb-20">
       <Heading className="!text-center w-full">
-        Your <span className="text-[#7cb342]">ONE-STOP</span> shop for business
-        solutions!
+        Your <span className="text-lime-500 font-Synonym">ONE-STOP</span> shop
+        for business solutions!
       </Heading>
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5">
         {services.slice(0, servicesToShow).map((service, index) => (
@@ -124,10 +124,7 @@ const FourthSection = () => {
 
       {/* Show More / Show Less Button */}
       <div className="flex justify-center w-full">
-        <Button
-          onClick={() => setShowMore(!showMore)}
-          className="mt-5 px-6 py-2 bg-blue-500 text-white rounded-lg"
-        >
+        <Button onClick={() => setShowMore(!showMore)} className="mt-5 px-5 py-2">
           {showMore ? "Show Less" : "Show More"}
         </Button>
       </div>
