@@ -125,7 +125,7 @@ const Page = () => {
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="order-2 lg:order-1">
             <p className=" px-3 text-slate-900 flex items-center gap-2 font-medium mb-4 bg-[#dcedc8] w-fit py-1 rounded-lg ">
-              <div className="size-2 rounded-full bg-[#244010]"></div>
+              <span className="size-2 rounded-full bg-[#244010]"></span>
               About Us
             </p>
 
@@ -181,9 +181,70 @@ const Page = () => {
           ))}
         </div>
       </div>
+      <div className="my-32">
+        <Heading className="!text-center w-full mb-20">
+          WHAT SETS US APART IN THE MARKET?
+        </Heading>
+        <div className="grid grid-cols-1 font-Satoshi lg:grid-cols-3 gap-6 container">
+          <div className="grid grid-cols-1 gap-10">
+            <div className="w-full rounded-lg border border-gray-300 p-3">
+              <span className="font-semibold font-Satoshi text-lg">
+                Tailored Services{" "}
+              </span>
+              <p className=" mt-2">
+                Regardless of the size or industry of the business, we offer
+                services that are customized to the requirements of each
+                business. Our team of experts has in-depth knowledge in legal,
+                regulatory, and compliance matters, ensuring smooth and
+                compliant business formation.
+              </p>
+            </div>
+            <div className="w-full rounded-lg border border-gray-300 p-3">
+              <span className="font-semibold font-Satoshi text-lg">
+                Competitive Rates{" "}
+              </span>{" "}
+              <p className="mt-2">
+                No hidden fees: we offer clear, transparent pricing structures
+                to ensure that clients know exactly what to expect. We also
+                offer flexible payment plans that suits client of different
+                budgets.
+              </p>
+            </div>
+          </div>
 
+          <div></div>
+
+          <div className="grid grid-cols-1 gap-10">
+            <div className="w-full rounded-lg border border-gray-300 p-3">
+              <span className="font-semibold font-Satoshi text-lg">
+                Exceptional Customer Service{" "}
+              </span>
+              <p className="mt-2">
+                We have dedicated account managers who will offer personalized
+                experience to each of our clients keeping them informed of every
+                single process. We offer them proactive communication with 24/7
+                Support.
+              </p>
+            </div>
+
+            <div className="w-full rounded-lg border border-gray-300 p-3">
+              <span className="font-semibold font-Satoshi text-lg">
+                Streamlined and Efficient Processes
+              </span>
+              <p className="mt-2">
+                We have dedicated account managers who will offer personalized
+                experience to each of our clients keeping them informed of every
+                single process. We offer them proactive communication with 24/7
+                Support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container my-20 font-Satoshi">
-        <h1 className="text-center text-4xl font-semibold">Why Choose Us?</h1>
+        <Heading className="!text-center text-4xl font-semibold">
+          Why Choose BIZ GROWTH?
+        </Heading>
 
         <div className="grid grid-cols-1 my-16 lg:grid-cols-3 gap-4">
           {selfPraise.map((item, index) => (
