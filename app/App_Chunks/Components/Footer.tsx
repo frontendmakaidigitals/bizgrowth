@@ -67,8 +67,8 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div className=" relative border-t border-neutral-200 overflow-hidden group py-24 dark:border-neutral-700 lg:py-28">
-        <div className="w-full h-full ">
+      <div className=" relative border-t border-sky-200 bg-teal-50 overflow-hidden group py-24 dark:border-neutral-700 lg:py-28">
+        <div className="w-full hidden h-full ">
           <img
             className="absolute top-0 group-hover:scale-[1.1] transition-all duration-300 left-0 z-[2] w-full h-full object-cover"
             src={"/media/Footerbg.svg"}
