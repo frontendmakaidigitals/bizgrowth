@@ -162,7 +162,7 @@ const Page = () => {
                 src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               />
             </div>
-            <div className="shadow absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-lime-300 h-full" />
+            <div className="shadow absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-slate-950/40 h-full" />
           </div>
         </div>
       </div>
@@ -172,11 +172,11 @@ const Page = () => {
           Your Trusted Partner for Business Journey in UAE
         </Heading>
 
-        <div className="grid grid-cols-3 place-items-center gap-6 my-14">
+        <div className="grid grid-cols-1 lg:grid-cols-3 place-items-center gap-6 my-14">
           {data.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center gap-1"
+              className="flex p-5 w-full bg-[#dcedc8] rounded-xl flex-col items-center justify-center gap-1"
             >
               <p className="text-7xl font-SplineSans font-bold text-[#1e440f]">
                 {item.val}

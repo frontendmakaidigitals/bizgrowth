@@ -14,7 +14,10 @@ const Form = () => {
   return (
     <div className="w-full py-14 bg-lime-100">
       <div className=" container">
-        <Heading className="!text-center w-full">Get in touch with us</Heading>
+        <Heading className="!text-center w-full">
+          Get in <span className="text-lime-600 font-Synonym">touch</span> with
+          us
+        </Heading>
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10 mt-12">
           <div className="h-[500px] w-auto overflow-hidden rounded-xl">
@@ -46,12 +49,7 @@ const Form = () => {
                     </SelectTrigger>
                     <SelectContent className=" bg-[#c5e1a5] text-slate-950">
                       <SelectGroup>
-                        <SelectItem
-                          value="apple"
-                          
-                        >
-                          Apple
-                        </SelectItem>
+                        <SelectItem value="apple">Apple</SelectItem>
                         <SelectItem value="banana">Banana</SelectItem>
                         <SelectItem value="blueberry">Blueberry</SelectItem>
                         <SelectItem value="grapes">Grapes</SelectItem>
