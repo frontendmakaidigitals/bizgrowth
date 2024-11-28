@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 const Form = () => {
   return (
-    <div className="w-full py-14 bg-yellow-100">
+    <div className="w-full py-14 bg-lime-100">
       <div className=" container">
         <Heading className="!text-center w-full">Get in touch with us</Heading>
 
