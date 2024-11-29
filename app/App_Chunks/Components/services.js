@@ -1035,8 +1035,8 @@ const data = [
     heroTitle: (
       <Heading>
         Your
-        <span className="text-lime-600 font-SplineSans">
-          BUSINESS SET UP PARTNER
+        <span className="text-lime-600 font-SplineSans">{' '}
+          BUSINESS SET UP PARTNER {' '}
         </span>
         to Thriving Business Opportunities IN AJMAN MAINLAND
       </Heading>
