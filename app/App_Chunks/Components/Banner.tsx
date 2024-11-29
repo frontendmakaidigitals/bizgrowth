@@ -2,9 +2,11 @@ import React from "react";
 
 const Banner = ({ query }: { query: string | undefined | null }) => {
   return (
-    <div className="w-full container h-60 mb-24 rounded-xl bg-[#7cb342]">
+    <div className="w-full container mb-24 rounded-xl p-5 bg-[#94c958]">
       {query}
-      <p>READY TO KICKSTART YOUR BUSINESS IN FUJAIRAH? </p>
+      <p className="font-Synonym text-2xl tracking-tight">
+        READY TO KICKSTART YOUR BUSINESS IN FUJAIRAH?
+      </p>
     </div>
   );
 };
