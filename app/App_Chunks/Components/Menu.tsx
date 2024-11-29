@@ -64,7 +64,13 @@ const Menu = () => {
                           <ul>
                             {point.points.map(
                               (item: string, itemIndex: number) => (
-                                <Link key={itemIndex} href="/">
+                                <Link
+                                  key={itemIndex}
+                                  href={{
+                                    pathname: "mainland",
+                                    query: { name: item },
+                                  }}
+                                >
                                   <li className="mt-2 hover:underline flex text-[#12250a] items-center gap-2">
                                     {item}
                                   </li>

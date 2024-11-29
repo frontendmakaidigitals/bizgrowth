@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import Button from "@/app/App_Chunks/Components/Button";
-
+import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
-import { motion } from "framer-motion";
+
 import {
   Carousel,
   CarouselContent,
@@ -11,22 +11,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import data from "../../App_Chunks/Components/services";
+import data from "../App_Chunks/Components/services";
 const Page = () => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("name");
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
   useEffect(() => {
-    setProcessData(data[0]);
-  }, []);
-
+    const matchingItem = data.find(
+      (item) => item.name.toLowerCase() === query?.toLowerCase()
+    );
+    setProcessData(matchingItem || null); // Set the found item or null if no match
+  }, [data, query]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
-
-      // Determine which step is currently visible based on scroll position
       for (let i = 0; i < stepOffsets.length; i++) {
         if (scrollPosition >= stepOffsets[i] - 200) {
           setCurrentStep(i);
@@ -139,7 +140,7 @@ const Page = () => {
               <tr>
                 {processData?.sixthTableHead.map((elem, index) => (
                   <th key={index} className="border border-gray-300  py-2">
-                    <div className=" flex font-Satoshi text-lg text-[#152b0c] justify-start px-5 w-[500px]">
+                    <div className=" flex font-Satoshi text-lg text-[#152b0c] justify-start px-5 w-full">
                       {elem}
                     </div>
                   </th>
@@ -154,19 +155,60 @@ const Page = () => {
                       {item.title}
                     </div>
                   </td>
-                  <td className="border border-gray-300  ">
-                    <ul>
-                      {item.docs.map((doc, id) => (
-                        <li
-                          key={id}
-                          className="border flex items-center gap-2 py-2 px-5"
-                        >
+
+                  {query?.toLowerCase() != "sharjah mainland" &&
+                  "doc2" in item ? (
+                    <td className="border border-gray-300  ">
+                      <ul>
+                        {"docs" in item && Array.isArray(item.docs) ? (
+                          item.docs.map((doc, id) => (
+                            <li
+                              key={id}
+                              className="border flex items-center gap-2 py-2 px-5"
+                            >
+                              <MdLabelImportant className="text-lime-800" />
+                              {doc}
+                            </li>
+                          ))
+                        ) : (
+                          <></>
+                        )}
+                      </ul>
+                    </td>
+                  ) : null}
+                  {query?.toLowerCase() == "sharjah mainland" &&
+                  "doc2" in item ? (
+                    <td className="border border-gray-300  ">
+                      <ul>
+                        <li className="border flex items-center gap-2 py-2 px-5">
                           <MdLabelImportant className="text-lime-800" />
-                          {doc}
+                          {item.doc1}
                         </li>
-                      ))}
-                    </ul>
-                  </td>
+                      </ul>
+                    </td>
+                  ) : null}
+                  {query?.toLowerCase() == "sharjah mainland" &&
+                  "doc2" in item ? (
+                    <td className="border border-gray-300  ">
+                      <ul>
+                        <li className="border flex items-center gap-2 py-2 px-5">
+                          <MdLabelImportant className="text-lime-800" />
+                          {item.doc2}
+                        </li>
+                      </ul>
+                    </td>
+                  ) : null}
+                  {query?.toLowerCase() == "sharjah mainland" &&
+                  "doc2" in item ? (
+                    <td className="border border-gray-300  ">
+                      <ul>
+                        <li className="border flex items-center gap-2 py-2 px-5">
+                          <MdLabelImportant className="text-lime-800" />
+                          {item.doc3}
+                        </li>
+                      </ul>
+                    </td>
+                  ) : null}
                 </tr>
               ))}
             </tbody>
@@ -176,27 +218,49 @@ const Page = () => {
           <p className="font-Satoshi text-sm">{processData?.tableFooter}</p>
         </div>
       </div>
-      <div className="w-full container my-24">
-        <div>{processData?.seventhTitle}</div>
-        <div className="w-full mt-14">
-          <Carousel className="w-full ">
-            <CarouselContent>
-              {processData?.seventhPoints.map((item, index) => (
-                <CarouselItem key={index} className="basis-1/3">
-                  <div className="w-full border bg-[#dff2d8] border-lime-700 p-5 rounded-xl h-full">
-                    <p className="text-xl font-semibold font-SplineSans">
-                      {item.title}
-                    </p>
-                    <p className="font-Satoshi mt-1">{item.desc}</p>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+      {processData?.seventhTitle ? (
+        <div className="w-full container my-24">
+          <div>{processData?.seventhTitle}</div>
+          <div className="w-full mt-14">
+            <Carousel className="w-full ">
+              <CarouselContent>
+                {processData?.seventhPoints?.map((item, index) => (
+                  <CarouselItem key={index} className="basis-1/3">
+                    <div className="w-full border bg-[#dff2d8] border-lime-700 p-5 rounded-xl h-full">
+                      <p className="text-xl font-semibold font-SplineSans">
+                        {item.title}
+                      </p>
+                      <p className="font-Satoshi mt-1">{item.desc}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
         </div>
-      </div>
+      ) : null}
+
+      {processData?.sharjahTabelFooter ? (
+        <div className="w-full container my-24">
+          <div>
+            <p className="text-2xl font-SplineSans font-[500]">Key Points:</p>
+          </div>
+          <div className="w-full mt-2">
+            <ul>
+              {processData.sharjahTabelFooter.map((item, index) => (
+                <li key={index}>
+                  <p className={"text-lg font-Satoshi"}>
+                    <span className="font-semibold">{item.title}: </span>{" "}
+                    {item.desc}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
