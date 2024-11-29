@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./App_Chunks/Components/Navbar";
 import Footer from "./App_Chunks/Components/Footer";
+import { Providers } from "./App_Chunks/Components/ParallaxProvider";
+import LenisScroll from "./App_Chunks/Components/LenisScroll";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -36,7 +38,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        <LenisScroll />
+        <Providers>{children}</Providers>
         <Footer />
       </body>
     </html>

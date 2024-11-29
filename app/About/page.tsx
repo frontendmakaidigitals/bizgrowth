@@ -238,7 +238,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div></div>
+          <img src={"/media/aboutImg.png"} className="hiden lg:block" />
 
           <div className="grid grid-cols-1 gap-10">
             <div className="w-full rounded-lg border border-gray-300 p-3">

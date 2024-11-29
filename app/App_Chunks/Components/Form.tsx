@@ -8,14 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
   SelectGroup,
-
 } from "@/components/ui/select";
 const Form = () => {
   return (
-    <div className="w-full py-14 bg-lime-100">
-      <div className=" container">
+    <div className="w-full py-14 bg-black ">
+      <div className=" container text-slate-50">
         <Heading className="!text-center w-full">
-          Get in <span className="text-lime-600 font-Synonym">touch</span> with
+          Get in <span className="!text-lime-600 font-Synonym">touch</span> with
           us
         </Heading>
 
@@ -23,7 +22,7 @@ const Form = () => {
           <div className="h-[500px] w-auto overflow-hidden rounded-xl">
             <img
               className="w-full h-full object-contain "
-              src={"/media/form.png"}
+              src={"/media/form.jpeg"}
             />
           </div>
           <form className="font-Satoshi">
@@ -31,7 +30,7 @@ const Form = () => {
               <label className="font-[500] text-xl ">Full Name</label>
               <input
                 placeholder="Enter your full name"
-                className="bg-slate-950/10 placeholder:text-slate-600 rounded-lg focus:shadow-md focus:outline-dashed  px-4 py-2 mt-1"
+                className="bg-slate-50/20 placeholder:text-slate-400 rounded-lg focus:shadow-md focus:outline-dashed  px-4 py-2 mt-1"
               />
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
@@ -41,7 +40,7 @@ const Form = () => {
                 </label>
                 <div className="w-full">
                   <Select>
-                    <SelectTrigger className="w-full mt-1 h-10 bg-slate-950/10 border-0 ">
+                    <SelectTrigger className="w-full mt-1 h-10 bg-slate-50/20 border-0 ">
                       <SelectValue
                         className="placehodler:text-slate-600"
                         placeholder="Select Business Activity"
@@ -64,7 +63,7 @@ const Form = () => {
                 <input
                   type="number"
                   placeholder="Enter Contact Number"
-                  className="bg-slate-950/10 placeholder:text-slate-600 rounded-lg focus:shadow-md focus:outline-dashed  px-4 py-2 mt-1"
+                  className="bg-slate-50/20 placeholder:text-slate-400 rounded-lg focus:shadow-md focus:outline-dashed  px-4 py-2 mt-1"
                 />
               </div>
             </div>
@@ -72,14 +71,14 @@ const Form = () => {
               <label className="font-[500] text-xl ">Email</label>
               <input
                 placeholder="Eter your email"
-                className="bg-slate-950/10 placeholder:text-slate-600 rounded-lg focus:shadow-md focus:outline-dashed  px-4 py-2 mt-1"
+                className="bg-slate-50/20 placeholder:text-slate-400 rounded-lg focus:shadow-md focus:outline-dashed  px-4 py-2 mt-1"
               />
             </div>
             <div className="grid grid-cols-1 mt-4">
               <label className="font-[500] text-xl ">Message</label>
               <textarea
                 placeholder="Enter your message"
-                className="resize-none bg-slate-950/10 placeholder:text-slate-600 rounded-lg focus:shadow-md focus:outline-dashed  h-28 px-4 py-2 mt-1"
+                className="resize-none bg-slate-50/20 placeholder:text-slate-400 rounded-lg focus:shadow-md focus:outline-dashed  h-28 px-4 py-2 mt-1"
               />
             </div>
             <Button className="px-4 mt-4 py-2 bg-blue-300 hover:bg-blue-400 rounded-lg ">
