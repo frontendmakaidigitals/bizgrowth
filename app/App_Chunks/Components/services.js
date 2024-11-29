@@ -336,7 +336,7 @@ const data = [
     ),
     heroDescription:
       "Welcome to the leading platform for obtaining a Sharjah Mainland Business License. Whether you're looking to start a new business or expand your operations, our professional services ensure a seamless and efficient process for securing your Mainland license in Sharjah. Let us help you navigate the regulatory landscape and start your business journey today Sharjah, is a dynamic emirate in the UAE, offers a thriving business environment with numerous opportunities for entrepreneurs. A Sharjah mainland license is the ideal choice for business seeking to operate within the UAE and engage directly with local and international clients. ",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/sharjah.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
         Why Choose <span className="text-lime-500">Sharjah Mainland</span>{" "}
@@ -636,7 +636,7 @@ const data = [
     ),
     heroDescription:
       "Starting a business in Abu Dhabi can open doors to numerous opportunities, and obtaining a Mainland Business License is the first step to tapping into this thriving market. A mainland license in Abu Dhabi is ideal for businesses seeking to operate within the UAE and engage directly with local and international clients. Our company is here to simplify the process of obtaining an Abu Dhabi Mainland License, ensuring that you comply with all local regulations while setting up your business seamlessly.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/dhabi.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
         Why Choose <span className="text-lime-500">Abu Dhabi Mainland</span>{" "}
@@ -1043,7 +1043,7 @@ const data = [
     ),
     heroDescription:
       "Are you ready to expand your business or set up a new company in one of the UAE’s most dynamic and affordable markets? Ajman offers an attractive business environment for entrepreneurs and companies looking to tap into the potential of the UAE Mainland. Whether you’re starting a small business or setting up a large-scale operation, our professional team is here to guide you through every step of the Ajman Mainland business setup process.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/ajman.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
         Why Choose <span className="text-lime-500"> Ajman</span> for Your
