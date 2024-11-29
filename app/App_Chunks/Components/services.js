@@ -1422,7 +1422,7 @@ const data = [
     ),
     heroDescription:
       "Welcome to BizGrowth, your trusted partner for business setup and company registration in Fujairah Mainland. Whether you’re an aspiring entrepreneur or an established business looking to expand in the UAE, we provide tailored solutions to help you establish and grow your business in Fujairah.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/Fujairah.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
         Why Choose <span className="text-lime-500"> Fujairah Mainland?</span>
