@@ -170,7 +170,7 @@ const LogoMarquee = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-[200px] relative z-10">
+            <div className="w-[300px] relative z-10">
               <img className=" w-full h-full object-cover " src={review.img} />
             </div>
           </div>
