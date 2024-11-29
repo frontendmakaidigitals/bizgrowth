@@ -15,15 +15,18 @@ import data from "../App_Chunks/Components/services";
 const Page = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
-  const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
+  const [processData, setProcessData] = useState(null);
+
   useEffect(() => {
     const matchingItem = data.find(
       (item) => item.name.toLowerCase() === query?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
   }, [data, query]);
+
   const [currentStep, setCurrentStep] = useState(0);
-  const stepsRefs = useRef<HTMLDivElement[]>([]);
+  const stepsRefs = useRef([]);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
