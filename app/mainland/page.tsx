@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
-
+import Banner from "../App_Chunks/Components/Banner";
 import {
   Carousel,
   CarouselContent,
@@ -215,7 +215,76 @@ const Page = () => {
         <div className="mt-3">
           <p className="font-Satoshi text-sm">{processData?.tableFooter}</p>
         </div>
+
+        {processData?.keyPoints ? (
+          <div className="w-full mt-4">
+            <div>
+              <p className="text-lg font-SplineSans font-[500]">Key Points:</p>
+            </div>
+            <div className="w-full mt-1">
+              <ul>
+                {processData.keyPoints.map((item, index) => (
+                  <li key={index}>
+                    <p className={"text-sm font-Satoshi"}>
+                      <span className="font-semibold">{item.title}: </span>{" "}
+                      {item.desc}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
+        {processData?.ajmanKeypoints ? (
+          <div className="w-full mt-4">
+            <div>
+              <p className="text-lg font-SplineSans font-[500]">
+                Key Notes to Keep in Mind for AJMAN Mainland License
+              </p>
+            </div>
+            <div className="w-full mt-1">
+              <ul>
+                {processData.ajmanKeypoints.map((item, index) => (
+                  <li
+                    key={index}
+                    className="font-Satoshi font-[400] flex items-center gap-2"
+                  >
+                    <div className="size-2 bg-lime-700 rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
+        {processData?.fujairahKeypoints ? (
+          <div className="w-full mt-4">
+            <div>
+              <p className="text-lg font-SplineSans font-[600]">
+                Compliance and Post-Setup Services in Fujairah Mainland License
+              </p>
+              <p className="font-Satoshi text-md font-[500]">
+                Once your company is set up, you will need to comply with
+                ongoing requirements, including:
+              </p>
+            </div>
+            <div className="w-full mt-1">
+              <ul>
+                {processData.fujairahKeypoints.map((item, index) => (
+                  <li
+                    key={index}
+                    className="font-Satoshi font-[400] flex items-center gap-2"
+                  >
+                    <div className="size-2 bg-lime-700 rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
       </div>
+
       {processData?.seventhTitle ? (
         <div className="w-full container my-24">
           <div>{processData?.seventhTitle}</div>
@@ -240,25 +309,7 @@ const Page = () => {
         </div>
       ) : null}
 
-      {processData?.sharjahTabelFooter ? (
-        <div className="w-full container my-24">
-          <div>
-            <p className="text-2xl font-SplineSans font-[500]">Key Points:</p>
-          </div>
-          <div className="w-full mt-2">
-            <ul>
-              {processData.sharjahTabelFooter.map((item, index) => (
-                <li key={index}>
-                  <p className={"text-lg font-Satoshi"}>
-                    <span className="font-semibold">{item.title}: </span>{" "}
-                    {item.desc}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ) : null}
+      <Banner query={query} />
     </div>
   );
 };
