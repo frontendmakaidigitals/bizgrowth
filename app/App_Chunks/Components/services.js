@@ -1398,7 +1398,7 @@ const data = [
       </p>,
       <p key={2}>
         For an <span>LLC, a local sponsor agreement</span> is necessary for
-        compliance with the UAE's 51% local ownership requirement.
+        compliance with the UAE&apos;s 51% local ownership requirement.
       </p>,
       <p key={3}>
         <span>Trade name reservation and NOC</span> (if applicable) are common

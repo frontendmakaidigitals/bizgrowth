@@ -309,7 +309,7 @@ const Page = () => {
         </div>
       ) : null}
 
-      <Banner query={query} />
+     
     </div>
   );
 };
