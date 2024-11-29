@@ -156,26 +156,24 @@ const Page = () => {
                     </div>
                   </td>
 
-                  {query?.toLowerCase() != "sharjah mainland" &&
-                  "doc2" in item ? (
-                    <td className="border border-gray-300  ">
+                  {query?.toLowerCase() !== "sharjah mainland" &&
+                  "docs" in item &&
+                  Array.isArray(item?.docs) ? (
+                    <td className="border border-gray-300">
                       <ul>
-                        {"docs" in item && Array.isArray(item.docs) ? (
-                          item.docs.map((doc, id) => (
-                            <li
-                              key={id}
-                              className="border flex items-center gap-2 py-2 px-5"
-                            >
-                              <MdLabelImportant className="text-lime-800" />
-                              {doc}
-                            </li>
-                          ))
-                        ) : (
-                          <></>
-                        )}
+                        {item.docs.map((doc, id) => (
+                          <li
+                            key={id}
+                            className="border flex items-center gap-2 py-2 px-5"
+                          >
+                            <MdLabelImportant className="text-lime-800" />
+                            {doc}
+                          </li>
+                        ))}
                       </ul>
                     </td>
                   ) : null}
+
                   {query?.toLowerCase() == "sharjah mainland" &&
                   "doc2" in item ? (
                     <td className="border border-gray-300  ">
