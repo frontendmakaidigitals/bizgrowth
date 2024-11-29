@@ -47,11 +47,7 @@ const FourthSection = () => {
       icon: <PiOfficeChairBold className="text-2xl" />,
       desc: " We help you get the apt office space solutions, from virtual offices to fully- furnished, & serviced workspaces. ",
     },
-    {
-      title: "Legal and Advisory Services",
-      icon: <GoLaw className="text-2xl" />,
-      desc: "We provide comprehensive legal and advisory services to support your business. ",
-    },
+
     {
       title: "VAT Services",
       icon: <TbReceiptTax className="text-2xl" />,
@@ -124,7 +120,10 @@ const FourthSection = () => {
 
       {/* Show More / Show Less Button */}
       <div className="flex justify-center w-full">
-        <Button onClick={() => setShowMore(!showMore)} className="mt-5 px-5 py-2">
+        <Button
+          onClick={() => setShowMore(!showMore)}
+          className="mt-5 px-5 py-2"
+        >
           {showMore ? "Show Less" : "Show More"}
         </Button>
       </div>
