@@ -11,7 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import data from "../App_Chunks/Components/mainland";
+import data from "../App_Chunks/Components/freezone";
 
 const Page = () => {
   return (
@@ -184,34 +184,12 @@ const MainPage = () => {
                   ) : null}
 
                   {query?.toLowerCase() == "sharjah mainland" &&
-                  "doc2" in item ? (
+                  "doc1" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
                         <li className="border flex items-center gap-2 py-2 px-5">
                           <MdLabelImportant className="text-lime-800" />
                           {item.doc1}
-                        </li>
-                      </ul>
-                    </td>
-                  ) : null}
-                  {query?.toLowerCase() == "sharjah mainland" &&
-                  "doc2" in item ? (
-                    <td className="border border-gray-300  ">
-                      <ul>
-                        <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
-                          {item.doc2}
-                        </li>
-                      </ul>
-                    </td>
-                  ) : null}
-                  {query?.toLowerCase() == "sharjah mainland" &&
-                  "doc2" in item ? (
-                    <td className="border border-gray-300  ">
-                      <ul>
-                        <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
-                          {item.doc3}
                         </li>
                       </ul>
                     </td>
@@ -224,99 +202,7 @@ const MainPage = () => {
         <div className="mt-3">
           <p className="font-Satoshi text-sm">{processData?.tableFooter}</p>
         </div>
-
-        {processData?.keyPoints ? (
-          <div className="w-full mt-4">
-            <div>
-              <p className="text-lg font-SplineSans font-[500]">Key Points:</p>
-            </div>
-            <div className="w-full mt-1">
-              <ul>
-                {processData.keyPoints.map((item, index) => (
-                  <li key={index}>
-                    <p className={"text-sm font-Satoshi"}>
-                      <span className="font-semibold">{item.title}: </span>{" "}
-                      {item.desc}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ) : null}
-        {processData?.ajmanKeypoints ? (
-          <div className="w-full mt-4">
-            <div>
-              <p className="text-lg font-SplineSans font-[500]">
-                Key Notes to Keep in Mind for AJMAN Mainland License
-              </p>
-            </div>
-            <div className="w-full mt-1">
-              <ul>
-                {processData.ajmanKeypoints.map((item, index) => (
-                  <li
-                    key={index}
-                    className="font-Satoshi font-[400] flex items-center gap-2"
-                  >
-                    <div className="size-2 bg-lime-700 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ) : null}
-        {processData?.fujairahKeypoints ? (
-          <div className="w-full mt-4">
-            <div>
-              <p className="text-lg font-SplineSans font-[600]">
-                Compliance and Post-Setup Services in Fujairah Mainland License
-              </p>
-              <p className="font-Satoshi text-md font-[500]">
-                Once your company is set up, you will need to comply with
-                ongoing requirements, including:
-              </p>
-            </div>
-            <div className="w-full mt-1">
-              <ul>
-                {processData.fujairahKeypoints.map((item, index) => (
-                  <li
-                    key={index}
-                    className="font-Satoshi font-[400] flex items-center gap-2"
-                  >
-                    <div className="size-2 bg-lime-700 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ) : null}
       </div>
-
-      {processData?.seventhTitle ? (
-        <div className="w-full container my-24">
-          <div>{processData?.seventhTitle}</div>
-          <div className="w-full mt-14">
-            <Carousel className="w-full ">
-              <CarouselContent>
-                {processData?.seventhPoints?.map((item, index) => (
-                  <CarouselItem key={index} className="basis-1/3">
-                    <div className="w-full border bg-[#dff2d8] border-lime-700 p-5 rounded-xl h-full">
-                      <p className="text-xl font-semibold font-SplineSans">
-                        {item.title}
-                      </p>
-                      <p className="font-Satoshi mt-1">{item.desc}</p>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div>
-        </div>
-      ) : null}
 
       <Banner query={query} />
     </div>
