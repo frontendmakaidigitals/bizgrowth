@@ -24,6 +24,7 @@ export const Menus = [
           "DMCC",
           "DIFC",
           "Meydan",
+          "ADGM",
           "SPC",
           "Rakez",
           "Ajman",

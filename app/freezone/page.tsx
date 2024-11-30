@@ -4,13 +4,6 @@ import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import data from "../App_Chunks/Components/freezone";
 
 const Page = () => {
