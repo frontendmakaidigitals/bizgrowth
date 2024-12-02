@@ -7,7 +7,7 @@ const Loading = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 1500);
 
     // Return cleanup function to clear the timeout when the component unmounts
     return () => clearTimeout(timeout);

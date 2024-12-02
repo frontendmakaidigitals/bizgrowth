@@ -136,6 +136,16 @@ const MainPage = () => {
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
               <p className="font-SplineSans font-[500] text-xl">{item.title}</p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
+              {item.isPoints && item.points ? (
+                <ul className="font-Satoshi mt-3 py-3 border-t w-full border-lime-700">
+                  {item.points.map((elem, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <div className="bg-lime-800 rounded-full size-2" />
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
           ))}
         </div>

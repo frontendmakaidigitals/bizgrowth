@@ -129,6 +129,7 @@ const MainPage = () => {
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
               <p className="font-SplineSans font-[500] text-xl">{item.title}</p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
+             
             </div>
           ))}
         </div>
