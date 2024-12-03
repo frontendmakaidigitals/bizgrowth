@@ -12,6 +12,9 @@ import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 const Page = () => {
   const social = [
     { icon: <FaFacebook />, id: 0 },
@@ -32,10 +35,10 @@ const Page = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <h1 className="text-3xl text-center">
+          <h1 className="text-xl lg:text-3xl text-center">
             Get Personalized Assitance to set up your business in UAE!
           </h1>
-          <h2 className="mt-4 text-lg font-[500] text-center">
+          <h2 className="mt-4 text-sm lg:text-lg font-[500] text-center">
             We’re here to help you navigate the process of setting up your
             business and support services in the UAE. Whether you’re just
             starting out or looking to expand, our team of experts is ready to
@@ -48,7 +51,7 @@ const Page = () => {
           <h1 className="text-3xl font-Satoshi font-[500]">
             Please fill out the form below
           </h1>
-          <p className="">
+          <p className="mt-2">
             Get in touch with us today to discuss your business needs, ask
             questions, or schedule a consultation!
           </p>
@@ -123,11 +126,47 @@ const Page = () => {
           </form>
           <div></div>
         </div>
-        <div className="h-[700px] flex flex-col justify-between p-7 items-center bg-gradient-to-tr from-green-300 to-yellow-300 rounded-r-lg">
-          <div className="w-full flex items-center justify-end px-3 py-2 ">
+        <div className="h-[700px] flex flex-col justify-between p-3 lg:p-7 items-center bg-gradient-to-tr from-green-300 to-yellow-300 rounded-r-lg">
+          <div className="w-full flex items-center justify-end ">
             <p className="px-4 py-2 text-slate-600 font-Satoshi font-[500] rounded-full ">
               Get in Touch
             </p>
+          </div>
+
+          <div className="lg:px-4 flex w-full px-2 lg:w-[500px] flex-col bg-slate-100/30  border border-lime-400 py-3 gap-4 rounded-xl justify-center  items-center">
+            <div className=" w-full gap-2 flex  items-start">
+              <div className="mt-1 text-lg">
+                <FaMapMarkerAlt />
+              </div>
+              <div>
+                <p className="text-lg font-Satoshi">
+                  <span className="font-Synonym font-[500]">Address :</span>{" "}
+                  3307 Churchill Towers, Business Bay, Dubai - UAE
+                </p>
+              </div>
+            </div>
+            <div className=" w-full gap-2 flex   items-start">
+              <div className="mt-1 text-lg">
+                <FaPhoneAlt />
+              </div>
+              <div>
+                <p className="text-lg font-Satoshi">
+                  <span className="font-Synonym font-[500]">Phone :</span> +97
+                  15593 91238
+                </p>
+              </div>
+            </div>
+            <div className=" w-full gap-2 flex   items-start">
+              <div className="mt-1 text-lg">
+                <MdEmail />
+              </div>
+              <div>
+                <p className="text-lg font-Satoshi">
+                  <span className="font-Synonym font-[500]">Email :</span>{" "}
+                  info@bizgrowthconsultancy.com
+                </p>
+              </div>
+            </div>
           </div>
           <div className="w-full flex items-center gap-3">
             {social.map((item) => {

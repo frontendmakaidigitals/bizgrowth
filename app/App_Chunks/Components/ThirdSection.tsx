@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import Heading from "./Heading";
 
 const ThirdSection = () => {
   return (
@@ -14,11 +15,11 @@ const ThirdSection = () => {
         <div className="shadow-xl absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-slate-950/70 h-full" />
       </div>
       <div className="">
-        <h1 className="text-2xl lg:text-4xl font-Satoshi font-[600]">
+        <Heading className="text-start">
           ACCELERATE YOUR{" "}
           <span className="text-lime-500 font-Synonym">BUSINESS GROWTH</span>{" "}
           WITH US
-        </h1>
+        </Heading>
         <p className="text-xl font-Satoshi mt-5">
           BIZ Growth Consultancy, your trusted partner in setting up and growing
           your business in the UAE. We simplify the complexities of company

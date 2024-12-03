@@ -7,7 +7,7 @@ import { FaPassport } from "react-icons/fa";
 import { MdOutlineAccountBalance } from "react-icons/md";
 import { FaUserTie } from "react-icons/fa";
 import { PiOfficeChairBold } from "react-icons/pi";
- 
+
 import { HiOutlineTableCells } from "react-icons/hi2";
 import { GoSponsorTiers } from "react-icons/go";
 import { MdAssistant } from "react-icons/md";
@@ -89,7 +89,7 @@ const FourthSection = () => {
   return (
     <div className="container mb-20">
       <Heading className="!text-center w-full">
-        Your <span className="text-lime-500 font-Synonym">ONE-STOP</span> shop
+        Your <span className="text-lime-500 font-Synonym">One-Stop</span> shop
         for business solutions!
       </Heading>
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5">

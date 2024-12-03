@@ -53,7 +53,7 @@ const Menu = () => {
       transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
       className="fixed top-0 left-0 w-full flex flex-col justify-center items-start h-screen bg-lime-100 z-[1]"
     >
-      <div className="container bg-red-300 h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
+      <div className="container  h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
         {/* Map through Menus and create links */}
         {Menus.map((menu, index) =>
           !menu.dropdown ? (
@@ -93,7 +93,7 @@ const AccordionMenu = ({
                 {menu.points.map((point: any, idx: number) => (
                   <div key={idx}>
                     {/* Each point may have its own accordion for nested items */}
-                    <Accordion type="single" collapsible>
+                    <Accordion type="single" collapsible className="w-full">
                       <AccordionItem
                         value={point.title}
                         className="border-b border-0 pl-2"

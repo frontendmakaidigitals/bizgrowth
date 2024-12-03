@@ -130,7 +130,7 @@ const Page = () => {
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="order-2 lg:order-1">
             <p className=" px-3 text-slate-900 flex items-center gap-2 font-medium mb-4 bg-[#dcedc8] w-fit py-1 rounded-lg ">
-              <span className="size-2 rounded-full bg-[#244010]"></span>
+              <span className="size-2 text-sm lg:text-md rounded-full bg-[#244010]"></span>
               About Us
             </p>
 
@@ -138,7 +138,7 @@ const Page = () => {
               Welcome to BIZ Growth Consultancy, your trusted partner in setting
               up and growing your business in the UAE.
             </h1>
-            <h3 className="xl:text-lg xl:mt-4">
+            <h3 className="mt-3 xl:text-lg xl:mt-4">
               We simplify the complexities of company formation, ensuring a
               seamless and efficient processWe specialize in providing
               comprehensive business setup services that streamline the process
@@ -178,11 +178,11 @@ const Page = () => {
               key={index}
               className="flex p-5 w-full bg-[#dcedc8] rounded-xl flex-col items-center justify-center gap-1"
             >
-              <p className="text-7xl font-SplineSans font-bold text-[#1e440f]">
+              <p className="text-5xl lg:text-7xl font-SplineSans font-bold text-[#1e440f]">
                 {item.val}
                 {index <= 1 ? "+" : "k"}
               </p>
-              <p className="text-xl font-Satoshi">{item.title}</p>
+              <p className="text-md lg:text-xl font-Satoshi">{item.title}</p>
             </div>
           ))}
         </div>
@@ -208,13 +208,14 @@ const Page = () => {
         </div>
       </div>
       <div className="my-32">
-        <Heading className="!text-center w-full mb-20">
-          WHAT SETS US APART IN THE MARKET?
+        <Heading className="!text-center container w-full mb-20">
+          WHAT SETS US APART IN THE{" "}
+          <span className="text-lime-500">MARKET?</span>
         </Heading>
         <div className="grid grid-cols-1 font-Satoshi lg:grid-cols-3 gap-6 container">
           <div className="grid grid-cols-1 gap-10">
             <div className="w-full rounded-lg border border-gray-300 p-3">
-              <span className="font-semibold font-Satoshi text-lg">
+              <span className="font-semibold font-Satoshi text-xl lg:text-lg">
                 Tailored Services{" "}
               </span>
               <p className=" mt-2">
@@ -226,7 +227,7 @@ const Page = () => {
               </p>
             </div>
             <div className="w-full rounded-lg border border-gray-300 p-3">
-              <span className="font-semibold font-Satoshi text-lg">
+              <span className="font-semibold font-Satoshi text-xl lg:text-lg">
                 Competitive Rates{" "}
               </span>{" "}
               <p className="mt-2">
@@ -238,11 +239,11 @@ const Page = () => {
             </div>
           </div>
 
-          <img src={"/media/aboutImg.png"} className="hiden lg:block" />
+          <img src={"/media/aboutImg.png"} className="hidden lg:block" />
 
           <div className="grid grid-cols-1 gap-10">
             <div className="w-full rounded-lg border border-gray-300 p-3">
-              <span className="font-semibold font-Satoshi text-lg">
+              <span className="font-semibold font-Satoshi text-xl lg:text-lg">
                 Exceptional Customer Service{" "}
               </span>
               <p className="mt-2">
@@ -254,7 +255,7 @@ const Page = () => {
             </div>
 
             <div className="w-full rounded-lg border border-gray-300 p-3">
-              <span className="font-semibold font-Satoshi text-lg">
+              <span className="font-semibold font-Satoshi text-xl lg:text-lg">
                 Streamlined and Efficient Processes
               </span>
               <p className="mt-2">
