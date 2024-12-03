@@ -17,8 +17,10 @@ const widgetMenus: WidgetFooterMenu[] = [
     id: "1",
     title: "Site Links",
     menus: [
+      { href: "/", label: "Home" },
       { href: "/About", label: "About us" },
       { href: "/contact", label: "Contact" },
+      { href: "/contact", label: "Cost Calculator" },
     ],
   },
   {
