@@ -14,25 +14,25 @@ export interface WidgetFooterMenu {
 
 const widgetMenus: WidgetFooterMenu[] = [
   {
-    id: "5",
+    id: "1",
     title: "Site Links",
     menus: [
-      { href: "#", label: "Our Properties" },
-      { href: "#", label: "Popular Area" },
-      { href: "/About-us", label: "About & Services" },
-      { href: "/Contact", label: "Contact" },
-      { href: "/BecomeHost", label: "Become a Host" },
-      { href: "/Get-Estimate", label: "Get Quote" },
+      { href: "/About", label: "About us" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {
     id: "1",
-    title: "Explore",
+    title: "Popular Links",
     menus: [
-      { href: "#", label: "Help Center" },
-      { href: "#", label: "FAQ" },
-      { href: "#", label: "Privacy Policy" },
-      { href: "#", label: "Terms & Condition" },
+      { href: "/About", label: "Dubai Mainland" },
+      { href: "/About", label: "Sharjah Mainland" },
+      { href: "/About", label: "Ifza Freezone" },
+      { href: "/About", label: "Difc Freezone" },
+      { href: "/About", label: "Dubai Offshore" },
+      { href: "/About", label: "Jafza Offshore" },
+      { href: "/About", label: "Rak ICC Offshore" },
+      { href: "/About", label: "Ajman Offshore" },
     ],
   },
 ];
@@ -113,14 +113,14 @@ const Footer: React.FC = () => {
                     href="tel:+971585129847"
                     className="text-sm text-[#10220a]"
                   >
-                    +91 12345 67890
+                    +97 15593 91238
                   </a>
                 </div>
               </li>
 
               <li className="flex items-center ">
                 <i className="la la-at text-xl text-primary-400"></i>
-                <p className="text-[#10220a]">info@bsholidayhomes.com</p>
+                <p className="text-[#10220a]">info@bizgrowthconsultancy.com</p>
               </li>
             </ul>
           </div>
