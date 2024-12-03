@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/App_Chunks/Components/mainland.js"
-  ],
+, "app/App_Chunks/Components/offshore.js"  ],
   "exclude": ["node_modules"]
 }
