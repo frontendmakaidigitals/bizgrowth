@@ -1,18 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Loading = () => {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("name");
 
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-    
-  }, [pathname]);
+  }, [pathname, query]);
   return (
     isLoading && (
       <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
