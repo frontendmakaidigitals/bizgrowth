@@ -1,9 +1,23 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const Loading = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    isLoading && (
+      <Suspense>
+        <Loader setIsLoading={setIsLoading} />
+      </Suspense>
+    )
+  );
+};
+
+export default Loading;
+
+const Loader = ({ setIsLoading }: any) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
@@ -15,11 +29,10 @@ const Loading = () => {
     }, 2000);
   }, [pathname, query]);
   return (
-    isLoading && (
-      <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
-        <div className="spinner"></div>
-        <style>
-          {`.spinner {
+    <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
+      <div className="spinner"></div>
+      <style>
+        {`.spinner {
    width: 56px;
    height: 56px;
    border-radius: 50%;
@@ -34,10 +47,7 @@ const Loading = () => {
       transform: rotate(1turn);
    }
 }`}
-        </style>
-      </div>
-    )
+      </style>
+    </div>
   );
 };
-
-export default Loading;

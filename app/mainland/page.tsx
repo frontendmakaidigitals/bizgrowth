@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
+import { motion } from "framer-motion";
 import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
@@ -71,9 +72,23 @@ const MainPage = () => {
           </p>
         </div>
 
-        <div className="my-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <motion.div
+          transition={{ staggerChildren: 0.2 }}
+          className="my-10 grid grid-cols-1 lg:grid-cols-3 gap-5"
+        >
           {processData?.secondPoints.map((elem, index) => (
-            <div key={index} className="w-full rounded-lg bg-[#C2DAC2] p-5">
+            <motion.div
+              key={index}
+              initial={{ y: 200, rotate: "10deg" }}
+              whileInView={{ y: 0, rotate: 0 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.08, 0.82, 0.17, 1],
+                delay: index * 0.02,
+              }}
+              viewport={{ once: true }}
+              className="w-full rounded-lg bg-[#C2DAC2] p-5"
+            >
               <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
                 {elem?.icon}
               </div>
@@ -85,9 +100,9 @@ const MainPage = () => {
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
                 <Button className="mt-3">Learn More</Button>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <div className="w-full container my-24">
@@ -96,10 +111,19 @@ const MainPage = () => {
           {processData?.thirdSubDesc}
         </p>
 
-        <div className="grid grid-cols-1 mt-14 lg:grid-cols-3 gap-5">
+        <motion.div
+          transition={{ staggerChildren: 0.2 }}
+          className="grid grid-cols-1 mt-14 lg:grid-cols-3 gap-5"
+        >
           {processData?.thirdPoints.map((elem, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ y: 200 }}
+              whileInView={{ y: 0 }}
+              transition={{
+                duration: 0.8,
+              }}
+              viewport={{ once: true }}
               className="w-full relative border border-gray-300 gap-2 flex overflow-hidden justify-center p-5 items-start bg-gradient-to-br from-[#DAFFEE] to-[#E2FCFF] rounded-xl"
             >
               <div className="w-full h-full absolute top-0 left-0">
@@ -114,9 +138,9 @@ const MainPage = () => {
                 </div>
               </div>
               <div className="relative z-20">{elem}</div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <div className="w-full container my-24">
         <div>{processData?.fourthTitle}</div>
