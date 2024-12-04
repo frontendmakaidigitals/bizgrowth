@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import { useSearchParams } from "next/navigation";
 const Loading = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const query = searchParams.get("name");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -11,7 +13,7 @@ const Loading = () => {
 
     // Return cleanup function to clear the timeout when the component unmounts
     return () => clearTimeout(timeout);
-  }, []);
+  }, [query]);
   return isLoading ? (
     <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
       <div className="spinner"></div>
