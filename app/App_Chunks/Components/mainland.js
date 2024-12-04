@@ -65,55 +65,58 @@ const data = [
       "In Dubai, businesses that operate on the mainland need to obtain a Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Dubai Mainland licenses:",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Commercial License</span> This
-        license is for businesses involved in trading, buying, and selling goods
-        or services. It’s one of the most common types of licenses issued for
-        companies engaged in commercial activities.
+        <span className="font-Synonym font-[600]">Commercial License :</span>{" "}
+        This license is for businesses involved in trading, buying, and selling
+        goods or services. It’s one of the most common types of licenses issued
+        for companies engaged in commercial activities.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License</span> An
+        <span className="font-Synonym font-[600]">Industrial License :</span> An
         industrial license is required for companies engaged in manufacturing,
         processing, or production of goods. It allows businesses to set up
         factories or production facilities.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Professional License</span>{" "}
+        <span className="font-Synonym font-[600]">Professional License :</span>{" "}
         This license is intended for businesses that provide services or
         professional expertise rather than selling physical goods. It is common
         for individuals and companies providing intellectual services or
         consulting.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Tourism License</span> A
+        <span className="font-Synonym font-[600]">Tourism License :</span> A
         tourism license is required for businesses related to tourism and travel
         activities. This includes businesses offering travel services, tour
         operators, hotel services, or any tourism-related services.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Agricultural License</span>{" "}
+        <span className="font-Synonym font-[600]"> Agricultural License :</span>{" "}
         This license is for businesses involved in agriculture, animal
         husbandry, or related activities. It’s designed for those engaged in
         farming, livestock breeding, or agricultural products.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Contracting License</span>{" "}
+        <span className="font-Synonym font-[600]"> Contracting License :</span>{" "}
         This license is for businesses involved in construction, contracting,
         and related services. Contractors are required to have this license to
         perform civil work or infrastructure projects.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> E-commerce License</span> An
-        e-commerce license is for businesses that primarily operate online. It
-        enables businesses to sell products or services through digital
+        <span className="font-Synonym font-[600]"> E-commerce License :</span>{" "}
+        An e-commerce license is for businesses that primarily operate online.
+        It enables businesses to sell products or services through digital
         platforms, including online retail stores and other e-commerce ventures.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Instant License</span> This
+        <span className="font-Synonym font-[600]"> Instant License :</span> This
         license is for businesses seeking to start trading immediately without
         needing prior approvals, valid for a short period.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Branch Office License</span>{" "}
+        <span className="font-Synonym font-[600]">
+          {" "}
+          Branch Office License :
+        </span>{" "}
         This license is suitable for foreign companies looking to open a branch
         in the Dubai mainland.
       </p>,
@@ -391,53 +394,53 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Commercial License</span> A
+        <span className="font-Synonym font-[600]">Commercial License :</span> A
         Commercial License is issued to businesses involved in trading, retail,
         and distribution of goods. It allows companies to engage in various
         commercial activities such as buying, selling, and importing/exporting
         products.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License</span>An
+        <span className="font-Synonym font-[600]">Industrial License :</span>An
         Industrial License is granted to businesses involved in the
         manufacturing, production, or industrial processing of goods. Companies
         with this license can operate in factories, assembly plants, or
         warehouses.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Professional License</span> A
-        Professional License is for businesses that offer specialized services
+        <span className="font-Synonym font-[600]">Professional License :</span>{" "}
+        A Professional License is for businesses that offer specialized services
         rather than physical products. This license is typically granted to
         professionals, consultants, and service providers.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Tourism License</span> A
+        <span className="font-Synonym font-[600]">Tourism License :</span> A
         Tourism License is for businesses involved in travel and tourism-related
         activities. This license enables companies to provide services related
         to tourism, including travel agencies, tour operators, and hospitality
         services.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Agricultural License</span> n
-        Agricultural License is issued to businesses operating in agriculture,
+        <span className="font-Synonym font-[600]"> Agricultural License :</span>{" "}
+        n Agricultural License is issued to businesses operating in agriculture,
         horticulture, and other farming activities. This includes companies that
         deal with the cultivation, processing, and export of agricultural
         products.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Healthcare License</span> A
+        <span className="font-Synonym font-[600]">Healthcare License :</span> A
         Healthcare License is granted to medical and health-related businesses.
         These include healthcare providers, pharmacies, and medical clinics.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Educational License</span>An
+        <span className="font-Synonym font-[600]">Educational License :</span>An
         Educational License is issued for businesses involved in educational and
         training services. This includes schools, training centers, language
         institutions, and educational consultancy services.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Construction License</span> A
-        Construction License is for businesses engaged in construction and
+        <span className="font-Synonym font-[600]"> Construction License :</span>{" "}
+        A Construction License is for businesses engaged in construction and
         related services. This includes contractors, developers, and
         construction material suppliers.
       </p>,
@@ -686,60 +689,60 @@ const data = [
       "In Dubai, businesses that operate on the mainland need to obtain a Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Dubai Mainland licenses:",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Commercial License</span> A
+        <span className="font-Synonym font-[600]">Commercial License :</span> A
         Commercial License is issued for businesses involved in trading
         activities. This type of license allows companies to import, export, and
         distribute goods in Abu Dhabi and across the UAE.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License</span> An
+        <span className="font-Synonym font-[600]">Industrial License: </span> An
         Industrial License is granted to businesses engaged in manufacturing,
         processing, or production activities. Companies with this license are
         permitted to establish factories or manufacturing units in Abu Dhabi.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Professional License</span> A
+        <span className="font-Synonym font-[600]">Professional License :</span> A
         Professional License is issued for businesses that provide services
         based on professional expertise. This includes businesses that rely on
         individual skill and knowledge to deliver services to clients.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Tourism License</span> A
+        <span className="font-Synonym font-[600]">Tourism License :</span> A
         Tourism License is granted to businesses involved in the tourism sector,
         including those that offer travel services, tourism-related activities,
         or hospitality services.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Agricultural License</span>{" "}
+        <span className="font-Synonym font-[600]"> Agricultural License :</span>{" "}
         An Agricultural License is for businesses involved in agriculture,
         including the cultivation, production, and distribution of agricultural
         products.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Contracting License</span> A
+        <span className="font-Synonym font-[600]"> Contracting License :</span> A
         Contracting License is issued to businesses that work in the
         construction industry. It is often required for companies involved in
         building or infrastructure projects.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Franchise License</span> A
+        <span className="font-Synonym font-[600]">Franchise License :</span> A
         Franchise License is issued for businesses operating under a franchise
         model. If you want to open a branch of an existing brand or franchise in
         Abu Dhabi, you would need this license.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> E-commerce License</span> An
+        <span className="font-Synonym font-[600]"> E-commerce License :</span> An
         E-commerce License is for businesses operating online, allowing them to
         conduct retail or wholesale trade via digital platforms.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Import/Export License</span>{" "}
+        <span className="font-Synonym font-[600]">Import/Export License :</span>{" "}
         The Import/Export License allows businesses to engage in the importation
         and exportation of goods, either from or to other countries. This
         license can be part of a Commercial License or issued independently.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Foreign Branch License</span>{" "}
+        <span className="font-Synonym font-[600]"> Foreign Branch License :</span>{" "}
         A Foreign Branch License is given to foreign companies that wish to
         establish a branch office in Abu Dhabi. This type of license enables
         foreign businesses to operate directly in the UAE Mainland.
@@ -1035,8 +1038,9 @@ const data = [
     heroTitle: (
       <Heading>
         Your
-        <span className="text-lime-600 font-SplineSans">{' '}
-          BUSINESS SET UP PARTNER {' '}
+        <span className="text-lime-600 font-SplineSans">
+          {" "}
+          BUSINESS SET UP PARTNER{" "}
         </span>
         to Thriving Business Opportunities IN AJMAN MAINLAND
       </Heading>
@@ -1098,65 +1102,65 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Commercial License</span> A
+        <span className="font-Synonym font-[600]">Commercial License :</span> A
         Commercial License is for businesses involved in trading activities. It
         allows companies to engage in buying, selling, and distribution of
         goods. This license is ideal for businesses operating in wholesale and
         retail sectors.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Professional License</span> A
+        <span className="font-Synonym font-[600]"> Professional License :</span> A
         Professional License is granted to individuals or companies providing
         professional services. This license is typically issued to businesses
         based on individual expertise, skill, or knowledge, and it can cover a
         wide range of service-oriented sectors.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">. Industrial License</span>A
+        <span className="font-Synonym font-[600]">. Industrial License :</span>A
         Professional License is issued for businesses that provide services
         based on professional expertise. This includes businesses that rely on
         individual skill and knowledge to deliver services to clients.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Tourism License</span> A
+        <span className="font-Synonym font-[600]">Tourism License :</span> A
         Tourism License is specifically for businesses in the tourism and
         hospitality sector. It allows companies to operate in the travel,
         tourism, and hospitality industries, including both services for
         tourists and leisure activities.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Agricultural License</span>{" "}
+        <span className="font-Synonym font-[600]"> Agricultural License :</span>{" "}
         An Agriculture License is for businesses involved in the agricultural
         industry. This license covers activities related to farming, production
         of agricultural goods, and any services related to agriculture.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
-          Transport and Logistics License
+          Transport and Logistics License :
         </span>{" "}
         A Transport and Logistics License is for businesses involved in the
         transportation and logistics sectors, including freight forwarding,
         delivery services, and moving companies.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Franchise License</span> A
+        <span className="font-Synonym font-[600]">Franchise License :</span> A
         Franchise License is for businesses operating under a franchise model.
         It allows businesses to open and operate a franchise branch in Ajman.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> E-commerce License</span> An
+        <span className="font-Synonym font-[600]"> E-commerce License :</span> An
         E-commerce License is for businesses operating online platforms to sell
         products or services. This license allows businesses to engage in retail
         or wholesale trade through digital platforms.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Consultancy License</span> A
+        <span className="font-Synonym font-[600]">Consultancy License :</span> A
         Consultancy License is for individuals or companies offering consultancy
         services. This type of license is granted for businesses providing
         expert advice in various fields.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Media License</span> A Media
+        <span className="font-Synonym font-[600]"> Media License :</span> A Media
         License is for businesses involved in media production, marketing, or
         broadcasting activities. This license is for companies working in
         advertising, content creation, or publishing.
@@ -1471,39 +1475,39 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Commercial License</span> A
+        <span className="font-Synonym font-[600]">Commercial License :</span> A
         Commercial License is issued to businesses involved in trading
         activities. This includes companies that import, export, distribute, or
         sell goods within the UAE or internationally. The license is suitable
         for a wide range of businesses, from retail to wholesale.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Professional License</span> A
+        <span className="font-Synonym font-[600]"> Professional License :</span> A
         Professional License is issued to individuals or companies offering
         services or expertise in various fields. This includes consultants,
         contractors, freelancers, and other service-oriented businesses.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License</span>An
+        <span className="font-Synonym font-[600]">Industrial License :</span>An
         Industrial License is issued for businesses involved in manufacturing or
         industrial production. This license is ideal for companies engaged in
         creating, processing, or assembling goods.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Tourism License</span> A
+        <span className="font-Synonym font-[600]">Tourism License :</span> A
         Tourism License is intended for businesses in the hospitality and
         tourism sector. This includes travel agencies, tour operators, hotel
         management companies, and other businesses catering to tourism.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">General Trading License</span>{" "}
+        <span className="font-Synonym font-[600]">General Trading License :</span>{" "}
         A General Trading License is a type of commercial license that allows
         businesses to trade in a broad range of products. This license allows
         businesses to engage in multiple trading activities without the need to
         obtain separate licenses for each product category.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">E-Commerce License</span> An
+        <span className="font-Synonym font-[600]">E-Commerce License :</span> An
         E-Commerce License is specifically for businesses that operate online
         and engage in electronic trading, such as e-commerce platforms, online
         stores, and digital services.
