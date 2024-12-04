@@ -54,7 +54,6 @@ const Menu = ({ navRef }: { navRef: any }) => {
       setHeight(rect.height);
     }
   }, []);
-  console.log(height);
   return (
     <motion.div
       initial={{ x: "100%" }}
@@ -68,7 +67,6 @@ const Menu = ({ navRef }: { navRef: any }) => {
       className="fixed left-0 w-full overflow-auto flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
     >
       <div className="container h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
-        {/* Map through Menus and create links */}
         {Menus.map((menu, index) =>
           !menu.dropdown ? (
             <Link
