@@ -156,7 +156,7 @@ const Page = () => {
             <Button className="mt-3">Learn More</Button>
           </div>
           <div className="relative order-1 lg:order-2">
-            <div className="w-full shadow-xl h-[300px] xl:h-[550px] relative overflow-hidden rounded-xl z-10">
+            <div className="w-full shadow-xl h-[300px] xl:h-[550px] relative overflow-hidden rounded-xl z-[1]">
               <img
                 className="w-full h-full object-cover"
                 src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

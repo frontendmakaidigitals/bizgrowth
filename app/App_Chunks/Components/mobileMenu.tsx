@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"; // Make sure this path is correct
 
-const MobileMenu = () => {
+const MobileMenu = ({ navRef }: { navRef: any }) => {
   const [showMenu, setShowMenu] = React.useState(false);
   React.useEffect(() => {
     if (showMenu) {
@@ -37,23 +37,39 @@ const MobileMenu = () => {
         {showMenu ? <IoMdClose /> : <GiHamburgerMenu />}
       </button>
 
-      <AnimatePresence mode="wait">{showMenu && <Menu />}</AnimatePresence>
+      <AnimatePresence mode="wait">
+        {showMenu && <Menu navRef={navRef} />}
+      </AnimatePresence>
     </div>
   );
 };
 
 export default MobileMenu;
 
-const Menu = () => {
+const Menu = ({ navRef }: { navRef: any }) => {
+  const [height, setHeight] = React.useState(0);
+  useEffect(() => {
+    if (navRef.current) {
+      const rect = navRef.current.getBoundingClientRect();
+      setHeight(rect.height);
+    }
+  }, []);
+  console.log(height);
   return (
     <motion.div
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-      className="fixed top-0 left-0 w-full flex flex-col justify-center items-start h-screen bg-lime-100 z-[1]"
+      className="fixed top-0 left-0 w-full flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
     >
-      <div className="container  h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
+      <div
+        style={{
+          height: `calc(100vh - ${height}px)`,
+          marginTop: `${height}px`,
+        }}
+        className="container overflow-scroll justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4"
+      >
         {/* Map through Menus and create links */}
         {Menus.map((menu, index) =>
           !menu.dropdown ? (
@@ -118,7 +134,6 @@ const AccordionMenu = ({ menu }: { menu: any }) => {
                         </AccordionItem>
                       </Accordion>
                     ) : (
-                      // Handle the case when point is a string
                       <div className="text-md font-medium font-Synonym px-5 py-2">
                         {point}
                       </div>
