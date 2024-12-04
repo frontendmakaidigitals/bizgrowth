@@ -61,15 +61,13 @@ const Menu = ({ navRef }: { navRef: any }) => {
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-      className="fixed top-0 left-0 w-full flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
+      style={{
+        top: `${height}px`,
+        height: `calc(100vh - ${height}px)`,
+      }}
+      className="fixed left-0 w-full overflow-auto flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
     >
-      <div
-        style={{
-          height: `calc(100vh - ${height}px)`,
-          marginTop: `${height}px`,
-        }}
-        className="container overflow-scroll justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4"
-      >
+      <div className="container h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
         {/* Map through Menus and create links */}
         {Menus.map((menu, index) =>
           !menu.dropdown ? (
