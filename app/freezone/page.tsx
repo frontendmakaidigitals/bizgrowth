@@ -177,7 +177,7 @@ const MainPage = () => {
                     </td>
                   ) : null}
 
-                  {query?.toLowerCase() == "sharjah mainland" &&
+                  {query?.toLowerCase() &&
                   "doc1" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
