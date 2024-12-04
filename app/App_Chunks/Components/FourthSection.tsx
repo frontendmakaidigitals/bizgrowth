@@ -7,7 +7,7 @@ import { FaPassport } from "react-icons/fa";
 import { MdOutlineAccountBalance } from "react-icons/md";
 import { FaUserTie } from "react-icons/fa";
 import { PiOfficeChairBold } from "react-icons/pi";
-
+import { motion } from "framer-motion";
 import { HiOutlineTableCells } from "react-icons/hi2";
 import { GoSponsorTiers } from "react-icons/go";
 import { MdAssistant } from "react-icons/md";
@@ -92,11 +92,18 @@ const FourthSection = () => {
         Your <span className="text-lime-500 font-Synonym">One-Stop</span> shop
         for business solutions!
       </Heading>
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5">
+      <motion.div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5">
         {services.slice(0, servicesToShow).map((service, index) => (
-          <div
+          <motion.div
             key={index}
             className="w-full hover:shadow-lg transition-all duration-300 bg-[#dcedc8] p-3 rounded-xl"
+            initial={{ y: 150 }}
+            whileInView={{ y: 0 }}
+            transition={{
+              duration: 0.15,
+              ease: [0.65, 0.05, 0.36, 1],
+            }}
+            viewport={{ once: true }}
           >
             <div className="w-full h-[100px]">
               <div className="size-14 text-[#244010] flex justify-center items-center overflow-hidden rounded-full bg-slate-50">
@@ -114,9 +121,9 @@ const FourthSection = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Show More / Show Less Button */}
       <div className="flex justify-center w-full">

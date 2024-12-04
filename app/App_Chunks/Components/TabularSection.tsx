@@ -52,12 +52,20 @@ const TabularSection = () => {
   return (
     <div className="w-full h-full mb-20 container">
       <Heading className="!text-center w-full">
-        Choose your <span className="text-lime-500 font-Synonym">Jurisdiction</span>
+        Choose your{" "}
+        <span className="text-lime-500 font-Synonym">Jurisdiction</span>
       </Heading>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+      <motion.div
+        transition={{ staggerChildren: 1 }}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10"
+      >
         {tabs.map((tab, index) => (
           <motion.div
             key={index}
+            initial={{ y: 200 }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 1, type: "spring" }}
+            viewport={{ once: true }}
             onMouseEnter={() => setHoverId(index)}
             onMouseLeave={() => setHoverId(null)}
             className="h-[500px] group cursor-pointer relative flex justify-start items-end p-3 rounded-lg w-full bg-red-50"
@@ -159,7 +167,7 @@ const TabularSection = () => {
             </motion.div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
