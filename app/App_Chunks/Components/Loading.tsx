@@ -1,24 +1,24 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+
 const Loading = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const searchParams = useSearchParams();
-  const query = searchParams.get("name");
+  const pathname = usePathname();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    setIsLoading(true);
+    setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
-
-    // Return cleanup function to clear the timeout when the component unmounts
-    return () => clearTimeout(timeout);
-  }, [query]);
-  return isLoading ? (
-    <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
-      <div className="spinner"></div>
-      <style>
-        {`.spinner {
+    }, 2000);
+    
+  }, [pathname]);
+  return (
+    isLoading && (
+      <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
+        <div className="spinner"></div>
+        <style>
+          {`.spinner {
    width: 56px;
    height: 56px;
    border-radius: 50%;
@@ -33,9 +33,10 @@ const Loading = () => {
       transform: rotate(1turn);
    }
 }`}
-      </style>
-    </div>
-  ) : null;
+        </style>
+      </div>
+    )
+  );
 };
 
 export default Loading;
