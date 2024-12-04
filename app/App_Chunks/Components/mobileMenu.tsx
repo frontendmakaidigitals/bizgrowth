@@ -88,31 +88,41 @@ const AccordionMenu = ({ menu }: { menu: any }) => {
               <div className="space-y-2">
                 {menu.points.map((point: any, idx: number) => (
                   <div key={idx}>
-                    {/* Each point may have its own accordion for nested items */}
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem
-                        value={point.title}
-                        className="border-b border-0 pl-2"
-                      >
-                        <AccordionTrigger className="text-lg font-Satoshi font-[500] p-2 w-full text-left">
-                          {point.title}
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          {point.points && point.points.length > 0 ? (
-                            <ul className="space-y-1 px-5">
-                              {point.points.map((item: string, id: number) => (
-                                <li
-                                  key={id}
-                                  className="text-md font-medium font-Synonym"
-                                >
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : null}
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
+                    {/* Check if the point is an object or a string */}
+                    {typeof point === "object" ? (
+                      // Handle the case when point is an object (with nested points)
+                      <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem
+                          value={point.title}
+                          className="border-b border-0 pl-2"
+                        >
+                          <AccordionTrigger className="text-lg font-Satoshi font-[500] p-2 w-full text-left">
+                            {point.title}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            {point.points && point.points.length > 0 ? (
+                              <ul className="space-y-1 px-5">
+                                {point.points.map(
+                                  (item: string, id: number) => (
+                                    <li
+                                      key={id}
+                                      className="text-md font-medium font-Synonym"
+                                    >
+                                      {item}
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            ) : null}
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : (
+                      // Handle the case when point is a string
+                      <div className="text-md font-medium font-Synonym px-5 py-2">
+                        {point}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
