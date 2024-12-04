@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
 import data from "../App_Chunks/Components/freezone";
-
+import { useRouter } from "next/navigation";
 const Page = () => {
   return (
     <Suspense>
@@ -17,6 +17,7 @@ const Page = () => {
 const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
+  const router = useRouter();
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
   useEffect(() => {
     const matchingItem = data.find(
@@ -43,6 +44,10 @@ const MainPage = () => {
       setCurrentStep(0);
     };
   }, []);
+
+  useEffect(() => {
+    router.refresh();
+  }, [query]);
   return (
     <div className="w-full">
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
