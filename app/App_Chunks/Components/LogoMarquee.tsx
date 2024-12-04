@@ -1,5 +1,6 @@
 import React from "react";
 import Marquee from "@/components/ui/marquee";
+import Heading from "./Heading";
 
 const reviews = [
   {
@@ -156,7 +157,7 @@ const reviews = [
 
 const LogoMarquee = () => {
   return (
-    <div className="mb-20">
+    <div className="mb-20 bg-white py-16">
       {" "}
       <Marquee pauseOnHover className="[--duration:20s]">
         {reviews.map((review, index) => (
@@ -176,6 +177,15 @@ const LogoMarquee = () => {
           </div>
         ))}
       </Marquee>
+      <div className="container w-full mt-20">
+        <Heading className="!text-center">
+          WE HELP YOUR <span className="text-lime-500">BUSINESS</span> IDEA COME
+          INTO ACTION{" "}
+        </Heading>
+      </div>
+      <div className="w-full container mt-5 border rounded-xl border-gray-300">
+        <img className="" src={"/media/banner.jpg"} />
+      </div>
     </div>
   );
 };
