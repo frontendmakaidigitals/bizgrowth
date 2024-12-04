@@ -38,7 +38,10 @@ const MainPage = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      setCurrentStep(0);
+    };
   }, []);
   return (
     <div className="w-full">
