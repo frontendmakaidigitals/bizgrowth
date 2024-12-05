@@ -179,12 +179,21 @@ const LogoMarquee = () => {
       </Marquee>
       <div className="container w-full mt-20">
         <Heading className="!text-center">
-          WE HELP YOUR <span className="text-lime-500">BUSINESS</span> IDEA COME
+          WE HELP YOUR <span className="text-lime-500">BUSINESS IDEA</span> COME
           INTO ACTION{" "}
         </Heading>
       </div>
-      <div className="w-full container mt-5 border rounded-xl border-gray-300">
-        <img className="" src={"/media/process.svg"} />
+      <div className="w-full hidden  container lg:flex justify-center  mt-5">
+        <img
+          src={"/media/process.svg"}
+          className="w-full h-full object-cover border rounded-xl border-slate-200 "
+        />
+      </div>
+      <div className="w-full lg:hidden container flex justify-center  mt-10">
+        <img
+          src={"/media/Process-mobl.svg"}
+          className="w-full h-full object-cover   rounded-xl "
+        />
       </div>
     </div>
   );
