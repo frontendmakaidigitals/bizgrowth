@@ -4,7 +4,7 @@ import { FaBusinessTime } from "react-icons/fa";
 import { MdIncompleteCircle } from "react-icons/md";
 const data = [
   {
-    name: "private bank",
+    name: "private bank account",
     heroTitle: (
       <Heading>
         Need Corporate Service in Dubai{" "}
@@ -235,7 +235,7 @@ const data = [
     seventhPoints: [],
   },
   {
-    name: "corporate bank",
+    name: "corporate bank account",
     heroTitle: (
       <Heading>
         Need Corporate
@@ -460,7 +460,7 @@ const data = [
     seventhPoints: [],
   },
   {
-    name: "corporate bank",
+    name: "corporate bank account",
     heroTitle: (
       <Heading>
         Need Corporate
