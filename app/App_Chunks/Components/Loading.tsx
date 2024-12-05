@@ -7,11 +7,9 @@ const Loading = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    isLoading && (
-      <Suspense>
-        <Loader setIsLoading={setIsLoading} isLoading={isLoading} />
-      </Suspense>
-    )
+    <Suspense>
+      <Loader setIsLoading={setIsLoading} isLoading={isLoading} />
+    </Suspense>
   );
 };
 
@@ -27,18 +25,20 @@ const Loader = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
-  console.log(isLoading);
+
   useEffect(() => {
+    console.log(isLoading, "rendered");
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
   }, [pathname, query]);
   return (
-    <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
-      <div className="spinner"></div>
-      <style>
-        {`.spinner {
+    isLoading && (
+      <div className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]">
+        <div className="spinner"></div>
+        <style>
+          {`.spinner {
    width: 56px;
    height: 56px;
    border-radius: 50%;
@@ -53,7 +53,8 @@ const Loader = ({
       transform: rotate(1turn);
    }
 }`}
-      </style>
-    </div>
+        </style>
+      </div>
+    )
   );
 };
