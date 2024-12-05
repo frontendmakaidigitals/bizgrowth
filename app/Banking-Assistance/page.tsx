@@ -4,7 +4,7 @@ import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
-import data from "../App_Chunks/Components/offshore";
+import data from "../App_Chunks/Components/banking";
 
 const Page = () => {
   return (
@@ -18,6 +18,7 @@ const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
+  console.log(query)
   useEffect(() => {
     const matchingItem = data.find(
       (item) => item.name.toLowerCase() === query?.toLowerCase()
