@@ -64,7 +64,7 @@ const Menu = ({ navRef }: { navRef: any }) => {
         top: `${height}px`,
         height: `calc(100vh - ${height}px)`,
       }}
-      className="fixed left-0 w-full overflow-auto flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
+      className="fixed left-0 w-full overflow-scroll flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
     >
       <div className="container h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
         {Menus.map((menu, index) =>

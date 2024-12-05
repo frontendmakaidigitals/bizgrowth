@@ -488,7 +488,7 @@ const data = [
       <p key={4} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Transfer Pricing</span>{" "}
         Transfer pricing regulations are an important aspect of corporate tax
-        compliance. We provide advice on arm's length pricing for intercompany
+        compliance. We provide advice on arm`s length pricing for intercompany
         transactions and ensure proper documentation to avoid tax risks.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
