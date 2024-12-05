@@ -1466,7 +1466,7 @@ const data = [
       {
         title: "No Minimum Capital Requirement",
         icon: <MdIncompleteCircle />,
-        desc: "Except for specific business types, Fujairah does not have a set minimum capital requirement for company formation.",
+        desc: "Except for specific business types, Fujairah does not have a minimum capital requirement for company formation.",
       },
     ],
     thirdTitle: (
