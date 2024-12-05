@@ -1088,7 +1088,7 @@ const data = [
       {
         title: "Strategic Location",
         icon: <MdIncompleteCircle />,
-        desc: "Benefit from Abu Dhabi’s strategic location and world-class infrastructure.",
+        desc: "Benefit from Ajman's prime location within the UAE.",
       },
       {
         title: "Simplified Procedures",
@@ -1171,8 +1171,8 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Setting up
-        <span className="text-lime-500">Ajman Mainland License</span>The Process
+        Setting up <span className="text-lime-500">Ajman Mainland License</span>{" "}
+        The Process
       </Heading>
     ),
     fourthPoints: [
@@ -1199,7 +1199,7 @@ const data = [
         desc: "Your company name must comply with Ajman’s naming regulations. ",
       },
       {
-        title: ": Secure Local Sponsor or Partner (If Applicable)",
+        title: "Secure Local Sponsor or Partner (If Applicable)",
         isPoints: false,
         desc: "For certain business structures, such as LLCs, a local sponsor (UAE national) is required to hold a 51% share in the company, while the foreign investor holds 49%.",
       },

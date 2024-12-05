@@ -9,7 +9,7 @@ const Loading = () => {
   return (
     isLoading && (
       <Suspense>
-        <Loader setIsLoading={setIsLoading} />
+        <Loader setIsLoading={setIsLoading} isLoading={isLoading} />
       </Suspense>
     )
   );
@@ -17,11 +17,17 @@ const Loading = () => {
 
 export default Loading;
 
-const Loader = ({ setIsLoading }: any) => {
+const Loader = ({
+  setIsLoading,
+  isLoading,
+}: {
+  setIsLoading: any;
+  isLoading: any;
+}) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
-
+  console.log(isLoading);
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
