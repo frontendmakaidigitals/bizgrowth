@@ -1236,8 +1236,8 @@ const data = [
     ],
     sixthTitle: (
       <Heading className="w-full !text-center">
-        <span className="text-lime-500"> ABU DHABI MAINLAND</span> FOR SETTING
-        UP A DUBAI MAINLAND LICENSE
+        Documents required for Setting up{" "}
+        <span className="text-lime-500">Ajman Maindland License</span>
       </Heading>
     ),
     sixthTableHead: ["Business Structure", "Required Documents"],
