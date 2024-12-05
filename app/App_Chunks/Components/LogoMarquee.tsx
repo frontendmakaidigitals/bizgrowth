@@ -185,7 +185,7 @@ const LogoMarquee = () => {
       </div>
       <div className="w-full hidden  container lg:flex justify-center  mt-5">
         <img
-          src={"/media/process.svg"}
+          src={"/media/Process.svg"}
           className="w-full h-full object-cover border rounded-xl border-slate-200 "
         />
       </div>
