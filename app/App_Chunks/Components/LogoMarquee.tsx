@@ -184,7 +184,7 @@ const LogoMarquee = () => {
         </Heading>
       </div>
       <div className="w-full container mt-5 border rounded-xl border-gray-300">
-        <img className="" src={"/media/banner.jpg"} />
+        <img className="" src={"/media/process.svg"} />
       </div>
     </div>
   );
