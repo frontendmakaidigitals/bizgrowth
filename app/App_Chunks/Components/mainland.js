@@ -422,10 +422,10 @@ const data = [
       </p>,
       <p key={4} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]"> Agricultural License :</span>{" "}
-        An Agricultural License is issued to businesses operating in agriculture,
-        horticulture, and other farming activities. This includes companies that
-        deal with the cultivation, processing, and export of agricultural
-        products.
+        An Agricultural License is issued to businesses operating in
+        agriculture, horticulture, and other farming activities. This includes
+        companies that deal with the cultivation, processing, and export of
+        agricultural products.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Healthcare License :</span> A
@@ -682,7 +682,7 @@ const data = [
     thirdTitle: (
       <Heading className="w-full !text-center">
         The Different Types of{" "}
-        <span className="text-lime-500">f Abu Dhabi Mainland License</span>
+        <span className="text-lime-500"> Abu Dhabi Mainland License</span>
       </Heading>
     ),
     thirdSubDesc:
@@ -701,8 +701,8 @@ const data = [
         permitted to establish factories or manufacturing units in Abu Dhabi.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Professional License :</span> A
-        Professional License is issued for businesses that provide services
+        <span className="font-Synonym font-[600]">Professional License :</span>{" "}
+        A Professional License is issued for businesses that provide services
         based on professional expertise. This includes businesses that rely on
         individual skill and knowledge to deliver services to clients.
       </p>,
@@ -719,8 +719,8 @@ const data = [
         products.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Contracting License :</span> A
-        Contracting License is issued to businesses that work in the
+        <span className="font-Synonym font-[600]"> Contracting License :</span>{" "}
+        A Contracting License is issued to businesses that work in the
         construction industry. It is often required for companies involved in
         building or infrastructure projects.
       </p>,
@@ -731,9 +731,9 @@ const data = [
         Abu Dhabi, you would need this license.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> E-commerce License :</span> An
-        E-commerce License is for businesses operating online, allowing them to
-        conduct retail or wholesale trade via digital platforms.
+        <span className="font-Synonym font-[600]"> E-commerce License :</span>{" "}
+        An E-commerce License is for businesses operating online, allowing them
+        to conduct retail or wholesale trade via digital platforms.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Import/Export License :</span>{" "}
@@ -742,7 +742,10 @@ const data = [
         license can be part of a Commercial License or issued independently.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Foreign Branch License :</span>{" "}
+        <span className="font-Synonym font-[600]">
+          {" "}
+          Foreign Branch License :
+        </span>{" "}
         A Foreign Branch License is given to foreign companies that wish to
         establish a branch office in Abu Dhabi. This type of license enables
         foreign businesses to operate directly in the UAE Mainland.
@@ -830,8 +833,8 @@ const data = [
     ],
     sixthTitle: (
       <Heading className="w-full !text-center">
-        <span className="text-lime-500"> ABU DHABI MAINLAND</span> FOR SETTING
-        UP A DUBAI MAINLAND LICENSE
+        DOCUMENTS REQUIRED FOR SETTING UP{" "}
+        <span className="text-lime-500">ABU DHABI MAINLAND LICENSE</span>
       </Heading>
     ),
     sixthTableHead: ["Business Structure", "Required Documents"],
@@ -1109,8 +1112,8 @@ const data = [
         retail sectors.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Professional License :</span> A
-        Professional License is granted to individuals or companies providing
+        <span className="font-Synonym font-[600]"> Professional License :</span>{" "}
+        A Professional License is granted to individuals or companies providing
         professional services. This license is typically issued to businesses
         based on individual expertise, skill, or knowledge, and it can cover a
         wide range of service-oriented sectors.
@@ -1148,10 +1151,10 @@ const data = [
         It allows businesses to open and operate a franchise branch in Ajman.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> E-commerce License :</span> An
-        E-commerce License is for businesses operating online platforms to sell
-        products or services. This license allows businesses to engage in retail
-        or wholesale trade through digital platforms.
+        <span className="font-Synonym font-[600]"> E-commerce License :</span>{" "}
+        An E-commerce License is for businesses operating online platforms to
+        sell products or services. This license allows businesses to engage in
+        retail or wholesale trade through digital platforms.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Consultancy License :</span> A
@@ -1160,9 +1163,9 @@ const data = [
         expert advice in various fields.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Media License :</span> A Media
-        License is for businesses involved in media production, marketing, or
-        broadcasting activities. This license is for companies working in
+        <span className="font-Synonym font-[600]"> Media License :</span> A
+        Media License is for businesses involved in media production, marketing,
+        or broadcasting activities. This license is for companies working in
         advertising, content creation, or publishing.
       </p>,
     ],
@@ -1482,8 +1485,8 @@ const data = [
         for a wide range of businesses, from retail to wholesale.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Professional License :</span> A
-        Professional License is issued to individuals or companies offering
+        <span className="font-Synonym font-[600]"> Professional License :</span>{" "}
+        A Professional License is issued to individuals or companies offering
         services or expertise in various fields. This includes consultants,
         contractors, freelancers, and other service-oriented businesses.
       </p>,
@@ -1500,7 +1503,9 @@ const data = [
         management companies, and other businesses catering to tourism.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">General Trading License :</span>{" "}
+        <span className="font-Synonym font-[600]">
+          General Trading License :
+        </span>{" "}
         A General Trading License is a type of commercial license that allows
         businesses to trade in a broad range of products. This license allows
         businesses to engage in multiple trading activities without the need to
