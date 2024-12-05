@@ -159,7 +159,7 @@ const LogoMarquee = () => {
   return (
     <div className="mb-20 bg-white py-16">
       {" "}
-      <Marquee pauseOnHover className="[--duration:20s]">
+      <Marquee pauseOnHover className="[--duration:40s]">
         {reviews.map((review, index) => (
           <div
             key={index}
