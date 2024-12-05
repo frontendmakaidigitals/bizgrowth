@@ -18,7 +18,7 @@ const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
-  console.log(query)
+  console.log(query);
   useEffect(() => {
     const matchingItem = data.find(
       (item) => item.name.toLowerCase() === query?.toLowerCase()

@@ -338,7 +338,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "Welcome to the leading platform for obtaining a Sharjah Mainland Business License. Whether you're looking to start a new business or expand your operations, our professional services ensure a seamless and efficient process for securing your Mainland license in Sharjah. Let us help you navigate the regulatory landscape and start your business journey today Sharjah, is a dynamic emirate in the UAE, offers a thriving business environment with numerous opportunities for entrepreneurs. A Sharjah mainland license is the ideal choice for business seeking to operate within the UAE and engage directly with local and international clients. ",
+      "Welcome to the leading platform for obtaining a Sharjah Mainland Business License. Whether you're looking to start a new business or expand your operations, our professional services ensure a seamless and efficient process for securing your Mainland license in Sharjah. Let us help you navigate the regulatory landscape and start your business journey today Sharjah, is a dynamic emirate in the UAE, offers a thriving business environment with numerous opportunities for entrepreneurs. A Sharjah mainland license is the ideal choice for business seeking to operate within the UAE and engage directly with local and international clients.",
     heroImg: "/media/mainland/sharjah.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -372,7 +372,7 @@ const data = [
       {
         title: "Tax Benefits",
         icon: <MdIncompleteCircle />,
-        desc: ": Enjoy tax exemptions and incentives offered to companies in the UAE.",
+        desc: "Enjoy tax exemptions and incentives offered to companies in the UAE.",
       },
       {
         title: "Access to Local Market",
@@ -422,7 +422,7 @@ const data = [
       </p>,
       <p key={4} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]"> Agricultural License :</span>{" "}
-        n Agricultural License is issued to businesses operating in agriculture,
+        An Agricultural License is issued to businesses operating in agriculture,
         horticulture, and other farming activities. This includes companies that
         deal with the cultivation, processing, and export of agricultural
         products.
