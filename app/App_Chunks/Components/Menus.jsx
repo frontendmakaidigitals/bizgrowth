@@ -60,6 +60,7 @@ export const Menus = [
     points: [
       {
         title: "Tax & Accounting",
+        route: "Accounting",
         points: [
           "VAT Consultancy",
           "Corporate Tax",

@@ -1,4 +1,3 @@
- 
 import HeroSection from "./App_Chunks/Components/HeroSection";
 import TabularSection from "./App_Chunks/Components/TabularSection";
 import ThirdSection from "./App_Chunks/Components/ThirdSection";
@@ -7,7 +6,6 @@ import LogoMarquee from "./App_Chunks/Components/LogoMarquee";
 import Form from "./App_Chunks/Components/Form";
 
 export default function Home() {
-  
   return (
     <div>
       <HeroSection />

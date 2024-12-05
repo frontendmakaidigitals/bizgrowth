@@ -67,7 +67,9 @@ const Menu = () => {
                                 <Link
                                   key={itemIndex}
                                   href={{
-                                    pathname: point.title.toLowerCase(),
+                                    pathname: point.route
+                                      ? point.route
+                                      : point.title.toLowerCase(),
                                     query: { name: item },
                                   }}
                                 >
