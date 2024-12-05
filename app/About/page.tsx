@@ -140,7 +140,7 @@ const Page = () => {
             </h1>
             <h3 className="mt-3 xl:text-lg xl:mt-4">
               We simplify the complexities of company formation, ensuring a
-              seamless and efficient processWe specialize in providing
+              seamless and efficient process. We specialize in providing
               comprehensive business setup services that streamline the process
               of establishing a company in one of the world’s most dynamic and
               business-friendly environments.
@@ -153,7 +153,7 @@ const Page = () => {
               legal formalities, ensuring a smooth and efficient business
               launch.
             </h3>
-            <Button className="mt-3">Learn More</Button>
+            <Button className="mt-3">Contact us</Button>
           </div>
           <div className="relative order-1 lg:order-2">
             <div className="w-full shadow-xl h-[300px] xl:h-[550px] relative overflow-hidden rounded-xl z-[1]">
@@ -188,7 +188,9 @@ const Page = () => {
         </div>
       </div>
       <div className="w-full py-14  my-20 relative bg-lime-50">
-        <Heading className="w-full !text-center relative z-10">Title</Heading>
+        <Heading className="w-full !text-center relative z-10">
+          Our Legacy
+        </Heading>
         <div className="container mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
           {histories.map((item) => (
             <motion.div
@@ -259,10 +261,8 @@ const Page = () => {
                 Streamlined and Efficient Processes
               </span>
               <p className="mt-2">
-                We have dedicated account managers who will offer personalized
-                experience to each of our clients keeping them informed of every
-                single process. We offer them proactive communication with 24/7
-                Support.
+                We utilize innovative tools to automate and expedite processes,
+                which provides real-time updates and document access.
               </p>
             </div>
           </div>
