@@ -121,7 +121,7 @@ const data = [
     ],
     sixthTitle: (
       <Heading className="w-full !text-center">
-        DOCUMENTS REQUIRED FOR <span className="text-lime-500">VAT</span>
+        Documents Required for <span className="text-lime-500">VAT</span>
       </Heading>
     ),
     sixthTableHead: ["Document", "Description"],
