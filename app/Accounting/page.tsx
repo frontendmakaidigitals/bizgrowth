@@ -13,7 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import data from "../App_Chunks/Components/Accounting";
-import { Heading } from "lucide-react";
+ 
 
 const Page = () => {
   return (
