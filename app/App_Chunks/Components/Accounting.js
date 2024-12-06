@@ -14,7 +14,7 @@ const data = [
     ),
     heroDescription:
       "At BizGrowth, we specialize in providing expert VAT consulting services for businesses of all sizes. With years of experience and a deep understanding of VAT laws and regulations, we offer tailored services to ensure your business remains compliant and efficient, helping you minimize tax liabilities and maximize opportunities for growth.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/vat.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
         Services we provide as{" "}
@@ -205,7 +205,7 @@ const data = [
     ),
     heroDescription:
       "At BizGrowth, we understand the importance of ensuring your financial records are accurate, transparent, and compliant with regulatory standards. Our professional auditing services offer businesses of all sizes the assurance they need to operate confidently and efficiently. We provide expert guidance that empowers your business to make informed decisions.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/auditing.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
         Our <span className="text-lime-500 ">Auditing</span> Services
@@ -361,7 +361,7 @@ const data = [
     ),
     heroDescription:
       "In the UAE, businesses are evolving and facing new challenges, especially with the introduction of corporate tax laws. At BizGrowth, we are here to help you navigate the complexities of corporate taxation, ensuring compliance while optimizing your tax strategy for maximum benefit.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/corpImg.svg",
     corpTaxTitle: (
       <Heading className="w-full mb-4 !text-center">
         <span className="text-lime-500">Corporate Tax</span> in the{" "}
@@ -615,7 +615,7 @@ const data = [
     ),
     heroDescription:
       "At BizGrowth, we specialize in providing professional accounting and bookkeeping services designed to simplify your business operations. Whether you’re a small business owner, or part of a large corporation, we offer solutions to help you stay organized, save time, and make informed financial decisions.",
-    heroImg: "/media/mainland/dubai.svg",
+    heroImg: "/media/mainland/accountingImg.svg",
 
     secondTitle: (
       <Heading className="!text-center w-full">

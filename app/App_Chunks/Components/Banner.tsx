@@ -2,9 +2,9 @@ import React from "react";
 import Button from "./Button";
 const Banner = ({ query }: { query: string | undefined | null }) => {
   return (
-    <div className="w-full container border border-slate-300 mb-24 rounded-xl p-7 bg-[url('/media/gggrain.svg')]">
-      <div>
-        <p className="font-Synonym font-[600] text-lime-950 text-2xl tracking-tight">
+    <div className="w-full container  mb-24 ">
+      <div className="bg-[url('/media/gggrain.svg')] border border-slate-200 rounded-xl p-7 ">
+        <p className="font-Synonym  font-[600] text-lime-950 text-2xl tracking-tight">
           READY TO KICKSTART YOUR BUSINESS IN {query}?
         </p>
         <p className="text-lg font-Satoshi">
