@@ -43,7 +43,7 @@ const Menu = () => {
               {openDropdown === menu.name && (
                 <motion.div
                   className={`absolute flex flex-col top-10 left-0 z-30 bg-[#c5e1a5] 
-    ${index === 3 ? "max-w-5xl" : index === 2 ? "w-[800px]" : "w-[600px]"} 
+    ${index === 3 ? "max-w-5xl" : index === 2 ? "w-[900px]" : "w-[600px]"} 
     shadow-xl rounded-sm p-6`}
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
