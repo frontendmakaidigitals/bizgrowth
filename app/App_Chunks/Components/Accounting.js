@@ -351,7 +351,7 @@ const data = [
   {
     name: "Corporate Tax",
     heroTitle: (
-      <Heading>
+      <Heading className="">
         Welcome to{" "}
         <span className="text-lime-500">
           BizGrowth Corporate Tax Consultancy
@@ -362,19 +362,25 @@ const data = [
     heroDescription:
       "In the UAE, businesses are evolving and facing new challenges, especially with the introduction of corporate tax laws. At BizGrowth, we are here to help you navigate the complexities of corporate taxation, ensuring compliance while optimizing your tax strategy for maximum benefit.",
     heroImg: "/media/mainland/dubai.svg",
-    corpTaxTitle: " Corporate Tax in the UAE",
+    corpTaxTitle: (
+      <Heading className="w-full mb-4 !text-center">
+        <span className="text-lime-500">Corporate Tax</span> in the{" "}
+        <span className="text-lime-500">UAE</span>
+      </Heading>
+    ),
     corpTaxDesc: (
-      <p>
-        The UAE government has introduced a new corporate tax regime on June 1,
-        2023 that is set to impact businesses operating in the country.
-        Corporate tax applies to the profits of businesses. The corporate tax
-        law aims to support economic diversification and ensure fairness in the
-        taxation system.
-        <br /> The UAE corporate tax rate is set at 9% for businesses earning
-        profits above AED 375,000, with businesses below this threshold
-        generally exempt from tax. However, tax laws are complex, and each
-        business may have different considerations depending on its structure
-        and activities.
+      <p className="text-center text-lg">
+        The UAE government has introduced a new corporate tax regime on{" "}
+        <span className="font-[600]">June 1, 2023</span> that is set to impact
+        businesses operating in the country. Corporate tax applies to the
+        profits of businesses. The corporate tax law aims to support economic
+        diversification and ensure fairness in the taxation system. The UAE
+        corporate tax rate is set at <span className="font-[600]">9%</span> for
+        businesses earning profits above{" "}
+        <span className="font-[600]">AED 375,000</span>, with businesses below
+        this threshold generally exempt from tax. However, tax laws are complex,
+        and each business may have different considerations depending on its
+        structure and activities.
       </p>
     ),
     corpTaxImg: "/media/mainland/dubai.svg",
@@ -451,7 +457,7 @@ const data = [
       },
     ],
     thirdTitle: (
-      <Heading>
+      <Heading className="!text-center w-full">
         Our <span className="text-lime-500">Corporate Tax</span> Services
       </Heading>
     ),
@@ -680,8 +686,9 @@ const data = [
     ],
 
     thirdTitle: (
-      <Heading>
-        Our <span className="text-lime-500">Corporate Tax</span> Services
+      <Heading className="w-full !text-center">
+        Why Outsource <span className="text-lime-500">Bookkeeping</span> and{" "}
+        <span className="text-lime-500">Accounting Service?</span>
       </Heading>
     ),
     thirdSubDesc:

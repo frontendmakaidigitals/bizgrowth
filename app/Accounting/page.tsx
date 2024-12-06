@@ -13,6 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import data from "../App_Chunks/Components/Accounting";
+import { Heading } from "lucide-react";
 
 const Page = () => {
   return (
@@ -64,8 +65,45 @@ const MainPage = () => {
         </div>
       </div>
 
+      {processData?.corpTaxTitle ? (
+        <div className="w-full container my-14 grid grid-cols-1">
+          <div>
+            {processData?.corpTaxTitle}
+            <div className="text-lg font-Satoshi">
+              {processData?.corpTaxDesc}
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="w-full container my-24">
         <div>{processData?.secondTitle}</div>
+        {processData?.AccBookPoints ? (
+          <div className="grid grid-cols-1 my-16 lg:grid-cols-3 gap-5 container">
+            {processData?.AccBookPoints.map((elem: any, index: number) => (
+              <div key={index} className="w-full rounded-lg bg-[#C2DAC2] p-6">
+                <div className="text-3xl ">{elem?.title}</div>
+                <ul className="mt-5">
+                  {elem.points.map((item: any, id: number) => (
+                    <li key={id}>
+                      <div className="flex items-start gap-2">
+                        <div>
+                          <div className="size-2 bg-lime-800 mt-2 rounded-full" />
+                        </div>
+                        <p className="font-Satoshi">
+                          <span className="font-bold font-SplineSans">
+                            {item.title}{" "}
+                          </span>
+                          {":"} {item.desc}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : null}
         <div className="w-full ">
           <p className="w-full text-center font-Satoshi text-lg">
             {processData?.secondSubDescription}
@@ -105,6 +143,73 @@ const MainPage = () => {
             ))}
         </motion.div>
       </div>
+
+      {processData?.corpTitle ? (
+        <div className="w-full container my-24">
+          <div>{processData?.corpTitle}</div>
+
+          <div className="mt-10">
+            <table className="w-full border-collapse border border-gray-300">
+              <thead className="bg-[#9ccc65]">
+                <tr>
+                  {Array.isArray(processData?.corpTableHead) &&
+                    processData?.corpTableHead.map(
+                      (elem: string, index: number) => (
+                        <th
+                          key={index}
+                          className="border border-gray-300  py-2"
+                        >
+                          <div className=" flex font-Satoshi text-lg text-[#152b0c] justify-start px-5 w-full">
+                            {elem}
+                          </div>
+                        </th>
+                      )
+                    )}
+                </tr>
+              </thead>
+              <tbody>
+                {processData?.corpTableBody &&
+                  processData?.corpTableBody.map((item: any, index: number) => (
+                    <tr key={index} className="font-Satoshi">
+                      <td className="border text-lg border-gray-300  py-2">
+                        <div className="w-full flex justify-start font-semibold px-5">
+                          {item.title}
+                        </div>
+                      </td>
+
+                      {query?.toLowerCase() !== "auditing" &&
+                      "desc1" in item ? (
+                        <td className="border border-gray-300  ">
+                          <ul>
+                            <li className="border flex items-center gap-2 py-2 px-5">
+                              <MdLabelImportant className="text-lime-800" />
+                              {item.desc1}
+                            </li>
+                          </ul>
+                        </td>
+                      ) : null}
+
+                      {query?.toLowerCase() !== "auditing" &&
+                      "desc2" in item ? (
+                        <td className="border border-gray-300  ">
+                          <ul>
+                            <li className="border flex items-center gap-2 py-2 px-5">
+                              <MdLabelImportant className="text-lime-800" />
+                              {item.desc2}
+                            </li>
+                          </ul>
+                        </td>
+                      ) : null}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-3">
+            <p className="font-Satoshi text-sm">{processData?.tableFooter}</p>
+          </div>
+        </div>
+      ) : null}
 
       <div className="w-full container my-24">
         <div>{processData?.thirdTitle}</div>
@@ -204,7 +309,7 @@ const MainPage = () => {
                       </div>
                     </td>
 
-                    {"doc1" in item ? (
+                    {query?.toLowerCase() !== "auditing" && "doc1" in item ? (
                       <td className="border border-gray-300  ">
                         <ul>
                           <li className="border flex items-center gap-2 py-2 px-5">
