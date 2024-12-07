@@ -13,7 +13,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import data from "../App_Chunks/Components/Accounting";
- 
 
 const Page = () => {
   return (
@@ -126,19 +125,18 @@ const MainPage = () => {
                   delay: index * 0.02,
                 }}
                 viewport={{ once: true }}
-                className="w-full rounded-lg bg-[#C2DAC2] p-5"
+                className="w-full rounded-lg flex flex-col justify-between items-start bg-[#C2DAC2] p-5"
               >
-                <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
-                  {elem?.icon}
-                </div>
-
-                <div className=" mt-6">
-                  <p className="font-SplineSans text-xl font-[600]">
+                <div className="">
+                  <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
+                    {elem?.icon}
+                  </div>
+                  <p className="font-SplineSans mt-6 text-xl font-[600]">
                     {elem.title}
                   </p>
                   <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
-                  <Button className="mt-3">Learn More</Button>
                 </div>
+                <Button className="mt-3">Learn More</Button>
               </motion.div>
             ))}
         </motion.div>
@@ -280,54 +278,64 @@ const MainPage = () => {
           ))}
         </div>
       </div>
-      <div className="w-full container my-24">
-        <div>{processData?.sixthTitle}</div>
+      {processData?.sixthTitle ? (
+        <div className="w-full container my-24">
+          <div>{processData?.sixthTitle}</div>
 
-        <div className="mt-10">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead className="bg-[#9ccc65]">
-              <tr>
-                {Array.isArray(processData?.sixthTableHead) &&
-                  processData?.sixthTableHead.map(
-                    (elem: string, index: number) => (
-                      <th key={index} className="border border-gray-300  py-2">
-                        <div className=" flex font-Satoshi text-lg text-[#152b0c] justify-start px-5 w-full">
-                          {elem}
-                        </div>
-                      </th>
+          <div className="mt-10">
+            <table className="w-full border-collapse border border-gray-300">
+              <thead className="bg-[#9ccc65]">
+                <tr>
+                  {Array.isArray(processData?.sixthTableHead) &&
+                    processData?.sixthTableHead.map(
+                      (elem: string, index: number) => (
+                        <th
+                          key={index}
+                          className="border border-gray-300  py-2"
+                        >
+                          <div className=" flex font-Satoshi text-lg text-[#152b0c] justify-start px-5 w-full">
+                            {elem}
+                          </div>
+                        </th>
+                      )
+                    )}
+                </tr>
+              </thead>
+              <tbody>
+                {processData?.sixthTableBody &&
+                  processData?.sixthTableBody.map(
+                    (item: any, index: number) => (
+                      <tr key={index} className="font-Satoshi">
+                        <td className="border text-lg border-gray-300  py-2">
+                          <div className="w-full flex justify-start font-semibold px-5">
+                            {item.title}
+                          </div>
+                        </td>
+
+                        {query?.toLowerCase() !== "auditing" &&
+                        "doc1" in item ? (
+                          <td className="border border-gray-300  ">
+                            <ul>
+                              <li className="border flex items-start gap-2 py-2 px-5">
+                                <div>
+                                  <MdLabelImportant className="text-lime-800 mt-1" />
+                                </div>
+                                {item.doc1}
+                              </li>
+                            </ul>
+                          </td>
+                        ) : null}
+                      </tr>
                     )
                   )}
-              </tr>
-            </thead>
-            <tbody>
-              {processData?.sixthTableBody &&
-                processData?.sixthTableBody.map((item: any, index: number) => (
-                  <tr key={index} className="font-Satoshi">
-                    <td className="border text-lg border-gray-300  py-2">
-                      <div className="w-full flex justify-start font-semibold px-5">
-                        {item.title}
-                      </div>
-                    </td>
-
-                    {query?.toLowerCase() !== "auditing" && "doc1" in item ? (
-                      <td className="border border-gray-300  ">
-                        <ul>
-                          <li className="border flex items-center gap-2 py-2 px-5">
-                            <MdLabelImportant className="text-lime-800" />
-                            {item.doc1}
-                          </li>
-                        </ul>
-                      </td>
-                    ) : null}
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-3">
+            <p className="font-Satoshi text-sm">{processData?.tableFooter}</p>
+          </div>
         </div>
-        <div className="mt-3">
-          <p className="font-Satoshi text-sm">{processData?.tableFooter}</p>
-        </div>
-      </div>
+      ) : null}
 
       {processData?.seventhTitle ? (
         <div className="w-full container my-24">

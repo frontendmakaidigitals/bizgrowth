@@ -481,7 +481,7 @@ const data = [
     name: "dubai offshore",
     heroTitle: (
       <Heading>
-        OFFSHORE COMPANY SET UP IN <span className="text-lime-500">DUBAI</span>
+        <span className="text-lime-500">OFFSHORE COMPANY</span> SET UP IN Dubai
       </Heading>
     ),
     heroDescription:

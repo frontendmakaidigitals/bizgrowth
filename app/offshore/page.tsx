@@ -66,18 +66,20 @@ const MainPage = () => {
 
         <div className="my-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
           {processData?.secondPoints.map((elem, index) => (
-            <div key={index} className="w-full rounded-lg bg-[#C2DAC2] p-5">
-              <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
-                {elem?.icon}
-              </div>
-
-              <div className=" mt-6">
-                <p className="font-SplineSans text-xl font-[600]">
+            <div
+              key={index}
+              className="w-full flex flex-col justify-between items-start rounded-lg bg-[#C2DAC2] p-5"
+            >
+              <div>
+                <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
+                  {elem?.icon}
+                </div>
+                <p className="font-SplineSans mt-6 text-xl font-[600]">
                   {elem.title}
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
-                <Button className="mt-3">Learn More</Button>
               </div>
+              <Button className="mt-5">Learn More</Button>
             </div>
           ))}
         </div>
@@ -129,7 +131,9 @@ const MainPage = () => {
               }`}
             >
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
-              <p className="font-SplineSans font-[500] text-xl">{item.title}</p>
+              <p className="font-SplineSans font-[500] mt-3 text-xl">
+                {item.title}
+              </p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
             </div>
           ))}
@@ -168,9 +172,11 @@ const MainPage = () => {
                         {item.docs.map((doc: string, id: number) => (
                           <li
                             key={id}
-                            className="border flex items-center gap-2 py-2 px-5"
+                            className="border flex items-start gap-2 py-2 px-5"
                           >
-                            <MdLabelImportant className="text-lime-800" />
+                            <div>
+                              <MdLabelImportant className="text-lime-800 mt-1" />
+                            </div>
                             {doc}
                           </li>
                         ))}
@@ -181,8 +187,10 @@ const MainPage = () => {
                   {query && "doc1" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
-                        <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
+                        <li className="border flex items-start gap-2 py-2 px-5">
+                          <div>
+                            <MdLabelImportant className="text-lime-800 mt-1" />
+                          </div>
                           {item?.doc1}
                         </li>
                       </ul>

@@ -169,9 +169,11 @@ const MainPage = () => {
                         {item.docs.map((doc: string, id: number) => (
                           <li
                             key={id}
-                            className="border flex items-center gap-2 py-2 px-5"
+                            className="border flex items-start gap-2 py-2 px-5"
                           >
-                            <MdLabelImportant className="text-lime-800" />
+                            <div>
+                              <MdLabelImportant className="text-lime-800 mt-1" />
+                            </div>
                             {doc}
                           </li>
                         ))}
@@ -182,8 +184,10 @@ const MainPage = () => {
                   {query && "doc1" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
-                        <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
+                        <li className="border flex items-start gap-2 py-2 px-5">
+                          <div>
+                            <MdLabelImportant className="text-lime-800 mt-1" />
+                          </div>
                           {item?.doc1}
                         </li>
                       </ul>
