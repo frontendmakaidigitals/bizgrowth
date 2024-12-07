@@ -4,6 +4,9 @@ import { FaBusinessTime } from "react-icons/fa";
 import { MdIncompleteCircle } from "react-icons/md";
 const data = [
   {
+    bannerTitle: "READY TO LAUNCH YOUR BUSINESS IN DUBAI?",
+    bannerDesc:
+      "Starting your business in Dubai has never been easier. Let BIZGROWTH be your trusted partner in navigating the Dubai Mainland business setup process. Contact us today for a free consultation and let’s take the first step toward turning your business dreams into reality!",
     name: "Dubai Mainland",
     heroTitle: (
       <Heading>
@@ -378,6 +381,9 @@ const data = [
     ],
   },
   {
+    bannerTitle: "Get Started Today!",
+    bannerDesc:
+      "Ready to register your business? Let BIZ GROWTH Consultants guide you through the process of obtaining your Sharjah Mainland License with all the necessary documentation.",
     name: "Sharjah Mainland",
     heroTitle: (
       <Heading>
@@ -671,6 +677,10 @@ const data = [
     ],
   },
   {
+    bannerTitle:
+      "GET STARTED WITH OPENING YOUR ABU DHABI MAINLAND LICENSE WITH BIZGROWTH",
+    bannerDesc:
+      "Starting a business in Abu Dhabi Mainland opens doors to endless possibilities. Let us be your trusted partner in navigating the business setup process and obtaining your Mainland license with ease. Reach out today, and take the first step toward realizing your business goals in one of the most vibrant economies in the world.",
     name: "Abu Dhabi Mainland",
     heroTitle: (
       <Heading>
@@ -972,6 +982,9 @@ const data = [
     ],
   },
   {
+    bannerTitle: "GET STARTED TO YOUR DREAM BUSINESS IDEA IN AJMAN MAINLAND",
+    bannerDesc:
+      "Ajman is an ideal location for setting up a Mainland business, offering a dynamic environment, low operational costs, and easy access to the UAE market. Whether you’re looking to launch a new startup or expand your operations, we are here to assist you at every step of the way. Contact us today to begin your business journey in Ajman Mainland and unlock endless opportunities for growth and success!",
     name: "Ajman Mainland",
     heroTitle: (
       <Heading>
@@ -1247,6 +1260,10 @@ const data = [
     ],
   },
   {
+    bannerTitle: "READY TO KICKSTART YOUR BUSINESS IN FUJAIRAH?",
+    bannerDesc:
+      "Starting a business in Fujairah Mainland is an exciting opportunity, and with our expert guidance, you can easily navigate the setup process. Contact us today to discuss your business goals, and let us help you take the first step toward success in the UAE.",
+
     name: "Fujairah Mainland",
     heroTitle: (
       <Heading>
@@ -1474,7 +1491,7 @@ const data = [
       </p>,
       <p key={2} className="font-Satoshi text-sm">
         <span className="font-bold font-Synonym">
-          PRO (Public Relations) Services: {' '}
+          PRO (Public Relations) Services:{" "}
         </span>
         You may require assistance for visa renewals, document attestation, and
         other government-related services.

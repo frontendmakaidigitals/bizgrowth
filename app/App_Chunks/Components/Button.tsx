@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, className, children }) => {
   return (
     <button
       onClick={onClick}
-      className={`px-3 py-2 bg-gradient-to-tr from-lime-300 text-green-950  to-lime-500 font-[600] font-Satoshi rounded-lg ${className}`}
+      className={`px-3 py-2 bg-gradient-to-tr hover:bg-gradient-to-br transition-all duration-300 from-lime-300 text-green-950  to-lime-500 font-[600] font-Satoshi rounded-lg ${className}`}
     >
       {children}
     </button>

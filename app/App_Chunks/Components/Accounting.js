@@ -5,6 +5,9 @@ import { MdIncompleteCircle } from "react-icons/md";
 
 const data = [
   {
+    bannerTitle: "Get in Touch Today",
+    bannerDesc:
+      "If your business is ready to optimize your VAT processes or need professional advice, contact us today for a free consultation. Our team is ready to assist you with all your VAT needs.",
     name: "VAT Consultancy",
     heroTitle: (
       <Heading>
@@ -196,6 +199,9 @@ const data = [
   },
 
   {
+    bannerTitle: "Contact Us Today!",
+    bannerDesc:
+      "Reach out to us to schedule a consultation or learn more about how we can support your business through our audit services. <br /> BizGrowth is committed to providing you with the expertise necessary to maintain financial health, optimize operations, and achieve long-term success.",
     name: "Auditing",
     heroTitle: (
       <Heading>
@@ -331,7 +337,7 @@ const data = [
       {
         title: "Reporting",
         isPoints: false,
-        desc: ": We present our findings in a clear, concise report, outlining any discrepancies, risks, and recommendations for improvement.",
+        desc: "We present our findings in a clear, concise report, outlining any discrepancies, risks, and recommendations for improvement.",
       },
       {
         title: " Follow-Up",
@@ -349,6 +355,10 @@ const data = [
   },
 
   {
+    bannerTitle: "Get Started Today!",
+    bannerDesc:
+      "The UAE's corporate tax environment is evolving, and it’s essential to stay ahead of the curve. Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. <br /> Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
+
     name: "Corporate Tax",
     heroTitle: (
       <Heading className="">
@@ -603,6 +613,10 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Get in Touch with Us Today",
+    bannerDesc:
+      "We’d love to hear from you! Whether you’re looking for accounting services, bookkeeping support, or tax advice, we’re here to help.",
+
     name: "Accounting and Book keeping",
     heroTitle: (
       <Heading>

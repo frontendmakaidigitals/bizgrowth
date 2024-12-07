@@ -4,6 +4,9 @@ import { FaBusinessTime } from "react-icons/fa";
 import { MdIncompleteCircle } from "react-icons/md";
 const data = [
   {
+    bannerTitle: "Launch your business with JAFZA Offshore License!",
+    bannerDesc:
+      "A JAFZA Offshore License opens doors to numerous business opportunities with tax benefits, privacy, and easy access to global markets.Contact Us Today for professional guidance in setting up your JAFZA Offshore company. Our expert team is here to simplify the process and ensure a smooth experience from start to finish.",
     name: "JAFZA offshore",
     heroTitle: (
       <Heading>
@@ -155,6 +158,10 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Get Started with RAK ICC Offshore License with your business",
+    bannerDesc:
+      "Do you have questions or need assistance in setting up your offshore company? Our team of experts is here to guide you every step of the way. Contact us today for a consultation.",
+
     name: "rak icc offshore",
     heroTitle: (
       <Heading>
@@ -297,6 +304,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "LAUNCH YOUR BUSINESS WITH AJMAN OFFSHORE",
+    bannerDesc:
+      "Our team of experts at BIZGrowth is dedicated to simplifying the offshore company setup process. With years of experience in helping businesses navigate the Ajman Offshore regulations, we offer end-to-end services to ensure a smooth setup process.",
     name: "ajman offshore",
     heroTitle: (
       <Heading>
@@ -478,6 +488,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Get Started Today!",
+    bannerDesc:
+      "Ready to start your offshore business in Dubai? Contact us now to schedule a free consultation with one of our experts. We’ll guide you through every step of the process and help you set up a successful offshore company in Dubai.",
     name: "dubai offshore",
     heroTitle: (
       <Heading>

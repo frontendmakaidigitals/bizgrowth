@@ -361,7 +361,7 @@ const MainPage = () => {
         </div>
       ) : null}
 
-      <Banner query={query} />
+      <Banner title={processData?.bannerTitle} desc={processData?.bannerDesc} />
     </div>
   );
 };

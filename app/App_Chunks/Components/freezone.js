@@ -4,6 +4,9 @@ import { FaBusinessTime } from "react-icons/fa";
 import { MdIncompleteCircle } from "react-icons/md";
 const data = [
   {
+    bannerTitle: "Start Your Business in Dubai Today with IFZA!",
+    bannerDesc:
+      "Take advantage of Dubai’s business-friendly environment, world-class infrastructure, and tax advantages. With IFZA, establishing and growing your business has never been easier. Get expert consultation from BIZGROWTH to decide on which freezone to choose from according to your business activity.",
     name: "ifza",
     heroTitle: (
       <Heading>
@@ -234,6 +237,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Get Started Today AT DMCC FREEZONE LICENSE - WITH BIZGROWTH.",
+    bannerDesc:
+      "Starting your business in Dubai with DMCC is easier than you think. Let our experts guide you through the process and help you set up your company in one of the world’s most vibrant Freezones. Contact us today to learn more about how DMCC can help your business succeed.",
     name: "dmcc",
     heroTitle: (
       <Heading>
@@ -454,6 +460,11 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle:
+      "Join a Thriving Business Community in ADGM- We’ll Help you get Started!",
+    bannerDesc:
+      "Ready to take the next step and establish your business in ADGM? Contact Biz Growth Consultants who are a dedicated team to learn more about how we can help you secure your ADGM Free Zone License and start your journey towards success in one of the world’s most dynamic economic regions.",
+
     name: "adgm",
     heroTitle: (
       <Heading>
@@ -690,6 +701,10 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Start Your DIFC Journey Today with BIZ Growth!",
+    bannerDesc:
+      "Are you ready to take your business to the next level in one of the world’s leading financial hubs? Contact our business consultants today for a consultation and learn how a DIFC license can empower your business.",
+
     name: "difc",
     heroTitle: (
       <Heading>
@@ -942,6 +957,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Launch your Business in MEYDAN Free Zone",
+    bannerDesc:
+      "Meydan offers a unique blend of luxury, convenience, connectivity, and a business-friendly environment, making it a top choice for entrepreneurs and businesses looking to establish themselves in Dubai. Whether you're launching a startup or expanding an existing business, consult BIZ Growth Consultants to get custom consultation related to your business activity.",
     name: "meydan",
     heroTitle: (
       <Heading>
@@ -1168,6 +1186,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Experience the future of your Business with SPC Freezone!",
+    bannerDesc:
+      "SPC Freezone offers a strong commitment to customer satisfaction, regulatory discipline and sustainable development. From tax benefits to full foreign ownership, SPC Free Zone offers a range of benefits to help you establish your business in a dynamic environment.",
     name: "SPC",
     heroTitle: (
       <Heading>
@@ -1402,6 +1423,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Ready to Launch Your Business in JAFZA?",
+    bannerDesc:
+      "Ready to grow your business with JAFZA? Get in touch with us today, and our team of experts will help you take the next step toward establishing your business in one of the world’s leading free zones.",
     name: "JAFZA",
     heroTitle: (
       <Heading>
@@ -1613,6 +1637,9 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Start Your Business Journey Today!",
+    bannerDesc:
+      "Ready to take the next step? Start your business with RAKEZ and enjoy a seamless, efficient setup process. BIZGrowth Consultants are here to guide you through every step for setting up your business in RAKEZ.",
     name: "Rakez",
     heroTitle: (
       <Heading>

@@ -4,6 +4,9 @@ import { FaBusinessTime } from "react-icons/fa";
 import { MdIncompleteCircle } from "react-icons/md";
 const data = [
   {
+    bannerTitle: "Get Started Today!",
+    bannerDesc:
+      "Opening a private bank account in Dubai is a key step toward securing your financial future, and we are here to help. With our deep expertise, personalized service, and dedication to client satisfaction, we ensure that the entire process is smooth, efficient, and customized to your unique needs. <br /> Contact us today for a consultation, and let us help you unlock the benefits of private banking in Dubai.",
     name: "private bank account",
     heroTitle: (
       <Heading>
@@ -229,6 +232,10 @@ const data = [
     seventhPoints: [],
   },
   {
+    bannerTitle: "Get Started Today!",
+    bannerDesc:
+      "Opening a corporate bank account is an essential step in establishing your business’s financial foundation. Let BizGrowth guide you through the process with ease and efficiency. Contact us today to schedule a consultation, and take the first step toward securing your company’s financial future.",
+
     name: "corporate bank account",
     heroTitle: (
       <Heading>
