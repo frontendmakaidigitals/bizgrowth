@@ -89,8 +89,8 @@ const FourthSection = () => {
   return (
     <div className="container mb-20">
       <Heading className="!text-center w-full">
-        Your <span className="text-lime-500 font-Synonym">One-Stop</span> shop
-        for business solutions!
+        Your <span className="text-lime-500">Trusted Advisor</span> for Building
+        your Business and beyond!
       </Heading>
       <motion.div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5">
         {services.slice(0, servicesToShow).map((service, index) => (

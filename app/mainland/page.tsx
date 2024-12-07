@@ -87,19 +87,18 @@ const MainPage = () => {
                 delay: index * 0.02,
               }}
               viewport={{ once: true }}
-              className="w-full rounded-lg bg-[#C2DAC2] p-5"
+              className="w-full rounded-lg flex flex-col justify-between items-start bg-[#C2DAC2] p-5"
             >
-              <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
-                {elem?.icon}
-              </div>
-
-              <div className=" mt-6">
-                <p className="font-SplineSans text-xl font-[600]">
+              <div className="">
+                <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
+                  {elem?.icon}
+                </div>
+                <p className="font-SplineSans mt-6 text-xl font-[600]">
                   {elem.title}
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
-                <Button className="mt-3">Learn More</Button>
               </div>
+              <Button className="mt-3">Learn More</Button>
             </motion.div>
           ))}
         </motion.div>
@@ -158,7 +157,7 @@ const MainPage = () => {
               }`}
             >
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
-              <p className="font-SplineSans font-[500] text-xl">{item.title}</p>
+              <p className="font-SplineSans font-[500] mt-3 text-xl">{item.title}</p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
               {item.isPoints && item.points ? (
                 <ul className="font-Satoshi mt-3 py-3 border-t w-full border-lime-700">
@@ -209,7 +208,9 @@ const MainPage = () => {
                             key={id}
                             className="border flex items-center gap-2 py-2 px-5"
                           >
-                            <MdLabelImportant className="text-lime-800" />
+                            <div>
+                              <MdLabelImportant className="text-lime-800" />
+                            </div>
                             {doc}
                           </li>
                         ))}
@@ -222,7 +223,9 @@ const MainPage = () => {
                     <td className="border border-gray-300  ">
                       <ul>
                         <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
+                          <div>
+                            <MdLabelImportant className="text-lime-800" />
+                          </div>
                           {item.doc1}
                         </li>
                       </ul>
@@ -233,7 +236,9 @@ const MainPage = () => {
                     <td className="border border-gray-300  ">
                       <ul>
                         <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
+                          <div>
+                            <MdLabelImportant className="text-lime-800" />
+                          </div>
                           {item.doc2}
                         </li>
                       </ul>
@@ -244,7 +249,9 @@ const MainPage = () => {
                     <td className="border border-gray-300  ">
                       <ul>
                         <li className="border flex items-center gap-2 py-2 px-5">
-                          <MdLabelImportant className="text-lime-800" />
+                          <div>
+                            <MdLabelImportant className="text-lime-800" />
+                          </div>
                           {item.doc3}
                         </li>
                       </ul>
@@ -262,7 +269,7 @@ const MainPage = () => {
         {processData?.keyPoints ? (
           <div className="w-full mt-4">
             <div>
-              <p className="text-lg font-SplineSans font-[500]">Key Points:</p>
+              <p className="text-md font-SplineSans font-[500]">Key Points:</p>
             </div>
             <div className="w-full mt-1">
               <ul>

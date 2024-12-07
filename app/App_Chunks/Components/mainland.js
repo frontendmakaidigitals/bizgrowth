@@ -61,6 +61,54 @@ const data = [
         <span className="text-lime-500">DUBAI Mainland License</span>
       </Heading>
     ),
+    dubaiComplianceTitle: (
+      <Heading>
+        Compliance with{" "}
+        <span className="text-lime-500">Government Policies</span> for Running a
+        Business
+      </Heading>
+    ),
+    dubaiComplianceSubTitle:
+      "Starting a business in Dubai’s Mainland offers exciting opportunities for entrepreneurs and companies looking to establish themselves in a dynamic market. However, to ensure a smooth and legally compliant setup process, it`s essential to be aware of the key points for complying with the Dubai government’s regulations. Here’s a checklist to help you navigate the requirements:",
+    dubaiComplianceChecks: [
+      {
+        title:
+          "Compliance with Dubai Municipality and Other Regulatory Authorities",
+        desc: "Depending on your business activity, you may need additional approvals from other government entities, such as",
+        points: [
+          "Dubai Municipality for construction, food, and healthcare-related businesses",
+          "Dubai Health Authority (DHA) for healthcare services.",
+          "Dubai Civil Aviation Authority (DCAA) for aviation-related businesses.",
+        ],
+        extraDesc:
+          "Be sure to check with the DED to identify any industry-specific requirements.",
+      },
+      {
+        title: "Visa and Employment Compliance",
+        desc: "As a mainland business, you are required to adhere to labor laws and immigration regulations",
+        points: [
+          "Labor Cards and Work Visas: You must ensure that your employees are legally employed, registered with the Ministry of Human Resources and Emiratisation (MOHRE), and have valid work visas.",
+          "Emiratisation: Companies in the UAE are required to meet Emiratisation quotas, hiring UAE nationals within their workforce.",
+        ],
+      },
+      {
+        title: "Tax and Financial Compliance",
+        desc: "While Dubai offers a tax-friendly environment, your business must adhere to certain financial reporting standards, such as",
+        points: [
+          "VAT Registration (if your turnover exceeds the threshold).",
+          "Keeping proper financial records and bookkeeping.",
+          "Paying any applicable fees for licensing and renewal.",
+        ],
+      },
+      {
+        title: "Business License Renewal",
+        desc: "Dubai Mainland licenses are typically valid for one year. To remain compliant, you must renew your business license before it expires. Ensure that your business continues to meet all regulatory requirements, including office space, ownership structure, and any industry-specific regulations",
+      },
+      {
+        title: "Adherence to Business Activity Regulations",
+        desc: "Ensure that your business is operating within the scope of the licensed activities. The DED specifies the range of activities that can be conducted under a particular license type. If your business expands into new activities, you will need to update your license accordingly.",
+      },
+    ],
     thirdSubDesc:
       "In Dubai, businesses that operate on the mainland need to obtain a Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Dubai Mainland licenses:",
     thirdPoints: [
@@ -455,7 +503,7 @@ const data = [
       {
         title: "Decide on Your Business Activity",
         isPoints: false,
-        desc: "The first step is to clearly define the type of business you want to operate. Sharjah offers a wide range of licenses based on the nature of your business..",
+        desc: "The first step is to clearly define the type of business you want to operate. Sharjah offers a wide range of licenses based on the nature of your business.",
       },
       {
         title: " Choose Your Business Structure and Name",
@@ -480,7 +528,7 @@ const data = [
       {
         title: " Prepare Necessary Documents",
         isPoints: false,
-        desc: "Gather essential documents such as passport copies, visa copies, and proof of address",
+        desc: "Gather essential documents such as passport copies, visa copies, and proof of address.",
       },
       {
         title: " Rent Office Space and Obtain Ejari Certificate",
@@ -501,11 +549,6 @@ const data = [
         title: "Draft and Notarize the Memorandum of Association (MoA)",
         isPoints: false,
         desc: "Memorandum of Association (MoA) is an outline of the company’s legal structure and this document must be notarized by the Sharjah Courts.",
-      },
-      {
-        title: "Obtain Approvals from Other Authorities (if required) ",
-        isPoints: false,
-        desc: "Depending on your business activity, you may need additional approvals from specific authorities.",
       },
       {
         title: "Obtain Approvals from Other Authorities (if required) ",
@@ -611,8 +654,7 @@ const data = [
       },
     ],
 
-    tableFooter:
-      "This table lists the primary documents required for each business entity type in Dubai Mainland. Keep in mind that additional documents may be needed based on the specific industry, business activity, or any regulatory requirements. It’s advisable to consult with BIZ Growth business setup consultant for more detailed and accurate information based on your unique business needs.",
+    tableFooter: "",
     keyPoints: [
       {
         title: "Arabic Translation",
@@ -781,13 +823,8 @@ const data = [
       },
       {
         title: "Choose a Local Sponsor or Partner (If Required)",
-        isPoints: true,
+        isPoints: false,
         desc: "For most Mainland businesses (except for certain professional services), a local sponsor (UAE national) is required to hold a 51% share in the company.",
-        points: [
-          "Passport copies of the business owners",
-          "Proof of residence in the UAE (if applicable)",
-          "Completed application form for initial approval",
-        ],
       },
       {
         title: "Rent an Office Space",
@@ -806,27 +843,18 @@ const data = [
         desc: "With all your documents ready, submit your application to the Department of Economic Development (DED) in Abu Dhabi. The DED will review your application, approve the trade name, and ensure that your business activity is in line with local regulations.",
       },
       {
-        title: "   Finalize Licensing",
+        title:
+          " Obtain Approvals from Other Relevant Authorities (If Required)",
         isPoints: false,
-        desc: " After securing office space, submit all the required documents to the DED to obtain your trade license.",
+        desc: " Certain business activities may require additional approvals from other government authorities.",
       },
       {
-        title: " Apply for Visas",
-        isPoints: false,
-        desc: " Once you have obtained your trade license, you can apply for residence and work visas for yourself, employees, and family members.",
-      },
-      {
-        title: "Obtain Approvals from Other Relevant Authorities (If Required)",
-        isPoints: false,
-        desc: "Certain business activities may require additional approvals from other government authorities",
-      },
-      {
-        title: "Pay the License Fees",
+        title: " Pay the License Fees",
         isPoints: false,
         desc: "After receiving approval from the DED and other relevant authorities, pay the license fees.",
       },
       {
-        title: "Receive Your Abu Dhabi Mainland License",
+        title: "  Receive Your Abu Dhabi Mainland License",
         isPoints: false,
         desc: "Once all fees are paid and the approvals are granted, you will receive your Abu Dhabi Mainland Business License.",
       },
@@ -859,101 +887,8 @@ const data = [
         title: "Sole Proprietorship",
         docs: [
           "Passport copy of the owner",
-          "Visa copy of the owner (if applicable)",
-          "Passport-size photographs",
-          "No Objection Certificate (NOC) (if applicable)",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Proof of Business Activity",
-          "Professional Qualifications (if applicable)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "General Partnership",
-        docs: [
-          "Passport copies of all partners",
-          "Visa copies of all partners (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Partnership Agreement (defining terms between partners)",
-          "Power of Attorney (if applicable)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Private Joint Stock Company",
-        docs: [
-          "Passport copies of shareholders and directors",
-          "Visa copies of shareholders and directors (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum and Articles of Association (MOA)",
-          "Shareholder Agreement",
-          "Proof of Capital (minimum AED 1,000,000)",
-          "Board Resolution for Incorporation",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Public Joint Stock Company",
-        docs: [
-          "Passport copies of shareholders and directors",
-          "Visa copies of shareholders and directors (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum and Articles of Association (MOA)",
-          "Shareholder Agreement",
-          "Proof of Capital (minimum AED 30,000,000)",
-          "Board Resolution for Incorporation",
-          "Approval from Securities and Commodities Authority (SCA)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Branch of a Foreign Company",
-        docs: [
-          "Passport copy of the branch manager",
-          "Visa copy of the branch manager (if applicable)",
-          "Passport-size photographs of branch manager",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Lease Agreement for the branch office (Ejari)",
-          "Parent company’s Certificate of Incorporation",
-          "Parent company’s Memorandum and Articles of Association",
-          "Parent company’s financial statements for the last 3 years",
-          "Power of Attorney for the branch manager",
-          "Approval from relevant authorities (depending on activity)",
-        ],
-      },
-      {
-        title: "Limited Liability Company (LLC)",
-        docs: [
-          "Passport copies of all shareholders and managers",
-          "Copy of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
-          "Tenancy contract for office space",
-          "No Objection Certificate (NOC) from the current sponsor (if applicable)",
-          "Local sponsor agreement (for 51% UAE national ownership)",
-          "Trade name reservation certificate",
-          "Memorandum of Association (MOA) between partners",
-          "Application form from the Department of Economic Development (DED)",
-          "Shareholder details (if applicable)",
-        ],
-      },
-      {
-        title: "Sole Proprietorship",
-        docs: [
-          "Passport copy of the owner",
-          "Copy of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
+          " Copy of UAE residency visa (if applicable)",
+          " Proof of residential address (e.g., utility bill)",
           "Tenancy contract for office space",
           "Trade name reservation certificate",
           "No Objection Certificate (NOC) from the current sponsor (if applicable)",
@@ -1262,117 +1197,11 @@ const data = [
         title: "Sole Proprietorship",
         docs: [
           "Passport copy of the owner",
-          "Visa copy of the owner (if applicable)",
-          "Passport-size photographs",
-          "No Objection Certificate (NOC) (if applicable)",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Proof of Business Activity",
-          "Professional Qualifications (if applicable)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "General Partnership",
-        docs: [
-          "Passport copies of all partners",
-          "Visa copies of all partners (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Partnership Agreement (defining terms between partners)",
-          "Power of Attorney (if applicable)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Private Joint Stock Company",
-        docs: [
-          "Passport copies of shareholders and directors",
-          "Visa copies of shareholders and directors (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum and Articles of Association (MOA)",
-          "Shareholder Agreement",
-          "Proof of Capital (minimum AED 1,000,000)",
-          "Board Resolution for Incorporation",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Public Joint Stock Company",
-        docs: [
-          "Passport copies of shareholders and directors",
-          "Visa copies of shareholders and directors (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum and Articles of Association (MOA)",
-          "Shareholder Agreement",
-          "Proof of Capital (minimum AED 30,000,000)",
-          "Board Resolution for Incorporation",
-          "Approval from Securities and Commodities Authority (SCA)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Branch of a Foreign Company",
-        docs: [
-          "Passport copy of the branch manager",
-          "Visa copy of the branch manager (if applicable)",
-          "Passport-size photographs of branch manager",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Lease Agreement for the branch office (Ejari)",
-          "Parent company’s Certificate of Incorporation",
-          "Parent company’s Memorandum and Articles of Association",
-          "Parent company’s financial statements for the last 3 years",
-          "Power of Attorney for the branch manager",
-          "Approval from relevant authorities (depending on activity)",
-        ],
-      },
-      {
-        title: "Limited Liability Company (LLC)",
-        docs: [
-          "Passport copies of all shareholders and managers",
-          "Copy of UAE residency visa (if applicable)",
+          "UAE residency visa copy (if applicable)",
           "Proof of residential address (e.g., utility bill)",
+          "Trade name reservation certificate",
           "Tenancy contract for office space",
           "No Objection Certificate (NOC) from the current sponsor (if applicable)",
-          "Local sponsor agreement (for 51% UAE national ownership)",
-          "Trade name reservation certificate",
-          "Memorandum of Association (MOA) between partners",
-          "Application form from the Department of Economic Development (DED)",
-          "Shareholder details (if applicable)",
-        ],
-      },
-      {
-        title: "Sole Proprietorship",
-        docs: [
-          "Passport copy of the owner",
-          "Copy of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
-          "Tenancy contract for office space",
-          "Trade name reservation certificate",
-          "No Objection Certificate (NOC) from the current sponsor (if applicable)",
-          "Application form from the Department of Economic Development (DED)",
-        ],
-      },
-      {
-        title: "General Partnership",
-        docs: [
-          "Passport copies of all partners",
-          "Proof of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
-          "Tenancy contract for office space",
-          "No Objection Certificate (NOC) from current sponsor (if applicable)",
-          "Partnership agreement (signed by all partners)",
-          "Trade name reservation certificate",
           "Application form from the Department of Economic Development (DED)",
         ],
       },
@@ -1381,8 +1210,8 @@ const data = [
         docs: [
           "Passport copies of the parent company’s shareholders and directors",
           "Parent company’s Certificate of Incorporation",
-          "Parent company’s Memorandum of Association",
-          "UAE residence visa of the appointed manager (if applicable)",
+          "Parent company’s Memorandum of Association (MOA)",
+          "UAE residency visa of the appointed manager (if applicable)",
           "No Objection Certificate (NOC) from the parent company",
           "Tenancy contract for office space",
           "Trade name reservation certificate",
@@ -1580,22 +1409,6 @@ const data = [
     sixthTableHead: ["Entity Type", "Documents Required"],
     sixthTableBody: [
       {
-        title: "LLC (Limited Liability Company)",
-        docs: [
-          "Passport copies of owners/partners",
-          "Visa copies of owners/partners (if applicable)",
-          "Passport-size photographs",
-          "No Objection Certificate (NOC) from current employer (if applicable)",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum of Association (MOA)",
-          "Local Sponsor Agreement (if applicable for foreign ownership)",
-          "Approval from relevant authorities (depending on activity)",
-          "Shareholder Agreement (if applicable)",
-        ],
-      },
-      {
         title: "Sole Proprietorship",
         docs: [
           "Passport copy of the owner",
@@ -1609,50 +1422,19 @@ const data = [
         ],
       },
       {
-        title: "General Partnership",
+        title: "Limited Liability Company (LLC)",
         docs: [
-          "Passport copies of all partners",
-          "Visa copies of all partners (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Partnership Agreement (defining terms between partners)",
-          "Power of Attorney (if applicable)",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Private Joint Stock Company",
-        docs: [
-          "Passport copies of shareholders and directors",
-          "Visa copies of shareholders and directors (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum and Articles of Association (MOA)",
-          "Shareholder Agreement",
-          "Proof of Capital (minimum AED 1,000,000)",
-          "Board Resolution for Incorporation",
-          "Approval from relevant authorities (if applicable)",
-        ],
-      },
-      {
-        title: "Public Joint Stock Company",
-        docs: [
-          "Passport copies of shareholders and directors",
-          "Visa copies of shareholders and directors (if applicable)",
-          "Passport-size photographs",
-          "Trade Name Reservation Certificate",
-          "Initial Approval from DED",
-          "Office Lease Agreement (Ejari)",
-          "Memorandum and Articles of Association (MOA)",
-          "Shareholder Agreement",
-          "Proof of Capital (minimum AED 30,000,000)",
-          "Board Resolution for Incorporation",
-          "Approval from Securities and Commodities Authority (SCA)",
-          "Approval from relevant authorities (if applicable)",
+          "Passport copies of all partners/shareholders",
+          "UAE Residence Visa (for foreign partners, if applicable)",
+          "Trade name approval from the Fujairah Economic Department (FED)",
+          "Initial approval from the Fujairah Economic Department (FED)",
+          "Memorandum of Association (MOA) between the partners",
+          "Tenancy agreement (proof of office space)",
+          "Local partner/sponsor agreement (if applicable, for certain activities requiring a local sponsor)",
+          "No Objection Certificate (NOC) from employer (if applicable)",
+          "Company structure details (ownership percentages, roles, etc.)",
+          "Board resolution (if any partner is a corporate entity)",
+          "Passport-sized photos of all partners (usually 2-4)",
         ],
       },
       {
@@ -1674,85 +1456,28 @@ const data = [
           "Passport-sized photos of the branch manager",
         ],
       },
-      {
-        title: "Limited Liability Company (LLC)",
-        docs: [
-          "Passport copies of all shareholders and managers",
-          "Copy of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
-          "Tenancy contract for office space",
-          "No Objection Certificate (NOC) from the current sponsor (if applicable)",
-          "Local sponsor agreement (for 51% UAE national ownership)",
-          "Trade name reservation certificate",
-          "Memorandum of Association (MOA) between partners",
-          "Application form from the Department of Economic Development (DED)",
-          "Shareholder details (if applicable)",
-        ],
-      },
-      {
-        title: "Sole Proprietorship",
-        docs: [
-          "Passport copy of the owner",
-          "Copy of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
-          "Tenancy contract for office space",
-          "Trade name reservation certificate",
-          "No Objection Certificate (NOC) from the current sponsor (if applicable)",
-          "Application form from the Department of Economic Development (DED)",
-        ],
-      },
-      {
-        title: "General Partnership",
-        docs: [
-          "Passport copies of all partners",
-          "Proof of UAE residency visa (if applicable)",
-          "Proof of residential address (e.g., utility bill)",
-          "Tenancy contract for office space",
-          "No Objection Certificate (NOC) from current sponsor (if applicable)",
-          "Partnership agreement (signed by all partners)",
-          "Trade name reservation certificate",
-          "Application form from the Department of Economic Development (DED)",
-        ],
-      },
-      {
-        title: "Branch Office",
-        docs: [
-          "Passport copies of the parent company’s shareholders and directors",
-          "Parent company’s Certificate of Incorporation",
-          "Parent company’s Memorandum of Association",
-          "UAE residence visa of the appointed manager (if applicable)",
-          "No Objection Certificate (NOC) from the parent company",
-          "Tenancy contract for office space",
-          "Trade name reservation certificate",
-          "Application form from the Department of Economic Development (DED)",
-        ],
-      },
     ],
 
     tableFooter: "",
     seventhTitle: "",
 
     fujairahKeypoints: [
-      <p key={0}>
-        <span>Annual license renewal:</span> Ensure timely renewal of your
-        business license and visas
+      <p key={0} className="font-Satoshi text-sm">
+        <span className="font-bold font-Synonym">Annual license renewal:</span>{" "}
+        Ensure timely renewal of your business license and visas
       </p>,
-      <p key={1}>
-        A <span>tenancy contract</span> for an office is mandatory for all
-        businesses in Ajman Mainland.
+      <p key={1} className="text-sm">
+        <span className="font-bold font-Synonym">
+          PRO (Public Relations) Services:
+        </span>{" "}
+        Keep track of business financials for tax and regulatory purposes.
       </p>,
-      <p key={2}>
-        <span>Accounting and bookkeeping</span>Keep track of business financials
-        for tax and regulatory purposes.
-      </p>,
-      <p key={3}>
-        <span>PRO (Public Relations) Services</span> You may require assistance
-        for visa renewals, document attestation, and other government-related
-        services
-      </p>,
-      <p key={4}>
-        For <span> Branch Offices, </span> documents from the parent company
-        (like the <span>Certificate of Incorporation and MOA</span>) are needed.
+      <p key={2} className="font-Satoshi text-sm">
+        <span className="font-bold font-Synonym">
+          PRO (Public Relations) Services: {' '}
+        </span>
+        You may require assistance for visa renewals, document attestation, and
+        other government-related services.
       </p>,
     ],
   },
