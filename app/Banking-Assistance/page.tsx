@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
 import data from "../App_Chunks/Components/banking";
+import { motion } from "framer-motion";
 
 const Page = () => {
   return (
@@ -67,19 +68,29 @@ const MainPage = () => {
 
         <div className="my-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
           {processData?.secondPoints.map((elem, index) => (
-            <div key={index} className="w-full rounded-lg bg-[#C2DAC2] p-5">
-              <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
-                {elem?.icon}
-              </div>
-
-              <div className=" mt-6">
-                <p className="font-SplineSans text-xl font-[600]">
+            <motion.div
+              key={index}
+              initial={{ y: 200, rotate: "10deg" }}
+              whileInView={{ y: 0, rotate: 0 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.08, 0.82, 0.17, 1],
+                delay: index * 0.02,
+              }}
+              viewport={{ once: true }}
+              className="w-full rounded-lg flex flex-col justify-between items-start bg-[#C2DAC2] p-5"
+            >
+              <div className="">
+                <div className="size-12 text-3xl flex justify-center items-center bg-[#A4C9A4] rounded-full">
+                  {elem?.icon}
+                </div>
+                <p className="font-SplineSans mt-6 text-xl font-[600]">
                   {elem.title}
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
-                <Button className="mt-3">Learn More</Button>
               </div>
-            </div>
+              <Button className="mt-3">Learn More</Button>
+            </motion.div>
           ))}
         </div>
       </div>
