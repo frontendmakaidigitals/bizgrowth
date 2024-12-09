@@ -51,7 +51,7 @@ export const Menus = [
     points: [
       "Corporate Bank Account",
       "Private Bank Account",
-      "Commercial Bank Account",
+      "Commercial Financial Services",
       "Trade Financial Services",
       "Crypto & VARA Registration",
     ],
@@ -73,6 +73,7 @@ export const Menus = [
       },
       {
         title: "Elite Services",
+        route: "elite-services",
         points: [
           "Golden Visa",
           "Will Formation",

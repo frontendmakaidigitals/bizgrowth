@@ -31,7 +31,7 @@ const Loader = ({
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   }, [pathname, query]);
   return (
     isLoading && (
