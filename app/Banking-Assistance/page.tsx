@@ -214,7 +214,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <Banner query={query} />
+      <Banner title={processData?.bannerTitle} desc={processData?.bannerDesc} />
     </div>
   );
 };
