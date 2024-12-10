@@ -16,7 +16,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "Welcome to our exclusive Private Bank Account Opening Service in Dubai, where we provide assistance and expert guidance to establish your financial presence in one of the world’s most prestigious banking environments. Whether you're an individual looking to open a personal account, an entrepreneur, or a high-net-worth individual looking for premium banking services, we are here to make the process efficient and customize according to your needs.",
+      "Welcome to our exclusive Private Bank Account Opening Service in Dubai, where we provide assistance and expert guidance to establish your financial presence in one of the world`s most prestigious banking environments. Whether you`re an individual looking to open a personal account, an entrepreneur, or a high-net-worth individual looking for premium banking services, we are here to make the process efficient and customize according to your needs.",
     heroImg: "/media/mainland/privateBank.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -39,7 +39,7 @@ const data = [
       {
         title: "Investment Private Bank Accounts",
         icon: <MdIncompleteCircle />,
-        desc: " If you're looking to grow your wealth, our investment accounts provide access to exclusive investment opportunities, including equities, bonds, mutual funds, and alternative investments.",
+        desc: " If you`re looking to grow your wealth, our investment accounts provide access to exclusive investment opportunities, including equities, bonds, mutual funds, and alternative investments.",
       },
       {
         title: "Family Office Accounts",
