@@ -3,7 +3,7 @@ import Button from "./Button";
 const Banner = ({
   title,
   desc,
-  className,
+  
 }: {
   title: string | undefined | null;
   desc: string | undefined | null;

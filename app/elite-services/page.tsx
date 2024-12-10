@@ -73,7 +73,7 @@ const GoldenVisa = () => {
     {
       icon: "/media/golden visa logo/lifestyle.png",
       title: "Exclusive Lifestyle",
-      desc: "Access Dubai's world-class healthcare, education, and lifestyle opportunities.",
+      desc: "Access Dubai`s world-class healthcare, education, and lifestyle opportunities.",
     },
   ];
   const eligibility = [
@@ -131,7 +131,7 @@ const GoldenVisa = () => {
       docs: [
         "Minimum investment of AED 2 million in a company or startup.",
         "Proof of company registration and ownership.",
-        "Company should contribute to UAE's economy.",
+        "Company should contribute to UAE`s economy.",
         "Official audit report showing financial health (if applicable).",
       ],
     },
@@ -141,7 +141,7 @@ const GoldenVisa = () => {
         "Monthly salary of at least AED 30,000.",
         "Bachelor’s degree or higher in specialized fields (e.g., healthcare, IT, education).",
         "Employment contract valid in the UAE.",
-        "Professional experience and role should align with UAE's priority sectors.",
+        "Professional experience and role should align with UAE`s priority sectors.",
       ],
     },
     {
@@ -167,7 +167,7 @@ const GoldenVisa = () => {
           </div>
           <p className="text-lg font-Satoshi mt-4">
             Dubai invites you to secure your future with the prestigious Golden
-            Visa. Whether you're an investor, entrepreneur, professional, or
+            Visa. Whether you`re an investor, entrepreneur, professional, or
             outstanding student, we are here to make your Golden Visa
             application journey easy.
           </p>
@@ -371,7 +371,7 @@ const GoldenVisa = () => {
           </h1>
           <p className="font-Satoshi">
             Artists, filmmakers, and other creatives have been given easier
-            access to obtain the visa, reflecting the UAE's focus on cultural
+            access to obtain the visa, reflecting the UAE`s focus on cultural
             and artistic innovation.
           </p>
         </div>
@@ -906,7 +906,7 @@ const RealEstateInvestment = () => {
     },
     {
       title: " Hotel Investments",
-      desc: "The UAE's thriving hospitality sector provides opportunities for investors in hotels and resorts.",
+      desc: "The UAE`s thriving hospitality sector provides opportunities for investors in hotels and resorts.",
     },
   ];
   const topLocations = [
@@ -916,7 +916,7 @@ const RealEstateInvestment = () => {
     },
     {
       title: "Dubai Marina",
-      desc: "One of Dubai's most popular residential and tourist locations with stunning waterfront views. Excellent for both investors looking for rental income and those seeking capital appreciation.",
+      desc: "One of Dubai`s most popular residential and tourist locations with stunning waterfront views. Excellent for both investors looking for rental income and those seeking capital appreciation.",
     },
     {
       title: "Palm Jumeirah",
@@ -944,39 +944,7 @@ const RealEstateInvestment = () => {
     },
   ];
 
-  const investmentServices = [
-    {
-      title: "Real Estate Investments",
-      desc: "Invest in high-growth properties locally and internationally, with expert advice on:",
-      points: [
-        "Residential and commercial properties",
-        "Off-plan developments and REITs (Real Estate Investment Trusts).",
-        "Property management and rental income optimization.",
-      ],
-    },
-    {
-      title: "Portfolio Management",
-      desc: "Our team develops and manages diversified portfolios tailored to your financial objectives.",
-      points: [
-        "Residential and commercial properties",
-        "Investment in stocks, bonds, and mutual funds.",
-        "Regular performance reviews and rebalancing.",
-      ],
-    },
-    {
-      title: "Wealth Planning",
-      desc: "Secure your financial future with:",
-      points: [
-        "Retirement and succession planning.",
-        "Tax-efficient investment strategies.",
-        "Long-term growth and wealth preservation.",
-      ],
-    },
-    {
-      title: "Investment Advisory",
-      desc: "Get expert advice and insights to make confident decisions, whether for personal investments or business growth.",
-    },
-  ];
+  
 
   const TableHead = ["Investor Type", "Required Documents"];
   const TableBody = [
@@ -1041,7 +1009,7 @@ const RealEstateInvestment = () => {
           <p className="text-lg font-Satoshi mt-4">
             At Real Estate Investment Services, we provide expert guidance and
             opportunities to help you build, grow, and protect your wealth
-            through property investments. Whether you're a first-time investor
+            through property investments. Whether you`re a first-time investor
             or a professional, we offer a range of services to meet your needs.
           </p>
           <Button className="mt-5">Conatact us</Button>
@@ -1252,7 +1220,7 @@ const WealthManagement = () => {
     },
     {
       title: "Investment Management",
-      desc: "Our team of experts works closely with you to design and implement a personalized investment strategy that balances risk and opportunity. Whether you're focused on long-term growth, income generation, or capital preservation, we provide custom investment solutions that evolve as your needs change.",
+      desc: "Our team of experts works closely with you to design and implement a personalized investment strategy that balances risk and opportunity. Whether you`re focused on long-term growth, income generation, or capital preservation, we provide custom investment solutions that evolve as your needs change.",
     },
     {
       title: "Retirement Planning",
@@ -1635,7 +1603,7 @@ const NomineeDirectory = () => {
     },
     {
       title: "Legal Agreement",
-      desc: "A clear agreement will be signed between you and the nominee director to define the role, responsibilities, and limitations of the nominee director's involvement.",
+      desc: "A clear agreement will be signed between you and the nominee director to define the role, responsibilities, and limitations of the nominee director`s involvement.",
     },
     {
       title: "Company Setup and Compliance",
@@ -1650,11 +1618,11 @@ const NomineeDirectory = () => {
   const tableBody = [
     {
       title: "Passport Copy (Nominee Director)",
-      docs: "A clear copy of the nominee director's valid passport for identification.",
+      docs: "A clear copy of the nominee director`s valid passport for identification.",
     },
     {
       title: "Emirates ID (Nominee Director)",
-      docs: "A copy of the nominee director's Emirates ID (if they are UAE nationals).",
+      docs: "A copy of the nominee director`s Emirates ID (if they are UAE nationals).",
     },
     {
       title: "Proof of Residence (Nominee Director)",
@@ -1719,7 +1687,7 @@ const NomineeDirectory = () => {
           <p className="text-lg font-Satoshi mt-4">
             At BizGrowth, we offer professional Nominee Director Services
             designed to ensure your company remains compliant, secure, and
-            operates smoothly. Whether you're a foreign investor or need a
+            operates smoothly. Whether you`re a foreign investor or need a
             third-party director for privacy or confidentiality, our experienced
             team provides a reliable solution.
           </p>
