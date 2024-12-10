@@ -914,6 +914,40 @@ const RealEstateInvestment = () => {
       desc: "The UAE`s thriving hospitality sector provides opportunities for investors in hotels and resorts.",
     },
   ];
+  const services = [
+    {
+      title: "Real Estate Investments",
+      desc: "Invest in high-growth properties locally and internationally, with expert advice on:",
+      points: [
+        "Residential and commercial properties.",
+        "Off-plan developments and REITs (Real Estate Investment Trusts).",
+        "Property management and rental income optimization.",
+      ],
+    },
+    {
+      title: "Portfolio Management",
+      desc: "Our team develops and manages diversified portfolios tailored to your financial objectives.",
+      points: [
+        "Risk assessment and mitigation.",
+        "Investment in stocks, bonds, and mutual funds.",
+        "Regular performance reviews and rebalancing.",
+      ],
+    },
+    {
+      title: "Wealth Planning",
+      desc: "Secure your financial future with:",
+      points: [
+        "Retirement and succession planning.",
+        "Tax-efficient investment strategies.",
+        "Long-term growth and wealth preservation.",
+      ],
+    },
+    {
+      title: "Investment Advisory",
+      desc: "Get expert advice and insights to make confident decisions, whether for personal investments or business growth.",
+      points: [],
+    },
+  ];
   const topLocations = [
     {
       img: "https://images.unsplash.com/photo-1718975662468-83ba6a24b5d0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1110,6 +1144,40 @@ const RealEstateInvestment = () => {
                   {location.title}
                 </h2>
                 <p className="font-Satoshi ">{location.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full my-24">
+        <div className="container w-full">
+          <Heading className="!text-center w-full">
+            Our <span className="text-lime-500">Services</span>
+          </Heading>
+          <div className="grid mt-9 grid-cols-1 lg:grid-cols-4 gap-3">
+            {services.map((service, index) => (
+              <div key={index} className="p-4 bg-lime-200 rounded-lg">
+                <h2 className="text-xl font-[600] font-SplineSans">
+                  {service.title}
+                </h2>
+                <div className="mt-2">
+                  <p className="font-Satoshi">{service.desc}</p>
+                  {service.points ? (
+                    <div className="mt-3">
+                      {service.points.map((point, index) => (
+                        <div key={index} className="flex items-start gap-2">
+                          <div className="mt-3">
+                            <div className="size-2 rounded-full bg-lime-700" />
+                          </div>
+                          <p className="mt-1 font-Satoshi font-[500]">
+                            {point}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </div>
             ))}
           </div>
