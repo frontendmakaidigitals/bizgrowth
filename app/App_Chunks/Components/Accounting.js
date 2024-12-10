@@ -423,8 +423,8 @@ const data = [
       },
     ],
     corpTitle: (
-      <Heading className="">
-        Difference between <span>VAT</span> and{" "}
+      <Heading className="!text-center w-full">
+        Difference between <span className="text-lime-500">VAT</span> and{" "}
         <span className="text-lime-500">Corporate Tax</span>
       </Heading>
     ),
@@ -553,7 +553,8 @@ const data = [
     ],
     sixthTitle: (
       <Heading className="w-full !text-center">
-        DOCUMENTS REQUIRED FOR <span className="text-lime-500">VAT</span>
+        Documents Required for{" "}
+        <span className="text-lime-500">Registering Corporate Tax</span>
       </Heading>
     ),
     sixthTableHead: ["Document", "Description"],
