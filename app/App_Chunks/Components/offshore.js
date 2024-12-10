@@ -353,7 +353,7 @@ const data = [
       },
     ],
     thirdTitle: (
-      <Heading>
+      <Heading className="!text-center">
         Types of <span className="text-lime-500">Businesses</span> You Can Set
         Up in <span className="text-lime-500">Ajman Offshore</span>
       </Heading>
@@ -362,9 +362,8 @@ const data = [
       "Ajman Offshore is designed to cater to a wide range of business activities, including",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Trading Companies</span>
-        Ideal for businesses dealing with the import/export of goods and
-        services.
+        <span className="font-Synonym font-[600]">Trading Companies</span> Ideal
+        for businesses dealing with the import/export of goods and services.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Consultancies</span> Whether
@@ -395,51 +394,57 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center">
-        Steps to Set Up an
+        Steps to Set Up an{" "}
         <span className="text-lime-500">Ajman Offshore License</span>
       </Heading>
     ),
     fourthPoints: [
       {
-        title: "Choose the Type of Offshore Company",
-        isPoints: true,
-        desc: "Decide which structure suits your business model. Common offshore structures include.",
-        points: [
-          "International Business Company (IBC)",
-          "Special Purpose Vehicle (SPV)",
-        ],
+        title: "Choose Your Business Activity",
+        isPoints: false,
+        desc: "The first step is to decide on the type of business you want to establish.",
       },
       {
-        title: " Licensed Service Provider",
+        title: "Select a Company Name",
         isPoints: false,
-        desc: " All RAK ICC Offshore companies must appoint a registered agent or corporate services provider to act as the intermediary between the company and the authority.",
+        desc: " You must choose a unique company name that complies with the Ajman Offshore naming conventions.",
       },
       {
-        title: "Reserve a Company Name",
+        title: " Prepare Required Documents",
         isPoints: false,
-        desc: "elect a unique company name that aligns with your business operations.",
+        desc: "Ensure the documents are prepared for submission like passport copies of shareholders, etc.",
       },
       {
-        title: " Submit Documents & Complete Company Registration",
+        title: " Choose Your Corporate Structure",
         isPoints: false,
-        desc: "Submit the following standard documents to the RAK ICC authority like Passport copies of shareholders, directors, and beneficial owners",
+        desc: "Ajman Offshore companies must have at least one director and one shareholder. The director can be an individual or a corporate entity.",
+      },
+      {
+        title: " Submit Application to Ajman Offshore Authority",
+        isPoints: false,
+        desc: "After preparing all necessary documents, submit your application to the Ajman Offshore Authority for review.",
+      },
+      {
+        title: "  Receive the License",
+        isPoints: false,
+        desc: "Once the Ajman Offshore Authority has reviewed and approved your application, they will issue the offshore company license.",
       },
     ],
     sixthTitle: (
       <Heading className="w-full !text-center">
         Documents Needed to Start{" "}
-        <span className="text-lime-500">RAK ICC License</span>
+        <span className="text-lime-500">Ajman Offshore License</span>
       </Heading>
     ),
     sixthTableHead: ["Document", "Description"],
     sixthTableBody: [
       {
-        title: "Passport Copy of Shareholders",
-        doc1: "A clear, valid copy of the passport for each shareholder.",
+        title: "Passport Copy",
+        doc1: "A clear copy of the passport for all shareholders, directors, and authorized signatories.",
       },
       {
-        title: "Passport Copy of Directors",
-        doc1: "A clear, valid copy of the passport for each director.",
+        title: "Proof of Address",
+        doc1: "A recent utility bill, bank statement, or government-issued document (not older than 3 months) showing the residential address of shareholders and directors.",
       },
       {
         title: "Proof of Address (Shareholders/Directors)",
@@ -480,6 +485,34 @@ const data = [
       {
         title: "Corporate Documents (for Corporate Shareholders)",
         doc1: "If a corporate entity is a shareholder, its certificate of incorporation and constitutional documents are required.",
+      },
+      {
+        title: "Business Plan",
+        doc1: "A brief business plan or description outlining the business activities, goals, and objectives (if required by the authority).",
+      },
+      {
+        title: "No Objection Certificate (NOC)",
+        doc1: "A No Objection Certificate from the current employer (if the shareholder or director is employed in the UAE).",
+      },
+      {
+        title: "Completed Application Form",
+        doc1: "A filled-out application form from the Ajman Offshore Authority.",
+      },
+      {
+        title: "Director/Shareholder Information",
+        doc1: "Details of the appointed directors and shareholders (full name, nationality, and contact information).",
+      },
+      {
+        title: "Corporate Documents (if applicable)",
+        doc1: "For corporate shareholders, a certificate of incorporation, memorandum, and articles of association.",
+      },
+      {
+        title: "Power of Attorney (if applicable)",
+        doc1: "A Power of Attorney (PoA) for someone acting on behalf of the company (if applicable).",
+      },
+      {
+        title: "Proof of Initial Deposit",
+        doc1: "Proof of initial deposit into the corporate bank account (if required by the bank).",
       },
     ],
 

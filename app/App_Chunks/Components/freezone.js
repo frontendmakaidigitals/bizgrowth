@@ -36,11 +36,6 @@ const data = [
         desc: "IFZA offers competitive pricing for business licenses, office spaces, and operational costs, making it an ideal destination for startups, SMEs, and established enterprises.",
       },
       {
-        title: "Complete ownership",
-        icon: <MdIncompleteCircle />,
-        desc: " A Dubai Mainland license allows businesses to be owned ",
-      },
-      {
         title: "Simple Company Formation Process",
         icon: <MdIncompleteCircle />,
         desc: " Setting up your business at IFZA is fast and easy. With streamlined processes, we ensure minimal bureaucracy and quick approval for your business setup. Our expert team is here to assist you every step of the way.",
@@ -65,7 +60,7 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Trading License</span> TA
+        <span className="font-Synonym font-[600]">Trading License</span> A
         Trading License is ideal for businesses involved in the import, export,
         or distribution of goods. This license allows businesses to engage in
         the buying and selling of physical products both locally and
@@ -91,7 +86,7 @@ const data = [
         establish operations within the free zone for pr.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Freelance License</span> TThe
+        <span className="font-Synonym font-[600]">Freelance License</span> The
         Freelance License is designed for individuals offering professional
         services as independent contractors or consultants. It is ideal for
         those wishing to work as self-employed professionals in a specific
@@ -116,10 +111,10 @@ const data = [
         This is a popular choice for those in the education and training sector.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Media License</span> TThe
-        Media License is tailored for businesses in the creative and media
-        industries. It allows for activities in publishing, content creation,
-        media production, and digital marketing.
+        <span className="font-Synonym font-[600]">Media License</span> The Media
+        License is tailored for businesses in the creative and media industries.
+        It allows for activities in publishing, content creation, media
+        production, and digital marketing.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Tech and IT License</span> The
@@ -323,7 +318,7 @@ const data = [
         technologies or research and development.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Media License</span> T A Media
+        <span className="font-Synonym font-[600]">Media License</span> A Media
         License is for companies involved in the production, distribution, and
         promotion of media content.
       </p>,
@@ -332,25 +327,20 @@ const data = [
         Freelance License is tailored for individuals who wish to operate as
         freelancers or sole proprietors
       </p>,
+
       <p key={8} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Media License</span> TThe
-        Media License is tailored for businesses in the creative and media
-        industries. It allows for activities in publishing, content creation,
-        media production, and digital marketing.
-      </p>,
-      <p key={9} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
           Cryptocurrency & Digital Assets License
         </span>{" "}
         A specialized license for businesses involved in the trading,
         development, or management of cryptocurrencies and digital assets.
       </p>,
-      <p key={10} className="font-Satoshi text-lg">
+      <p key={9} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Professional License</span>{" "}
         This license is for businesses that provide specialized professional
         services.
       </p>,
-      <p key={11} className="font-Satoshi text-lg">
+      <p key={10} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Non-Profit License</span> The
         Non-Profit License is designed for organizations that aim to operate
         without profit motives and focus on social, charitable, and
@@ -360,7 +350,7 @@ const data = [
     fourthTitle: (
       <Heading className="w-full !text-center ">
         Step-by-Step Guide to Setting Up Your{" "}
-        <span className="text-lime-500"> DMCC FreezoneF</span> DMCC Freezone
+        <span className="text-lime-500"> DMCC Freezone</span> DMCC Freezone
         Company
       </Heading>
     ),
@@ -563,27 +553,22 @@ const data = [
         content creation, digital media, publishing, and broadcasting.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Freelance License</span> A
-        Freelance License is tailored for individuals who wish to operate as
-        freelancers or sole proprietors
-      </p>,
-      <p key={8} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Real Estate License</span>{" "}
         Real Estate License is for businesses in the real estate sector,
         including property management, development, and real estate investment
         activities.
       </p>,
-      <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Manufacturing License</span>
+      <p key={8} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Manufacturing License</span>{" "}
         Manufacturing license is for companies that engage in the manufacturing
         or assembly of products.
       </p>,
-      <p key={10} className="font-Satoshi text-lg">
+      <p key={9} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Education License</span>{" "}
         Education license is For institutions offering educational programs,
         training, and academic services.
       </p>,
-      <p key={11} className="font-Satoshi text-lg">
+      <p key={10} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
           Health and Wellness License
         </span>{" "}
@@ -710,6 +695,7 @@ const data = [
       <Heading>
         Launch Your Business Idea with Center
         <span className="text-lime-600 font-SplineSans">
+          {" "}
           DIFC - Dubai International Financial
         </span>{" "}
       </Heading>
@@ -787,24 +773,13 @@ const data = [
         intelligence, and other innovative industries.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Holding Company License</span>{" "}
-        Holding Company License is for companies that want to set up a holding
-        structure for managing investments or owning other businesses and
-        assets.
-      </p>,
-      <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Retail License</span> Retail
-        license is for businesses engaging in retail sales and e-commerce
-        operations.
-      </p>,
-      <p key={6} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Family Office License</span>{" "}
         The Family Office License is tailored for private wealth management
         companies. It is ideal for individuals or families looking to manage and
         grow their wealth, and for firms offering services such as Asset
         Management and Investment Services
       </p>,
-      <p key={7} className="font-Satoshi text-lg">
+      <p key={5} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
           Special Purpose Vehicle (SPV) License
         </span>{" "}
@@ -812,17 +787,17 @@ const data = [
         for specific business purposes, such as holding assets, managing
         investments, or isolating financial risks.
       </p>,
-      <p key={8} className="font-Satoshi text-lg">
+      <p key={6} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]"> Branch Office License</span>{" "}
         A Branch Office License is for companies wishing to establish a presence
         in the DIFC without setting up a separate legal entity. This license
         allows companies to operate a branch office that is an extension of
         their parent company.
       </p>,
-      <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Partnership License</span>
-        The Partnership License is intended for firms that want to operate under
-        a partnership model. This license allows for collaboration between
+      <p key={7} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Partnership License</span> The
+        Partnership License is intended for firms that want to operate under a
+        partnership model. This license allows for collaboration between
         individuals or corporate entities.
       </p>,
     ],
@@ -895,17 +870,17 @@ const data = [
         title: "Business Plan",
         docs: [
           "A comprehensive business plan covering:",
-          "- Company overview, business model, and market analysis.",
-          "- Financial projections and compliance framework.",
-          "- Risk management approach (particularly for financial services).",
+          "Company overview, business model, and market analysis.",
+          "Financial projections and compliance framework.",
+          "Risk management approach (particularly for financial services).",
         ],
       },
       {
         title: "Legal Entity & Incorporation Documents",
         docs: [
-          "- Certificate of Incorporation from the parent company (for branches/subsidiaries).",
-          "- Memorandum and Articles of Association for corporate entities.",
-          "- Shareholder agreements (if applicable).",
+          "Certificate of Incorporation from the parent company (for branches/subsidiaries).",
+          "Memorandum and Articles of Association for corporate entities.",
+          "Shareholder agreements (if applicable).",
         ],
       },
       {
@@ -917,30 +892,30 @@ const data = [
       {
         title: "Bank Account Opening Documents",
         docs: [
-          "- Bank reference letter from the intended bank.",
-          "- Proof of company registration.",
-          "- List of authorized signatories for the corporate account.",
+          "Bank reference letter from the intended bank.",
+          "Proof of company registration.",
+          "List of authorized signatories for the corporate account.",
         ],
       },
       {
         title: "Regulatory Compliance Documents",
         docs: [
-          "- AML/KYC policies (for financial services companies).",
-          "- Risk management and governance frameworks (for regulated businesses).",
+          "AML/KYC policies (for financial services companies).",
+          "Risk management and governance frameworks (for regulated businesses).",
         ],
       },
       {
         title: "Director & Shareholder Details",
         docs: [
-          "- CVs of directors/shareholders outlining professional background and qualifications.",
-          "- Personal profile for key management.",
+          "CVs of directors/shareholders outlining professional background and qualifications.",
+          "Personal profile for key management.",
         ],
       },
       {
         title: "Visa & Residency Documents (if applicable)",
         docs: [
-          "- Employment contracts for foreign employees.",
-          "- Passport copies and residence visa copies (for non-UAE residents).",
+          "Employment contracts for foreign employees.",
+          "Passport copies and residence visa copies (for non-UAE residents).",
         ],
       },
       {
@@ -965,6 +940,7 @@ const data = [
       <Heading>
         Set Up your business in a
         <span className="text-lime-600 font-SplineSans">
+          {" "}
           Dynamic Economic Freezone- MEYDAN
         </span>{" "}
       </Heading>
@@ -1051,39 +1027,32 @@ const data = [
         technology-related services can apply for an IT license. This includes
         software development, network management, cloud services, and more.
       </p>,
+
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Family Office License</span>{" "}
-        The Family Office License is tailored for private wealth management
-        companies. It is ideal for individuals or families looking to manage and
-        grow their wealth, and for firms offering services such as Asset
-        Management and Investment Services
-      </p>,
-      <p key={7} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Consultancy License</span> For
         businesses providing specialized consultancy services in various fields.
         This license allows professional advice and strategic services in areas
         such as management, HR, finance, IT, and more.
       </p>,
-      <p key={8} className="font-Satoshi text-lg">
+      <p key={7} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]"> Tourism License</span> For
         businesses providing services in the travel, tourism, and hospitality
         sectors. This includes travel agencies, tour operators, and hospitality
         services such as hotels and restaurants.
       </p>,
-      <p key={9} className="font-Satoshi text-lg">
+      <p key={8} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
           Branch of a Foreign Company License
-        </span>
+        </span>{" "}
         If you are a foreign company looking to expand your operations in Dubai
         and Meydan, you can establish a branch office. This license allows you
         to operate in Dubai as a branch of an existing company outside the UAE.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Freelancer License</span>
-        This license is for individuals who want to work as independent
-        professionals or freelancers. It allows one person to operate a business
-        under their name in various sectors, such as media, technology, design,
-        etc.
+        <span className="font-Synonym font-[600]">Freelancer License</span> This
+        license is for individuals who want to work as independent professionals
+        or freelancers. It allows one person to operate a business under their
+        name in various sectors, such as media, technology, design, etc.
       </p>,
     ],
     fourthTitle: (
@@ -1194,6 +1163,7 @@ const data = [
       <Heading>
         Empower your Business with
         <span className="text-lime-600 font-SplineSans">
+          {" "}
           SPC Free zone ( Sharjah Publishing City )
         </span>{" "}
       </Heading>
@@ -1243,7 +1213,7 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Trading License</span>A
+        <span className="font-Synonym font-[600]"> Trading License</span> A
         Trading License allows businesses to import, export, distribute, and
         store products. This license is ideal for companies involved in
         wholesale or retail trading activities.
@@ -1291,28 +1261,25 @@ const data = [
         focusing on innovation, technology, and product development.
       </p>,
       <p key={8} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Branch Office License</span>{" "}
-        A Branch Office License allows foreign companies to establish a branch
-        in the SPC Free Zone to conduct business activities that are in line
-        with the parent company`s scope.
+        <span className="font-Synonym font-[600]"> Logistics License</span> A
+        Logistics License is for companies involved in the transportation,
+        storage, and distribution of goods.
       </p>,
       <p key={9} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
           Branch of a Foreign Company License
-        </span>
+        </span>{" "}
         If you are a foreign company looking to expand your operations in Dubai
         and Meydan, you can establish a branch office. This license allows you
         to operate in Dubai as a branch of an existing company outside the UAE.
       </p>,
       <p key={10} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Freelance License</span>A
+        <span className="font-Synonym font-[600]">Freelance License</span> A
         Freelance License allows individuals to operate as independent
         professionals or consultants within SPC Free Zone.
       </p>,
       <p key={10} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">
-          . Virtual Office License
-        </span>
+        <span className="font-Synonym font-[600]">Virtual Office License</span>{" "}
         A Virtual Office License allows businesses to operate without the need
         for a physical office. This license is designed for companies that need
         a registered address but work remotely.
@@ -1341,7 +1308,7 @@ const data = [
         desc: "The business name must comply with naming standards of SPC Free zone and not conflict with existing businesses. ",
       },
       {
-        title: ": Submit the Application and Documents",
+        title: " Submit the Application and Documents",
         isPoints: false,
         desc: "Once you have chosen your business activity, legal structure, and business name, you need to submit an application to the SPC Free Zone authority along with required documents.",
       },
@@ -1351,7 +1318,7 @@ const data = [
         desc: "Once your application and supporting documents are approved, you will need to pay the relevant fees for your business license.",
       },
       {
-        title: ": Finalize your Business Setup ",
+        title: " Finalize your Business Setup ",
         isPoints: false,
         desc: "With the license and visas approved, you can complete the final steps of your business setup.",
       },
@@ -1430,7 +1397,7 @@ const data = [
     heroTitle: (
       <Heading>
         Your Gateway to GlobWhy Choose{" "}
-        <span className="text-lime-600">JAFZA?</span> al Business with
+        <span className="text-lime-600">JAFZA?</span> al Business with{" "}
         <span className="text-lime-600 font-SplineSans">
           JAFZA (Jebel Ali Free Zone)
         </span>{" "}
@@ -1481,7 +1448,7 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Trading License</span>A
+        <span className="font-Synonym font-[600]"> Trading License</span> A
         Trading License is ideal for businesses engaged in the import, export,
         and distribution of goods.
       </p>,
@@ -1693,7 +1660,7 @@ const data = [
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Trading License</span>Trading
+        <span className="font-Synonym font-[600]">Trading License</span> Trading
         License is for businesses engaged in import, export, distribution, and
         re-export of goods.
       </p>,
