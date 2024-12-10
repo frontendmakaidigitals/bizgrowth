@@ -1706,7 +1706,7 @@ const NomineeDirectory = () => {
             A Nominee Director is an individual appointed to represent a company
             on paper while the actual management and control remain with the
             beneficial owner. The nominee director serves as a formal director
-            in the company's public records but does not have any real
+            in the company`s public records but does not have any real
             decision-making power or involvement in daily operations unless
             agreed otherwise. <br /> This service allows business owners,
             particularly foreign investors, to ensure legal compliance while
