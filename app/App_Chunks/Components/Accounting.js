@@ -748,7 +748,7 @@ const data = [
         statements are prepared more quickly and efficiently.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Risk Mitigation</span>
+        <span className="font-Synonym font-[600]"> Risk Mitigation</span>{" "}
         Professional accounting firms have internal controls in place to reduce
         the risk of fraud or financial mismanagement.
       </p>,
@@ -756,7 +756,7 @@ const data = [
         <span className="font-Synonym font-[600]">
           {" "}
           Scalability and Flexibility
-        </span>
+        </span>{" "}
         Outsourcing firms can easily scale their services based on the changing
         needs of your business.
       </p>,

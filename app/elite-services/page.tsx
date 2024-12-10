@@ -821,23 +821,27 @@ const WillFormation = () => {
 const RealEstateInvestment = () => {
   const realEstateData = [
     {
+      icon: "media/Will Formation icon/growth.png",
       title: "Stable and Long-Term Growth",
       desc: "Real estate is a proven, long-term investment that offers stability and consistent returns.",
     },
     {
+      icon: "media/Will Formation icon/diverse.png",
       title: "Diversification",
       desc: "Real estate allows you to diversify your investment portfolio, reducing risks and providing new avenues for growth.",
     },
     {
+      icon: "media/Will Formation icon/passive-income.png",
       title: "Passive Income",
       desc: "Rental properties generate regular income, offering financial security through cash flow.",
     },
     {
+      icon: "media/Will Formation icon/feedback.png",
       title: "Appreciation Potential",
       desc: "Property values increase over time, providing potential for capital gains when you sell.",
     },
   ];
-  
+
   const investmentsTypes = [
     {
       title: "Residential Properties",
@@ -912,40 +916,46 @@ const RealEstateInvestment = () => {
   ];
   const topLocations = [
     {
+      img: "https://images.unsplash.com/photo-1718975662468-83ba6a24b5d0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Downtown Dubai",
       desc: "Known as the heart of Dubai, Downtown is home to iconic landmarks like Burj Khalifa and The Dubai Mall. Offers high-end residential units, commercial properties, and hospitality investments.",
     },
     {
+      img: "https://media.istockphoto.com/id/827901014/photo/dubai-marina-city-skyline-in-the-united-arab-emirates.jpg?s=612x612&w=0&k=20&c=IZNEwPuR2-oAdjDEiimLvvCrntxBqCkMvDXM0uDvnRk=",
       title: "Dubai Marina",
       desc: "One of Dubai`s most popular residential and tourist locations with stunning waterfront views. Excellent for both investors looking for rental income and those seeking capital appreciation.",
     },
     {
+      img: "https://blog.sothebysrealty.ae/hubfs/Imported_Blog_Media/a8e16726-b773-404e-9bef-dc26e0b13270.jpg",
       title: "Palm Jumeirah",
       desc: "The world-famous man-made island, known for its luxury villas and resorts. Offers exclusivity, high-end living, and premium investment opportunities.",
     },
     {
+      img: "https://arbabhomes.com/wp-content/uploads/2023/12/Jumeirah-Beach-Residence.jpg",
       title: "Jumeirah Beach Residence (JBR)",
       desc: "A prime location for beachfront living, offering luxury apartments with direct beach access. Popular with tourists and residents looking for vibrant lifestyles and convenient amenities.",
     },
     {
+      img: "https://colliers.ae/wp-content/uploads/2024/03/bb-3-1024x1024.jpg",
       title: "Business Bay",
       desc: "Known as Dubai’s central business district, offering a mix of commercial, residential, and retail properties. Excellent for long-term office space investments due to its proximity to Downtown Dubai and the Dubai Canal.",
     },
     {
+      img: "https://static.propsearch.ae/dubai-locations/dubai-hills-estate_fV6VG_xl.jpg",
       title: "Dubai Hills Estate",
       desc: "A family-friendly community with vast green spaces, schools, and amenities. Located near key destinations like Downtown Dubai and Dubai Marina, offering both convenience and tranquility.",
     },
     {
+      img: "https://d3h330vgpwpjr8.cloudfront.net/x/1773x/dubai_creek_harbour_788a9f98e3.webp",
       title: "Dubai Creek Harbour",
       desc: "A massive new development project along the Dubai Creek, offering residential, retail, and hospitality opportunities. Excellent for long-term investors as the area continues to grow and mature.",
     },
     {
+      img: "https://encity.co/wp-content/uploads/2022/06/Dubai-Silicon-Oasis.jpeg",
       title: "Dubai Silicon Oasis",
       desc: "A technology and innovation hub, ideal for investors in commercial and industrial real estate. Offers office spaces and technology-focused facilities in a modern, well-connected environment.",
     },
   ];
-
-  
 
   const TableHead = ["Investor Type", "Required Documents"];
   const TableBody = [
@@ -1029,7 +1039,9 @@ const RealEstateInvestment = () => {
             {realEstateData.map((item, index) => (
               <div key={index} className="p-3 bg-lime-200 rounded-xl">
                 <div>
-                  <div className="size-10 bg-lime-400 rounded-full" />
+                  <div className="size-10 bg-lime-400 p-2 flex items-center justify-center rounded-full">
+                    <img src={item.icon} className="" />
+                  </div>
                 </div>
                 <div>
                   <h2 className="font-SplineSans text-lime-900 mt-8 text-xl font-[600]">
@@ -1088,7 +1100,12 @@ const RealEstateInvestment = () => {
           <div className="mt-9 grid grid-cols-4 gap-6">
             {topLocations.map((location, id) => (
               <div key={id} className="mt-4">
-                <div className="h-[250px] w-full bg-lime-600"></div>
+                <div className="aspect-square w-full bg-lime-600">
+                  <img
+                    src={location.img}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h2 className="font-SplineSans mt-2 text-lg">
                   {location.title}
                 </h2>
