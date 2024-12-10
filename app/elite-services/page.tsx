@@ -837,6 +837,7 @@ const RealEstateInvestment = () => {
       desc: "Property values increase over time, providing potential for capital gains when you sell.",
     },
   ];
+  
   const investmentsTypes = [
     {
       title: "Residential Properties",
