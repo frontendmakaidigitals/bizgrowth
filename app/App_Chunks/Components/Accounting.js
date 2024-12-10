@@ -201,7 +201,7 @@ const data = [
   {
     bannerTitle: "Contact Us Today!",
     bannerDesc:
-      "Reach out to us to schedule a consultation or learn more about how we can support your business through our audit services. <br /> BizGrowth is committed to providing you with the expertise necessary to maintain financial health, optimize operations, and achieve long-term success.",
+      "Reach out to us to schedule a consultation or learn more about how we can support your business through our audit services. BizGrowth is committed to providing you with the expertise necessary to maintain financial health, optimize operations, and achieve long-term success.",
     name: "Auditing",
     heroTitle: (
       <Heading>
@@ -357,7 +357,7 @@ const data = [
   {
     bannerTitle: "Get Started Today!",
     bannerDesc:
-      "The UAE's corporate tax environment is evolving, and it’s essential to stay ahead of the curve. Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. <br /> Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
+      "The UAE's corporate tax environment is evolving, and it’s essential to stay ahead of the curve. Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
 
     name: "Corporate Tax",
     heroTitle: (

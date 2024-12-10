@@ -6,7 +6,7 @@ const data = [
   {
     bannerTitle: "Get Started Today!",
     bannerDesc:
-      "Opening a private bank account in Dubai is a key step toward securing your financial future, and we are here to help. With our deep expertise, personalized service, and dedication to client satisfaction, we ensure that the entire process is smooth, efficient, and customized to your unique needs. <br /> Contact us today for a consultation, and let us help you unlock the benefits of private banking in Dubai.",
+      "Opening a private bank account in Dubai is a key step toward securing your financial future, and we are here to help. With our deep expertise, personalized service, and dedication to client satisfaction, we ensure that the entire process is smooth, efficient, and customized to your unique needs. Contact us today for a consultation, and let us help you unlock the benefits of private banking in Dubai.",
     name: "private bank account",
     heroTitle: (
       <Heading>
@@ -16,7 +16,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "Welcome to our exclusive Private Bank Account Opening Service in Dubai, where we provide assistance and expert guidance to establish your financial presence in one of the world’s most prestigious banking environments. Whether you're an individual looking to open a personal account, an entrepreneur, or a high-net-worth individual looking for premium banking services, we are here to make the process efficient and customize according to your needs.",
+      "Welcome to our exclusive Private Bank Account Opening Service in Dubai, where we provide assistance and expert guidance to establish your financial presence in one of the world’s most prestigious banking environments. Whether you`re an individual looking to open a personal account, an entrepreneur, or a high-net-worth individual looking for premium banking services, we are here to make the process efficient and customize according to your needs.",
     heroImg: "/media/mainland/privateBank.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -39,7 +39,7 @@ const data = [
       {
         title: "Investment Private Bank Accounts",
         icon: <MdIncompleteCircle />,
-        desc: " If you're looking to grow your wealth, our investment accounts provide access to exclusive investment opportunities, including equities, bonds, mutual funds, and alternative investments.",
+        desc: " If you`re looking to grow your wealth, our investment accounts provide access to exclusive investment opportunities, including equities, bonds, mutual funds, and alternative investments.",
       },
       {
         title: "Family Office Accounts",
@@ -90,7 +90,7 @@ const data = [
       </p>,
       <p key={3} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Multi-Currency Accounts</span>{" "}
-        Whether you're conducting business in multiple currencies or investing
+        Whether you`re conducting business in multiple currencies or investing
         internationally, private bank accounts come with multi-currency
         capabilities.
       </p>,
@@ -140,7 +140,7 @@ const data = [
     fourthPoints: [
       {
         title: " Choose the Right Bank",
-        desc: "Choose a bank that aligns with your financial goals, whether it's for personal wealth management, business needs, or investment opportunities.",
+        desc: "Choose a bank that aligns with your financial goals, whether it`s for personal wealth management, business needs, or investment opportunities.",
       },
       {
         title: "Consult with the Bank or Financial Advisor",
