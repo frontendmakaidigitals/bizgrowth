@@ -84,6 +84,7 @@ export const Menus = [
       },
       {
         title: "Other Services",
+        route: "otherServices",
         points: [
           "PRO & Visa Services",
           "Attestation & Legalisation",

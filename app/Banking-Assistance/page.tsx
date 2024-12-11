@@ -1388,7 +1388,7 @@ const CommercialFinancing = () => {
         </div>
       </div>
 
-      <div className="container w-full mt-24">
+      <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
           <span className="text-lime-500">Crypto Registration</span> in the UAE
