@@ -1059,27 +1059,27 @@ const CommercialFinancing = () => {
   ];
   const advanteges = [
     {
-      icon: "",
+      icon: "media/Will Formation icon/company.png",
       title: "Startups",
       desc: "Gain access to essential capital to launch and grow your business.",
     },
     {
-      icon: "",
+      icon: "media/Will Formation icon/sme.png",
       title: "SMEs",
       desc: "Secure the funding needed for expansion, innovation, and scaling your operations.",
     },
     {
-      icon: "",
+      icon: "media/Will Formation icon/company.png",
       title: "Large Enterprises",
       desc: "Benefit from advanced financing options tailored to the complex needs of large corporations.",
     },
     {
-      icon: "",
+      icon: "media/Will Formation icon/free-trade.png",
       title: "Exporters and Importers",
       desc: "Optimize your trade and export processes with flexible trade finance options.",
     },
     {
-      icon: "",
+      icon: "media/Will Formation icon/enterprise.png",
       title: "Real Estate Investors",
       desc: "Invest in commercial properties or develop new real estate projects with our financing solutions.",
     },
@@ -1246,65 +1246,69 @@ const CommercialFinancing = () => {
         </div>
       </div>
 
-      <div className="container w-full my-24">
-        <Heading className="!text-center w-full">
-          Commercial <span className="text-lime-500">Financing Solutions</span>{" "}
-          in the UAE
-        </Heading>
-        <div className="grid gap-10 mt-9 grid-cols-1 lg:grid-cols-2 my-24">
-          <div className="order-1">
-            <p className="font-Satoshi text-lg">
-              At BizGrowth, we specialize in providing innovative commercial
-              financing solutions to businesses across the UAE. Whether you're a
-              small startup or a large enterprise, we offer flexible financing
-              options designed to help you grow and succeed in the dynamic UAE
-              market.
-              <br />
-              Our deep understanding of the UAE business landscape and our
-              strong connections with financial institutions allow us to offer
-              the best financing solutions customized to your unique needs. Our
-              mission is to empower businesses with the financial tools,
-              insights, and resources needed to navigate today’s fast-paced,
-              competitive markets. We focus on building long-term relationships
-              with our clients, ensuring that every business we work with
-              achieves its full potential.
-            </p>
-          </div>
-          <div className="h-[440px]">
-            <img
-              className="w-full h-full rounded-lg object-cover"
-              src={
-                "https://img.hubbis.com/optimiser/img/news/cropped/a2464642ede52b28d5611fbfbc56e57bf3e5d35a.jpeg"
-              }
-            />
+      <div className="w-full bg my-24 bg-lime-100 py-14">
+        <div className="container w-full ">
+          <div className="grid gap-10 mt-9 grid-cols-1 lg:grid-cols-2 my-24">
+            <div className="order-1">
+              <Heading className=" w-full">
+                Commercial{" "}
+                <span className="text-lime-500">Financing Solutions</span> in
+                the UAE
+              </Heading>
+              <p className="font-Satoshi mt-5 text-xl">
+                At BizGrowth, we specialize in providing innovative commercial
+                financing solutions to businesses across the UAE. Whether you're
+                a small startup or a large enterprise, we offer flexible
+                financing options designed to help you grow and succeed in the
+                dynamic UAE market.
+                <br />
+                <br />
+                Our deep understanding of the UAE business landscape and our
+                strong connections with financial institutions allow us to offer
+                the best financing solutions customized to your unique needs.
+                Our mission is to empower businesses with the financial tools,
+                insights, and resources needed to navigate today’s fast-paced,
+                competitive markets. We focus on building long-term
+                relationships with our clients, ensuring that every business we
+                work with achieves its full potential.
+              </p>
+            </div>
+            <div className="h-[440px]">
+              <img
+                className="w-full h-full rounded-lg object-cover"
+                src={
+                  "https://www.consultancy-me.com/illustrations/news/detail/2018-09-27-072740907-PwC-and-Commercial-Bank-of-Dubai-sign-digital-innovation-deal-.jpg"
+                }
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
-          {tradeFinanceServices.map((item, index) => (
-            <div
-              key={index}
-              className="w-full flex items-start gap-3 rounded-lg bg-lime-200 p-5"
-            >
-              <h2 className="font-SplineSans  font-[600] text-xl">
-                {item.title}
-              </h2>
-              <p className="mt-1 font-Satoshi">{item.desc}</p>
+        <div className="container w-full">
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-4">
+            {tradeFinanceServices.map((item, index) => (
+              <div key={index} className="w-full  rounded-lg bg-lime-200 p-6">
+                <h2 className="font-SplineSans  font-[600] text-xl">
+                  {item.title}
+                </h2>
+                <p className="mt-1 font-Satoshi font-[400]">{item.desc}</p>
 
-              <div>
-                {item.points.map((elem, index) => (
-                  <div key={index}>
-                    <div>
-                      <div className="size-2 bg-lime-700 rounded-full" />
+                <div className="mt-3">
+                  {item.points.map((elem, index) => (
+                    <div
+                      key={index}
+                      className="flex font-Satoshi font-[500] items-start gap-2"
+                    >
+                      <div>
+                        <div className="size-2 bg-lime-700 rounded-full mt-2" />
+                      </div>
+                      <div>{elem}</div>
                     </div>
-                    <div>{elem}</div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <div>
@@ -1372,7 +1376,6 @@ const CommercialFinancing = () => {
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-7">
             {commercialTypes.map((item, index) => (
               <div key={index} className="w-full rounded-lg bg-lime-200 p-5">
-               
                 <div>
                   <h2 className="font-SplineSans mt-6 font-[600] text-xl">
                     {item.title}
@@ -1412,6 +1415,19 @@ const CommercialFinancing = () => {
                 </td>
                 <td className=" py-2 border border-gray-300 ">
                   {item.docs.map((elem, id) => (
+                    <div
+                      key={id}
+                      className="flex items-start py-2 gap-2 font-Satoshi text-lg text-[#152b0c] justify-start px-5 "
+                    >
+                      <div>
+                        <MdLabelImportant className="text-lime-800 mt-1" />
+                      </div>
+                      <div>{elem}</div>
+                    </div>
+                  ))}
+                </td>
+                <td className=" py-2 border border-gray-300 ">
+                  {item.purpose.map((elem, id) => (
                     <div
                       key={id}
                       className="flex items-start py-2 gap-2 font-Satoshi text-lg text-[#152b0c] justify-start px-5 "
