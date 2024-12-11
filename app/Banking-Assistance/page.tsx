@@ -41,8 +41,6 @@ const MainPage = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  console.log(query);
-
   switch (query) {
     case "Commercial Financial Services":
       return <CryptoVara />;
