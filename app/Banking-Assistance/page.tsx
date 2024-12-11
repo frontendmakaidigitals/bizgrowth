@@ -42,10 +42,12 @@ const MainPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   switch (query) {
-    case "Commercial Financial Services":
-      return <CryptoVara />;
+    case "Trade Financial Services":
+      return <TradeFinancial />;
     case "Crypto & VARA Registration":
       return <CryptoVara />;
+    case "Commercial Financial Services":
+      return <CommercialFinancing />;
     default:
       return (
         <div className="w-full">
@@ -642,8 +644,8 @@ const CryptoVara = () => {
         <p className="font-SplineSans font-[500]">Key points</p>
         <div className="grid grid-cols-1 gap-1">
           {keyPoints.map((item, index) => (
-            <div className="flex mt-1 items-start gap-2">
-              <div key={index} className="mt-2">
+            <div key={index} className="flex mt-1 items-start gap-2">
+              <div className="mt-2">
                 <div className="size-2 bg-lime-950 rounded-full" />
               </div>
               <p className="font-Satoshi font-[400]">
@@ -686,22 +688,27 @@ const TradeFinancial = () => {
   ];
   const services = [
     {
+      icon: "media/Will Formation icon/manufacturing.png",
       title: "Manufacturing",
       desc: "Optimize cash flow and supply chain operations.",
     },
     {
+      icon: "media/Will Formation icon/construction.png",
       title: "Construction",
       desc: "Access financing for large-scale projects.",
     },
     {
+      icon: "media/Will Formation icon/bags.png",
       title: "Retail & Distribution",
       desc: "Meet seasonal demands with flexible funding.",
     },
     {
+      icon: "media/Will Formation icon/oil-drum.png",
       title: "Oil & Gas",
       desc: "Specialized financial services for energy trade.",
     },
     {
+      icon: "media/Will Formation icon/sprout.png",
       title: "Agriculture",
       desc: "Support for import and export of agricultural commodities.",
     },
@@ -783,8 +790,198 @@ const TradeFinancial = () => {
       ],
     },
   ];
+  const [currentStep, setCurrentStep] = useState(0);
+  const stepsRefs = useRef<HTMLDivElement[]>([]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
+      for (let i = 0; i < stepOffsets.length; i++) {
+        if (scrollPosition >= stepOffsets[i] - 200) {
+          setCurrentStep(i);
+        }
+      }
+    };
 
-  return <div></div>;
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  return (
+    <div className="w-full">
+      <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="w-full">
+          <div>
+            <Heading>
+              Your Partner in Trade{" "}
+              <span className="text-lime-500">Finance Excellence</span>
+            </Heading>
+          </div>
+
+          <p className="text-lg font-Satoshi mt-4">
+            Empowering businesses in the UAE and beyond with financial solutions
+            to fuel growth and success. From letters of credit to supply chain
+            finance, we provide the tools you need to thrive in global markets.
+          </p>
+          <Button className="mt-5">Get Expert Consultation</Button>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <img src={"media/mainland/dubai.svg"} />
+        </div>
+      </div>
+      <div className="container w-full my-24">
+        <Heading className="!text-center w-full">
+          <span className="text-lime-500">Trade Financing</span> in the UAE
+        </Heading>
+        <p className="font-Satoshi text-center mt-3 text-lg">
+          The UAE is a global trading hub, offering opportunities for businesses
+          to expand across borders. With its prime location, advanced
+          infrastructure, and business-friendly policies, trade financing is
+          pivotal in supporting the nation's import-export ecosystem. Trade
+          financing involves financial instruments and services that facilitate
+          international and domestic trade. It helps businesses manage cash
+          flow, mitigate risks, and ensure seamless transactions between buyers
+          and suppliers.
+        </p>
+      </div>
+
+      <div>
+        <div className="w-full container my-24">
+          <div>
+            <Heading className="!text-center w-full">
+              Types of{" "}
+              <span className="text-lime-500">Cryptocurrency Licenses</span>{" "}
+              Available
+            </Heading>
+          </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+            {tradeFinanceServices.map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex items-start gap-3 rounded-lg bg-lime-200 p-5"
+              >
+                <div>
+                  <div className="size-6  mt-[1px] rounded-full">
+                    <img src={"media/mainland/checked.png"} />
+                  </div>
+                </div>
+                <div>
+                  <h2 className="font-SplineSans  font-[600] text-xl">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 font-Satoshi">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="w-full container my-24">
+          <div>
+            <Heading className="!text-center w-full">
+              <span className="text-lime-500">Industries</span> We Serve
+            </Heading>
+          </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-7">
+            {services.map((item, index) => (
+              <div key={index} className="w-full rounded-lg bg-lime-200 p-5">
+                <div>
+                  <div className="size-14 p-3 overflow-hidden bg-lime-400 rounded-full">
+                    <img src={item.icon} />
+                  </div>
+                </div>
+                <div>
+                  <h2 className="font-SplineSans mt-6 font-[600] text-xl">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 font-Satoshi">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <div className="w-full container my-24">
+            <div>
+              <Heading className="!text-center w-full">
+                The Process of{" "}
+                <span className="text-lime-500">Trade Financing</span> in the
+                UAE
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 gap-5">
+              {tradeFinanceProcess.map((item, index) => (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    if (el) {
+                      stepsRefs.current[index] = el;
+                    }
+                  }}
+                  className={`w-full p-5 border rounded-2xl ${
+                    index <= currentStep ? "bg-[#dcedc8]" : "bg-slate-200"
+                  }`}
+                >
+                  <p className="text-xl font-SplineSans">Step {index + 1}</p>
+                  <p className="font-SplineSans font-[500] text-xl">
+                    {item.title}
+                  </p>
+                  <p className="font-Satoshi text-lg">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container w-full mt-24">
+        <Heading className="!text-center w-full">
+          Documents Required for{" "}
+          <span className="text-lime-500">Crypto Registration</span> in the UAE
+        </Heading>
+        <table className="w-full border-collapse mt-10 border border-gray-300">
+          <thead className="w-full  bg-lime-200 ">
+            <tr className="w-full ">
+              {tableHeader.map((item, index) => (
+                <th key={index} className="border  border-slate-950 py-2 px-5">
+                  <div className="w-full text-start capitalize font-SplineSans text-lg text-[#152b0c] ">
+                    {item}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="">
+            {tableBody.map((item, index) => (
+              <tr key={index} className="border border-slate-950 w-full">
+                <td className=" py-2 border border-gray-300 ">
+                  <div className="font-[500] text-lg text-[#152b0c] font-SplineSans px-5 ">
+                    {item.title}
+                  </div>
+                </td>
+                <td className=" py-2 border border-gray-300 ">
+                  {item.docs.map((elem, id) => (
+                    <div
+                      key={id}
+                      className="flex items-start py-2 gap-2 font-Satoshi text-lg text-[#152b0c] justify-start px-5 "
+                    >
+                      <div>
+                        <MdLabelImportant className="text-lime-800 mt-1" />
+                      </div>
+                      <div>{elem}</div>
+                    </div>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 const CommercialFinancing = () => {
   const tradeFinanceServices = [
@@ -862,22 +1059,27 @@ const CommercialFinancing = () => {
   ];
   const advanteges = [
     {
+      icon: "",
       title: "Startups",
       desc: "Gain access to essential capital to launch and grow your business.",
     },
     {
+      icon: "",
       title: "SMEs",
       desc: "Secure the funding needed for expansion, innovation, and scaling your operations.",
     },
     {
+      icon: "",
       title: "Large Enterprises",
       desc: "Benefit from advanced financing options tailored to the complex needs of large corporations.",
     },
     {
+      icon: "",
       title: "Exporters and Importers",
       desc: "Optimize your trade and export processes with flexible trade finance options.",
     },
     {
+      icon: "",
       title: "Real Estate Investors",
       desc: "Invest in commercial properties or develop new real estate projects with our financing solutions.",
     },
@@ -1005,8 +1207,229 @@ const CommercialFinancing = () => {
       ],
     },
   ];
+  const [currentStep, setCurrentStep] = useState(0);
+  const stepsRefs = useRef<HTMLDivElement[]>([]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
+      for (let i = 0; i < stepOffsets.length; i++) {
+        if (scrollPosition >= stepOffsets[i] - 200) {
+          setCurrentStep(i);
+        }
+      }
+    };
 
-  return <div></div>;
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  return (
+    <div className="w-full">
+      <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="w-full">
+          <div>
+            <Heading>
+              Your Partner in Trade{" "}
+              <span className="text-lime-500">Finance Excellence</span>
+            </Heading>
+          </div>
+
+          <p className="text-lg font-Satoshi mt-4">
+            Empowering businesses in the UAE and beyond with financial solutions
+            to fuel growth and success. From letters of credit to supply chain
+            finance, we provide the tools you need to thrive in global markets.
+          </p>
+          <Button className="mt-5">Get Expert Consultation</Button>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <img src={"media/mainland/dubai.svg"} />
+        </div>
+      </div>
+
+      <div className="container w-full my-24">
+        <Heading className="!text-center w-full">
+          Commercial <span className="text-lime-500">Financing Solutions</span>{" "}
+          in the UAE
+        </Heading>
+        <div className="grid gap-10 mt-9 grid-cols-1 lg:grid-cols-2 my-24">
+          <div className="order-1">
+            <p className="font-Satoshi text-lg">
+              At BizGrowth, we specialize in providing innovative commercial
+              financing solutions to businesses across the UAE. Whether you're a
+              small startup or a large enterprise, we offer flexible financing
+              options designed to help you grow and succeed in the dynamic UAE
+              market.
+              <br />
+              Our deep understanding of the UAE business landscape and our
+              strong connections with financial institutions allow us to offer
+              the best financing solutions customized to your unique needs. Our
+              mission is to empower businesses with the financial tools,
+              insights, and resources needed to navigate today’s fast-paced,
+              competitive markets. We focus on building long-term relationships
+              with our clients, ensuring that every business we work with
+              achieves its full potential.
+            </p>
+          </div>
+          <div className="h-[440px]">
+            <img
+              className="w-full h-full rounded-lg object-cover"
+              src={
+                "https://img.hubbis.com/optimiser/img/news/cropped/a2464642ede52b28d5611fbfbc56e57bf3e5d35a.jpeg"
+              }
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+          {tradeFinanceServices.map((item, index) => (
+            <div
+              key={index}
+              className="w-full flex items-start gap-3 rounded-lg bg-lime-200 p-5"
+            >
+              <h2 className="font-SplineSans  font-[600] text-xl">
+                {item.title}
+              </h2>
+              <p className="mt-1 font-Satoshi">{item.desc}</p>
+
+              <div>
+                {item.points.map((elem, index) => (
+                  <div key={index}>
+                    <div>
+                      <div className="size-2 bg-lime-700 rounded-full" />
+                    </div>
+                    <div>{elem}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className="w-full container my-24">
+          <div>
+            <Heading className="!text-center w-full">
+              Why Choose Us for Commercial Financing in the UAE?
+            </Heading>
+          </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+            {selfPraise.map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex items-start gap-3 rounded-lg bg-indigo-100 p-5"
+              >
+                <div>
+                  <div className="size-6  mt-[1px] rounded-full">
+                    <img src={"media/mainland/checked.png"} />
+                  </div>
+                </div>
+                <div>
+                  <h2 className="font-SplineSans  font-[600] text-xl">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 font-Satoshi">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="w-full container my-24">
+          <div>
+            <Heading className="!text-center w-full">
+              Who Can Benefit from Our Commercial Financial Services?
+            </Heading>
+          </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-7">
+            {advanteges.map((item, index) => (
+              <div key={index} className="w-full rounded-lg bg-lime-200 p-5">
+                <div>
+                  <div className="size-14 p-3 overflow-hidden bg-lime-400 rounded-full">
+                    <img src={item?.icon} />
+                  </div>
+                </div>
+                <div>
+                  <h2 className="font-SplineSans mt-6 font-[600] text-xl">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 font-Satoshi">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="w-full container my-24">
+          <div>
+            <Heading className="!text-center w-full">
+              Types of Commercial Financial Services
+            </Heading>
+          </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-7">
+            {commercialTypes.map((item, index) => (
+              <div key={index} className="w-full rounded-lg bg-lime-200 p-5">
+               
+                <div>
+                  <h2 className="font-SplineSans mt-6 font-[600] text-xl">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 font-Satoshi">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="container w-full mt-24">
+        <Heading className="!text-center w-full">
+          Documents Required for{" "}
+          <span className="text-lime-500">Crypto Registration</span> in the UAE
+        </Heading>
+        <table className="w-full border-collapse mt-10 border border-gray-300">
+          <thead className="w-full  bg-lime-200 ">
+            <tr className="w-full ">
+              {tableHeader.map((item, index) => (
+                <th key={index} className="border  border-slate-950 py-2 px-5">
+                  <div className="w-full text-start capitalize font-SplineSans text-lg text-[#152b0c] ">
+                    {item}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="">
+            {tableBody.map((item, index) => (
+              <tr key={index} className="border border-slate-950 w-full">
+                <td className=" py-2 border border-gray-300 ">
+                  <div className="font-[500] text-lg text-[#152b0c] font-SplineSans px-5 ">
+                    {item.title}
+                  </div>
+                </td>
+                <td className=" py-2 border border-gray-300 ">
+                  {item.docs.map((elem, id) => (
+                    <div
+                      key={id}
+                      className="flex items-start py-2 gap-2 font-Satoshi text-lg text-[#152b0c] justify-start px-5 "
+                    >
+                      <div>
+                        <MdLabelImportant className="text-lime-800 mt-1" />
+                      </div>
+                      <div>{elem}</div>
+                    </div>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default Page;
