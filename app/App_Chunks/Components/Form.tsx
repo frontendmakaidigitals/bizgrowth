@@ -4,12 +4,46 @@ import Button from "./Button";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectGroup,
 } from "@/components/ui/select";
 const Form = () => {
+  const businessActivities = [
+    "Advertising",
+    "Architecture",
+    "Forex Trading",
+    "Business Consultancy",
+    "Cryptocurrency Activity",
+    "Design Services",
+    "Fashion Design Consultancy",
+    "E-Commerce",
+    "Event Management",
+    "Food & Beverage Trading",
+    "IT Consultancy",
+    "Lifestyle Consultancy",
+    "Human Resource Consultancy",
+    "General Trading",
+    "Interior Design",
+    "Management Consultancy",
+    "Media Services",
+    "Marketing Services",
+    "Online Education",
+    "Photography Services",
+    "Production",
+    "Public Relations",
+    "Project Management Consultancy",
+    "Publishing",
+    "Recruitment Consultancy",
+    "Tax Consultancy",
+    "Training Services",
+    "Software Development",
+    "Sports Management",
+    "Wholesale of Household Goods",
+    "Others",
+  ];
+
   return (
     <div className="w-full py-14 bg-black ">
       <div className=" container text-slate-50">
@@ -46,13 +80,13 @@ const Form = () => {
                         placeholder="Select Business Activity"
                       />
                     </SelectTrigger>
-                    <SelectContent className=" bg-[#c5e1a5] text-slate-950">
+                    <SelectContent className=" bg-[#c7c7c7] text-slate-950">
                       <SelectGroup>
-                        <SelectItem value="apple">Apple</SelectItem>
-                        <SelectItem value="banana">Banana</SelectItem>
-                        <SelectItem value="blueberry">Blueberry</SelectItem>
-                        <SelectItem value="grapes">Grapes</SelectItem>
-                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                        {businessActivities.map((activity, index) => (
+                          <SelectItem key={index} value={activity}>
+                            {activity}
+                          </SelectItem>
+                        ))}
                       </SelectGroup>
                     </SelectContent>
                   </Select>
