@@ -603,7 +603,7 @@ const CryptoVara = () => {
           <span className="text-lime-500">Crypto Registration</span> in the UAE
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
-          <thead className="w-full  bg-yellow-100 ">
+          <thead className="w-full  bg-lime-200 ">
             <tr className="w-full ">
               {tableHeader.map((item, index) => (
                 <th key={index} className="border  border-slate-950 py-2 px-5">
@@ -854,9 +854,8 @@ const TradeFinancial = () => {
         <div className="w-full container my-24">
           <div>
             <Heading className="!text-center w-full">
-              Types of{" "}
-              <span className="text-lime-500">Cryptocurrency Licenses</span>{" "}
-              Available
+              Trade <span className="text-lime-500">Finance Solutions</span> We
+              Provide:
             </Heading>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -946,7 +945,8 @@ const TradeFinancial = () => {
       <div className="container w-full mt-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
-          <span className="text-lime-500">Crypto Registration</span> in the UAE
+          <span className="text-lime-500">Trade Financial Services</span> in the
+          UAE
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
           <thead className="w-full  bg-lime-200 ">
@@ -1226,13 +1226,19 @@ const CommercialFinancing = () => {
         <div className="w-full">
           <div>
             <Heading>
-              Your Trusted Partner in {" "}
-              <span className="text-lime-500"> Commercial Finance Services</span>
+              Your Trusted Partner in{" "}
+              <span className="text-lime-500">
+                {" "}
+                Commercial Finance Services
+              </span>
             </Heading>
           </div>
 
           <p className="text-lg font-Satoshi mt-4">
-            We specialize in providing tailored financial solutions for businesses of all sizes. Whether you`re looking for advice, funding options, or advanced financial tools, we are committed to helping your business thrive.
+            We specialize in providing tailored financial solutions for
+            businesses of all sizes. Whether you`re looking for advice, funding
+            options, or advanced financial tools, we are committed to helping
+            your business thrive.
           </p>
           <Button className="mt-5">Get Expert Consultation</Button>
         </div>
@@ -1241,7 +1247,7 @@ const CommercialFinancing = () => {
         </div>
       </div>
 
-      <div className="w-full bg my-24 bg-lime-100 py-14">
+      <div className="w-full bg my-24 bg-slate-100 py-14">
         <div className="container w-full ">
           <div className="grid gap-10 mt-9 grid-cols-1 lg:grid-cols-2 my-24">
             <div className="order-1">
@@ -1310,7 +1316,11 @@ const CommercialFinancing = () => {
         <div className="w-full container my-24">
           <div>
             <Heading className="!text-center w-full">
-              Why Choose Us for Commercial Financing in the UAE?
+              Why Choose Us for{" "}
+              <span className="text-lime-500">
+                Commercial Financing
+              </span>{" "}
+              in the UAE?
             </Heading>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1339,7 +1349,10 @@ const CommercialFinancing = () => {
         <div className="w-full container my-24">
           <div>
             <Heading className="!text-center w-full">
-              Who Can Benefit from Our Commercial Financial Services?
+              Who Can Benefit from Our{" "}
+              <span className="text-lime-500">
+                Commercial Financial Services?
+              </span>{" "}
             </Heading>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-7">
@@ -1365,7 +1378,10 @@ const CommercialFinancing = () => {
         <div className="w-full container my-24">
           <div>
             <Heading className="!text-center w-full">
-              Types of Commercial Financial Services
+              Types of{" "}
+              <span className="text-lime-500">
+                Commercial Financial Services
+              </span>{" "}
             </Heading>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-7">
@@ -1386,7 +1402,7 @@ const CommercialFinancing = () => {
       <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
-          <span className="text-lime-500">Crypto Registration</span> in the UAE
+          <span className="text-lime-500">Commercial Financial Services</span>{" "}
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
           <thead className="w-full  bg-lime-200 ">
