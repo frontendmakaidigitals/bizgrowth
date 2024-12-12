@@ -2156,7 +2156,7 @@ const CorporateStructuring = () => {
           </div>
 
           <p className="text-lg font-Satoshi mt-4">
-            Whether you're a startup, an expanding business, or a large
+            Whether you`re a startup, an expanding business, or a large
             enterprise, our Corporate Structuring Services help you design and
             implement the ideal structure to optimize operations, reduce risks,
             and maximize value.

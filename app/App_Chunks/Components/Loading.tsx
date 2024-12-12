@@ -35,7 +35,7 @@ const Loader = () => {
         <motion.div
           exit={{ y: "-100%" }}
           transition={{ duration: 0.5 }}
-          className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-lime-50 z-[9999]"
+          className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed shadown-lg bg-indigo-50 z-[9999]"
         >
           <div className="spinner"></div>
           <style>

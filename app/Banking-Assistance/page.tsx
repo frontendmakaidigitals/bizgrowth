@@ -1232,7 +1232,7 @@ const CommercialFinancing = () => {
           </div>
 
           <p className="text-lg font-Satoshi mt-4">
-            We specialize in providing tailored financial solutions for businesses of all sizes. Whether you're looking for advice, funding options, or advanced financial tools, we are committed to helping your business thrive.
+            We specialize in providing tailored financial solutions for businesses of all sizes. Whether you`re looking for advice, funding options, or advanced financial tools, we are committed to helping your business thrive.
           </p>
           <Button className="mt-5">Get Expert Consultation</Button>
         </div>

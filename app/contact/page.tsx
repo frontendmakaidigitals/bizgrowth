@@ -80,8 +80,8 @@ const Page = () => {
         </div>
       </div>
       <div className="container mt-10 grid grid-cols-1 lg:grid-cols-2">
-        <div className="bg-[#dcedc8] flex flex-col justify-between items-start w-full p-7 h-full rounded-l-lg">
-          <h1 className="text-3xl font-Satoshi font-[500]">
+        <div className="bg-lime-100 flex flex-col justify-between items-start w-full p-7 h-full rounded-l-lg">
+          <h1 className="text-3xl font-SplineSans font-[500]">
             Please fill out the form below
           </h1>
           <p className="mt-2">
@@ -89,7 +89,7 @@ const Page = () => {
             questions, or schedule a consultation!
           </p>
 
-          <form action="" className="mt-10">
+          <form action="" className="mt-6">
             <div className="mt-2">
               <label className="">
                 Full Name <span className="text-red-500">*</span>
