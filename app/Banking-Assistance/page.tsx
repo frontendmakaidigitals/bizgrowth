@@ -655,6 +655,12 @@ const CryptoVara = () => {
           ))}
         </div>
       </div>
+      <Banner
+        title={"Contact Us to Start Your Crypto Journey in the UAE"}
+        desc={
+          "Take advantage of the UAE’s progressive crypto regulations to grow your business. Let us simplify the process and help you succeed in this dynamic market."
+        }
+      />
     </div>
   );
 };
@@ -980,6 +986,12 @@ const TradeFinancial = () => {
           </tbody>
         </table>
       </div>
+      <Banner
+        title={"Get our Expert Guidance "}
+        desc={
+          "Let’s discuss how we can help your business grow. Fill out our contact form, and one of our trade finance experts will reach out to you."
+        }
+      />
     </div>
   );
 };
@@ -1444,6 +1456,12 @@ const CommercialFinancing = () => {
           </tbody>
         </table>
       </div>
+      <Banner
+        title={"Get in Touch for Commercial Financial Sercvices in the UAE"}
+        desc={
+          "Ready to explore your financing options? Our experts are here to guide you through the process and help you find the right solution for your business."
+        }
+      />
     </div>
   );
 };

@@ -2,9 +2,7 @@
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
-import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
-import { motion } from "framer-motion";
 import Heading from "../App_Chunks/Components/Heading";
 const Page = () => {
   return (
@@ -24,6 +22,8 @@ const MainPage = () => {
       return <Attestation />;
     case "Office space solution":
       return <OfficeSpace />;
+    case "Product Registration":
+      return <ProductRegistration />;
     default:
       return <div>No Data found</div>;
   }
@@ -444,6 +444,12 @@ const VisaPro = () => {
           ))}
         </div>
       </div>
+      <Banner
+        title={"Get in Touch with Us Today!"}
+        desc={
+          "Simplify your visa and PRO processes with the help of our experienced team. Whether you’re expanding your business or managing employee visas, we are here to support you every step of the way."
+        }
+      />
     </div>
   );
 };
@@ -712,32 +718,43 @@ const Attestation = () => {
           ))}
         </div>
       </div>
+      <Banner
+        title={"Contact Us for Attestation and Legalization Services"}
+        desc={
+          "Let us simplify the process for you. Contact us today to get started!."
+        }
+      />
     </div>
   );
 };
 const OfficeSpace = () => {
   const uaeBusinessAdvantages = [
     {
+      icon: "media/Will Formation icon/location-pin.png",
       title: "Prime Location",
       description:
         "Situated at the crossroads of Europe, Asia, and Africa, the UAE provides unmatched access to international markets.",
     },
     {
+      icon: "media/Will Formation icon/business.png",
       title: "Business-Friendly Environment",
       description:
         "The UAE offers tax advantages, free zones, and robust infrastructure, making it an attractive choice for entrepreneurs and corporations alike.",
     },
     {
+      icon: "media/Will Formation icon/profit.png",
       title: "Diverse Economy",
       description:
         "Beyond oil, industries such as finance, tourism, technology, and trade thrive in the UAE, offering many opportunities.",
     },
     {
+      icon: "media/Will Formation icon/welfare.png",
       title: "State-of-the-Art Facilities",
       description:
         "Modern skyscrapers, smart buildings, and advanced technology ensure your business can operate efficiently.",
     },
     {
+      icon: "media/Will Formation icon/fitness.png",
       title: "Cultural and Lifestyle Appeal",
       description:
         "The UAE provides a high standard of living, a diverse culture, and safety, making it appealing to business owners and employees.",
@@ -970,13 +987,13 @@ const OfficeSpace = () => {
         </div>
       </div>
 
-      <div className="container w-full mt-24">
+      <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
           <span className="text-lime-500">Crypto Registration</span> in the UAE
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
-          <thead className="w-full  bg-yellow-100 ">
+          <thead className="w-full  bg-lime-200 ">
             <tr className="w-full ">
               {tableHeader.map((item, index) => (
                 <th key={index} className="border  border-slate-950 py-2 px-5">
@@ -1005,6 +1022,12 @@ const OfficeSpace = () => {
           </tbody>
         </table>
       </div>
+      <Banner
+        title={"Get Started Today"}
+        desc={
+          "Transform your office experience with Office Space Solutions. Contact us for a free consultation and explore how we can support your business’s growth."
+        }
+      />
     </div>
   );
 };
@@ -1261,22 +1284,55 @@ const ProductRegistration = () => {
   }, []);
   return (
     <div className="w-full">
+      <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="w-full">
+          <div>
+            <Heading>
+              Simplify Your{" "}
+              <span className="text-lime-500">Product Registration</span>{" "}
+              Process
+            </Heading>
+          </div>
+
+          <p className="text-lg font-Satoshi mt-4">
+            We specialize in providing seamless product registration services to
+            help businesses ensure compliance, and launch their products.
+            Whether you're entering new markets or introducing innovative
+            products, we are here to handle the complexities for you.
+          </p>
+          <Button className="mt-5">Contact us</Button>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <img src={"media/mainland/dubai.svg"} />
+        </div>
+      </div>
       <div>
         <div>
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Key Regulatory Bodies for{" "}
-                <span className="text-lime-500">Crypto</span> in the UAE
+                Why is{" "}
+                <span className="text-lime-500">Product Registration</span>{" "}
+                Important in the UAE?
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-7">
               {uaeProductRegistrationBenefits.map((item, index) => (
-                <div key={index} className="p-5 bg-lime-200 rounded-xl">
-                  <h1 className="text-xl font-SplineSans text-lime-950 font-[600]">
-                    {item.benefit}
-                  </h1>
-                  <p>{item.description}</p>
+                <div
+                  key={index}
+                  className="w-full flex items-start gap-3 rounded-lg bg-indigo-100 p-5"
+                >
+                  <div>
+                    <div className="size-6  mt-[1px] rounded-full">
+                      <img src={"media/mainland/checked.png"} />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="font-SplineSans  font-[600] text-xl">
+                      {item.benefit}
+                    </h2>
+                    <p className="mt-1 font-Satoshi">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1289,11 +1345,11 @@ const ProductRegistration = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Key Regulatory Bodies for{" "}
-                <span className="text-lime-500">Crypto</span> in the UAE
+                Types of <span className="text-lime-500">Products</span> That
+                Require Registration
               </Heading>
             </div>
-            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-7">
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
               {productCategories.map((item, index) => (
                 <div key={index} className="p-5 bg-lime-200 rounded-xl">
                   <h1 className="text-xl font-SplineSans text-lime-950 font-[600]">
@@ -1310,9 +1366,8 @@ const ProductRegistration = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Types of{" "}
-                <span className="text-lime-500">Cryptocurrency Licenses</span>{" "}
-                Available
+                Our <span className="text-lime-500">Product Registration</span>{" "}
+                Services
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1361,10 +1416,12 @@ const ProductRegistration = () => {
                   }`}
                 >
                   <p className="text-xl font-SplineSans">Step {index + 1}</p>
-                  <p className="font-SplineSans font-[500] text-xl">
+                  <p className="font-SplineSans font-[500] mt-3 text-xl">
                     {item.step}
                   </p>
-                  <p className="font-Satoshi text-lg">{item.description}</p>
+                  <p className="font-Satoshi text-lg mt-1">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -1372,13 +1429,13 @@ const ProductRegistration = () => {
         </div>
       </div>
 
-      <div className="container w-full mt-24">
+      <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
           <span className="text-lime-500">Crypto Registration</span> in the UAE
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
-          <thead className="w-full  bg-yellow-100 ">
+          <thead className="w-full  bg-lime-200 ">
             <tr className="w-full ">
               {tableHeader.map((item, index) => (
                 <th key={index} className="border  border-slate-950 py-2 px-5">
@@ -1412,6 +1469,12 @@ const ProductRegistration = () => {
           </tbody>
         </table>
       </div>
+      <Banner
+        title={"Ready to Register Your Product?"}
+        desc={
+          "Don’t let complex regulations slow you down. Partner with Milestone Homes to simplify your product registration process and bring your products to market quickly and efficiently."
+        }
+      />
     </div>
   );
 };
