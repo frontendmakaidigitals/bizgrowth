@@ -1226,15 +1226,13 @@ const CommercialFinancing = () => {
         <div className="w-full">
           <div>
             <Heading>
-              Your Partner in Trade{" "}
-              <span className="text-lime-500">Finance Excellence</span>
+              Your Trusted Partner in {" "}
+              <span className="text-lime-500"> Commercial Finance Services</span>
             </Heading>
           </div>
 
           <p className="text-lg font-Satoshi mt-4">
-            Empowering businesses in the UAE and beyond with financial solutions
-            to fuel growth and success. From letters of credit to supply chain
-            finance, we provide the tools you need to thrive in global markets.
+            We specialize in providing tailored financial solutions for businesses of all sizes. Whether you're looking for advice, funding options, or advanced financial tools, we are committed to helping your business thrive.
           </p>
           <Button className="mt-5">Get Expert Consultation</Button>
         </div>
