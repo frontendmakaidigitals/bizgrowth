@@ -1219,22 +1219,7 @@ const CommercialFinancing = () => {
       ],
     },
   ];
-  const [currentStep, setCurrentStep] = useState(0);
-  const stepsRefs = useRef<HTMLDivElement[]>([]);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
-      for (let i = 0; i < stepOffsets.length; i++) {
-        if (scrollPosition >= stepOffsets[i] - 200) {
-          setCurrentStep(i);
-        }
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <div className="w-full">
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
