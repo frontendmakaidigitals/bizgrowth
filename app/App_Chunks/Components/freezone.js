@@ -1825,6 +1825,729 @@ const data = [
     seventhTitle: "",
     seventhPoints: [],
   },
+  {
+    bannerTitle: "Launch Your Business Idea with Ajman Free Zone license!",
+    bannerDesc:
+      "For personalized advice on selecting the right license for your business, get in touch with our team. Ajman Free Zone is here to help your business thrive.",
+    name: "ajman",
+    heroTitle: (
+      <Heading>
+        Empower Your Business at{" "}
+        <span className="text-lime-500">Ajman Free Zone</span>
+      </Heading>
+    ),
+    heroDescription:
+      "Ajman Free Zone (AFZ) is a thriving hub for entrepreneurs, startups, and established businesses alike. Strategically located in the UAE, AFZ offers world-class facilities, an easy business setup process, and a great platform for growth and expansion.",
+    heroImg: "/media/mainland/dubai.svg",
+    secondTitle: (
+      <Heading className="!text-center w-full">
+        Why Choose <span className="text-lime-500">Ajman Free Zone?</span>{" "}
+      </Heading>
+    ),
+    secondSubDescription: "",
+    secondPoints: [
+      {
+        title: "Prime Location",
+        icon: <FaPeopleGroup />,
+        desc: "Positioned near key trade routes and just 25 minutes from Dubai International Airport.",
+      },
+      {
+        title: "Cost-Effective Solutions",
+        icon: <FaBusinessTime />,
+        desc: "It has affordable business packages customized to your needs.",
+      },
+      {
+        title: "Diverse Business Opportunities",
+        icon: <MdIncompleteCircle />,
+        desc: "Home to over 9,000 businesses across various industries.",
+      },
+      {
+        title: "Ease of Business Setup",
+        icon: <MdIncompleteCircle />,
+        desc: " 100% foreign ownership, zero income tax, and quick licensing processes",
+      },
+      {
+        title: "Comprehensive Services",
+        icon: <MdIncompleteCircle />,
+        desc: "From visa processing to state-of-the-art facilities, we provide end-to-end support.",
+      },
+    ],
+    thirdTitle: (
+      <Heading className="w-full !text-center">
+        Types of Licenses Available in{" "}
+        <span className="text-lime-500">Ajman Free Zone</span>
+      </Heading>
+    ),
+    thirdSubDesc: "",
+    thirdPoints: [
+      <p key={0} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Trading License</span> This
+        license is ideal for businesses involved in importing, exporting, or
+        distributing goods within the UAE or internationally.
+      </p>,
+      <p key={1} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Industrial License</span>{" "}
+        Designed for companies engaged in manufacturing, production, or
+        industrial activities. The license allows manufacturing and assembly
+        operations.
+      </p>,
+      <p key={2} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]"> E-Commerce License</span> It
+        is perfect for businesses operating in the online space, including
+        e-retailers and digital services. It enables online trade and services.
+      </p>,
+      <p key={3} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">
+          Professional Services License
+        </span>{" "}
+        Suited for consultants, freelancers, and service-oriented businesses. It
+        Includes consultancy, IT, design, and more.
+      </p>,
+      <p key={4} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]"> Freelance License</span>{" "}
+        Designed for individual professionals looking to work independently. It
+        covers sectors like media, education, IT, and design.
+      </p>,
+      <p key={5} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">General Trading License</span>{" "}
+        Ideal for businesses dealing with a wide variety of goods without
+        limitations on the type of products.It enables trading across multiple
+        product categories.
+      </p>,
+      <p key={6} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Offshore License</span> Allows
+        businesses to establish a legal entity in the UAE without a physical
+        presence in the country. It gives 100% ownership with tax exemptions.
+      </p>,
+      <p key={7} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]"> Warehousing License</span>{" "}
+        Perfect for businesses needing storage solutions for goods and
+        products.It is suitable for businesses in logistics and distribution.
+      </p>,
+    ],
+    fourthTitle: (
+      <Heading className="w-full !text-center ">
+        Business Setup Process in <span className="text-lime-500">Ajman</span>
+      </Heading>
+    ),
+    fourthPoints: [
+      {
+        title: "Choose Your Business Activity",
+        isPoints: false,
+        desc: "Identify the type of business activity you plan to undertake. Ajman Free Zone allows for a range of activities, including trading, manufacturing, consulting, freelancing, and e-commerce.",
+      },
+      {
+        title: "Select Your Business License",
+        isPoints: false,
+        desc: "Choose the appropriate license type based on your business activity. The common licenses include trading License, industrial License.",
+      },
+      {
+        title: " Decide on a Business Structure",
+        isPoints: true,
+        desc: "Select a legal entity type for your business, such as",
+        points: [
+          "Free Zone Establishment (FZE) – Single shareholder.",
+          "Free Zone Company (FZC) – Multiple shareholders.",
+          "Branch of an existing company.",
+        ],
+      },
+      {
+        title: "Reserve Your Trade Name",
+        isPoints: false,
+        desc: "Choose a unique trade name for your business and reserve it with the relevant authorities in Ajman Free Zone. Ensure the name adheres to UAE naming guidelines.",
+      },
+      {
+        title: "Submit Required Documents",
+        isPoints: false,
+        desc: "Prepare and submit the necessary documents for registration. Common requirements include Passport copies of shareholders and managers, Recent photographs of shareholders,etc.",
+      },
+      {
+        title: "Lease an Office or Facility",
+        isPoints: false,
+        desc: "Choose a suitable office space or warehouse based on your business needs. Ajman Free Zone offers flexible options.",
+      },
+      {
+        title: "Pay Fees and Obtain Licenses",
+        isPoints: false,
+        desc: "Pay the required setup fees for your chosen license and facility. Once approved, you'll receive your trade license and other supporting documents, such as a Memorandum of Association (MOA).",
+      },
+      {
+        title: "Apply for Visas",
+        isPoints: false,
+        desc: "Apply for visas for yourself, employees, and dependents, if applicable. Ajman Free Zone facilitates visa processing.",
+      },
+      {
+        title: "Start Operations",
+        isPoints: false,
+        desc: "Once all approvals are complete, you can begin your business activities. Use the free zone's services and digital platforms to manage your operations efficiently.",
+      },
+    ],
+    sixthTitle: (
+      <Heading className="w-full !text-center">
+        Documents Required for{" "}
+        <span className="text-lime-500">Ajman Free Zone License</span>
+      </Heading>
+    ),
+    sixthTableHead: ["Document", "Details"],
+    sixthTableBody: [
+      {
+        title: "Passport Copy",
+        docs: ["Clear copy of the passport for all shareholders and managers."],
+      },
+      {
+        title: "Passport-Sized Photograph",
+        docs: ["Recent color photographs with a white background."],
+      },
+      {
+        title: "Visa Copy (if applicable)",
+        docs: [
+          "A valid UAE residence visa copy (if already residing in the UAE).",
+        ],
+      },
+      {
+        title: "Entry Stamp or Visit Visa Copy",
+        docs: [
+          "If not on a UAE residence visa, provide a copy of the entry stamp or visit visa.",
+        ],
+      },
+      {
+        title: "Emirates ID Copy (if applicable)",
+        docs: ["Copy of Emirates ID for UAE residents."],
+      },
+      {
+        title: "Proof of Address",
+        docs: [
+          "Utility bill or tenancy contract from the past three months (for international shareholders).",
+        ],
+      },
+      {
+        title: "Business Plan (for certain activities)",
+        docs: [
+          "A comprehensive outline of your business objectives and operational strategy.",
+        ],
+      },
+      {
+        title: "Trade Name Reservation Certificate",
+        docs: ["Proof of approved trade name reservation."],
+      },
+      {
+        title: "Memorandum of Association (MOA)",
+        docs: ["Drafted MOA specifying the company structure and roles."],
+      },
+      {
+        title: "No Objection Certificate (NOC)",
+        docs: [
+          "A letter from the current UAE employer permitting the individual to start a business (if employed).",
+        ],
+      },
+      {
+        title: "Power of Attorney (if applicable)",
+        docs: [
+          "Authorizing another individual to act on behalf of the business owner.",
+        ],
+      },
+    ],
+
+    tableFooter: "",
+    seventhTitle: "",
+    seventhPoints: [],
+  },
+  {
+    bannerTitle: "Launch Your Business with STRIP Freezone License",
+    bannerDesc:
+      "Ready to take your business to the next level? Get in touch with our team today to learn more about STRIP Freezone license services and how we can help you set up your business for success.",
+    name: "strip",
+    heroTitle: (
+      <Heading>
+        Start Your Business with{" "}
+        <span className="text-lime-500">STRIP Freezone</span> License
+      </Heading>
+    ),
+    heroDescription:
+      "Unlock the full potential of your business with a STRIP Freezone license. Whether you're a startup, SME, or multinational, we provide all the services to help you navigate the Freezone licensing process, ensuring that your business is set up for success in one of the most dynamic environments.",
+    heroImg: "/media/mainland/dubai.svg",
+    secondTitle: (
+      <Heading className="!text-center w-full">
+        Why Choose <span className="text-lime-500">Strip Free Zone?</span>{" "}
+      </Heading>
+    ),
+    secondSubDescription: "",
+    secondPoints: [
+      {
+        title: "100% Foreign Ownership",
+        icon: <FaPeopleGroup />,
+        desc: "Own and operate your business fully, with no need for a local partner.",
+      },
+      {
+        title: "Tax Incentives",
+        icon: <FaBusinessTime />,
+        desc: "Enjoy tax-free operations for a fixed period, with an option for renewal.",
+      },
+      {
+        title: "Flexible Business Structures",
+        icon: <MdIncompleteCircle />,
+        desc: "Choose from a variety of business license types, whether you're setting up as a sole proprietor, partnership, or corporation.",
+      },
+      {
+        title: "Simple Setup Process",
+        icon: <MdIncompleteCircle />,
+        desc: " Our expert team handles all paperwork and formalities, ensuring a smooth, hassle-free process.",
+      },
+      {
+        title: "Global Connectivity ",
+        icon: <MdIncompleteCircle />,
+        desc: "Located in one of the world’s most connected regions, STRIP Freezone provides easy access to international markets.",
+      },
+      {
+        title: "Business-Friendly Regulations",
+        icon: <MdIncompleteCircle />,
+        desc: "STRIP Freezone’s regulations are designed to help businesses grow, with quick approval timelines.",
+      },
+    ],
+    thirdTitle: (
+      <Heading className="w-full !text-center">
+        Different Types of Licenses Available in{" "}
+        <span className="text-lime-500">STRIP Free Zone</span>
+      </Heading>
+    ),
+    thirdSubDesc: "",
+    thirdPoints: [
+      <p key={0} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Business License</span> This
+        license is for companies engaging in commercial activities, such as
+        trading or providing services within the Freezone.
+      </p>,
+      <p key={1} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Industrial License</span>{" "}
+        Companies involved in manufacturing or industrial activities are
+        eligible for this license. It caters to businesses engaged in the
+        production, assembly, or development of technological products.
+      </p>,
+      <p key={2} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Technology License</span> This
+        is for businesses focused on technology-based activities, such as
+        software development, IT solutions, research, and tech startups. The
+        license supports innovative companies and startups within the tech
+        sector.
+      </p>,
+      <p key={3} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Service License</span> This
+        license is for companies offering specialized services, such as
+        consultancy, research, development, or any non-commercial service within
+        the park.
+      </p>,
+      <p key={4} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">
+          R&D License (Research and Development)
+        </span>{" "}
+        This is for companies involved specifically in research and development,
+        particularly in areas such as technology, innovation, engineering, and
+        scientific advancements. This license supports businesses with a strong
+        focus on R&D activities.
+      </p>,
+      <p key={5} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Start-up License</span>{" "}
+        Tailored for startups, this license is aimed at smaller businesses and
+        entrepreneurs, offering flexible packages and benefits to support
+        early-stage businesses and innovative projects.
+      </p>,
+      <p key={6} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">E-commerce License</span> For
+        businesses looking to operate entirely online, such as e-commerce
+        platforms or digital businesses, this license is available to facilitate
+        trade and online commerce activities.
+      </p>,
+      <p key={7} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Consultancy License</span>{" "}
+        Aimed at consultants offering professional advice in areas such as
+        technology, business strategy, management, and other specialized fields,
+        this license provides the necessary permissions for consulting
+        operations.
+      </p>,
+    ],
+    fourthTitle: (
+      <Heading className="w-full !text-center ">
+        Different Types of Licenses Available in{" "}
+        <span className="text-lime-500">STRIP Free Zone</span>
+      </Heading>
+    ),
+    fourthPoints: [
+      {
+        title: "Select the Type of License",
+        isPoints: false,
+        desc: "Choose from the different types of licenses offered by STRIP (e.g., business license, industrial license, technology license, R&D license, etc.).",
+      },
+      {
+        title: "Choose the Business Structure",
+        isPoints: false,
+        desc: "Decide on the legal structure of your business, such as:",
+      },
+      {
+        title: "Submit the Application",
+        isPoints: false,
+        desc: "Submit the application to STRIP Freezone authorities. Documents like Passport copies of shareholders and directors, Proof of address (residential or office) are required.",
+      },
+      {
+        title: "Business Name Reservation",
+        isPoints: false,
+        desc: "Submit a name reservation request for your business. The name must comply with STRIP Freezone's naming regulations and be unique within the freezone.",
+      },
+      {
+        title: "Sign the License Agreement",
+        isPoints: false,
+        desc: "Once the application and name reservation are approved, you will be asked to sign the license agreement with STRIP Freezone. This formalizes your registration within the free zone.",
+      },
+      {
+        title: "Office Space & Facility Setup",
+        isPoints: true,
+        desc: "Lease Office Space: If required, you will need to lease office space or coworking facilities within the STRIP Freezone. STRIP offers flexible office spaces, from small offices to large-scale facilities.",
+      },
+      {
+        title: "Obtain the License",
+        isPoints: false,
+        desc: "After completing all formalities, submitting the necessary documentation, and paying the required fees, STRIP will issue your business license.",
+      },
+    ],
+    sixthTitle: (
+      <Heading className="w-full !text-center">
+        Documents Required for{" "}
+        <span className="text-lime-500">STRIP Free Zone License</span>
+      </Heading>
+    ),
+    sixthTableHead: ["Document", "Description"],
+    sixthTableBody: [
+      {
+        title: "Passport Copies",
+        docs: [
+          "Clear copies of the passports of shareholders, directors, and partners.",
+        ],
+      },
+      {
+        title: "Proof of Address",
+        docs: [
+          "Recent utility bills or bank statements showing the residential address of the shareholders or directors.",
+        ],
+      },
+      {
+        title: "Business Plan",
+        docs: [
+          "A detailed business plan outlining the nature of the business, target market, and objectives (especially for tech or R&D-focused businesses).",
+        ],
+      },
+      {
+        title: "Completed Application Form",
+        docs: [
+          "The official application form provided by STRIP Freezone, filled with company details.",
+        ],
+      },
+      {
+        title: "Company Name Reservation",
+        docs: [
+          "The proposed company name, ensuring it complies with STRIP's naming regulations.",
+        ],
+      },
+      {
+        title: "No Objection Certificate (NOC)",
+        docs: [
+          "A NOC from a sponsor if the applicant is a UAE resident and holds a current UAE visa.",
+        ],
+      },
+      {
+        title: "Shareholders Agreement (if applicable)",
+        docs: [
+          "A signed agreement among the business partners or shareholders, if applicable.",
+        ],
+      },
+      {
+        title: "Lease Agreement (if applicable)",
+        docs: [
+          "Signed lease agreement for office space or virtual office services within STRIP Freezone.",
+        ],
+      },
+      {
+        title: "Bank Reference Letter",
+        docs: [
+          "A letter from your bank, confirming your financial standing (if required).",
+        ],
+      },
+      {
+        title: "Personal CVs of Shareholders/Directors",
+        docs: [
+          "Curriculum Vitae for key persons involved in the business (shareholders, directors).",
+        ],
+      },
+      {
+        title: "Trade License (if applicable)",
+        docs: [
+          "For businesses transferring from other free zones, a copy of the current trade license might be required.",
+        ],
+      },
+      {
+        title: "Certificate of Incorporation (if applicable)",
+        docs: [
+          "For businesses that are part of a larger group or already incorporated elsewhere.",
+        ],
+      },
+    ],
+
+    tableFooter: "",
+    seventhTitle: "",
+    seventhPoints: [],
+  },
+  {
+    bannerTitle: "Ready to establish your business in DAFZA? ",
+    bannerDesc:
+      "Our team of experts is here to assist you every step of the way. Get in touch with us today to learn more about our DAFZA Freezone license services and how we can help your business thrive in Dubai.",
+    name: "dafza",
+    heroTitle: (
+      <Heading>
+        Set up your business in the{" "}
+        <span className="text-lime-500">DAFZA Freezone License</span>
+      </Heading>
+    ),
+    heroDescription:
+      "Set up your business in one of the most prestigious and strategically located free zones in the UAE with our DAFZA Freezone license services. Dubai Airport Freezone (DAFZA) offers unmatched benefits for international and regional businesses, making it an ideal choice for companies seeking global connectivity and top-tier facilities.",
+    heroImg: "/media/mainland/dubai.svg",
+    secondTitle: (
+      <Heading className="!text-center w-full">
+        Why Choose <span className="text-lime-500">DAFZA Free Zone?</span>{" "}
+      </Heading>
+    ),
+    secondSubDescription: "",
+    secondPoints: [
+      {
+        title: "Strategic Location",
+        icon: <FaPeopleGroup />,
+        desc: "Located next to Dubai International Airport, DAFZA offers exceptional connectivity, facilitating fast and efficient trade and logistics for businesses involved in import/export and international operations.",
+      },
+      {
+        title: "100% Foreign Ownership",
+        icon: <FaBusinessTime />,
+        desc: "DAFZA allows 100% foreign ownership of businesses, giving you full control and independence.",
+      },
+      {
+        title: "Tax-Free Environment",
+        icon: <MdIncompleteCircle />,
+        desc: "Enjoy a tax-free setup with zero corporate tax and personal income tax for a renewable period of up to 50 years.",
+      },
+      {
+        title: "Fully Integrated Infrastructure",
+        icon: <MdIncompleteCircle />,
+        desc: "With world-class office spaces, advanced IT infrastructure, and good logistics support, DAFZA provides an ideal ecosystem for companies to thrive.",
+      },
+      {
+        title: "Easy Access to Markets",
+        icon: <MdIncompleteCircle />,
+        desc: "With proximity to global airports and sea ports, DAFZA offers great access to international markets, enhancing the potential for global trade.",
+      },
+    ],
+    thirdTitle: (
+      <Heading className="w-full !text-center">
+        Types of Licenses Available in{" "}
+        <span className="text-lime-500">DAFZA Free Zone</span>
+      </Heading>
+    ),
+    thirdSubDesc: "",
+    thirdPoints: [
+      <p key={0} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Commercial License</span>{" "}
+        Ideal for businesses engaged in the import, export, and distribution of
+        goods. This license allows companies to trade in a range of products and
+        goods within the free zone or internationally.
+      </p>,
+      <p key={1} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Service License</span>{" "}
+        Suitable for businesses providing professional or consulting services in
+        sectors like IT, marketing, legal, finance, or engineering.
+      </p>,
+      <p key={2} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Industrial License</span> This
+        license is for companies that engage in manufacturing, assembly, or
+        processing operations within DAFZA.
+      </p>,
+      <p key={3} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">E-Commerce License</span> A
+        specialized license designed for companies operating in e-commerce,
+        including those running online stores or providing online services.
+      </p>,
+      <p key={4} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Freelancer License</span> This
+        license is designed for individuals who wish to operate as freelancers
+        within various professional sectors. It is suitable for consultants,
+        writers, designers, developers, etc.
+      </p>,
+      <p key={5} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Technology License</span>{" "}
+        Specifically tailored for businesses in the technology and IT sector,
+        such as software development, research and development (R&D), and
+        tech-related services.
+      </p>,
+      <p key={6} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Holding Company License</span>{" "}
+        This license allows businesses to hold shares, assets, and investments
+        in other companies. Holding companies can manage and control
+        subsidiaries or assets within the UAE or abroad.
+      </p>,
+      <p key={7} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Creative Media License</span>{" "}
+        A specialized license designed for businesses in the media, advertising,
+        and entertainment industries.
+      </p>,
+      <p key={8} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Consultancy License</span>{" "}
+        This license is designed for businesses offering advisory and
+        consultancy services in sectors like management, finance, marketing, HR,
+        or logistics.
+      </p>,
+      <p key={9} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Logistics License</span> This
+        license caters to businesses engaged in logistics, supply chain
+        management, and transportation services. It includes warehousing,
+        packaging, and transportation operations.
+      </p>,
+      <p key={10} className="font-Satoshi text-lg">
+        <span className="font-Synonym font-[600]">Retail License</span> This
+        license is designed for retail businesses, allowing them to sell
+        products within the UAE or internationally. It includes the right to set
+        up a retail shop, online store, or operate from a kiosk within DAFZA.
+      </p>,
+    ],
+    fourthTitle: (
+      <Heading className="w-full !text-center ">
+        Business Setup Process for <span className="text-lime-500">DAFZA</span>{" "}
+        Free Zone License
+      </Heading>
+    ),
+    fourthPoints: [
+      {
+        title: "Initial Consultation",
+        isPoints: false,
+        desc: "Understand your business requirements, determine the most suitable license type, and discuss your specific needs (office space, visa requirements, etc.).",
+      },
+      {
+        title: "Choose Your License Type",
+        isPoints: false,
+        desc: "Select the appropriate license for your business activity (commercial, service, industrial, etc.).",
+      },
+      {
+        title: "Prepare and Submit Documentation",
+        isPoints: false,
+        desc: "Complete the necessary paperwork and provide supporting documents for company registration.",
+      },
+      {
+        title: "Approval and Payment of Fees",
+        isPoints: false,
+        desc: "Obtain official approval from DAFZA and pay the required fees. Once DAFZA reviews the submitted documents, they will issue an approval in principle. You will then need to pay the setup and license fees.",
+      },
+      {
+        title: "Sign Agreements",
+        isPoints: false,
+        desc: "Finalize agreements for office space, leasing, and services. Sign the lease agreement for your office or warehouse space (if applicable) within DAFZA.",
+      },
+      {
+        title: "Activate Business Operations",
+        isPoints: false,
+        desc: "After completing all the necessary formalities, your business will be officially set up and ready to operate. You can now begin trading, offering services, or conducting manufacturing operations based on your business type.",
+      },
+    ],
+    sixthTitle: (
+      <Heading className="w-full !text-center">
+        Documents Required for{" "}
+        <span className="text-lime-500">STRIP Free Zone License</span>
+      </Heading>
+    ),
+    sixthTableHead: ["Document", "Description"],
+    sixthTableBody: [
+      {
+        title: "Passport Copy",
+        docs: [
+          "Clear copy of the passport of all shareholders, directors, and managers.",
+        ],
+      },
+      {
+        title: "Visa Copies",
+        docs: ["For residents, a copy of valid UAE visas (if applicable)."],
+      },
+      {
+        title: "Proof of Address",
+        docs: [
+          "Utility bill, bank statement, or tenancy contract to verify the residential address of shareholders.",
+        ],
+      },
+      {
+        title: "Business Plan",
+        docs: [
+          "A brief business plan outlining your company’s activities, operations, and goals.",
+        ],
+      },
+      {
+        title: "No Objection Certificate (NOC)",
+        docs: [
+          "A letter of no objection from the current sponsor (if applicable).",
+        ],
+      },
+      {
+        title: "Legal Entity Documents",
+        docs: [
+          "Company’s Memorandum and Articles of Association, if applicable (for partnerships or corporations).",
+        ],
+      },
+      {
+        title: "Shareholder/Director Details",
+        docs: [
+          "List of shareholder(s) and director(s), including their roles, responsibilities, and ownership details.",
+        ],
+      },
+      {
+        title: "Company Name Reservation",
+        docs: ["Approval from DAFZA for the proposed company name."],
+      },
+      {
+        title: "Initial Approval from DAFZA",
+        docs: ["DAFZA's initial approval for business registration."],
+      },
+      {
+        title: "Lease Agreement",
+        docs: [
+          "Signed lease or rental agreement for office space within DAFZA (for businesses requiring physical offices).",
+        ],
+      },
+      {
+        title: "Visa Application Forms",
+        docs: [
+          "Completed visa application forms for employees, directors, and dependents.",
+        ],
+      },
+      {
+        title: "Bank Reference Letter",
+        docs: [
+          "A bank reference letter or financial statement showing the financial background of the shareholder.",
+        ],
+      },
+      {
+        title: "Authorization Letter",
+        docs: [
+          "An official letter of authorization to the representative handling the company setup.",
+        ],
+      },
+      {
+        title: "Memorandum of Understanding (MOU)",
+        docs: [
+          "For companies intending to establish joint ventures or partnership agreements.",
+        ],
+      },
+      {
+        title: "Activity Approval",
+        docs: [
+          "Approval for specific business activities if required (e.g., healthcare, education, etc.).",
+        ],
+      },
+    ],
+
+    tableFooter: "",
+    seventhTitle: "",
+    seventhPoints: [],
+  },
 ];
 
 export default data;
