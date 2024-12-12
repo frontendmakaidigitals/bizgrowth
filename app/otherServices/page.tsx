@@ -24,6 +24,12 @@ const MainPage = () => {
       return <OfficeSpace />;
     case "Product Registration":
       return <ProductRegistration />;
+    case "Design & Marketing Services":
+      return <DesignMarketing />;
+    case "HR Solution":
+      return <HrSolutions />;
+    case "Corporate Structuring":
+      return <CorporateStructuring />;
     default:
       return <div>No Data found</div>;
   }
@@ -861,7 +867,6 @@ const OfficeSpace = () => {
     },
   ];
 
-
   return (
     <div className="w-full">
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
@@ -1458,6 +1463,850 @@ const ProductRegistration = () => {
         title={"Ready to Register Your Product?"}
         desc={
           "Don’t let complex regulations slow you down. Partner with Milestone Homes to simplify your product registration process and bring your products to market quickly and efficiently."
+        }
+      />
+    </div>
+  );
+};
+const DesignMarketing = () => {
+  const benefits = [
+    {
+      title: "Access to Expertise",
+      description:
+        "Gain access to a team of expert professionals with diverse skills.",
+    },
+    {
+      title: "Cost Efficiency",
+      description:
+        "Save on the expenses of hiring and training an in-house team.",
+    },
+    {
+      title: "Scalability",
+      description:
+        "Easily scale your marketing efforts based on your business needs.",
+    },
+    {
+      title: "Focus on Core Activities",
+      description:
+        "Free up your resources to focus on your core business operations.",
+    },
+    {
+      title: "Fresh Perspectives",
+      description:
+        "Benefit from creative insights and strategies tailored to current market trends.",
+    },
+  ];
+
+  const services = [
+    {
+      category: "Branding & Identity",
+      description:
+        "Your brand is more than a logo; it’s an experience. We help define and design your brand’s identity with:",
+      offerings: [
+        "Logo Design",
+        "Brand Guidelines",
+        "Visual Identity Development",
+        "Naming and Tagline Creation",
+      ],
+    },
+    {
+      category: "Graphic Design",
+      description:
+        "From stunning visuals to user-friendly layouts, we create designs that captivate and convert. Our services include:",
+      offerings: [
+        "Marketing Collateral (brochures, flyers, posters)",
+        "Packaging Design",
+        "Infographics",
+        "Custom Illustrations",
+      ],
+    },
+    {
+      category: "Web Design & Development",
+      description:
+        "Your website is your digital storefront. We ensure it’s both functional and visually appealing with:",
+      offerings: [
+        "Responsive Website Design",
+        "E-commerce Solutions",
+        "UI/UX Design",
+        "SEO Optimization",
+      ],
+    },
+    {
+      category: "Digital Marketing",
+      description:
+        "In today’s digital landscape, a strong online presence is essential. We offer:",
+      offerings: [
+        "Social Media Marketing",
+        "Pay-Per-Click (PPC) Advertising",
+        "Email Marketing Campaigns",
+        "Content Creation & Strategy",
+      ],
+    },
+    {
+      category: "Marketing Strategy & Consulting",
+      description:
+        "Aligning your goals with effective strategies is our priority. We provide:",
+      offerings: [
+        "Market Analysis",
+        "Campaign Planning",
+        "Performance Analytics",
+        "Brand Positioning",
+      ],
+    },
+    {
+      category: "Creative Services",
+      description:
+        "Creative Services are the lifeblood of modern marketing. They involve conceptualization, design, and production of innovative ideas and materials to capture attention.",
+      offerings: [
+        "Copy Writing",
+        "Art Direction",
+        "Photography and Videography",
+        "Digital Content Creation",
+      ],
+    },
+  ];
+
+  const coreValues = [
+    {
+      value: "Creative Expertise",
+      description:
+        "A team of designers and marketers passionate about delivering excellence.",
+    },
+    {
+      value: "Tailored Solutions",
+      description:
+        "Customized strategies to meet your specific goals and audience.",
+    },
+    {
+      value: "Proven Results",
+      description:
+        "A track record of successful campaigns and satisfied clients.",
+    },
+    {
+      value: "End-to-End Services",
+      description:
+        "From concept to execution, we’re with you every step of the way.",
+    },
+  ];
+
+  return (
+    <div className="w-full">
+      <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="w-full">
+          <div>
+            <Heading>
+              Your <span className="text-lime-500">Creative Design</span> and{" "}
+              <span className="text-lime-500">Marketing</span> Partner-
+              BizGrowth
+            </Heading>
+          </div>
+
+          <p className="text-lg font-Satoshi mt-4">
+            At BizGrowth, we bring ideas to life with innovative design and
+            marketing solutions custom to your unique brand. Whether you’re a
+            startup looking to make a mark or an established business aiming to
+            elevate your presence, our team is here to craft impactful
+            strategies and visuals.
+          </p>
+          <Button className="mt-5">Contact us</Button>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <img src={"media/mainland/dubai.svg"} />
+        </div>
+      </div>
+
+      <div className="w-full container my-24">
+        <div>
+          <Heading className="!text-center w-full">
+            Why Outsource Marketing Services?
+          </Heading>
+        </div>
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+          {benefits.map((item, index) => (
+            <div
+              key={index}
+              className="w-full flex items-start gap-3 rounded-lg bg-lime-200 p-5"
+            >
+              <div>
+                <div className="size-6  mt-[1px] rounded-full">
+                  <img src={"media/mainland/checked.png"} />
+                </div>
+              </div>
+              <div>
+                <h2 className="font-SplineSans  font-[600] text-xl">
+                  {item.title}
+                </h2>
+                <p className="mt-1 font-Satoshi">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="bg-indigo-50 py-14 my-24">
+          <div className="w-full container  ">
+            <div>
+              <Heading className="!text-center w-full">
+                <span className="text-lime-500">Key</span> Components of{" "}
+                <span className="text-indigo-600">Corporate</span> Structuring
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-1 gap-7">
+              {services.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full border-b border-indigo-800/30 p-5"
+                >
+                  <div className="">
+                    <h2 className="font-SplineSans  font-[600] text-xl">
+                      <span className="text-indigo-900">
+                        {index + 1} {".)"}
+                      </span>{" "}
+                      &nbsp;
+                      {item.category}
+                    </h2>
+                    <div className={'ml-7'}>
+                      <p className="font-Satoshi mt-1">{item.description}</p>
+                      {item.offerings ? (
+                        <div className="mt-3">
+                          {item.offerings.map((point, id) => (
+                            <div key={id} className="flex items-start gap-3">
+                              <div className=" mt-2">
+                                <div className="size-2 bg-indigo-700 rounded-full" />
+                              </div>
+                              <div>
+                                <h3 className="text-lg font-Synonym font-[500]">
+                                  {point}
+                                </h3>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full container my-24">
+        <div>
+          <Heading className="!text-center w-full">
+            Why <span className="text-lime-500">Outsource Marketing</span>{" "}
+            Services?{" "}
+          </Heading>
+        </div>
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+          {coreValues.map((item, index) => (
+            <div
+              key={index}
+              className="w-full flex items-start gap-3 rounded-lg bg-lime-200 p-5"
+            >
+              <div>
+                <div className="size-6  mt-[1px] rounded-full">
+                  <img src={"media/mainland/checked.png"} />
+                </div>
+              </div>
+              <div>
+                <h2 className="font-SplineSans font-[600] text-xl">
+                  {item.value}
+                </h2>
+                <p className="mt-1 font-Satoshi">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Banner
+        title={"Let’s Collaborate"}
+        desc={
+          "Ready to transform your vision into reality? Let’s start a conversation. Reach out to us or fill out our online inquiry form to discuss your next project. Together, we’ll design success!"
+        }
+      />
+    </div>
+  );
+};
+const HrSolutions = () => {
+  const hrSolutions = [
+    {
+      service: "Standard Recruitment Processes",
+      description:
+        "Attract and retain top talent with a structured hiring strategy.",
+    },
+    {
+      service: "Compliance Assurance",
+      description:
+        "Stay ahead of labor laws and regulations to avoid penalties and maintain operational integrity.",
+    },
+    {
+      service: "Improved Employee Engagement",
+      description:
+        "Get a motivated and productive workforce through effective management.",
+    },
+    {
+      service: "Time and Cost Savings",
+      description:
+        "Let our experts handle HR complexities so you can focus on growing your business.",
+    },
+  ];
+  const hrServices = [
+    {
+      service: "Recruitment and Talent Acquisition",
+      icon: "/media/Will Formation icon/training.png",
+      description:
+        "Find the right talent with our data-driven recruitment strategies and thorough screening processes.",
+    },
+    {
+      service: "Onboarding and Training",
+      icon: "/media/Will Formation icon/onboarding.png",
+      description:
+        "Create a good onboarding experience and provide training programs to help new hires succeed.",
+    },
+    {
+      service: "Payroll and Benefits Administration",
+      icon: "/media/Will Formation icon/payroll.png",
+      description:
+        "Simplify payroll processes and design competitive benefits packages to attract and retain employees.",
+    },
+    {
+      service: "HR Compliance and Risk Management",
+      icon: "/media/Will Formation icon/warning.png",
+      description:
+        "Ensure your business complies with labor laws, industry standards, and workplace regulations.",
+    },
+    {
+      service: "Performance Management",
+      icon: "/media/Will Formation icon/growth.png",
+      description:
+        "Develop systems to monitor, evaluate, and improve employee performance effectively.",
+    },
+    {
+      service: "Employee Engagement and Retention Strategies",
+      icon: "/media/Will Formation icon/retention.png",
+      description:
+        "Build a positive workplace culture with initiatives that increase employee satisfaction and loyalty.",
+    },
+    {
+      service: "HR Technology Integration",
+      icon: "/media/Will Formation icon/hr.png",
+      description:
+        "Streamline operations with the latest HR software and tools for efficient workforce management.",
+    },
+  ];
+
+  const services = [
+    {
+      title: "Technology and IT",
+      img: "media/images/tech.jpg",
+    },
+    {
+      title: "Healthcare and Life Sciences",
+      img: "media/images/health.jpg",
+    },
+    {
+      title: "Retail and Hospitality",
+      img: "media/images/retail.jpg",
+    },
+    {
+      title: "Manufacturing and Logistics",
+      img: "media/images/logistic.jpg",
+    },
+    {
+      title: "Finance and Professional Services",
+      img: "media/images/finance.jpg",
+    },
+  ];
+  return (
+    <div className="w-full">
+      <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="w-full">
+          <div>
+            <Heading>
+              <span className="text-lime-500">HR Solutions</span> for Your
+              Business
+            </Heading>
+          </div>
+
+          <p className="text-lg font-Satoshi mt-4">
+            Human Resources (HR) management is vital for business growth,
+            enhancing productivity, and building a thriving workplace culture.
+            Our HR solutions are designed to support your business at every
+            stage, ensuring your workforce remains your most valuable asset.
+          </p>
+          <Button className="mt-5">Contact us</Button>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <img src={"media/mainland/dubai.svg"} />
+        </div>
+      </div>
+      <div>
+        <div>
+          <div className="w-full container my-24">
+            <div>
+              <Heading className="!text-center w-full">
+                Why Invest in Professional HR Solutions?
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+              {hrSolutions.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full flex items-start gap-3 rounded-lg bg-indigo-100 p-5"
+                >
+                  <div>
+                    <div className="size-6  mt-[1px] rounded-full">
+                      <img src={"media/mainland/checked.png"} />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="font-SplineSans  font-[600] text-xl">
+                      {item.service}
+                    </h2>
+                    <p className="mt-1 font-Satoshi">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <div className="w-full container my-24">
+            <div>
+              <Heading className="!text-center w-full">
+                Our <span className="text-lime-500">Product Registration</span>{" "}
+                Services
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+              {hrServices.map((item, index) => (
+                <div key={index} className="w-full rounded-lg bg-lime-200 p-5">
+                  <div>
+                    <div className="size-14 p-3 overflow-hidden bg-lime-400 rounded-full">
+                      <img src={item?.icon} />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="font-SplineSans mt-6 font-[600] text-xl">
+                      {item.service}
+                    </h2>
+                    <p className="mt-1 font-Satoshi">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div className="w-full container my-24">
+            <div>
+              <Heading className="!text-center w-full">
+                <span className="text-lime-500">Industries</span> We Serve:
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+              {services.map((item, index) => (
+                <div key={index} className="w-full rounded-lg bg-lime-100">
+                  <div>
+                    <div>
+                      <div className={"aspect-[4/31] w-full"}>
+                        <img
+                          className="w-full h-full object-cover"
+                          src={item.img}
+                        />
+                      </div>
+                    </div>
+                    <h2 className="font-SplineSans font-[600] p-6  text-xl">
+                      {item.title}
+                    </h2>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Banner
+        title={"Ready to Register Your Product?"}
+        desc={
+          "Don’t let complex regulations slow you down. Partner with Milestone Homes to simplify your product registration process and bring your products to market quickly and efficiently."
+        }
+      />
+    </div>
+  );
+};
+const CorporateStructuring = () => {
+  const corporateStructuringBenefits = [
+    {
+      benefit: "Navigating Legal and Regulatory Frameworks",
+      icon: "media/Will Formation icon/directions.png",
+      description:
+        "Corporate structuring ensures your business complies with the specific legal requirements in the UAE business environment, whether you are seeking to operate in the local market or internationally.",
+    },
+    {
+      benefit: "Tax Efficiency",
+      icon: "media/Will Formation icon/tax.png",
+      description:
+        "One of the major advantages of doing business in the UAE is its tax benefits. With no federal corporate tax on most businesses and only a recently introduced tax on specific sectors, structuring your company correctly can ensure that you are fully capitalizing on these benefits.",
+    },
+    {
+      benefit: "Asset Protection and Risk Management",
+      icon: "media/Will Formation icon/shield.png",
+      description:
+        "In the UAE, businesses can benefit from liability protection, but it’s important to set up the correct structure to shield assets and mitigate risks. Whether you are setting up a limited liability company (LLC), a joint venture, or a free zone company, structuring your business properly helps protect your assets.",
+    },
+    {
+      benefit: "Flexibility and Scalability",
+      icon: "media/Will Formation icon/growth.png",
+      description:
+        "As the UAE is a hub for international trade and investment, having a flexible corporate structure can facilitate easier expansion into global markets. Depending on the nature of your business, structuring it for scalability can help you take advantage of the growing opportunities within the region.",
+    },
+    {
+      benefit: "Enhanced Credibility and Business Relationships",
+      icon: "media/Will Formation icon/magic-wand.png",
+      description:
+        "Proper structuring can also boost your business’s credibility in the eyes of investors, customers, and partners. The UAE is known for its strong governance standards, and having a well-thought-out structure signals professionalism.",
+    },
+    {
+      benefit: "Compliance with Local and International Standards",
+      icon: "media/Will Formation icon/check.png",
+      description:
+        "The UAE is a signatory to various international agreements and conventions. With the introduction of laws such as the Economic Substance Regulations and the Common Reporting Standard (CRS), ensuring your corporate structure complies with both local and international standards is important for avoiding penalties and ensuring smooth operations.",
+    },
+    {
+      benefit: "Succession Planning",
+      icon: "media/Will Formation icon/planning.png",
+      description:
+        "Corporate structuring is also critical when it comes to succession planning. By choosing the right structure, businesses can ensure continuity, proper transfer of ownership, and protection for family-owned enterprises.",
+    },
+  ];
+  const businessServices = [
+    {
+      service: "Business Entity Formation",
+      description:
+        "Choose the right legal entity (LLC, Corporation, Partnership, etc.) for your business goals.",
+    },
+    {
+      service: "Mergers & Acquisitions",
+      description:
+        "Structuring transactions to ensure tax efficiency, regulatory compliance, and smooth integration.",
+    },
+    {
+      service: "Joint Ventures & Strategic Alliances",
+      description:
+        "Design the right structure for collaborative efforts while protecting each party's interests.",
+    },
+    {
+      service: "Tax Optimization",
+      description:
+        "Ensure your structure aligns with the most efficient tax strategy.",
+    },
+    {
+      service: "Global Structuring",
+      description:
+        "Expand internationally with a structure that meets local and global requirements.",
+    },
+    {
+      service: "Restructuring & Reorganization",
+      description:
+        "Restructure or reorganize your corporate structure for growth, debt management, or succession planning.",
+    },
+  ];
+
+  const corporateStructure = [
+    {
+      title: "Ownership structure",
+      points: [
+        {
+          title: "Shareholding:",
+          desc: "One of the most essential components of corporate structuring is determining how ownership will be distributed among the company’s stakeholders. This includes deciding the allocation of Shares Voting Rights, and Profit-Sharing Agreements.",
+        },
+        {
+          title: "Joint Ventures and Partnerships:",
+          desc: "Collaborations with other businesses often require careful structuring to manage risks and align objectives. Key elements include Partner Roles and Contributions, Risk Sharing and Profit Distribution, and Exit Strategy.",
+        },
+      ],
+    },
+    {
+      title: "Legal Entity Selection",
+      desc: "Dubai offers a variety of legal structures for businesses, each with its own set of advantages, limitations, and regulatory requirements.",
+      points: [
+        {
+          title: "Mailnland",
+          desc: " Allows businesses to operate across the UAE and internationally but typically requires a local sponsor for foreign ownership.",
+        },
+        {
+          title: "Free Zone",
+          desc: "Ideal for companies that want to operate in a specific economic sector and require 100% foreign ownership, but usually limits business activities to within the free zone or specific regions.",
+        },
+        {
+          title: "Offshore",
+          desc: " Offers flexibility in international business operations, with the benefit of tax efficiency, but generally does not allow operations in the UAE market.",
+        },
+        {
+          title: "LLC",
+          desc: " Offers liability protection for owners and flexibility in management, ideal for businesses seeking operations in the UAE mainland.",
+        },
+        {
+          title: "Branch Office",
+          desc: "Allows foreign companies to establish a presence in Dubai without forming a new entity, but may have more restrictions.",
+        },
+        {
+          title: "Representative Office",
+          desc: " Primarily used for marketing, liaison, and research, but not for conducting business or generating income.",
+        },
+      ],
+    },
+    {
+      title: "Tax Planning",
+      desc: "While Dubai provides a favorable tax environment, businesses must still engage in thoughtful tax planning to optimize financial outcomes. This involves minimizing Tax Liabilities, Regulatory Compliance, VAT Compliance, VAT Registration, VAT Reporting and Compliance",
+    },
+    {
+      title: "Organizational Chart",
+      desc: "A well-defined organizational chart is essential for clear communication and operational efficiency. It includes Roles and Responsibilities, Reporting Structure, Support for Strategic Goals, Corporate Governance",
+    },
+    {
+      title: "Financial Structuring",
+      desc: "The capital structure is crucial for determining the company’s financial stability and growth potential. Ensuring the company has sufficient liquidity to meet its financial obligations and fund growth initiatives is a critical part of corporate structuring",
+    },
+  ];
+
+  const corporateBenefits = [
+    {
+      benefit: "Liability Protection",
+      description:
+        "Separating personal and business assets by forming a corporation (e.g., LLC, C-corp) protects shareholders or owners from personal liability for business debts and obligations.",
+    },
+    {
+      benefit: "Tax Optimization",
+      description:
+        "Corporations can take advantage of various tax benefits, including deductions, lower corporate tax rates, and opportunities to defer taxes.",
+    },
+    {
+      benefit: "Enhanced Credibility",
+      description:
+        "A well-structured corporation often appears more professional and credible to investors, customers, and partners, facilitating trust and growth.",
+    },
+    {
+      benefit: "Access to Capital",
+      description:
+        "Corporate entities, especially those with a solid structure, find it easier to attract investment, secure loans, or issue shares.",
+    },
+    {
+      benefit: "Operational Efficiency",
+      description:
+        "Clear roles, responsibilities, and hierarchies within the corporate structure streamline decision-making and improve overall efficiency.",
+    },
+    {
+      benefit: "Strategic Growth and Scalability",
+      description:
+        "Structuring facilitates mergers, acquisitions, and expansion into new markets by allowing clear integration processes and defined operational boundaries.",
+    },
+    {
+      benefit: "Continuity and Succession Planning",
+      description:
+        "Corporations have perpetual existence, meaning they continue to operate independently of changes in ownership or management.",
+    },
+    {
+      benefit: "Risk Mitigation",
+      description:
+        "Businesses can reduce financial and operational risks by diversifying operations across different legal entities or jurisdictions.",
+    },
+    {
+      benefit: "Compliance with Regulations",
+      description:
+        "A structured corporation can better navigate and adhere to local and international laws, reducing the risk of penalties.",
+    },
+    {
+      benefit: "Intellectual Property Protection",
+      description:
+        "Corporate structuring allows businesses to house intellectual property separately, safeguarding critical assets.",
+    },
+    {
+      benefit: "Employee Attraction and Retention",
+      description:
+        "Offering shares or stock options within a corporate structure can help attract and retain top talent.",
+    },
+    {
+      benefit: "Tailored Governance",
+      description:
+        "Structuring provides an opportunity to implement specific governance policies that align with the company’s goals, ensuring accountability and ethical practices.",
+    },
+  ];
+
+  return (
+    <div className="w-full">
+      <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="w-full">
+          <div>
+            <Heading>
+              Unlock the <span className={"text-lime-500"}>Full Potential</span>{" "}
+              of Your Business
+            </Heading>
+          </div>
+
+          <p className="text-lg font-Satoshi mt-4">
+            Whether you're a startup, an expanding business, or a large
+            enterprise, our Corporate Structuring Services help you design and
+            implement the ideal structure to optimize operations, reduce risks,
+            and maximize value.
+          </p>
+          <Button className="mt-5">Contact us</Button>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <img src={"media/mainland/dubai.svg"} />
+        </div>
+      </div>
+      <div>
+        <div>
+          <div className="w-full container my-24">
+            <div>
+              <Heading className="!text-center w-full">
+                Why <span className="text-lime-500">Corporate Structuring</span>{" "}
+                Matters
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-7">
+              {corporateStructuringBenefits.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full  rounded-lg bg-indigo-100 p-5"
+                >
+                  <div>
+                    <div className="size-14 p-3 bg-indigo-300 flex justify-center items-center rounded-full">
+                      <img src={item.icon} />
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <h2 className="font-SplineSans  font-[600] text-xl">
+                      {item.benefit}
+                    </h2>
+                    <p className="mt-1 font-Satoshi">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div className="w-full container my-24">
+            <div>
+              <Heading className="!text-center w-full">
+                Why <span className="text-lime-500">Corporate Structuring</span>{" "}
+                Matters
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-7">
+              {businessServices.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full  rounded-lg bg-indigo-100 p-5"
+                >
+                  <div className="">
+                    <h2 className="font-SplineSans  font-[600] text-xl">
+                      {item.service}
+                    </h2>
+                    <p className="mt-1 font-Satoshi">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="bg-indigo-50 py-14 my-24">
+          <div className="w-full container  ">
+            <div>
+              <Heading className="!text-center w-full">
+                Key Components of Corporate Structuring
+              </Heading>
+            </div>
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-1 gap-7">
+              {corporateStructure.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full border-b border-indigo-800/30 p-5"
+                >
+                  <div className="">
+                    <h2 className="font-SplineSans  font-[600] text-xl">
+                      {item.title}
+                    </h2>
+                    {item.points ? (
+                      <div className="mt-3">
+                        {item.points.map((point, id) => (
+                          <div key={id} className="flex items-start gap-3">
+                            <div className=" mt-2">
+                              <div className="size-2 bg-indigo-700 rounded-full" />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-Synonym font-[500]">
+                                {point.title}
+                              </h3>
+                              <p>{point.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="mt-3">{item.desc}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className=" my-24">
+          <div className="w-full container  ">
+            <div>
+              <Heading className="!text-center w-full">
+                Benefits of Corporate Structuring
+              </Heading>
+            </div>
+            f
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
+              {corporateBenefits.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full flex items-start gap-3 rounded-lg bg-indigo-100 p-5"
+                >
+                  <div>
+                    <div className="size-6  mt-[1px] rounded-full">
+                      <img src={"media/mainland/checked.png"} />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="font-SplineSans font-[600] text-xl">
+                      {item.benefit}
+                    </h2>
+                    <p className="mt-1 font-Satoshi">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Banner
+        title={"Get Started Today"}
+        desc={
+          "Ready to structure your business for success? Contact us to schedule a consultation and learn how our corporate structuring services can unlock your company’s full potential."
         }
       />
     </div>
