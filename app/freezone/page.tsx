@@ -135,8 +135,17 @@ const MainPage = () => {
               }`}
             >
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
-              <p className="font-SplineSans font-[500] text-xl">{item.title}</p>
+              <p className="font-SplineSans font-[500] text-xl mt-3">
+                {item.title}
+              </p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
+              {item.isPoints &&
+                (item as { points: string[] }).points?.map((point, id) => (
+                  <div className="flex items-start gap-2" key={id}>
+                    <div> <div className="size-2 mt-2 bg-lime-700 rounded-full" /></div>
+                    {point}
+                  </div>
+                ))}
             </div>
           ))}
         </div>

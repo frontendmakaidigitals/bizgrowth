@@ -2068,7 +2068,7 @@ const data = [
     heroImg: "/media/mainland/dubai.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
-        Why Choose <span className="text-lime-500">Strip Free Zone?</span>{" "}
+        Why Choose <span className="text-lime-500">STRIP Free Zone?</span>{" "}
       </Heading>
     ),
     secondSubDescription: "",
@@ -2167,7 +2167,7 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Different Types of Licenses Available in{" "}
+        Business Setup Process for {" "}
         <span className="text-lime-500">STRIP Free Zone</span>
       </Heading>
     ),
