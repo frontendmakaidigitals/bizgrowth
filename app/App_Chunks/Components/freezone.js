@@ -2414,8 +2414,8 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Business Setup Process for <span className="text-lime-500">DAFZA</span>{" "}
-        Free Zone License
+        Business Setup Process for{" "}
+        <span className="text-lime-500">DAFZA Free Zone License</span>{" "}
       </Heading>
     ),
     fourthPoints: [
@@ -2453,7 +2453,7 @@ const data = [
     sixthTitle: (
       <Heading className="w-full !text-center">
         Documents Required for{" "}
-        <span className="text-lime-500">STRIP Free Zone License</span>
+        <span className="text-lime-500">Dafza Free Zone License</span>
       </Heading>
     ),
     sixthTableHead: ["Document", "Description"],
