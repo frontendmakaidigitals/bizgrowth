@@ -418,7 +418,7 @@ const CryptoVara = () => {
               in this forward-thinking market, businesses must comply with
               regulatory standards set by the Virtual Assets Regulatory
               Authority (VARA).The Virtual Assets Regulatory Authority (VARA) is
-              the dedicated regulator overseeing Dubai's virtual asset sector.
+              the dedicated regulator overseeing Dubai`s virtual asset sector.
               Established to promote transparency, investor protection, and
               innovation, VARA sets the standards for crypto licensing and
               operations in the UAE.
@@ -449,7 +449,7 @@ const CryptoVara = () => {
                     <div className="size-2 bg-lime-950 rounded-full" />
                   </div>
                   <p className="font-Satoshi">
-                    Access to the region's growing virtual assets market.
+                    Access to the region`s growing virtual assets market.
                   </p>
                 </div>
               </div>
@@ -649,7 +649,7 @@ const CryptoVara = () => {
                 <div className="size-2 bg-lime-950 rounded-full" />
               </div>
               <p className="font-Satoshi font-[400]">
-                Access to the region's growing virtual assets market.
+                Access to the region`s growing virtual assets market.
               </p>
             </div>
           ))}
@@ -842,7 +842,7 @@ const TradeFinancial = () => {
           The UAE is a global trading hub, offering opportunities for businesses
           to expand across borders. With its prime location, advanced
           infrastructure, and business-friendly policies, trade financing is
-          pivotal in supporting the nation's import-export ecosystem. Trade
+          pivotal in supporting the nation`s import-export ecosystem. Trade
           financing involves financial instruments and services that facilitate
           international and domestic trade. It helps businesses manage cash
           flow, mitigate risks, and ensure seamless transactions between buyers
@@ -1269,7 +1269,7 @@ const CommercialFinancing = () => {
               </Heading>
               <p className="font-Satoshi mt-5 text-xl">
                 At BizGrowth, we specialize in providing innovative commercial
-                financing solutions to businesses across the UAE. Whether you're
+                financing solutions to businesses across the UAE. Whether you`re
                 a small startup or a large enterprise, we offer flexible
                 financing options designed to help you grow and succeed in the
                 dynamic UAE market.

@@ -861,22 +861,7 @@ const OfficeSpace = () => {
     },
   ];
 
-  const [currentStep, setCurrentStep] = useState(0);
-  const stepsRefs = useRef<HTMLDivElement[]>([]);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
-      for (let i = 0; i < stepOffsets.length; i++) {
-        if (scrollPosition >= stepOffsets[i] - 200) {
-          setCurrentStep(i);
-        }
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <div className="w-full">
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
@@ -1297,7 +1282,7 @@ const ProductRegistration = () => {
           <p className="text-lg font-Satoshi mt-4">
             We specialize in providing seamless product registration services to
             help businesses ensure compliance, and launch their products.
-            Whether you're entering new markets or introducing innovative
+            Whether you`re entering new markets or introducing innovative
             products, we are here to handle the complexities for you.
           </p>
           <Button className="mt-5">Contact us</Button>
