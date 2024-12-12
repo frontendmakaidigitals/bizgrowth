@@ -635,7 +635,7 @@ const Attestation = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Our Services Include
+                Our <span className="text-lime-500">Services</span> Include
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-7">
@@ -703,7 +703,7 @@ const Attestation = () => {
       </div>
       <div className="container w-full my-24">
         <Heading className="!text-center w-full">
-          Why Choose Our <span className="text-lime-500">PRO</span> Services?
+          Why Choose Our <span className="text-lime-500">Services?</span>
         </Heading>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-7 mt-10">
@@ -895,9 +895,10 @@ const OfficeSpace = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Why Choose Office Space in the UAE?
+                Why Choose <span className={"text-lime-500"}>Office Space</span>{" "}
+                in the UAE?
               </Heading>
-              <p className="text-center font-Satoshi">
+              <p className="text-center mt-2 font-Satoshi">
                 The UAE is a global hub for innovation, commerce, and
                 connectivity, making it an ideal location for businesses of all
                 sizes.
@@ -928,11 +929,13 @@ const OfficeSpace = () => {
         <div>
           <div className="w-full container my-24">
             <div>
-              <Heading className="!text-center w-full">Our Services</Heading>
+              <Heading className="!text-center w-full">
+                Our <span className="text-lime-500">Services</span>
+              </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
               {officeServices.map((item, index) => (
-                <div key={index} className="p-5 bg-lime-200 rounded-xl">
+                <div key={index} className="p-5 bg-lime-100 rounded-xl">
                   <h1 className="text-xl font-SplineSans text-lime-950 font-[600]">
                     {item.title}
                   </h1>
@@ -950,7 +953,8 @@ const OfficeSpace = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Why Office Space Matters in the UAE?
+                Why <span className="text-lime-500"> Office Space</span> Matters
+                in the UAE?
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -980,7 +984,7 @@ const OfficeSpace = () => {
       <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
-          <span className="text-lime-500">Crypto Registration</span> in the UAE
+          <span className="text-lime-500">Setting up an Office</span> in the UAE
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
           <thead className="w-full  bg-lime-200 ">
@@ -1388,8 +1392,8 @@ const ProductRegistration = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Steps for <span className="text-lime-500">Crypto</span> and{" "}
-                <span className="text-lime-500">VARA Registration</span>
+                <span className="text-lime-500"> Product Registration</span>{" "}
+                Process{" "}
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 gap-5">
@@ -1422,7 +1426,7 @@ const ProductRegistration = () => {
       <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
-          <span className="text-lime-500">Crypto Registration</span> in the UAE
+          <span className="text-lime-500"> Product Registration</span>
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
           <thead className="w-full  bg-lime-200 ">
@@ -1595,8 +1599,8 @@ const DesignMarketing = () => {
         <div className="w-full">
           <div>
             <Heading>
-              Your <span className="text-lime-500">Creative Design</span> and{" "}
-              <span className="text-lime-500">Marketing</span> Partner-
+              Your <span className="text-indigo-500">Creative Design</span> and{" "}
+              <span className="text-lime-500">Marketing Partner</span> -
               BizGrowth
             </Heading>
           </div>
@@ -1618,7 +1622,8 @@ const DesignMarketing = () => {
       <div className="w-full container my-24">
         <div>
           <Heading className="!text-center w-full">
-            Why Outsource Marketing Services?
+            Why Outsource{" "}
+            <span className="text-lime-500">Marketing Services?</span>
           </Heading>
         </div>
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1648,8 +1653,8 @@ const DesignMarketing = () => {
           <div className="w-full container  ">
             <div>
               <Heading className="!text-center w-full">
-                <span className="text-lime-500">Key</span> Components of{" "}
-                <span className="text-indigo-600">Corporate</span> Structuring
+                Our <span className="text-indigo-600">Design & Marketing</span>{" "}
+                Services
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-1 gap-7">
@@ -1666,7 +1671,7 @@ const DesignMarketing = () => {
                       &nbsp;
                       {item.category}
                     </h2>
-                    <div className={'ml-7'}>
+                    <div className={"ml-7"}>
                       <p className="font-Satoshi mt-1">{item.description}</p>
                       {item.offerings ? (
                         <div className="mt-3">
@@ -1696,8 +1701,7 @@ const DesignMarketing = () => {
       <div className="w-full container my-24">
         <div>
           <Heading className="!text-center w-full">
-            Why <span className="text-lime-500">Outsource Marketing</span>{" "}
-            Services?{" "}
+            Why <span className="text-lime-500">Choose us?</span>
           </Heading>
         </div>
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1849,7 +1853,8 @@ const HrSolutions = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Why Invest in Professional HR Solutions?
+                Why Invest in Professional{" "}
+                <span className="text-indigo-500">HR Solutions?</span>
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1881,8 +1886,7 @@ const HrSolutions = () => {
           <div className="w-full container my-24">
             <div>
               <Heading className="!text-center w-full">
-                Our <span className="text-lime-500">Product Registration</span>{" "}
-                Services
+                Our <span className="text-lime-500">HR Solutions</span> Services
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1918,7 +1922,7 @@ const HrSolutions = () => {
                 <div key={index} className="w-full rounded-lg bg-lime-100">
                   <div>
                     <div>
-                      <div className={"aspect-[4/31] w-full"}>
+                      <div className={"aspect-[4/3] w-full"}>
                         <img
                           className="w-full h-full object-cover"
                           src={item.img}
@@ -2231,7 +2235,8 @@ const CorporateStructuring = () => {
           <div className="w-full container  ">
             <div>
               <Heading className="!text-center w-full">
-                Key Components of Corporate Structuring
+                Key <span className="text-lime-500">Components</span> of{" "}
+                <span className="text-indigo-500">Corporate Structuring</span>
               </Heading>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-1 gap-7">
@@ -2275,7 +2280,8 @@ const CorporateStructuring = () => {
           <div className="w-full container  ">
             <div>
               <Heading className="!text-center w-full">
-                Benefits of Corporate Structuring
+                Benefits of{" "}
+                <span className="text-lime-500">Corporate Structuring</span>
               </Heading>
             </div>
             f
