@@ -97,16 +97,16 @@ const Footer: React.FC = () => {
         <h2 className="text-lg font-semibold font-Satoshi text-[#10220a] dark:text-slate-200">
           {menu.title}
         </h2>
-        <ul className="mt-5 list-disc space-y-4">
+        <ul className="mt-5 ml-3 list-disc space-y-4">
           {menu.menus.map((item: any, index) => (
-            <li key={index} className="px-4 text-[#10220a]">
+            <li key={index} className="px-1 text-[#10220a]">
               <Link
                 href={
                   typeof item.href === "string"
                     ? item.href
                     : { pathname: item.href.pathname, query: item.href.query }
                 }
-                className="rounded-xl px-2 py-1 text-[#10220a] hover:bg-[#aed581] hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                className="rounded-xl py-1 text-[#10220a] hover:bg-[#aed581] hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
               >
                 {item.label}
               </Link>
