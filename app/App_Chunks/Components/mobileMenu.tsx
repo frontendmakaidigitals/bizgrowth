@@ -160,8 +160,10 @@ const AccordionMenu = ({
                           onClick={() => {
                             setTimeout(() => setShowMenu(false), 500);
                           }}
+                          className="flex items-center gap-2"
                         >
                           {point}
+                          <RiArrowRightUpLine />
                         </Link>
                       </div>
                     )}
