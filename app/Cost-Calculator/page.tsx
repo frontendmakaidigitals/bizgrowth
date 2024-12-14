@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Heading from "@/app/App_Chunks/Components/Heading";
 import Button from "@/app/App_Chunks/Components/Button";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/select";
 
 import FourthSection from "../App_Chunks/Components/FourthSection";
+import Banner from "../App_Chunks/Components/Banner";
 
 const Page = () => {
   const businessActivities = [
@@ -87,6 +89,126 @@ const Page = () => {
       icon: "",
     },
   ];
+  interface ErrorState {
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    visas: string;
+    businessDescription: string;
+    businessActivity: string;
+  }
+  const [formData, setFormData] = useState<ErrorState>({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    visas: "",
+    businessDescription: "",
+    businessActivity: "",
+  });
+
+  // State for error messages
+
+  const [errors, setErrors] = useState<ErrorState>({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    visas: "",
+    businessDescription: "",
+    businessActivity: "",
+  });
+
+  // Handle input change
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    // Update the form data
+    setFormData({ ...formData, [name]: value });
+
+    // Remove the specific error for the field being changed
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "", // Clears the error for the specific field
+    }));
+  };
+
+  // Validation logic
+  const validate = () => {
+    let formErrors: {
+      firstName: string;
+      lastName: string;
+      phone: string;
+      email: string;
+      visas: string;
+      businessDescription: string;
+      businessActivity: string;
+    } = {
+      firstName: "",
+      lastName: "",
+      phone: "",
+      email: "",
+      visas: "",
+      businessDescription: "",
+      businessActivity: "",
+    };
+    let isValid = true;
+
+    if (!formData.firstName) {
+      formErrors.firstName = "First name is required.";
+      isValid = false;
+    }
+
+    if (!formData.lastName) {
+      formErrors.lastName = "Last name is required.";
+      isValid = false;
+    }
+
+    if (!formData.phone || !/^\d{10}$/.test(formData.phone)) {
+      formErrors.phone = "Please enter a valid phone number (10 digits).";
+      isValid = false;
+    }
+
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+      formErrors.email = "Please enter a valid email address.";
+      isValid = false;
+    }
+
+    if (
+      !formData.visas ||
+      isNaN(parseInt(formData.visas, 10)) ||
+      parseInt(formData.visas, 10) <= 0
+    ) {
+      formErrors.visas = "Please enter a valid number of visas.";
+      isValid = false;
+    }
+
+    if (!formData.businessActivity) {
+      formErrors.businessActivity = "Please select a business activity.";
+      isValid = false;
+    }
+
+    setErrors(formErrors);
+    return isValid;
+  };
+  const handleBusinessActivityChange = (value: string) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      businessActivity: value,
+    }));
+  };
+
+  // Handle form submit
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validate()) {
+      // Form is valid, proceed with further actions (e.g., calculation, API call)
+      console.log("Form submitted", formData);
+    }
+  };
   return (
     <div className="w-full mt-16 ">
       <div className={`container w-full`}>
@@ -116,7 +238,7 @@ const Page = () => {
               "w-full bg-indigo-50 transition-all duration-300 hover:shadow-md rounded-xl p-7 font-SplineSans"
             }
           >
-            <form className="w-full">
+            <form className="w-full" onSubmit={handleSubmit}>
               <div>
                 <h2
                   className={
@@ -128,32 +250,63 @@ const Page = () => {
               </div>
 
               <div
-                className={"grid  mt-4 grid-cols-1  lg:grid-cols-2 mb-4 gap-4"}
+                className={"grid mt-4 grid-cols-1 lg:grid-cols-2 mb-3 gap-4"}
               >
-                <input
-                  placeholder={"First name*"}
-                  className={
-                    " py-2 border border-lime-300 font-Satoshi  placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm px-5 rounded-lg "
-                  }
-                />
-                <input
-                  placeholder={"Last name*"}
-                  className={
-                    " py-2 border border-lime-300 font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm px-5 rounded-lg "
-                  }
-                />
+                <div className="relative">
+                  <input
+                    name="firstName"
+                    placeholder={"First name*"}
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className={`py-2 border ${
+                      errors.firstName ? "border-red-500" : "border-lime-300"
+                    }  font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm w-full px-5 rounded-lg`}
+                  />
+                  {errors.firstName && (
+                    <span className="text-red-500  text-sm">
+                      {errors.firstName}
+                    </span>
+                  )}
+                </div>
+
+                <div className=" w-full">
+                  <input
+                    name="lastName"
+                    placeholder={"Last name*"}
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className={`py-2 border ${
+                      errors.lastName ? "border-red-500" : "border-lime-300"
+                    }  font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm w-full px-5 rounded-lg`}
+                  />
+                  {errors.lastName && (
+                    <span className="text-red-500 text-sm">
+                      {errors.lastName}
+                    </span>
+                  )}
+                </div>
               </div>
 
-              <div className={"grid grid-cols-1  lg:grid-cols-2 mb-4 gap-4"}>
+              <div className={"grid grid-cols-1 lg:grid-cols-2 mb-3 gap-4"}>
                 <div className="w-full">
-                  <Select>
-                    <SelectTrigger className="w-full  h-10 bg-gray-50 text-indigo-950  font-[400]  border-lime-300 border focus:outline-indigo-300 rounded-lg ">
+                  <Select
+                    value={formData.businessActivity}
+                    onValueChange={handleBusinessActivityChange}
+                    name="businessActivity"
+                  >
+                    <SelectTrigger
+                      className={`w-full h-10 bg-gray-50 text-indigo-950 font-[400] ${
+                        errors.businessActivity
+                          ? "border-red-500"
+                          : "border-lime-300"
+                      } border focus:outline-indigo-300 rounded-lg`}
+                    >
                       <SelectValue
                         className="placehodler:text-slate-600"
                         placeholder="Select Business Activity"
                       />
                     </SelectTrigger>
-                    <SelectContent className=" bg-indigo-100  text-slate-950">
+                    <SelectContent className="bg-indigo-100 text-slate-950">
                       <SelectGroup>
                         {businessActivities.map((activity, index) => (
                           <SelectItem key={index} value={activity}>
@@ -163,41 +316,84 @@ const Page = () => {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  {errors.businessActivity && (
+                    <span className="text-red-500 text-sm">
+                      {errors.businessActivity}
+                    </span>
+                  )}
                 </div>
-                <input
-                  type="number"
-                  placeholder={"Phone*"}
-                  className={
-                    " py-2 border border-lime-300 font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm px-5 rounded-lg "
-                  }
-                />
+
+                <div className="w-full">
+                  <input
+                    name="phone"
+                    type="number"
+                    placeholder={"Phone*"}
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className={`py-2 border ${
+                      errors.phone ? "border-red-500" : "border-lime-300"
+                    }  font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm w-full px-5 rounded-lg`}
+                  />
+                  {errors.phone && (
+                    <span className="text-red-500 text-sm">{errors.phone}</span>
+                  )}
+                </div>
               </div>
 
-              <div className={"grid grid-cols-1  lg:grid-cols-2 mb-4 gap-4"}>
-                <input
-                  placeholder={"Email*"}
-                  className={
-                    " py-2 border border-lime-300 font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm px-5 rounded-lg "
-                  }
-                />
-                <input
-                  placeholder={"Number of Visas*"}
-                  className={
-                    " py-2 border border-lime-300 font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm px-5 rounded-lg "
-                  }
-                />
+              <div className={"grid grid-cols-1 lg:grid-cols-2 mb-4 gap-4"}>
+                <div className="w-full">
+                  <input
+                    name="email"
+                    placeholder={"Email*"}
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`py-2 border ${
+                      errors.email ? "border-red-500" : "border-lime-300"
+                    }  font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm w-full px-5 rounded-lg`}
+                  />
+                  {errors.email && (
+                    <span className="text-red-500 text-sm">{errors.email}</span>
+                  )}
+                </div>
+
+                <div className="w-full">
+                  <input
+                    name="visas"
+                    placeholder={"Number of Visas*"}
+                    value={formData.visas}
+                    onChange={handleChange}
+                    className={`py-2 border ${
+                      errors.visas ? "border-red-500" : "border-lime-300"
+                    }  font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm w-full px-5 rounded-lg`}
+                  />
+                  {errors.visas && (
+                    <span className="text-red-500 text-sm">{errors.visas}</span>
+                  )}
+                </div>
               </div>
 
               <div className="w-full">
                 <textarea
+                  name="businessDescription"
                   placeholder={"Describe your business"}
-                  className={
-                    " py-2 border h-28 w-full border-lime-300 placeholder:text-slate-700 font-Satoshi  bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm px-5 rounded-lg resize-none"
-                  }
+                  value={formData.businessDescription}
+                  onChange={handleChange}
+                  className={`py-2 h-28 resize-none border ${
+                    errors.businessDescription
+                      ? "border-red-500"
+                      : "border-lime-300"
+                  }  font-Satoshi placeholder:text-slate-700 bg-gray-50 text-lime-800 focus:outline-indigo-300 font-[500] shadow-sm w-full px-5 rounded-lg`}
                 />
+                {errors.businessDescription && (
+                  <span className="text-red-500 text-sm">
+                    {errors.businessDescription}
+                  </span>
+                )}
               </div>
 
-              <Button className="mt-4">Calculate</Button>
+              <Button loading={true}  type="submit" className="mt-4">
+                Calculate
+              </Button>
             </form>
           </div>
         </div>
@@ -214,7 +410,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className=" w-full my-24 ">
+      <div className=" w-full mt-24 ">
         <div className="container w-full  py-20">
           <Heading className="!text-center text-slate-50">
             Our Exclusive Corporate Service
@@ -222,6 +418,12 @@ const Page = () => {
           <FourthSection />
         </div>
       </div>
+      <Banner
+        title={"Get Started Now"}
+        desc={
+          "Provide your details and receive an instant, personalized quote to start your business in Dubai. Our experts are here to guide you every step of the way—let's turn your vision into reality!"
+        }
+      />
     </div>
   );
 };

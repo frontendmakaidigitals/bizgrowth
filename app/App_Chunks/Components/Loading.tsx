@@ -37,23 +37,67 @@ const Loader = () => {
           transition={{ duration: 0.5 }}
           className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed shadown-lg bg-indigo-50 z-[9999]"
         >
-          <div className="spinner"></div>
-          <style>
-            {`.spinner {
-                width: 56px;
-                height: 56px;
-                border-radius: 50%;
-                background: radial-gradient(farthest-side,#c0ca33 94%,#0000) top/9px 9px no-repeat,
-                conic-gradient(#0000 30%,#c0ca33);
-                -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
-                animation: spinner-c7wet2 1s infinite linear;
-              }
+          <svg
+            className="LoaderContainer"
+            viewBox="0 0 40 40"
+            height="40"
+            width="40"
+          >
+            <circle
+              className="track"
+              cx="20"
+              cy="20"
+              r="17.5"
+              pathLength="100"
+              strokeWidth="2px"
+              fill="none"
+            />
+            <circle
+              className="car"
+              cx="20"
+              cy="20"
+              r="17.5"
+              pathLength="100"
+              strokeWidth="2px"
+              fill="none"
+            />
+          </svg>
 
-              @keyframes spinner-c7wet2 {
-                100% {
-                  transform: rotate(1turn);
-                }
-              }`}
+          <style>
+            {`.LoaderContainer {
+    --uib-size: 80px;
+    --uib-color: black;
+    --uib-speed: .8s;
+    --uib-bg-opacity: 0.1;
+    height: var(--uib-size);
+    width: var(--uib-size);
+    transform-origin: center;
+    animation: rotate var(--uib-speed) linear infinite;
+    will-change: transform;
+    overflow: visible;
+  }
+
+  .car {
+    fill: none;
+    stroke: var(--uib-color);
+    stroke-dasharray: 25, 75;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    transition: stroke 0.5s ease;
+  }
+
+  .track {
+    fill: none;
+    stroke: var(--uib-color);
+    opacity: var(--uib-bg-opacity);
+    transition: stroke 0.5s ease;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }`}
           </style>
         </motion.div>
       )}
