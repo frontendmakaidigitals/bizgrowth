@@ -138,7 +138,7 @@ const Page = () => {
 
   // Validation logic
   const validate = () => {
-    let formErrors: {
+    const formErrors: {
       firstName: string;
       lastName: string;
       phone: string;
