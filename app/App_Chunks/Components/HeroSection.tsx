@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Button from "./Button";
-
+import Link from "next/link";
 const HeroSection = () => {
   return (
     <div className="w-full h-full flex justify-center items-center">
@@ -18,7 +18,9 @@ const HeroSection = () => {
               Lead your way to Success by partnering with BIZ GROWTH. We are
               experts in empowering your business ideas into action.
             </h2>
-            <Button>Get a Free Consultation</Button>
+            <Link href={"/Cost-Calculator"}>
+              <Button>Get a Free Consultation</Button>
+            </Link>
           </div>
         </div>
       </div>

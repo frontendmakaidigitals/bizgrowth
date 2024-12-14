@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Link from "next/link";
 import data from "../App_Chunks/Components/mainland";
 
 const Page = () => {
@@ -58,7 +59,9 @@ const MainPage = () => {
             {processData?.heroDescription}
           </p>
           <div className="flex justify-center lg:justify-start">
-            <Button className="mt-5">Get Expert Consultation</Button>
+            <Link href={"/Cost-Calculator"}>
+              <Button>Get Expert Consultation</Button>
+            </Link>
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -180,7 +183,7 @@ const MainPage = () => {
       <div className="w-full container  my-24">
         <div>{processData?.sixthTitle}</div>
 
-        <div className="mt-10 overflow-scroll">
+        <div className="mt-10 overflow-auto">
           <table className="w-[600px] lg:w-full  border-collapse border border-gray-300">
             <thead className="bg-[#9ccc65]">
               <tr>
@@ -280,7 +283,9 @@ const MainPage = () => {
                 {processData.keyPoints.map((item, index) => (
                   <li key={index}>
                     <p className={"text-sm font-Satoshi"}>
-                      <span className="font-semibold font-SplineSans">{item.title}: </span>{" "}
+                      <span className="font-semibold font-SplineSans">
+                        {item.title}:{" "}
+                      </span>{" "}
                       {item.desc}
                     </p>
                   </li>

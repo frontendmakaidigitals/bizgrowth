@@ -153,7 +153,7 @@ const MainPage = () => {
       <div className="w-full container my-24">
         <div>{processData?.sixthTitle}</div>
 
-        <div className="mt-10 overflow-scroll">
+        <div className="mt-10 overflow-auto">
           <table className="w-[600px] lg:w-full border-collapse border border-gray-300">
             <thead className="bg-[#9ccc65]">
               <tr>
