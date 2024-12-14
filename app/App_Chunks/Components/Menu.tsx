@@ -103,9 +103,6 @@ const Menu = () => {
                               }}
                             >
                               <li className="mt-2 hover:underline text-[#12250a] flex items-start gap-2">
-                                <div className="mt-2">
-                                  <div className="size-2 bg-lime-900 rounded-full" />
-                                </div>
                                 {point}
                               </li>
                             </Link>
