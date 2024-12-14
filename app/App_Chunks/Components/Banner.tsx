@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "./Button";
+import Link from "next/link";
 const Banner = ({
   title,
   desc,
-  
 }: {
   title: string | undefined | null;
   desc: string | undefined | null;
@@ -16,8 +16,10 @@ const Banner = ({
           {title}
         </p>
         <p className="text-lg font-Satoshi">{desc}</p>
-        <div className="mt-3">
-          <Button>Contact Us</Button>
+        <div className="mt-5">
+          <Link href={"/contact"}>
+            <Button>Contact Us</Button>
+          </Link>
         </div>
       </div>
     </div>
