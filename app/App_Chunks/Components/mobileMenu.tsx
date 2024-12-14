@@ -10,10 +10,11 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"; // Make sure this path is correct
+} from "@/components/ui/accordion";
 import { RiArrowRightUpLine } from "react-icons/ri";
 const MobileMenu = ({ navRef }: { navRef: any }) => {
   const [showMenu, setShowMenu] = React.useState(false);
+
   React.useEffect(() => {
     if (showMenu) {
       // When menu is open, set body overflow to hidden
@@ -38,7 +39,7 @@ const MobileMenu = ({ navRef }: { navRef: any }) => {
       </button>
 
       <AnimatePresence mode="wait">
-        {showMenu && <Menu navRef={navRef} />}
+        {showMenu && <Menu navRef={navRef} setShowMenu={setShowMenu} />}
       </AnimatePresence>
     </div>
   );
@@ -46,7 +47,7 @@ const MobileMenu = ({ navRef }: { navRef: any }) => {
 
 export default MobileMenu;
 
-const Menu = ({ navRef }: { navRef: any }) => {
+const Menu = ({ navRef, setShowMenu }: { navRef: any; setShowMenu: any }) => {
   const [height, setHeight] = React.useState(0);
   useEffect(() => {
     if (navRef.current) {
@@ -73,12 +74,14 @@ const Menu = ({ navRef }: { navRef: any }) => {
               key={index}
               href={menu.href}
               className="text-lg font-semibold p-2 w-full text-left"
-              onClick={() => (window.location.href = menu.href)} // Close menu on item click
+              onClick={() => {
+                setTimeout(() => setShowMenu(false), 500);
+              }}
             >
               {menu.name}
             </Link>
           ) : (
-            <AccordionMenu key={index} menu={menu} />
+            <AccordionMenu key={index} menu={menu} setShowMenu={setShowMenu} />
           )
         )}
       </div>
@@ -87,7 +90,13 @@ const Menu = ({ navRef }: { navRef: any }) => {
 };
 
 // Accordion component for handling dropdown-style sections
-const AccordionMenu = ({ menu }: { menu: any }) => {
+const AccordionMenu = ({
+  menu,
+  setShowMenu,
+}: {
+  menu: any;
+  setShowMenu: any;
+}) => {
   return (
     <div className="w-full !font-SplineSans">
       <Accordion type="single" collapsible className="w-full">
@@ -122,6 +131,12 @@ const AccordionMenu = ({ menu }: { menu: any }) => {
                                         pathname: point.route,
                                         query: { name: item },
                                       }}
+                                      onClick={() => {
+                                        setTimeout(
+                                          () => setShowMenu(false),
+                                          500
+                                        );
+                                      }}
                                     >
                                       <li className="text-lg underline underline-offset-4 py-1 flex items-center gap-2 font-Synonym">
                                         {item}
@@ -141,6 +156,9 @@ const AccordionMenu = ({ menu }: { menu: any }) => {
                           href={{
                             pathname: "Banking-Assistance",
                             query: { name: point },
+                          }}
+                          onClick={() => {
+                            setTimeout(() => setShowMenu(false), 500);
                           }}
                         >
                           {point}
