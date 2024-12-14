@@ -9,6 +9,7 @@ export const Menus = [
     points: [
       {
         title: "Mainland",
+        route: "mainland",
         points: [
           "Dubai Mainland",
           "Sharjah Mainland",
@@ -19,6 +20,7 @@ export const Menus = [
       },
       {
         title: "Freezone",
+        route: "freezone",
         points: [
           "IFZA",
           "DMCC",
@@ -35,6 +37,7 @@ export const Menus = [
       },
       {
         title: "Offshore",
+        route: "offshore",
         points: [
           "Dubai Offshore",
           "Jafza Offshore",

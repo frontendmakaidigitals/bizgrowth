@@ -391,7 +391,7 @@ const Page = () => {
                 )}
               </div>
 
-              <Button loading={true}  type="submit" className="mt-4">
+              <Button loading={true}  type="submit" className="mt-4 !w-full lg:!w-28">
                 Calculate
               </Button>
             </form>

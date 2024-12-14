@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"; // Make sure this path is correct
-
+import { RiArrowRightUpLine } from "react-icons/ri";
 const MobileMenu = ({ navRef }: { navRef: any }) => {
   const [showMenu, setShowMenu] = React.useState(false);
   React.useEffect(() => {
@@ -64,7 +64,7 @@ const Menu = ({ navRef }: { navRef: any }) => {
         top: `${height}px`,
         height: `calc(100vh - ${height}px)`,
       }}
-      className="fixed left-0 w-full overflow-scroll flex flex-col justify-center items-start h-screen bg-lime-100 z-[2]"
+      className="fixed left-0 w-full overflow-scroll flex flex-col justify-center items-start shadow-lg h-screen bg-[#f6f8ff] z-[2]"
     >
       <div className="container h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
         {Menus.map((menu, index) =>
@@ -89,7 +89,7 @@ const Menu = ({ navRef }: { navRef: any }) => {
 // Accordion component for handling dropdown-style sections
 const AccordionMenu = ({ menu }: { menu: any }) => {
   return (
-    <div className="w-full">
+    <div className="w-full !font-SplineSans">
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value={menu.name} className="border-b border-0">
           <AccordionTrigger className="text-lg font-semibold p-2 w-full text-left">
@@ -116,12 +116,18 @@ const AccordionMenu = ({ menu }: { menu: any }) => {
                               <ul className="space-y-1 px-5">
                                 {point.points.map(
                                   (item: string, id: number) => (
-                                    <li
+                                    <Link
                                       key={id}
-                                      className="text-md font-medium font-Synonym"
+                                      href={{
+                                        pathname: point.route,
+                                        query: { name: item },
+                                      }}
                                     >
-                                      {item}
-                                    </li>
+                                      <li className="text-lg underline underline-offset-4 py-1 flex items-center gap-2 font-Synonym">
+                                        {item}
+                                        <RiArrowRightUpLine />
+                                      </li>
+                                    </Link>
                                   )
                                 )}
                               </ul>
@@ -131,7 +137,14 @@ const AccordionMenu = ({ menu }: { menu: any }) => {
                       </Accordion>
                     ) : (
                       <div className="text-md font-medium font-Synonym px-5 py-2">
-                        {point}
+                        <Link
+                          href={{
+                            pathname: "Banking-Assistance",
+                            query: { name: point },
+                          }}
+                        >
+                          {point}
+                        </Link>
                       </div>
                     )}
                   </div>

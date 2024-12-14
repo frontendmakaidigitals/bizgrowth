@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import Button from "./Button";
+import Link from "next/link";
 import MobileMenu from "./mobileMenu";
 const Navbar = () => {
   const navRef = useRef(null);
@@ -12,9 +13,9 @@ const Navbar = () => {
         <Logo className="relative z-[5]" />
         <Menu />
         <MobileMenu navRef={navRef} />
-        <div className="hidden lg:block ">
+        <Link href={"/Cost-Calculator"} className="hidden lg:block ">
           <Button className="xl:text-md ">Cost Calculator</Button>
-        </div>
+        </Link>
       </div>
     </div>
   );
