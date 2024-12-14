@@ -73,7 +73,7 @@ const Page = () => {
         "Duty-free Imports & Exports",
         "Government Support",
       ],
-      icon: "",
+      icon: "https://cdn-icons-png.flaticon.com/512/3798/3798583.png",
     },
     {
       name: "Offshore",
@@ -86,7 +86,7 @@ const Page = () => {
         "Global Business Opportunities",
         "Stategic Location",
       ],
-      icon: "",
+      icon: "https://cdn-icons-png.flaticon.com/512/1/1803.png",
     },
   ];
   interface ErrorState {
@@ -436,8 +436,8 @@ const Card = ({ region }: { region: any }) => {
   return (
     <div className="w-full flex flex-col justify-between items-start bg-lime-200 border  border-slate-200 rounded-xl p-7 ">
       <div>
-        <div className="size-16 bg-lime-500 rounded-full p-2">
-          <img src={region.img} className="w-full h-full object-cover" />
+        <div className="size-16 bg-lime-500 rounded-full p-1">
+          <img src={region.icon} className="w-full h-full object-cover" />
         </div>
       </div>
 
