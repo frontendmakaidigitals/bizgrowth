@@ -60,7 +60,7 @@ const Page = () => {
         "Unlimited Fund transfer",
         "Access to Readymade Office space",
       ],
-      icon: "",
+      icon: "https://static.thenounproject.com/png/5201539-200.png",
     },
     {
       name: "Freezone",
@@ -394,7 +394,7 @@ const Page = () => {
               <Button
                 loading={false}
                 type="submit"
-                className="mt-4 !w-full lg:!w-28"
+                className="mt-4 justify-center !w-full lg:!w-28"
               >
                 Calculate
               </Button>
@@ -436,7 +436,9 @@ const Card = ({ region }: { region: any }) => {
   return (
     <div className="w-full flex flex-col justify-between items-start bg-lime-200 border  border-slate-200 rounded-xl p-7 ">
       <div>
-        <div className="size-16 bg-lime-500 rounded-full" />
+        <div className="size-16 bg-lime-500 rounded-full p-2">
+          <img src={region.img} className="w-full h-full object-cover" />
+        </div>
       </div>
 
       <div className="mt-7">

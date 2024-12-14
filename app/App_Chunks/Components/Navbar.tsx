@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import Logo from "./Logo";
 import Menu from "./Menu";
-import Button from "./Button";
+
 import Link from "next/link";
 import MobileMenu from "./mobileMenu";
 const Navbar = () => {
