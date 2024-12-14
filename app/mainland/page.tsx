@@ -54,10 +54,12 @@ const MainPage = () => {
         <div className="w-full">
           <div>{processData?.heroTitle}</div>
 
-          <p className="text-lg font-Satoshi mt-4">
+          <p className="text-lg text-center lg:text-start font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <div className="flex justify-center lg:justify-start">
+            <Button className="mt-5">Get Expert Consultation</Button>
+          </div>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={processData?.heroImg} />
@@ -157,10 +159,10 @@ const MainPage = () => {
               }`}
             >
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
-              <p className="font-SplineSans font-[500] mt-3 text-xl">
+              <p className="font-SplineSans font-[500] mt-5 text-xl">
                 {item.title}
               </p>
-              <p className="font-Satoshi text-lg">{item.desc}</p>
+              <p className="font-Satoshi mt-1 text-lg">{item.desc}</p>
               {item.isPoints && item.points ? (
                 <ul className="font-Satoshi mt-3 py-3 border-t w-full border-lime-700">
                   {item.points.map((elem, index) => (
@@ -175,11 +177,11 @@ const MainPage = () => {
           ))}
         </div>
       </div>
-      <div className="w-full container my-24">
+      <div className="w-full container  my-24">
         <div>{processData?.sixthTitle}</div>
 
-        <div className="mt-10">
-          <table className="w-full border-collapse border border-gray-300">
+        <div className="mt-10 overflow-scroll">
+          <table className="w-[600px] lg:w-full  border-collapse border border-gray-300">
             <thead className="bg-[#9ccc65]">
               <tr>
                 {processData?.sixthTableHead.map((elem, index) => (
@@ -278,7 +280,7 @@ const MainPage = () => {
                 {processData.keyPoints.map((item, index) => (
                   <li key={index}>
                     <p className={"text-sm font-Satoshi"}>
-                      <span className="font-semibold">{item.title}: </span>{" "}
+                      <span className="font-semibold font-SplineSans">{item.title}: </span>{" "}
                       {item.desc}
                     </p>
                   </li>
@@ -344,7 +346,7 @@ const MainPage = () => {
             <Carousel className="w-full ">
               <CarouselContent>
                 {processData?.seventhPoints?.map((item, index) => (
-                  <CarouselItem key={index} className="basis-1/3">
+                  <CarouselItem key={index} className="basis-1/2 lg:basis-1/3">
                     <div className="w-full border bg-[#dff2d8] border-lime-700 p-5 rounded-xl h-full">
                       <p className="text-xl font-semibold font-SplineSans">
                         {item.title}
