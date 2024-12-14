@@ -11,7 +11,7 @@ const HeroSection = () => {
         </video>
         <div className="bg-slate-900/30 flex justify-center  items-center w-full h-full absolute top-0 left-0 ">
           <div className=" container py-20  flex flex-col justify-center items-center gap-5">
-            <h1 className="text-[#f1f8e9] text-center text-2xl lg:text-6xl font-Satoshi font-[600]">
+            <h1 className="text-[#f1f8e9] text-center text-2xl lg:text-7xl  font-Synonym font-[600]">
               From Idea to Incorporation <br /> Your Business setup partner
             </h1>
             <h2 className="text-white w-full lg:w-2/3 text-center text-md lg:text-2xl font-Satoshi font-[400]">
