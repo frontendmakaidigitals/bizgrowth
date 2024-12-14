@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       whileTap={loading ? undefined : { scale: 0.9 }}
       transition={{ duration: 0.1, ease: "easeIn" }}
-      disabled
+      disabled={loading}
       className={`px-3 py-2 flex items-center ${
         loading
           ? "w-28 flex justify-center "
