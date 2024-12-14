@@ -4,8 +4,8 @@ import "./globals.css";
 import Navbar from "./App_Chunks/Components/Navbar";
 import Footer from "./App_Chunks/Components/Footer";
 import { Providers } from "./App_Chunks/Components/ParallaxProvider";
-import LenisScroll from "./App_Chunks/Components/LenisScroll";
 import Loading from "./App_Chunks/Components/Loading";
+import FloatingWhatsIcon from "./App_Chunks/Components/floatingWhatsIcon";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -40,7 +40,7 @@ export default function RootLayout({
       >
         <Navbar />
         <Loading />
-        <LenisScroll />
+        <FloatingWhatsIcon />
         <Providers>{children}</Providers>
         <Footer />
       </body>

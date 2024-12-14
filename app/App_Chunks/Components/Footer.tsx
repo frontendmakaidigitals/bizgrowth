@@ -5,11 +5,14 @@ import { FaSquareFacebook } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 import { BsTwitterX } from "react-icons/bs";
 import { BsYoutube } from "react-icons/bs";
-
+import Link from "next/link";
 export interface WidgetFooterMenu {
   id: string;
   title: string;
-  menus: { href: string; label: string }[];
+  menus: {
+    href: string | { pathname: string; query: { name: string; label: string } };
+    label: string; // Add label here as it should be a part of the menu item
+  }[];
 }
 
 const widgetMenus: WidgetFooterMenu[] = [
@@ -20,21 +23,69 @@ const widgetMenus: WidgetFooterMenu[] = [
       { href: "/", label: "Home" },
       { href: "/About", label: "About us" },
       { href: "/contact", label: "Contact" },
-      { href: "/contact", label: "Cost Calculator" },
+      { href: "/Cost-Calculator", label: "Cost Calculator" },
     ],
   },
   {
-    id: "1",
+    id: "2", // Ensure the id is unique
     title: "Popular Links",
     menus: [
-      { href: "/About", label: "Dubai Mainland" },
-      { href: "/About", label: "Sharjah Mainland" },
-      { href: "/About", label: "Ifza Freezone" },
-      { href: "/About", label: "Difc Freezone" },
-      { href: "/About", label: "Dubai Offshore" },
-      { href: "/About", label: "Jafza Offshore" },
-      { href: "/About", label: "Rak ICC Offshore" },
-      { href: "/About", label: "Ajman Offshore" },
+      {
+        href: {
+          pathname: "/mainland",
+          query: { name: "Dubai Mainland", label: "Dubai Mainland" },
+        },
+        label: "Dubai Mainland",
+      },
+      {
+        href: {
+          pathname: "/mainland",
+          query: { name: "Sharjah Mainland", label: "Sharjah Mainland" },
+        },
+        label: "Sharjah Mainland",
+      },
+      {
+        href: {
+          pathname: "/freezone",
+          query: { name: "ifza freezone", label: "Ifza Freezone" },
+        },
+        label: "Ifza Freezone",
+      },
+      {
+        href: {
+          pathname: "/freezone",
+          query: { name: "difc freezone", label: "Difc Freezone" },
+        },
+        label: "Difc Freezone",
+      },
+      {
+        href: {
+          pathname: "/offshore",
+          query: { name: "dubai offshore", label: "Dubai Offshore" },
+        },
+        label: "Dubai Offshore",
+      },
+      {
+        href: {
+          pathname: "/offshore",
+          query: { name: "jafza offshore", label: "Jafza Offshore" },
+        },
+        label: "Jafza Offshore",
+      },
+      {
+        href: {
+          pathname: "/offshore",
+          query: { name: "rak icc offshore", label: "Rak ICC Offshore" },
+        },
+        label: "Rak ICC Offshore",
+      },
+      {
+        href: {
+          pathname: "/offshore",
+          query: { name: "ajman offshore", label: "Ajman Offshore" },
+        },
+        label: "Ajman Offshore",
+      },
     ],
   },
 ];
@@ -47,21 +98,20 @@ const Footer: React.FC = () => {
           {menu.title}
         </h2>
         <ul className="mt-5 list-disc space-y-4">
-          {menu.menus.map(
-            (item: { href: string; label: string }, index: number) => (
-              <div key={index} className="px-4">
-                <li className="text-[#10220a]">
-                  <a
-                    key={index}
-                    className="rounded-xl  px-2 py-1 text-[#10220a] hover:bg-[#aed581] hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                    href={item.href}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              </div>
-            )
-          )}
+          {menu.menus.map((item: any, index) => (
+            <li key={index} className="px-4 text-[#10220a]">
+              <Link
+                href={
+                  typeof item.href === "string"
+                    ? item.href
+                    : { pathname: item.href.pathname, query: item.href.query }
+                }
+                className="rounded-xl px-2 py-1 text-[#10220a] hover:bg-[#aed581] hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     );
