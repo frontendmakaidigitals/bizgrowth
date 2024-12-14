@@ -102,7 +102,7 @@ const Menu = () => {
                                 query: { name: point },
                               }}
                             >
-                              <li className="mt-2 hover:underline text-[#12250a] flex items-start gap-2">
+                              <li className="mt-2 font-[500] hover:underline text-[#12250a] flex items-start gap-2">
                                 {point}
                               </li>
                             </Link>
