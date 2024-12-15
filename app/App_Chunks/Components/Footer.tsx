@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
         <div className="container relative z-[10] grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-4 lg:gap-x-10">
           <div className="col-span-2 grid grid-cols-4 place-items-start lg:place-items-center gap-5 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
             <div className="col-span-2 md:col-span-1">
-              <Logo className="!h-[100px]" />
+              <Logo className="!h-[65px]" />
               <p className="font-regular mt-3 text-sm text-[#10220a]">
                 We are one of the top and recognized holiday homes company in
                 Dubai. Providing premium vacation stays with immense knowledge
