@@ -537,12 +537,7 @@ const data = [
         desc: "Gather essential documents such as passport copies, visa copies, and proof of address.",
       },
       {
-        title: " Rent Office Space and Obtain Ejari Certificate",
-        isPoints: false,
-        desc: "To operate in Dubai Mainland, it is mandatory to have a physical office space. Register your tenancy contract with Ejari, it’s government-approved tenancy registration system.",
-      },
-      {
-        title: "  Submit Application to SEDD",
+        title: " Submit Application to SEDD",
         isPoints: false,
         desc: "Submit your application to Sharjah Economic Development Department. Pay the required fee and complete the formalities.",
       },

@@ -153,7 +153,7 @@ const AboutPage = () => {
 
             <h1 className="text-3xl xl:text-4xl xl:mt-4">
               Welcome to BIZ Growth Consultancy, your trusted partner in setting
-              up and growing your business in the UAE.
+              up and growing your business in the UAE
             </h1>
             <h3 className="mt-3 xl:text-lg xl:mt-4">
               We simplify the complexities of company formation, ensuring a

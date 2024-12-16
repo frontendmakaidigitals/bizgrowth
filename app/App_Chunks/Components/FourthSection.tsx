@@ -37,7 +37,7 @@ const FourthSection = () => {
     {
       title: "Visa Processing",
       icon: <FaPassport className="text-2xl" />,
-      desc: "We process the visa applications and immigration procedures for a smooth business operations",
+      desc: "We process the visa applications and immigration procedures for a smooth business operations.",
     },
     {
       title: "PRO Services",
@@ -58,27 +58,27 @@ const FourthSection = () => {
     {
       title: "Accounting & Bookkeeping",
       icon: <HiOutlineTableCells className="text-2xl" />,
-      desc: " We provide efficient accounting and book keeping services to manage your financial records ",
+      desc: " We provide efficient accounting and book keeping services to manage your financial records. ",
     },
     {
       title: "Golden Visa",
       icon: <GoSponsorTiers className="text-2xl" />,
-      desc: "We assist with Golden Visa application process, helping you secure long-term residency ",
+      desc: "We assist with Golden Visa application process, helping you secure long-term residency. ",
     },
     {
       title: "Wealth Management",
       icon: <MdAssistant className="text-2xl" />,
-      desc: "We provide comprehensive wealth management services, including investment planning, portfolio management and retirement planning",
+      desc: "We provide comprehensive wealth management services, including investment planning, portfolio management and retirement planning.",
     },
     {
       title: "Design & Marketing Services",
       icon: <MdDesignServices className="text-2xl" />,
-      desc: " We provide creative design solutions and effective marketing strategies to promote your brand online & offline",
+      desc: " We provide creative design solutions and effective marketing strategies to promote your brand online & offline.",
     },
     {
       title: "Government Permit & Approval",
       icon: <RiGovernmentFill className="text-2xl" />,
-      desc: "We assist in obtaining government permits and approvals required for your business operations",
+      desc: "We assist in obtaining government permits and approvals required for your business operations.",
     },
   ];
   const [isOpen, setIsOpen] = useState(false);

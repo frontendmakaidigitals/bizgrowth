@@ -29,10 +29,10 @@ export const Menus = [
           "Meydan",
           "SPC",
           "Jafza",
-          "Rakez",
+          "RAKEZ",
           "Ajman",
-          "Strip",
-          "Dafza",
+          "STRIP",
+          "DAFZA",
         ],
       },
       {

@@ -1091,7 +1091,7 @@ const data = [
     sixthTitle: (
       <Heading className="w-full !text-center">
         Documents Required for Setting up{" "}
-        <span className="text-lime-500"> DIFC License</span>
+        <span className="text-lime-500"> Meydan License</span>
       </Heading>
     ),
     sixthTableHead: ["Document Type", "Description"],
