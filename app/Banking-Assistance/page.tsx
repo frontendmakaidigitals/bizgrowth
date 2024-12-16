@@ -32,7 +32,7 @@ const MainPage = () => {
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
 
-    switch (query?.toLowerCase()) {
+    switch (query) {
       case "Corporate Bank Account":
         metaInfo = {
           title: "Corporate Bank Account Assistance in DUBAI, UAE",

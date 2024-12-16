@@ -26,36 +26,36 @@ const MainPage = () => {
          "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
      };
 
-     switch (query?.toLowerCase()) {
-       case "Golden Visa":
+     switch (query) {
+       case "golden visa":
          metaInfo = {
            title: "UAE Golden Visa Services | Long-term Residency",
            description:
              "Dubai invites you to secure your future with the prestigious Golden Visa. Whether you’re an investor, entrepreneur, professional, or outstanding student, we are here to make your Golden Visa application journey easy.",
          };
          break;
-       case "Will Formation":
+       case "will formation":
          metaInfo = {
            title: "Will Writing & Registration Services in UAE",
            description:
              "Creating a will in the UAE is an essential step in ensuring your assets are protected, and your loved ones are provided for according to your wishes. Our expert Will formation service simplifies this process, offering peace of mind.",
          };
          break;
-       case "Real Estate":
+       case "real estate":
          metaInfo = {
            title: "Real Estate Investment Consultants in UAE",
            description:
              "At Real Estate Investment Services, we provide expert guidance and opportunities to help you build, grow, and protect your wealth through property investments. Whether you're a first-time investor or a professional, we offer services to meet your needs.",
          };
          break;
-       case "Wealth Management":
+       case "wealth management":
          metaInfo = {
            title: "Wealth Management Services Company in UAE",
            description:
              "Managing wealth in the UAE also comes with its own unique set of challenges. Our wealth management services are designed to address these challenges and provide you with clear solutions to secure your financial future.",
          };
          break;
-       case "Nominee Director services":
+       case "nominee director services":
          metaInfo = {
            title: "Nominee Director Services in Dubai",
            description:

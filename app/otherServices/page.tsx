@@ -22,8 +22,9 @@ const MainPage = () => {
          description:
            "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
        };
+       console.log(query)
   
-   switch (query?.toLowerCase()) {
+   switch (query) {
      case "PRO & Visa Services":
        metaInfo = {
          title: "PRO Services in the UAE",
@@ -31,14 +32,14 @@ const MainPage = () => {
            "Simplify your visa and PRO processes with the help of our experienced team. Whether you’re expanding your business or managing employee visas, we are here to support you every step of the way.",
        };
        break;
-     case "Attestation & Legalization":
+     case "Attestation & Legalisation":
        metaInfo = {
          title: "Attestation & Legalization Service in UAE",
          description:
            "BizGrowth, is your trusted partner for professional attestation and legalization services. We make the complex process of authenticating your documents simple, fast, and hassle-free.",
        };
        break;
-     case "Office Space Solution":
+     case "Office space solution":
        metaInfo = {
          title: "Office Space Solutions in Dubai, UAE",
          description:
