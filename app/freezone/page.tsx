@@ -61,7 +61,7 @@ const MainPage = () => {
              "Establish your business in DIFC, Dubai’s leading financial hub. It provides your business the platform to expand its operations and choose from a variety of company structures.",
          };
          break;
-       case "Meydan":
+       case "MEYDAN":
          metaInfo = {
            title: "Setup Your Free Zone Company in Meydan",
            description:
@@ -96,7 +96,7 @@ const MainPage = () => {
              "Start your business in Ajman Free Zone, a cost-effective hub for entrepreneurs. Enjoy 100% ownership, flexible packages, and UAE access. Simplify your Ajman Free Zone business setup today!",
          };
          break;
-       case "Strip":
+       case "STRIP":
          metaInfo = {
            title: "STRIP Free Zone Company Formation | Get Expert Guidance",
            description:
