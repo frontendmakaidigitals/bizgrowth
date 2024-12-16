@@ -15,6 +15,8 @@ import { MdDesignServices } from "react-icons/md";
 import { RiGovernmentFill } from "react-icons/ri";
 import { TbReceiptTax } from "react-icons/tb";
 import Heading from "./Heading";
+import Form from "./PopupForm";
+
 const FourthSection = () => {
   const services = [
     {
@@ -79,15 +81,19 @@ const FourthSection = () => {
       desc: "We assist in obtaining government permits and approvals required for your business operations",
     },
   ];
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState("");
   // State for controlling whether to show more services
   const [showMore, setShowMore] = useState(false);
 
   // Number of services to show initially
   const servicesToShow = showMore ? services.length : 8;
-
+  
   return (
     <div className="container mb-20">
+      {isOpen && (
+        <Form setIsOpen={setIsOpen} setStatus={setStatus} status={status} />
+      )}
       <Heading className="!text-center w-full">
         Your <span className="text-lime-500">Trusted Advisor</span> for Building
         your Business and beyond!
@@ -116,8 +122,11 @@ const FourthSection = () => {
               </p>
               <p className="text-sm">{service.desc}</p>
               <div className="mt-6">
-                <button className="text-[#244010] bg-lime-300 px-3 py-1 rounded-lg font-Satoshi font-[500]">
-                  Read more
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className="text-[#244010] bg-lime-300 px-3 py-1 rounded-lg font-Satoshi font-[500]"
+                >
+                  Learn more
                 </button>
               </div>
             </div>
