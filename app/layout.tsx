@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./App_Chunks/Components/Navbar";
@@ -16,11 +16,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-export const metadata: Metadata = {
-  title: "Biz Growth",
-  description: "Enter into the world of business growth",
-};
+ 
 
 export default function RootLayout({
   children,
