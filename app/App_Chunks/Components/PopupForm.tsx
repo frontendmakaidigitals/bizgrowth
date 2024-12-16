@@ -23,9 +23,7 @@ type Inputs = {
 const Form = ({
   setIsOpen,
   setStatus,
-  status,
 }: {
-  status: string;
   setStatus: any;
   setIsOpen: any;
 }) => {
@@ -106,7 +104,7 @@ const Form = ({
       <div className="flex relative h-full w-full items-center justify-center px-4 py-10">
         <form
           onSubmit={handleSubmit(submitForm)}
-          className="relative flex w-full flex-col gap-y-5 bg-indigo-50 overflow-auto rounded-lg bg-primary-50 px-[30px] py-6 shadow-[0_4px_60px_0_rgba(0,0,0,0.1)] lg:w-auto"
+          className="relative flex w-full flex-col gap-y-5 bg-slate-50 overflow-auto rounded-lg bg-primary-50 px-[30px] py-6 shadow-[0_4px_60px_0_rgba(0,0,0,0.1)] lg:w-auto"
         >
           <IoMdClose
             onClick={() => setIsOpen(false)}
@@ -128,7 +126,7 @@ const Form = ({
                 type="text"
                 {...register("name")}
                 placeholder="Adam Smith"
-                className="rounded-[10px] border-0 bg-indigo-200/30 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
+                className="rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
                 required
               />
             </div>
@@ -144,7 +142,7 @@ const Form = ({
                 type="email"
                 {...register("email")}
                 placeholder="Enter your email"
-                className="rounded-[10px] border-0 bg-indigo-200/30 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
+                className="rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
                 required
               />
             </div>
@@ -162,7 +160,7 @@ const Form = ({
                 type="number"
                 {...register("phone")}
                 placeholder="12345 67890"
-                className="rounded-[10px] border-0 bg-indigo-200/30 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
+                className="rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
                 required
               />
             </div>
@@ -179,7 +177,7 @@ const Form = ({
                   <Select
                     onValueChange={(value) => setValue("activity", value)}
                   >
-                    <SelectTrigger className="!w-full h-10 bg-indigo-200/30 border-0">
+                    <SelectTrigger className="!w-full h-10 bg-indigo-100 border-0">
                       <SelectValue placeholder="Select Business Activity" />
                     </SelectTrigger>
                     <SelectContent className="bg-indigo-200 !w-full z-[999999] font-Synonym font-[500] text-slate-950">
@@ -209,7 +207,7 @@ const Form = ({
                 id="contact-message"
                 required
                 {...register("message")}
-                className="h-24 resize-none rounded-[10px] border-0 bg-indigo-200/30 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm xxl:h-[180px]"
+                className="h-24 resize-none rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm xxl:h-[180px]"
                 placeholder="Write your message here..."
               />
             </div>
