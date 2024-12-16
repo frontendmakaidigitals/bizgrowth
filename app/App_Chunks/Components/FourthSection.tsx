@@ -92,7 +92,7 @@ const FourthSection = () => {
   return (
     <div className="container mb-20">
       {isOpen && (
-        <Form setIsOpen={setIsOpen} setStatus={setStatus} status={status} />
+        <Form setIsOpen={setIsOpen} setStatus={setStatus} />
       )}
       <Heading className="!text-center w-full">
         Your <span className="text-lime-500">Trusted Advisor</span> for Building
