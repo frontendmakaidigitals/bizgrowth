@@ -8,7 +8,7 @@ import MobileMenu from "./mobileMenu";
 const Navbar = () => {
   const navRef = useRef(null);
   return (
-    <div ref={navRef} className=" w-full">
+    <div ref={navRef} className=" w-full py-3">
       <div className="container flex justify-between items-center w-full">
         <Logo className="relative z-[5]" />
         <Menu />
