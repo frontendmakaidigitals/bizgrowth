@@ -15,6 +15,116 @@ const Page = () => {
 const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
+   useEffect(() => {
+      
+       let metaInfo = {
+         title: "Business Setup in UAE - Mainland",
+         description:
+           "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+       };
+  
+   switch (query?.toLowerCase()) {
+     case "PRO & Visa Services":
+       metaInfo = {
+         title: "PRO Services in the UAE",
+         description:
+           "Simplify your visa and PRO processes with the help of our experienced team. Whether you’re expanding your business or managing employee visas, we are here to support you every step of the way.",
+       };
+       break;
+     case "Attestation & Legalization":
+       metaInfo = {
+         title: "Attestation & Legalization Service in UAE",
+         description:
+           "BizGrowth, is your trusted partner for professional attestation and legalization services. We make the complex process of authenticating your documents simple, fast, and hassle-free.",
+       };
+       break;
+     case "Office Space Solution":
+       metaInfo = {
+         title: "Office Space Solutions in Dubai, UAE",
+         description:
+           "At BizGrowth, we understand that your workspace is more than just a place to work – it’s where ideas thrive, businesses grow, and connections are made. We’re committed to helping you find the perfect office space to meet your needs.",
+       };
+       break;
+     case "Product Registration":
+       metaInfo = {
+         title: "Product Registration Service in UAE",
+         description:
+           "Don’t let complex regulations slow you down. Partner with BizGrowth to simplify your product registration process and bring your products to market quickly and efficiently.",
+       };
+       break;
+     case "Corporate Structuring":
+       metaInfo = {
+         title: "Corporate Structuring Service in UAE",
+         description:
+           "Whether you’re a startup, an expanding business, or a large enterprise, our Corporate Structuring Services help you design and implement the ideal structure to optimize operations, reduce risks, and maximize value.",
+       };
+       break;
+     case "HR Solution":
+       metaInfo = {
+         title: "HR Solutions For Your Business in UAE",
+         description:
+           "Our HR solutions are designed to support your business at every stage, ensuring your workforce remains your most valuable asset.",
+       };
+       break;
+     case "Design & Marketing Services":
+       metaInfo = {
+         title: "Design and Marketing Services For Your Business in UAE",
+         description:
+           "Our HR solutions are designed to support your business at every stage, ensuring your workforce remains your most valuable asset.",
+       };
+       break;
+     default:
+       metaInfo = {
+         title: "Expert Services for Your Business in the UAE",
+         description:
+           "BizGrowth offers a wide range of services including PRO Services, attestation & legalization, office space solutions, product registration, corporate structuring, HR solutions, and design & marketing services. Let us help your business thrive.",
+       };
+       break;
+   }
+  
+       // Dynamically update the document metadata based on the selected location
+       if (metaInfo) {
+         // Set the document title
+         document.title = metaInfo.title;
+  
+         // Set the meta description
+         const metaDescription = document.querySelector(
+           'meta[name="description"]'
+         );
+         if (metaDescription) {
+           metaDescription.setAttribute("content", metaInfo.description);
+         } else {
+           const newMetaDescription = document.createElement("meta");
+           newMetaDescription.setAttribute("name", "description");
+           newMetaDescription.setAttribute("content", metaInfo.description);
+           document.head.appendChild(newMetaDescription);
+         }
+  
+         // Optionally, you can add Open Graph meta tags as well:
+         const ogTitle = document.querySelector('meta[property="og:title"]');
+         if (ogTitle) {
+           ogTitle.setAttribute("content", metaInfo.title);
+         } else {
+           const newOgTitle = document.createElement("meta");
+           newOgTitle.setAttribute("property", "og:title");
+           newOgTitle.setAttribute("content", metaInfo.title);
+           document.head.appendChild(newOgTitle);
+         }
+  
+         const ogDescription = document.querySelector(
+           'meta[property="og:description"]'
+         );
+         if (ogDescription) {
+           ogDescription.setAttribute("content", metaInfo.description);
+         } else {
+           const newOgDescription = document.createElement("meta");
+           newOgDescription.setAttribute("property", "og:description");
+           newOgDescription.setAttribute("content", metaInfo.description);
+           document.head.appendChild(newOgDescription);
+         }
+       }
+     }, [query]);
+
   switch (query) {
     case "PRO & Visa Services":
       return <VisaPro />;

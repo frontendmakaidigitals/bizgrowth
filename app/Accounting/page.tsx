@@ -31,7 +31,94 @@ const MainPage = () => {
       (item) => item.name.toLowerCase() === query?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
-  }, [data, query]);
+
+    // Dynamic title and meta description based on query
+    let metaInfo = {
+      title: "Business Setup in UAE - Mainland",
+      description:
+        "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+    };
+
+    switch (query?.toLowerCase()) {
+      case "VAT Consultancy":
+        metaInfo = {
+          title: "VAT Consultancy Service in Dubai, UAE",
+          description:
+            "We specialize in providing expert VAT consulting services for businesses of all sizes. If your business is ready to optimize your VAT processes or need professional advice, contact us today for a free consultation.",
+        };
+        break;
+      case "Corporate Tax":
+        metaInfo = {
+          title: "Tax Consultants in Dubai, UAE",
+          description:
+            "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
+        };
+        break;
+      case "Accounting and Book keeping":
+        metaInfo = {
+          title: "Expert Book-Keeping and Accounting Service in Dubai",
+          description:
+            "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of bookkeeping and accounting. Contact us today to schedule a consultation and learn more about how our services can benefit your business.",
+        };
+        break;
+      case "Auditing":
+        metaInfo = {
+          title: "Professional Auditing Service in Dubai, UAE",
+          description:
+            "We specialize in providing professional auditing services designed to simplify your business operations. We offer solutions to help you stay organized, save time, and make informed financial decisions.",
+        };
+        break;
+      default:
+        metaInfo = {
+          title: "Financial Services in UAE | BizGrowth",
+          description:
+            "Explore a range of expert financial services in Dubai, from VAT consultancy to corporate tax, accounting, and auditing services. Let BizGrowth guide your business toward financial success with our expert consulting and tailored solutions.",
+        };
+        break;
+    }
+
+    // Dynamically update the document metadata based on the selected location
+    if (metaInfo) {
+      // Set the document title
+      document.title = metaInfo.title;
+
+      // Set the meta description
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.setAttribute("name", "description");
+        newMetaDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newMetaDescription);
+      }
+
+      // Optionally, you can add Open Graph meta tags as well:
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute("content", metaInfo.title);
+      } else {
+        const newOgTitle = document.createElement("meta");
+        newOgTitle.setAttribute("property", "og:title");
+        newOgTitle.setAttribute("content", metaInfo.title);
+        document.head.appendChild(newOgTitle);
+      }
+
+      const ogDescription = document.querySelector(
+        'meta[property="og:description"]'
+      );
+      if (ogDescription) {
+        ogDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newOgDescription = document.createElement("meta");
+        newOgDescription.setAttribute("property", "og:description");
+        newOgDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newOgDescription);
+      }
+    }
+  }, [query, data]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
   useEffect(() => {

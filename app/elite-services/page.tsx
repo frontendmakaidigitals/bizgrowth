@@ -18,7 +18,101 @@ const Page = () => {
 const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name")?.toLowerCase();
+   useEffect(() => {
+    
+     let metaInfo = {
+       title: "Business Setup in UAE - Mainland",
+       description:
+         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+     };
 
+     switch (query?.toLowerCase()) {
+       case "Golden Visa":
+         metaInfo = {
+           title: "UAE Golden Visa Services | Long-term Residency",
+           description:
+             "Dubai invites you to secure your future with the prestigious Golden Visa. Whether you’re an investor, entrepreneur, professional, or outstanding student, we are here to make your Golden Visa application journey easy.",
+         };
+         break;
+       case "Will Formation":
+         metaInfo = {
+           title: "Will Writing & Registration Services in UAE",
+           description:
+             "Creating a will in the UAE is an essential step in ensuring your assets are protected, and your loved ones are provided for according to your wishes. Our expert Will formation service simplifies this process, offering peace of mind.",
+         };
+         break;
+       case "Real Estate":
+         metaInfo = {
+           title: "Real Estate Investment Consultants in UAE",
+           description:
+             "At Real Estate Investment Services, we provide expert guidance and opportunities to help you build, grow, and protect your wealth through property investments. Whether you're a first-time investor or a professional, we offer services to meet your needs.",
+         };
+         break;
+       case "Wealth Management":
+         metaInfo = {
+           title: "Wealth Management Services Company in UAE",
+           description:
+             "Managing wealth in the UAE also comes with its own unique set of challenges. Our wealth management services are designed to address these challenges and provide you with clear solutions to secure your financial future.",
+         };
+         break;
+       case "Nominee Director services":
+         metaInfo = {
+           title: "Nominee Director Services in Dubai",
+           description:
+             "We offer professional Nominee Director Services to ensure your company remains compliant, secure, and operates smoothly. Whether you’re a foreign investor or need a third-party director for privacy or confidentiality, our team provides a reliable solution.",
+         };
+         break;
+       default:
+         metaInfo = {
+           title: "Expert Services in UAE | BizGrowth",
+           description:
+             "Explore a wide range of expert services in the UAE, including Golden Visa, Will formation, Real Estate investment, Wealth management, and Nominee Director services. Let BizGrowth guide you toward securing your future in the UAE.",
+         };
+         break;
+     }
+
+     // Dynamically update the document metadata based on the selected location
+     if (metaInfo) {
+       // Set the document title
+       document.title = metaInfo.title;
+
+       // Set the meta description
+       const metaDescription = document.querySelector(
+         'meta[name="description"]'
+       );
+       if (metaDescription) {
+         metaDescription.setAttribute("content", metaInfo.description);
+       } else {
+         const newMetaDescription = document.createElement("meta");
+         newMetaDescription.setAttribute("name", "description");
+         newMetaDescription.setAttribute("content", metaInfo.description);
+         document.head.appendChild(newMetaDescription);
+       }
+
+       // Optionally, you can add Open Graph meta tags as well:
+       const ogTitle = document.querySelector('meta[property="og:title"]');
+       if (ogTitle) {
+         ogTitle.setAttribute("content", metaInfo.title);
+       } else {
+         const newOgTitle = document.createElement("meta");
+         newOgTitle.setAttribute("property", "og:title");
+         newOgTitle.setAttribute("content", metaInfo.title);
+         document.head.appendChild(newOgTitle);
+       }
+
+       const ogDescription = document.querySelector(
+         'meta[property="og:description"]'
+       );
+       if (ogDescription) {
+         ogDescription.setAttribute("content", metaInfo.description);
+       } else {
+         const newOgDescription = document.createElement("meta");
+         newOgDescription.setAttribute("property", "og:description");
+         newOgDescription.setAttribute("content", metaInfo.description);
+         document.head.appendChild(newOgDescription);
+       }
+     }
+   }, [query]);
   useEffect(() => {
     document.body.style.backgroundColor = "#fffbeb";
     return () => {

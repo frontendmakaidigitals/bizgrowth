@@ -23,7 +23,94 @@ const MainPage = () => {
       (item) => item.name.toLowerCase() === query?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
-  }, [data, query]);
+
+    // Dynamic title and meta description based on query
+    let metaInfo = {
+      title: "Business Setup in UAE - Mainland",
+      description:
+        "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+    };
+
+   switch (query) {
+     case "Dubai Offshore":
+       metaInfo = {
+         title: "Dubai Offshore Company Formation | UAE",
+         description:
+           "Form your Dubai Offshore company with ease. Enjoy 100% foreign ownership, tax benefits, and access to global markets. Start your Dubai Offshore company setup today!",
+       };
+       break;
+     case "JAFZA Offshore":
+       metaInfo = {
+         title: "Offshore Company Formation in JAFZA | UAE",
+         description:
+           "Set up your Offshore company in JAFZA, Dubai's leading free zone. Benefit from 100% ownership, tax exemptions, and access to international markets. Start your JAFZA Offshore company today!",
+       };
+       break;
+     case "RAK ICC":
+       metaInfo = {
+         title: "RAK ICC Offshore Company Formation in UAE",
+         description:
+           "Form your Offshore company in RAK ICC, Ras Al Khaimah's premier offshore jurisdiction. Enjoy 100% ownership, tax benefits, and privacy protection. Start your RAK ICC Offshore company today!",
+       };
+       break;
+     case "Ajman Offshore":
+       metaInfo = {
+         title: "Ajman Offshore Company Formation in UAE",
+         description:
+           "Set up your Offshore company in Ajman, a cost-effective and flexible jurisdiction. Enjoy 100% ownership, tax advantages, and privacy protection. Start your Ajman Offshore company today!",
+       };
+       break;
+     default:
+       metaInfo = {
+         title: "Offshore Company Formation in UAE",
+         description:
+           "Explore the best offshore company formation options in the UAE. Enjoy 100% ownership, tax benefits, and access to global markets. Start your offshore company setup today!",
+       };
+       break;
+   }
+
+    // Dynamically update the document metadata based on the selected location
+    if (metaInfo) {
+      // Set the document title
+      document.title = metaInfo.title;
+
+      // Set the meta description
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.setAttribute("name", "description");
+        newMetaDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newMetaDescription);
+      }
+
+      // Optionally, you can add Open Graph meta tags as well:
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute("content", metaInfo.title);
+      } else {
+        const newOgTitle = document.createElement("meta");
+        newOgTitle.setAttribute("property", "og:title");
+        newOgTitle.setAttribute("content", metaInfo.title);
+        document.head.appendChild(newOgTitle);
+      }
+
+      const ogDescription = document.querySelector(
+        'meta[property="og:description"]'
+      );
+      if (ogDescription) {
+        ogDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newOgDescription = document.createElement("meta");
+        newOgDescription.setAttribute("property", "og:description");
+        newOgDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newOgDescription);
+      }
+    }
+  }, [query, data]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
   useEffect(() => {

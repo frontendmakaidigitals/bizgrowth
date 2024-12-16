@@ -24,7 +24,101 @@ const MainPage = () => {
       (item) => item.name.toLowerCase() === query?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
-  }, [data, query]);
+
+    // Dynamic title and meta description based on query
+    let metaInfo = {
+      title: "Business Setup in UAE - Mainland",
+      description:
+        "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+    };
+
+    switch (query?.toLowerCase()) {
+      case "Corporate Bank Account":
+        metaInfo = {
+          title: "Corporate Bank Account Assistance in DUBAI, UAE",
+          description:
+            "Banking experts at BizGrowth will guide you through the process with ease and efficiency for corporate bank account opening assistance. Contact us today to schedule a consultation, and take the first step toward securing your company’s financial future.",
+        };
+        break;
+      case "Private Bank Account":
+        metaInfo = {
+          title: "Private Bank Account Assistance in DUBAI, UAE",
+          description:
+            "With our deep expertise and personalized service, our private bank account opening service will ensure that the entire process is smooth and efficient. Contact us today for a consultation, and let us help you unlock the benefits of private banking in Dubai.",
+        };
+        break;
+      case "Commercial Financial Services":
+        metaInfo = {
+          title: "Commercial Financial Service in DUBAI, UAE",
+          description:
+            "Whether you`re looking for advice, funding options, or advanced financial tools, we are committed to helping your business thrive. Our experts are here to guide you through the process and help you find the right solution for your business.",
+        };
+        break;
+      case "Trade Financial Services":
+        metaInfo = {
+          title: "Trade Financial Service Consultants in Dubai, UAE",
+          description:
+            "Explore our professional trade financial services, offering personalized solutions for international trade, financing, and risk management. Ensure smooth and secure transactions for your business globally.",
+        };
+        break;
+      case "Crypto & VARA Registration":
+        metaInfo = {
+          title: "Crypto Currency License in UAE | VARA Registration",
+          description:
+            "Unlock the potential of crypto with VARA-compliant solutions. We offer secure, regulated services for cryptocurrency businesses in the UAE, ensuring compliance and growth in the digital economy.",
+        };
+        break;
+      default:
+        metaInfo = {
+          title: "Business Financial Services in UAE",
+          description:
+            "Explore a range of financial services in the UAE, from banking assistance to trade and crypto solutions. Let us guide your business to financial success with our expert services.",
+        };
+        break;
+    }
+
+    // Dynamically update the document metadata based on the selected location
+    if (metaInfo) {
+      // Set the document title
+      document.title = metaInfo.title;
+
+      // Set the meta description
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.setAttribute("name", "description");
+        newMetaDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newMetaDescription);
+      }
+
+      // Optionally, you can add Open Graph meta tags as well:
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute("content", metaInfo.title);
+      } else {
+        const newOgTitle = document.createElement("meta");
+        newOgTitle.setAttribute("property", "og:title");
+        newOgTitle.setAttribute("content", metaInfo.title);
+        document.head.appendChild(newOgTitle);
+      }
+
+      const ogDescription = document.querySelector(
+        'meta[property="og:description"]'
+      );
+      if (ogDescription) {
+        ogDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newOgDescription = document.createElement("meta");
+        newOgDescription.setAttribute("property", "og:description");
+        newOgDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newOgDescription);
+      }
+    }
+  }, [query, data]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
   useEffect(() => {
@@ -1317,10 +1411,8 @@ const CommercialFinancing = () => {
           <div>
             <Heading className="!text-center w-full">
               Why Choose Us for{" "}
-              <span className="text-lime-500">
-                Commercial Financing
-              </span>{" "}
-              in the UAE?
+              <span className="text-lime-500">Commercial Financing</span> in the
+              UAE?
             </Heading>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">

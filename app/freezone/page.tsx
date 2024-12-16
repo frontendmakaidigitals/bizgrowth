@@ -19,12 +19,148 @@ const MainPage = () => {
   const query = searchParams.get("name");
   const router = useRouter();
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
-  useEffect(() => {
-    const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === query?.toLowerCase()
-    );
-    setProcessData(matchingItem || null); // Set the found item or null if no match
-  }, [data, query]);
+   useEffect(() => {
+     const matchingItem = data.find(
+       (item) => item.name.toLowerCase() === query?.toLowerCase()
+     );
+     setProcessData(matchingItem || null); // Set the found item or null if no match
+
+     // Dynamic title and meta description based on query
+     let metaInfo = {
+       title: "Business Setup in UAE - Mainland",
+       description:
+         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+     };
+
+     switch (query) {
+       case "IFZA":
+         metaInfo = {
+           title: "IFZA Business Setup | Free Zone Setup in Dubai",
+           description:
+             "Set up your business with IFZA, the premier free zone in the UAE. Enjoy cost-effective company formation, efficient processes, and world-class facilities. Start your IFZA business today.",
+         };
+         break;
+       case "DMCC":
+         metaInfo = {
+           title: "DMCC Free Zone Business Setup",
+           description:
+             "Start your business in DMCC, the leading free zone in Dubai. Benefit from flexible licensing options, and a prime location. Simplify your DMCC business setup today with BizGrowth!",
+         };
+         break;
+       case "ADGM":
+         metaInfo = {
+           title: "Start your Free Zone Company in ADGM",
+           description:
+             "Set up your business in ADGM, Abu Dhabi's leading financial free zone. Enjoy tax benefits, and global connectivity. Simplify your ADGM business setup today!",
+         };
+         break;
+       case "DIFC":
+         metaInfo = {
+           title: "DIFC Company Setup | Free Zone License in Dubai",
+           description:
+             "Establish your business in DIFC, Dubai’s leading financial hub. It provides your business the platform to expand its operations and choose from a variety of company structures.",
+         };
+         break;
+       case "Meydan":
+         metaInfo = {
+           title: "Setup Your Free Zone Company in Meydan",
+           description:
+             "Set up your business in Meydan Free Zone, Dubai's business hub for entrepreneurs. Enjoy flexible licensing, 100% ownership, and a prime business location. Start your Meydan Free Zone journey today!",
+         };
+         break;
+       case "SPC":
+         metaInfo = {
+           title: "SPC Free Zone | Business Setup in Sharjah",
+           description:
+             "Start your business in the SPC Free Zone, Sharjah's hub for entrepreneurs. Enjoy 100% ownership, cost-effective packages, and a quick setup process. Simplify your SPC Free Zone business setup today!",
+         };
+         break;
+       case "JAFZA":
+         metaInfo = {
+           title: "JAFZA Free Zone | Business Setup in Dubai",
+           description:
+             "Jebel Ali Free Zone (JAFZA) is one of the world’s leading business hubs located in the prime locations of Dubai. Offering businesses easy access to international markets, excellent infrastructure, and 100% Ownership.",
+         };
+         break;
+       case "RAKEZ":
+         metaInfo = {
+           title: "Company Setup in UAE | RAKEZ Free Zone",
+           description:
+             "Set up your business in RAKEZ, Ras Al Khaimah's dynamic free zone. Enjoy cost-effective solutions, 100% ownership, and custom business packages. Start your RAKEZ business journey today!",
+         };
+         break;
+       case "Ajman":
+         metaInfo = {
+           title: "Ajman Free Zone Company Formation in UAE",
+           description:
+             "Start your business in Ajman Free Zone, a cost-effective hub for entrepreneurs. Enjoy 100% ownership, flexible packages, and UAE access. Simplify your Ajman Free Zone business setup today!",
+         };
+         break;
+       case "Strip":
+         metaInfo = {
+           title: "STRIP Free Zone Company Formation | Get Expert Guidance",
+           description:
+             "Set up your business in STRIP Free Zone, a dynamic hub for innovation and growth. Enjoy 100% ownership, flexible licensing options, and a quick setup process. Start your STRIP Free Zone business today!",
+         };
+         break;
+       case "DAFZA":
+         metaInfo = {
+           title: "DAFZA Business Formation | Free Zone in UAE",
+           description:
+             "Establish your business in DAFZA, Dubai's free zone for global trade and innovation. Enjoy tax benefits, 100% ownership, and a prime location. Simplify your DAFZA business setup today!",
+         };
+         break;
+       default:
+         metaInfo = {
+           title: "Business Setup in UAE Free Zones",
+           description:
+             "Explore the best free zone options for setting up your business in the UAE. Find out the best solutions for establishing your company in leading UAE free zones.",
+         };
+         break;
+     }
+
+     // Dynamically update the document metadata based on the selected location
+     if (metaInfo) {
+       // Set the document title
+       document.title = metaInfo.title;
+
+       // Set the meta description
+       const metaDescription = document.querySelector(
+         'meta[name="description"]'
+       );
+       if (metaDescription) {
+         metaDescription.setAttribute("content", metaInfo.description);
+       } else {
+         const newMetaDescription = document.createElement("meta");
+         newMetaDescription.setAttribute("name", "description");
+         newMetaDescription.setAttribute("content", metaInfo.description);
+         document.head.appendChild(newMetaDescription);
+       }
+
+       // Optionally, you can add Open Graph meta tags as well:
+       const ogTitle = document.querySelector('meta[property="og:title"]');
+       if (ogTitle) {
+         ogTitle.setAttribute("content", metaInfo.title);
+       } else {
+         const newOgTitle = document.createElement("meta");
+         newOgTitle.setAttribute("property", "og:title");
+         newOgTitle.setAttribute("content", metaInfo.title);
+         document.head.appendChild(newOgTitle);
+       }
+
+       const ogDescription = document.querySelector(
+         'meta[property="og:description"]'
+       );
+       if (ogDescription) {
+         ogDescription.setAttribute("content", metaInfo.description);
+       } else {
+         const newOgDescription = document.createElement("meta");
+         newOgDescription.setAttribute("property", "og:description");
+         newOgDescription.setAttribute("content", metaInfo.description);
+         document.head.appendChild(newOgDescription);
+       }
+     }
+   }, [query, data]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
   useEffect(() => {
