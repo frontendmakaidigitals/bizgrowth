@@ -1,28 +1,23 @@
-// Add this line at the top to mark this as a client component
-"use client";
+// app/mainland/page.tsx
+
+"use client"; // This marks the component as client-side, allowing you to use `useSearchParams`
+
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import Layout from "./Layout";
 import MainPage from "./MainPage";
-import Head from "next/head";
 
-export default function Page() {
+// The metadata logic will be handled separately, as we can't use generateMetadata in a client component
+export default function MainlandPage() {
   const searchParams = useSearchParams();
-   const query = searchParams.get("name");
+  const query = searchParams.get("name") || "Mainland"; // Default to "Mainland" if no query is provided
 
-  const title = `Custom Title for ${query}`;
-  const description = `A page about ${query}`;
+  // Dynamically set the title and description based on the query
+  const title = `Business Setup in UAE - ${query}`;
+  const description = `Learn about the business setup process in the UAE Mainland for ${query}. Find out the best solutions for establishing your company.`;
 
   return (
-    <div>
-      {/* Set dynamic metadata using <Head> */}
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-      </Head>
-
+    <Layout title={title} description={description}>
       <MainPage />
-    </div>
+    </Layout>
   );
 }

@@ -1,4 +1,4 @@
-
+ 
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./App_Chunks/Components/Navbar";
