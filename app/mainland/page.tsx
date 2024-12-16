@@ -154,7 +154,7 @@ const MainPage = () => {
           <p className="text-lg text-center lg:text-start font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <div className="flex justify-center lg:justify-start">
+          <div className="flex justify-center mt-5 lg:justify-start">
             <Link href={"/Cost-Calculator"}>
               <Button>Get Expert Consultation</Button>
             </Link>
