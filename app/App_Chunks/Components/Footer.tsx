@@ -131,9 +131,9 @@ const Footer: React.FC = () => {
             <div className="col-span-2 md:col-span-1">
               <Logo className="!h-[65px]" />
               <p className="font-regular mt-3 text-sm text-[#10220a]">
-                We are one of the top and recognized holiday homes company in
-                Dubai. Providing premium vacation stays with immense knowledge
-                and strength
+                At BIZ Growth, we are committed to providing exceptional service
+                and unwavering support to our clients throughout their business
+                Setup and ongoing journey.
               </p>
             </div>
             <div className="col-span-2 flex w-full flex-col items-start justify-between md:col-span-3">
