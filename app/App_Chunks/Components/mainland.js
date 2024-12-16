@@ -40,7 +40,7 @@ const data = [
       {
         title: "Complete ownership",
         icon: <MdIncompleteCircle />,
-        desc: " A Dubai Mainland license allows businesses to be owned ",
+        desc: " A Dubai Mainland license allows businesses to be owned.",
       },
       {
         title: "No limitation on office space or staff",
@@ -416,7 +416,7 @@ const data = [
       {
         title: "Government Contracts",
         icon: <MdIncompleteCircle />,
-        desc: "Eligibility to participate in government tenders",
+        desc: "Eligibility to participate in government tenders.",
       },
       {
         title: "Skilled Workforce",
@@ -960,7 +960,7 @@ const data = [
     seventhPoints: [
       {
         title: "Expert Guidance",
-        desc: "Our consultants are well-versed in Abu Dhabi’s business regulations and can help you navigate the complexities of the licensing process",
+        desc: "Our consultants are well-versed in Abu Dhabi’s business regulations and can help you navigate the complexities of the licensing process.",
       },
       {
         title: "Time-Saving",
@@ -1001,7 +1001,7 @@ const data = [
       </Heading>
     ),
     secondSubDescription:
-      "Ajman is quickly becoming one of the most sought-after locations for Mainland business setups, thanks to its strategic location, competitive costs, and growing economic opportunities. Here’s why setting up your business in Ajman Mainland is a smart choice",
+      "Ajman is quickly becoming one of the most sought-after locations for Mainland business setups. Thanks to its strategic location, competitive costs, and growing economic opportunities. Here’s why setting up your business in Ajman Mainland is a smart choice.",
     secondPoints: [
       {
         title: "Cost-Effective",

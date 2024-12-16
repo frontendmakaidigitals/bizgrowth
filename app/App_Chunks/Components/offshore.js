@@ -57,7 +57,7 @@ const data = [
     thirdPoints: [],
     fourthTitle: (
       <Heading className="w-full !text-center">
-        Steps to Open a
+        Steps to Open a{' '}
         <span className="text-lime-500">JAFZA Offshore License</span>
       </Heading>
     ),
@@ -86,7 +86,7 @@ const data = [
     sixthTitle: (
       <Heading className="w-full !text-center">
         DOCUMENTS REQUIRED FOR{" "}
-        <span className="text-lime-500">IFZA FREEZONE LICENSE</span>
+        <span className="text-lime-500">JAFZA FREEZONE LICENSE</span>
       </Heading>
     ),
     sixthTableHead: ["Document Type", "Details"],
@@ -194,7 +194,7 @@ const data = [
       {
         title: "Simple Setup Process",
         icon: <MdIncompleteCircle />,
-        desc: "Quick and easy company formation with minimal paperwork",
+        desc: "Quick and easy company formation with minimal paperwork.",
       },
       {
         title: "Global Reach",
@@ -339,7 +339,7 @@ const data = [
       {
         title: "Privacy & Confidentiality",
         icon: <MdIncompleteCircle />,
-        desc: "Ajman Offshore ensures privacy and confidentiality for business owners and stakeholders",
+        desc: "Ajman Offshore ensures privacy and confidentiality for business owners and stakeholders.",
       },
       {
         title: "No Currency Restrictions",

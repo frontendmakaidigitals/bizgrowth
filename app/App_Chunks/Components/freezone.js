@@ -147,7 +147,7 @@ const data = [
       {
         title: " Complete Your Registration",
         isPoints: false,
-        desc: " Submit your documents online or in-person, and our team will guide you through every step",
+        desc: " Submit your documents online or in-person, and our team will guide you through every step.",
       },
       {
         title: "Set Up Your Office",
@@ -157,7 +157,7 @@ const data = [
       {
         title: "  Obtain Your Visa",
         isPoints: false,
-        desc: " Apply for your UAE residence visa, along with visas for your employees and family",
+        desc: " Apply for your UAE residence visa, along with visas for your employees and family.",
       },
       {
         title: " Start Operating",
@@ -728,7 +728,7 @@ const data = [
       {
         title: "Independent Regulatory Body",
         icon: <MdIncompleteCircle />,
-        desc: "DIFC operates under a legal framework based on common law by  Dubai Financial Services Authority. The DFSA  offers world-class legal and regulatory services to ensure a secure and stable business environment",
+        desc: "DIFC operates under a legal framework based on common law by  Dubai Financial Services Authority. The DFSA  offers world-class legal and regulatory services to ensure a secure and stable business environment.",
       },
       {
         title: " Access to a Global Talent Pool",
@@ -751,7 +751,7 @@ const data = [
         </span>{" "}
         The Financial Services License is tailored for companies engaged in
         financial activities. This license is suitable for businesses offering a
-        wide range of financial products and services
+        wide range of financial products and services.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
@@ -777,7 +777,7 @@ const data = [
         The Family Office License is tailored for private wealth management
         companies. It is ideal for individuals or families looking to manage and
         grow their wealth, and for firms offering services such as Asset
-        Management and Investment Services
+        Management and Investment Services.
       </p>,
       <p key={5} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
@@ -821,7 +821,7 @@ const data = [
       {
         title: " Select and Secure Office Space",
         isPoints: false,
-        desc: "Choose a suitable office space within DIFC",
+        desc: "Choose a suitable office space within DIFC.",
       },
       {
         title: " Obtain DFSA Approval (For Financial Firms)",
@@ -841,7 +841,7 @@ const data = [
       {
         title: " Receive your DIFC License",
         isPoints: false,
-        desc: "Once your application is approved and all requirements are met. You wil lreceive your DIFC License",
+        desc: "Once your application is approved and all requirements are met. You wil lreceive your DIFC License.",
       },
     ],
     sixthTitle: (
@@ -1196,7 +1196,7 @@ const data = [
       {
         title: "Ease of Access",
         icon: <MdIncompleteCircle />,
-        desc: "SPC Free Zone is located to give your business access to major international markets, with transport links to highways and proximity to shipping ports",
+        desc: "SPC Free Zone is located to give your business access to major international markets, with transport links to highways and proximity to shipping ports.",
       },
       {
         title: "World-class Infrastructure",
@@ -1396,11 +1396,8 @@ const data = [
     name: "JAFZA",
     heroTitle: (
       <Heading>
-        Your Gateway to GlobWhy Choose{" "}
-        <span className="text-lime-600">JAFZA?</span> al Business with{" "}
-        <span className="text-lime-600 font-SplineSans">
-          JAFZA (Jebel Ali Free Zone)
-        </span>{" "}
+        Your Gateway to <span className="text-indigo-600">Business Global</span>{" "}
+        with <span className="text-lime-500">JAFZA (Jebel Ali Free Zone)</span>
       </Heading>
     ),
     heroDescription:
@@ -1611,8 +1608,7 @@ const data = [
     heroTitle: (
       <Heading>
         Kickstart your business with{" "}
-        <span className="text-lime-600">RAKEZ (Ras Al Khaimah Free Zone)</span>{" "}
-        al Business with
+        <span className="text-lime-600">RAKEZ (Ras Al Khaimah Free Zone)</span>
       </Heading>
     ),
     heroDescription:
@@ -1720,7 +1716,7 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Steps Involved in Getting{"F "}
+        Steps Involved in Getting{" "}
         <span className="text-lime-500">RAKEZ License</span>{" "}
       </Heading>
     ),
@@ -1754,11 +1750,6 @@ const data = [
         title: "Start Operating",
         isPoints: false,
         desc: "We offer visa processing services for entrepreneurs, employees, and investors.",
-      },
-      {
-        title: "Start Operating",
-        isPoints: false,
-        desc: "With your business set up, you can begin operations immediately and start taking advantage of RAKEZ's facilities and support services.",
       },
     ],
     sixthTitle: (
@@ -2167,7 +2158,7 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Business Setup Process for {" "}
+        Business Setup Process for{" "}
         <span className="text-lime-500">STRIP Free Zone</span>
       </Heading>
     ),
@@ -2180,7 +2171,7 @@ const data = [
       {
         title: "Choose the Business Structure",
         isPoints: false,
-        desc: "Decide on the legal structure of your business, such as:",
+        desc: "Decide on the legal structure of your business (e.g., sole proprietorship, partnership, limited liability company (LLC), etc.).",
       },
       {
         title: "Submit the Application",
@@ -2453,7 +2444,7 @@ const data = [
     sixthTitle: (
       <Heading className="w-full !text-center">
         Documents Required for{" "}
-        <span className="text-lime-500">Dafza Free Zone License</span>
+        <span className="text-lime-500">DAFZA Free Zone License</span>
       </Heading>
     ),
     sixthTableHead: ["Document", "Description"],
