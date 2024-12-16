@@ -64,7 +64,7 @@ const Form = ({
     "Others",
   ];
 
-  const submitForm = (data: Inputs, e: any) => {
+  const submitForm = (data: Inputs) => {
     const updatedData = {
       ...data,
       source: "contact page",
