@@ -23,9 +23,11 @@ type Inputs = {
 const Form = ({
   setIsOpen,
   setStatus,
+
 }: {
   setStatus: any;
   setIsOpen: any;
+
 }) => {
   const { register, handleSubmit, setValue } = useForm<Inputs>();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -79,7 +81,7 @@ const Form = ({
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((res) => {
+      .then(() => {
         setStatus("success");
         setIsSubmitting(false);
         setIsOpen(false);
@@ -92,7 +94,7 @@ const Form = ({
         setStatus("failed");
         setTimeout(() => {
           setStatus(null);
-        }, 2000);
+        }, 3000);
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -100,7 +102,7 @@ const Form = ({
   };
 
   return (
-    <div className="fixed left-0 top-0 z-[999999] h-screen w-full bg-gray-900/60">
+    <div className="fixed left-0 top-0 z-[999] h-screen w-full bg-gray-900/60">
       <div className="flex relative h-full w-full items-center justify-center px-4 py-10">
         <form
           onSubmit={handleSubmit(submitForm)}
@@ -216,7 +218,7 @@ const Form = ({
           <div className="mt-7 w-full">
             <button
               type="submit"
-              className="primary-primary-400 rounded-xl border bg-lime-300 px-4 py-2 text-lg font-semibold text-lime-950 hover:text-gray-900"
+              className={`primary-primary-400 rounded-xl border bg-lime-300 px-4 py-2 text-lg font-semibold text-lime-950 hover:text-gray-900`}
             >
               {isSubmitting ? (
                 <div className="flex items-center gap-3">
