@@ -841,7 +841,7 @@ const data = [
       {
         title: " Receive your DIFC License",
         isPoints: false,
-        desc: "Once your application is approved and all requirements are met. You wil lreceive your DIFC License.",
+        desc: "Once your application is approved and all requirements are met. You will receive your DIFC License.",
       },
     ],
     sixthTitle: (
@@ -1749,7 +1749,7 @@ const data = [
       {
         title: "Start Operating",
         isPoints: false,
-        desc: "We offer visa processing services for entrepreneurs, employees, and investors.",
+        desc: "With your business set up, you can begin operations immediately and start taking advantage of RAKEZ's facilities and support services.",
       },
     ],
     sixthTitle: (

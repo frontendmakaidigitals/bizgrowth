@@ -946,15 +946,16 @@ const data = [
       },
       {
         title: "Branch Office Docs",
-        desc: "Branch offices also require documents from the parent company, such as the Certificate of Incorporation and Memorandum of Association",
+        desc: "Branch offices also require documents from the parent company, such as the Certificate of Incorporation and Memorandum of Association.",
       },
     ],
     tableFooter:
       "These documents may vary slightly depending on the specific requirements of the Department of Economic Development (DED) and any industry-specific regulations. Always consult with a business setup advisor for precise details.",
     seventhTitle: (
       <Heading className="w-full !text-center">
-        Why Choose <span className="text-lime-500">BIZGROWTH</span> for Your ABU
-        DHABI MAINLAND Business Setup?
+        Why Choose <span className="text-indigo-500">BIZGROWTH</span> for Your{" "}
+        <span className="text-lime-500">ABU DHABI MAINLAND</span> Business
+        Setup?
       </Heading>
     ),
     seventhPoints: [

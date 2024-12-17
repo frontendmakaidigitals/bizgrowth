@@ -39,14 +39,14 @@ const MainPage = () => {
            "Form your Dubai Offshore company with ease. Enjoy 100% foreign ownership, tax benefits, and access to global markets. Start your Dubai Offshore company setup today!",
        };
        break;
-     case "JAFZA Offshore":
+     case "Jafza Offshore":
        metaInfo = {
          title: "Offshore Company Formation in JAFZA | UAE",
          description:
            "Set up your Offshore company in JAFZA, Dubai's leading free zone. Benefit from 100% ownership, tax exemptions, and access to international markets. Start your JAFZA Offshore company today!",
        };
        break;
-     case "RAK ICC":
+     case "Rak ICC Offshore":
        metaInfo = {
          title: "RAK ICC Offshore Company Formation in UAE",
          description:
