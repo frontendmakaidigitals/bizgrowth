@@ -442,7 +442,7 @@ const VisaPro = () => {
           ))}
         </div>
       </div>
-      <div id={'Visa-service'} className="container w-full my-24 py-14">
+      <div id={"Visa-service"} className="container w-full my-24 py-14">
         <Heading className="!text-center w-full">
           Our <span className="text-lime-500">Visa</span> Services
         </Heading>
@@ -475,7 +475,7 @@ const VisaPro = () => {
           ))}
         </div>
       </div>
-      <div className="container w-full my-24">
+      <div id={"PRO-service"} className="container w-full py-14 my-24">
         <Heading className="!text-center w-full">
           Our <span className="text-lime-500">PRO</span> Services
         </Heading>

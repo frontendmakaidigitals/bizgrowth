@@ -38,7 +38,7 @@ const FourthSection = () => {
       title: "Bank Account Assistance",
       icon: <MdOutlineAccountBalance className="text-2xl" />,
       desc: "We guide you in opening and managing bank account for smooth financial transactions for your business.",
-      path: "Banking Assistance",
+      path: "Banking-Assistance",
       query: "Corporate Bank Account",
     },
     {
@@ -55,6 +55,7 @@ const FourthSection = () => {
       desc: "We provide translation, interpretation, and document attestation, to facilitate international business operations.",
       path: "otherServices",
       query: "PRO & Visa Services",
+      target: "PRO-service",
     },
     {
       title: "Office Space Solutions",
@@ -90,7 +91,7 @@ const FourthSection = () => {
       icon: <MdAssistant className="text-2xl" />,
       desc: "We provide comprehensive wealth management services, including investment planning, portfolio management and retirement planning.",
       path: "elite-services",
-      query: "Wealth Mangement",
+      query: "Wealth Management",
     },
     {
       title: "Design & Marketing Services",
