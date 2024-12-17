@@ -146,27 +146,27 @@ const MainPage = () => {
 const GoldenVisa = () => {
   const selfPraise = [
     {
-      icon: "/media/golden visa logo/resideny.png",
+      icon: "/media/golden visa Logo/resideny.png",
       title: "Long-Term Residency",
       desc: "Stay in UAE for up to 10 years with automatic renewal options.",
     },
     {
       title: "No Sponsor Requirement",
-      icon: "/media/golden visa logo/no-sponsor.png",
+      icon: "/media/golden visa Logo/no-sponsor.png",
       desc: "Freedom to live, work, or study without the need for a local sponsor.",
     },
     {
-      icon: "/media/golden visa logo/family.png",
+      icon: "/media/golden visa Logo/family.png",
       title: "Family Benefits",
       desc: "Include your spouse, children, and even domestic staff under your visa.",
     },
     {
-      icon: "/media/golden visa logo/businessOpp.png",
+      icon: "/media/golden visa Logo/businessOpp.png",
       title: "Business Opportunities",
       desc: "Enjoy 100% ownership of your business in Dubai’s investment market.",
     },
     {
-      icon: "/media/golden visa logo/lifestyle.png",
+      icon: "/media/golden visa Logo/lifestyle.png",
       title: "Exclusive Lifestyle",
       desc: "Access Dubai`s world-class healthcare, education, and lifestyle opportunities.",
     },
