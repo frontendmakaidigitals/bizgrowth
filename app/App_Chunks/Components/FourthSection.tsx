@@ -7,7 +7,7 @@ import { FaPassport } from "react-icons/fa";
 import { MdOutlineAccountBalance } from "react-icons/md";
 import { FaUserTie } from "react-icons/fa";
 import { PiOfficeChairBold } from "react-icons/pi";
-import { AnimatePresence, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import { HiOutlineTableCells } from "react-icons/hi2";
 import { GoSponsorTiers } from "react-icons/go";
 import { MdAssistant } from "react-icons/md";
