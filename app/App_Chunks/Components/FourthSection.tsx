@@ -23,29 +23,31 @@ const FourthSection = () => {
       title: "Company Formation",
       icon: <FaBuilding className="text-2xl" />,
       desc: "Form your company effortlessly with our guidance on the legal process of establishing your business entity.",
-      path: "",
-      query: "",
+      path: "mainland",
+      query: "Dubai Mainland",
     },
     {
       title: "Company Incorporation",
       icon: <PiBuildingOfficeFill className="text-2xl" />,
       desc: "We handle the whole process of incorporating your business, from choosing a legal structure to registering with relevant authorities. ",
-      path: "",
-      query: "",
+      path: "mainland",
+      query: "Dubai Mainland",
+      target: "table",
     },
     {
       title: "Bank Account Assistance",
       icon: <MdOutlineAccountBalance className="text-2xl" />,
       desc: "We guide you in opening and managing bank account for smooth financial transactions for your business.",
-      path: "",
-      query: "",
+      path: "Banking Assistance",
+      query: "Corporate Bank Account",
     },
     {
       title: "Visa Processing",
       icon: <FaPassport className="text-2xl" />,
       desc: "We process the visa applications and immigration procedures for a smooth business operations.",
-      path: "",
-      query: "",
+      path: "otherServices",
+      query: "PRO & Visa Services",
+      target: "Visa-service",
     },
     {
       title: "PRO Services",
@@ -101,13 +103,13 @@ const FourthSection = () => {
       title: "Government Permit & Approval",
       icon: <RiGovernmentFill className="text-2xl" />,
       desc: "We assist in obtaining government permits and approvals required for your business operations.",
-      path: "",
-      query: "",
+      path: "otherServices",
+      query: "Attestation & Legalisation",
     },
   ];
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState("");
-  // State for controlling whether to show more services
+
   const [showMore, setShowMore] = useState(false);
 
   // Number of services to show initially
@@ -136,7 +138,7 @@ const FourthSection = () => {
         {services.slice(0, servicesToShow).map((service, index) => (
           <motion.div
             key={index}
-            className="w-full hover:shadow-lg transition-all duration-300 bg-[#dcedc8] p-3 rounded-xl"
+            className="w-full hover:shadow-lg transition-all flex flex-col justify-between items-start duration-300 bg-[#dcedc8] p-3 rounded-xl"
             initial={{ y: 150 }}
             whileInView={{ y: 0 }}
             transition={{
@@ -145,7 +147,7 @@ const FourthSection = () => {
             }}
             viewport={{ once: true }}
           >
-            <Link href={{pathname:service.path, query:service.query}}>
+            <div>
               <div className="w-full h-[100px]">
                 <div className="size-14 text-[#244010] flex justify-center items-center overflow-hidden rounded-full bg-slate-50">
                   {service.icon}
@@ -156,16 +158,23 @@ const FourthSection = () => {
                   {service.title}
                 </p>
                 <p className="text-sm">{service.desc}</p>
-                <div className="mt-6">
-                  <button
-                    onClick={() => setIsOpen(true)}
-                    className="text-[#244010] bg-lime-300 px-3 py-1 rounded-lg font-Satoshi font-[500]"
-                  >
-                    Learn more
-                  </button>
-                </div>
               </div>
-            </Link>
+            </div>
+            <div className="mt-6">
+              <Link
+                href={{
+                  pathname: service.path,
+                  query: service.target
+                    ? { name: service.query, target: service.target }
+                    : { name: service.query },
+                }}
+                passHref
+              >
+                <button className="text-[#152509] bg-lime-300 px-3 py-1 rounded-lg font-Satoshi font-[500]">
+                  Learn more
+                </button>
+              </Link>
+            </div>
           </motion.div>
         ))}
       </motion.div>

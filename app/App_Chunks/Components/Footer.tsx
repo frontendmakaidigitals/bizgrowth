@@ -49,14 +49,14 @@ const widgetMenus: WidgetFooterMenu[] = [
           pathname: "/freezone",
           query: { name: "ifza freezone", label: "Ifza Freezone" },
         },
-        label: "Ifza Freezone",
+        label: "IFZA Freezone",
       },
       {
         href: {
           pathname: "/freezone",
           query: { name: "difc freezone", label: "Difc Freezone" },
         },
-        label: "Difc Freezone",
+        label: "DIFC Freezone",
       },
       {
         href: {
@@ -70,7 +70,7 @@ const widgetMenus: WidgetFooterMenu[] = [
           pathname: "/offshore",
           query: { name: "jafza offshore", label: "Jafza Offshore" },
         },
-        label: "Jafza Offshore",
+        label: "JAFZA Offshore",
       },
       {
         href: {

@@ -26,6 +26,24 @@ const Page = () => {
 const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
+  const target = searchParams.get("target");
+
+  useEffect(() => {
+
+    const timeoutId = setTimeout(() => {
+      if (target) {
+        const targetElement = document.getElementById(target);
+        if (targetElement) {
+          console.log("Target:", target, targetElement);
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 200);
+
+
+    return () => clearTimeout(timeoutId);
+  }, [target, searchParams]);
+
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
   useEffect(() => {
     const matchingItem = data.find(
@@ -144,7 +162,6 @@ const MainPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-   
   return (
     <div className="w-full">
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
@@ -276,10 +293,10 @@ const MainPage = () => {
           ))}
         </div>
       </div>
-      <div className="w-full container  my-24">
+      <div className="w-full container  my-24 py-14" id={"table"}>
         <div>{processData?.sixthTitle}</div>
 
-        <div className="mt-10 overflow-auto">
+        <div className="mt-14 overflow-auto">
           <table className="w-[600px] lg:w-full  border-collapse border border-gray-300">
             <thead className="bg-[#9ccc65]">
               <tr>

@@ -15,6 +15,23 @@ const Page = () => {
 const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
+   const target = searchParams.get("target");
+  
+    useEffect(() => {
+  
+      const timeoutId = setTimeout(() => {
+        if (target) {
+          const targetElement = document.getElementById(target);
+          if (targetElement) {
+            console.log("Target:", target, targetElement);
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, 200);
+  
+  
+      return () => clearTimeout(timeoutId);
+    }, [target, searchParams]);
    useEffect(() => {
       
        let metaInfo = {
@@ -425,7 +442,7 @@ const VisaPro = () => {
           ))}
         </div>
       </div>
-      <div className="container w-full my-24">
+      <div id={'Visa-service'} className="container w-full my-24 py-14">
         <Heading className="!text-center w-full">
           Our <span className="text-lime-500">Visa</span> Services
         </Heading>
