@@ -15,7 +15,7 @@ import { MdDesignServices } from "react-icons/md";
 import { RiGovernmentFill } from "react-icons/ri";
 import { TbReceiptTax } from "react-icons/tb";
 import Heading from "./Heading";
-import Form from "./PopupForm";
+ 
 import Link from "next/link";
 const FourthSection = () => {
   const services = [
@@ -108,8 +108,7 @@ const FourthSection = () => {
       query: "Attestation & Legalisation",
     },
   ];
-  const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState("");
+
 
   const [showMore, setShowMore] = useState(false);
 
@@ -118,19 +117,7 @@ const FourthSection = () => {
 
   return (
     <div className="container realtive mb-20">
-      {isOpen && <Form setIsOpen={setIsOpen} setStatus={setStatus} />}
-      <AnimatePresence mode="wait">
-        {status === "success" && (
-          <Toast
-            title="Success"
-            desc="Form submitted successfully"
-            type="success"
-          />
-        )}
-        {status === "failed" && (
-          <Toast title="Error" desc="Please try again later" type={"error"} />
-        )}
-      </AnimatePresence>
+
       <Heading className="!text-center w-full">
         Your <span className="text-lime-500">Trusted Advisor</span> for Building
         your Business and beyond!
@@ -193,39 +180,6 @@ const FourthSection = () => {
   );
 };
 
-const Toast = ({
-  title,
-  desc,
-  type = "default",
-}: {
-  title: string;
-  desc: string;
-  type?: "success" | "error" | "default";
-}) => {
-  // Define the color based on the type
-  const bgColor =
-    type === "success"
-      ? "bg-green-500"
-      : type === "error"
-      ? "bg-red-500"
-      : "bg-gray-50"; // Default color for 'default'
 
-  return (
-    <div className="fixed bottom-5 right-5 z-[999]">
-      <motion.div
-        initial={{ y: 200, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ ease: [0.08, 0.82, 0.17, 1], duration: 0.3 }}
-        className={`w-[400px] p-7 ${bgColor} rounded-lg`}
-      >
-        <h2 className="text-white font-bold font-SplineSans text-xl">
-          {title}
-        </h2>
-        <p className="text-white font-Satoshi">{desc}</p>
-      </motion.div>
-    </div>
-  );
-};
 
 export default FourthSection;

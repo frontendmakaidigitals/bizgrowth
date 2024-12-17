@@ -1,10 +1,28 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Button from "./Button";
 import Heading from "./Heading";
-
+import Form from "./PopupForm";
+import { AnimatePresence } from "framer-motion";
+import Toast from "./Toast";
 const ThirdSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState("");
   return (
     <div className="container grid grid-cols-1 items-center lg:grid-cols-2 gap-14 mb-20">
+      {isOpen && <Form setIsOpen={setIsOpen} setStatus={setStatus} />}
+      <AnimatePresence mode="wait">
+        {status === "success" && (
+          <Toast
+            title="Success"
+            desc="Form submitted successfully"
+            type="success"
+          />
+        )}
+        {status === "failed" && (
+          <Toast title="Error" desc="Please try again later" type={"error"} />
+        )}
+      </AnimatePresence>
       <div className="h-[300px] relative lg:h-[500px] rounded-xl">
         <img
           className="w-full h-full object-cover relative z-[10] rounded-xl"
@@ -28,7 +46,7 @@ const ThirdSection = () => {
           streamline the process of establishing a company in one of the world’s
           most dynamic and business-friendly environments.
         </p>
-        <Button className="mt-5">Contact us</Button>
+        <Button onClick={()=>setIsOpen(true)} className="mt-5">Contact us</Button>
       </div>
     </div>
   );

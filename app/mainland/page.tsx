@@ -34,7 +34,6 @@ const MainPage = () => {
       if (target) {
         const targetElement = document.getElementById(target);
         if (targetElement) {
-          console.log("Target:", target, targetElement);
           targetElement.scrollIntoView({ behavior: "smooth" });
         }
       }

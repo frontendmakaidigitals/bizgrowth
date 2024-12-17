@@ -209,9 +209,10 @@ const CalculatorPage = () => {
       console.log("Form submitted", formData);
     }
   };
+
   return (
     <div className="w-full mt-16 ">
-      <div className={`container w-full`}>
+      <div id={"calculator"} className={`container w-full`}>
         <div
           className={`w-full grid grid-cols-1 items-center gap-12 lg:grid-cols-2`}
         >
@@ -409,7 +410,7 @@ const CalculatorPage = () => {
           </Heading>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 ">
             {regions.map((region, index) => (
-              <Card key={index} region={region} />
+              <Card key={index} region={region} target={"calculator"} />
             ))}
           </div>
         </div>
@@ -432,7 +433,14 @@ const CalculatorPage = () => {
   );
 };
 
-const Card = ({ region }: { region: any }) => {
+const Card = ({ region, target }: { region: any; target: string }) => {
+    const handleScroll = () => {
+       const targetElement = document.getElementById(target);
+         if (targetElement) {
+           targetElement.scrollIntoView({ behavior: "smooth" });
+         }
+    };
+  
   return (
     <div className="w-full flex flex-col justify-between items-start bg-lime-200 border  border-slate-200 rounded-xl p-7 ">
       <div>
@@ -462,7 +470,7 @@ const Card = ({ region }: { region: any }) => {
           ))}
         </div>
 
-        <button className="mt-6 bg-blue-500 text-slate-50 py-2 px-4 font-Synonym font-[600] rounded-lg">
+        <button onClick={handleScroll} className="mt-6 bg-blue-500 text-slate-50 py-2 px-4 font-Synonym font-[600] rounded-lg">
           Calculate now
         </button>
       </div>
