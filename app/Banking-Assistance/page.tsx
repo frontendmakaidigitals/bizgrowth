@@ -1370,9 +1370,9 @@ const CommercialFinancing = () => {
             </div>
             <div className="h-[440px]">
               <img
-                className="w-full h-full rounded-lg object-cover"
+                className="w-full h-full shadow-lg rounded-lg object-cover"
                 src={
-                  "https://www.consultancy-me.com/illustrations/news/detail/2018-09-27-072740907-PwC-and-Commercial-Bank-of-Dubai-sign-digital-innovation-deal-.jpg"
+                  "https://justatic.com/v/20240515153941/marketing/files/new/production/images/portal/banking-finance.jpg"
                 }
               />
             </div>
