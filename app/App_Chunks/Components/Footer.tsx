@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
                     ? item.href
                     : { pathname: item.href.pathname, query: item.href.query }
                 }
-                className="rounded-xl py-1 text-[#10220a] hover:bg-[#aed581] hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                className="rounded-xl py-1 text-[#10220a] hover:bg-indigo-200 px-3 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
               >
                 {item.label}
               </Link>
