@@ -39,52 +39,59 @@ const widgetMenus: WidgetFooterMenu[] = [
       },
       {
         href: {
-          pathname: "/mainland",
-          query: { name: "Sharjah Mainland", label: "Sharjah Mainland" },
+          pathname: "/freezone",
+          query: { name: "DMCC", label: "DMCC" },
         },
-        label: "Sharjah Mainland",
+        label: "DMCC",
       },
       {
         href: {
           pathname: "/freezone",
-          query: { name: "ifza freezone", label: "Ifza Freezone" },
+          query: { name: "MEYDAN", label: "MEYDAN" },
         },
-        label: "IFZA Freezone",
+        label: "MEYDAN",
       },
       {
         href: {
-          pathname: "/freezone",
-          query: { name: "difc freezone", label: "Difc Freezone" },
+          pathname: "/Banking-Assistance",
+          query: { name: "Corporate Bank Account", label: "Corp Bank" },
         },
-        label: "DIFC Freezone",
+        label: "Corporate Bank Account",
       },
       {
         href: {
-          pathname: "/offshore",
-          query: { name: "dubai offshore", label: "Dubai Offshore" },
+          pathname: "/elite-services",
+          query: { name: "Golden Visa", label: "Golden Visa" },
         },
-        label: "Dubai Offshore",
+        label: "Golden Visa",
       },
       {
         href: {
-          pathname: "/offshore",
-          query: { name: "jafza offshore", label: "Jafza Offshore" },
+          pathname: "/otherServices",
+          query: { name: "Design & Marketing Services", label: "Marketing" },
         },
-        label: "JAFZA Offshore",
+        label: "Design & Marketing",
       },
       {
         href: {
-          pathname: "/offshore",
-          query: { name: "rak icc offshore", label: "Rak ICC Offshore" },
+          pathname: "/otherServices",
+          query: { name: "PRO & Visa Services", label: "Dubai Mainland" },
         },
-        label: "Rak ICC Offshore",
+        label: "PRO services",
       },
       {
         href: {
-          pathname: "/offshore",
-          query: { name: "ajman offshore", label: "Ajman Offshore" },
+          pathname: "/Accounting",
+          query: { name: "VAT Consultancy", label: "Dubai Mainland" },
         },
-        label: "Ajman Offshore",
+        label: "VAT Consultancy",
+      },
+      {
+        href: {
+          pathname: "/elite-services",
+          query: { name: "Real Estate", label: "Dubai Mainland" },
+        },
+        label: "Real Estate",
       },
     ],
   },
