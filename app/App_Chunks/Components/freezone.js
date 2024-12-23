@@ -693,10 +693,10 @@ const data = [
     name: "difc",
     heroTitle: (
       <Heading>
-        Launch Your Business Idea with Center
+        Launch Your Business Idea with
         <span className="text-lime-600 font-SplineSans">
           {" "}
-          DIFC - Dubai International Financial
+          DIFC - Dubai International Financial Center
         </span>{" "}
       </Heading>
     ),
@@ -1767,41 +1767,41 @@ const data = [
       {
         title: "Passport Copies",
         docs: [
-          "Passport copy of all shareholders, directors, and manager(s) (valid for at least 6 months)",
+          "Passport copy of all shareholders, directors, and manager(s) (valid for at least 6 months).",
         ],
       },
       {
         title: "Visa Copies",
         docs: [
-          "Copy of valid UAE visa (if applicable) for shareholders and directors",
+          "Copy of valid UAE visa (if applicable) for shareholders and directors.",
         ],
       },
       {
         title: "Proof of Address",
         docs: [
-          "Proof of residential address for shareholders and directors (e.g., utility bill or bank statement)",
+          "Proof of residential address for shareholders and directors (e.g., utility bill or bank statement).",
         ],
       },
       {
         title: "Photographs",
-        docs: ["Passport-sized photographs of shareholders and directors"],
+        docs: ["Passport-sized photographs of shareholders and directors."],
       },
       {
         title: "Business Plan",
         docs: [
-          "A brief business plan detailing the nature of the business, operations, and activities (if required for specific licenses)",
+          "A brief business plan detailing the nature of the business, operations, and activities (if required for specific licenses).",
         ],
       },
       {
         title: "No Objection Certificate (NOC)",
         docs: [
-          "For employees or individuals transferring from other UAE employers (if applicable)",
+          "For employees or individuals transferring from other UAE employers (if applicable).",
         ],
       },
       {
         title: "Trade Name Reservation",
         docs: [
-          "RAKEZ trade name approval for your business name (optional if already reserved)",
+          "RAKEZ trade name approval for your business name (optional if already reserved).",
         ],
       },
       {
@@ -1950,7 +1950,7 @@ const data = [
       {
         title: "Submit Required Documents",
         isPoints: false,
-        desc: "Prepare and submit the necessary documents for registration. Common requirements include Passport copies of shareholders and managers, Recent photographs of shareholders,etc.",
+        desc: "Prepare and submit the necessary documents for registration. Common requirements include Passport copies of shareholders and managers, Recent photographs of shareholders, etc.",
       },
       {
         title: "Lease an Office or Facility",
@@ -1965,7 +1965,7 @@ const data = [
       {
         title: "Apply for Visas",
         isPoints: false,
-        desc: "Apply for visas for yourself, employees, and dependents, if applicable. Ajman Free Zone facilitates visa processing.",
+        desc: "Apply for visas for yourself, employees, and dependents, if applicable.",
       },
       {
         title: "Start Operations",
@@ -2297,7 +2297,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "Set up your business in one of the most prestigious and strategically located free zones in the UAE with our DAFZA Freezone license services. Dubai Airport Freezone (DAFZA) offers unmatched benefits for international and regional businesses, making it an ideal choice for companies seeking global connectivity and top-tier facilities.",
+      "Set up your business in one of the most prestigious and strategically located free zones in the UAE with our DAFZA Freezone license services. Dubai Airport Freezone Authority (DAFZA) offers unmatched benefits for international and regional businesses, making it an ideal choice for companies seeking global connectivity and top-tier facilities.",
     heroImg: "/media/mainland/dubai.svg",
     secondTitle: (
       <Heading className="!text-center w-full">

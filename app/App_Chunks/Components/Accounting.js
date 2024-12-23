@@ -11,7 +11,7 @@ const data = [
     name: "VAT Consultancy",
     heroTitle: (
       <Heading>
-        Expert <span className="text-lime-500">VAT Consultancy</span> Services
+        Expert in <span className="text-lime-500">VAT Consultancy</span> Services
         for Your Business
       </Heading>
     ),
@@ -298,15 +298,7 @@ const data = [
         The UAE is a key global business hub, and its regulatory framework
         aligns with international financial standards, including IFRS
         (International Financial Reporting Standards).
-      </p>,
-      <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">
-          Improved Decision-Making
-        </span>{" "}
-        Audits provide valuable insights that go beyond financial accuracy. By
-        identifying areas of improvement, auditing helps you make informed,
-        data-driven decisions.
-      </p>,
+      </p>
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
@@ -624,7 +616,7 @@ const data = [
         Simplify Your Finances with{" "}
         <span className="text-lime-500">
           BizGrowth’s Expert Accounting & Bookkeeping
-        </span>
+        </span>{' '}
         Services
       </Heading>
     ),
@@ -693,8 +685,8 @@ const data = [
             desc: "We handle tax filings for individuals, small businesses, and corporations.",
           },
           {
-            title: "Management Reports",
-            desc: "f you’re ever audited, we’ll be by your side to ensure a smooth process.",
+            title: "Tax Audi Assistance",
+            desc: "If you’re ever audited, we’ll be by your side to ensure a smooth process.",
           },
         ],
       },

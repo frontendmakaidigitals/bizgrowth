@@ -60,7 +60,7 @@ const FourthSection = () => {
     {
       title: "Office Space Solutions",
       icon: <PiOfficeChairBold className="text-2xl" />,
-      desc: " We help you get the apt office space solutions, from virtual offices to fully- furnished, & serviced workspaces. ",
+      desc: " We help you get the office space solutions, from virtual offices to fully- furnished, & serviced workspaces. ",
       path: "otherServices",
       query: "Office space solution",
     },

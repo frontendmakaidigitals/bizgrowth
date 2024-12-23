@@ -207,7 +207,7 @@ const data = [
         points: [
           "Passport copies of the business owners",
           "Proof of residence in the UAE (if applicable)",
-          "Completed application form for initial approval",
+          "Complete application form for initial approval",
         ],
       },
       {
@@ -733,7 +733,7 @@ const data = [
       </Heading>
     ),
     thirdSubDesc:
-      "In Dubai, businesses that operate on the mainland need to obtain a Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Dubai Mainland licenses:",
+      "In Abu Dhabi, businesses that operate on the mainland need to obtain a Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Dubai Mainland licenses:",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Commercial License :</span> A
@@ -1063,7 +1063,7 @@ const data = [
         wide range of service-oriented sectors.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">. Industrial License :</span>A
+        <span className="font-Synonym font-[600]">Industrial License :</span>A
         Professional License is issued for businesses that provide services
         based on professional expertise. This includes businesses that rely on
         individual skill and knowledge to deliver services to clients.

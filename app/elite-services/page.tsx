@@ -261,7 +261,7 @@ const GoldenVisa = () => {
             </Heading>
           </div>
           <p className="text-lg font-Satoshi mt-4">
-            Dubai invites you to secure your future with the prestigious Golden
+            UAE invites you to secure your future with the prestigious Golden
             Visa. Whether you`re an investor, entrepreneur, professional, or
             outstanding student, we are here to make your Golden Visa
             application journey easy.
@@ -380,12 +380,17 @@ const GoldenVisa = () => {
                   </div>
                 </td>
                 <td className=" py-2 border border-gray-300 ">
-                  <div className="flex items-start gap-2 font-Satoshi text-lg text-[#152b0c] justify-start px-5 ">
-                    <div>
-                      <MdLabelImportant className="text-amber-800 mt-1" />
+                  {item.docs.map((doc, id) => (
+                    <div
+                      key={id}
+                      className="flex  items-start gap-2 font-Satoshi text-lg text-[#152b0c] justify-start px-5 "
+                    >
+                      <div>
+                        <MdLabelImportant className="text-amber-800 mt-1" />
+                      </div>
+                      <div>{doc}</div>
                     </div>
-                    <div>{item.docs}</div>
-                  </div>
+                  ))}
                 </td>
                 <td className=" py-2 border border-gray-300 px-5">
                   <div className=" font-Satoshi text-lg text-[#152b0c] justify-start ">
@@ -683,7 +688,7 @@ const WillFormation = () => {
             </Heading>
           </div>
           <p className="text-lg font-Satoshi mt-4">
-            Creating a will in the UAE is an essential step in ensuring your
+            Creating a WILL in the UAE is an essential step in ensuring your
             assets are protected, and your loved ones are provided for according
             to your wishes. Our expert Will formation service simplifies this
             process, offering peace of mind.

@@ -162,12 +162,12 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <i className="la la-map-marker mt-1 text-xl text-primary-400"></i>
                 <p className="text-[#10220a]">
-                  Office - 3307 Churchill Towers, Business Bay, Dubai - UAE
+                  Office - 3307, Churchill Towers, Business Bay, Dubai, UAE
                 </p>
               </li>
               <li className="flex items-center text-[#10220a] ">
                 <div className="flex items-center gap-1">
-                  <p className="text-sm text-[#10220a]">Phone:</p>
+                  <p className="text-sm text-[#10220a]">Phone - </p>
                   <a
                     href="tel:+971585129847"
                     className="text-sm text-[#10220a]"
@@ -177,8 +177,8 @@ const Footer: React.FC = () => {
                 </div>
               </li>
 
-              <li className="flex items-center ">
-                <i className="la la-at text-xl text-primary-400"></i>
+              <li className="flex items-center gap-1">
+                <p className="text-sm text-[#10220a]">Email - </p>
                 <p className="text-[#10220a]">info@bizgrowthconsultancy.com</p>
               </li>
             </ul>

@@ -261,7 +261,7 @@ const data = [
       {
         title: "Professionalism and Trust",
         icon: <FaBusinessTime />,
-        desc: "IFZA offers competitive pricing for business licenses, office spaces, and operational costs, making it an ideal destination for startups, SMEs, and established enterprises.",
+        desc: " A business bank account enhances your company's professional image and builds trust with clients, suppliers, and partners.",
       },
       {
         title: "Access to Business Banking Features",
@@ -330,10 +330,10 @@ const data = [
         your personal funds.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]"> Enhanced Security</span> An
-        Educational License is for businesses focused on offering educational or
-        training services, including both academic and professional courses.
-        This is a popular choice for those in the education and training sector.
+        <span className="font-Synonym font-[600]"> Enhanced Security</span>{" "}
+        Corporate bank accounts often come with enhanced security measures, such
+        as two-factor authentication, secure online banking access, and fraud
+        protection services.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
@@ -346,7 +346,7 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Steps to Open a
+        Steps to Open a{' '}
         <span className="text-lime-500">Corporate Bank Account </span>
       </Heading>
     ),

@@ -734,16 +734,16 @@ const CryptoVara = () => {
           </tbody>
         </table>
       </div>
-      <div className="container w-full mt-4 mb-24">
+      <div className="container w-full mt-6 mb-24">
         <p className="font-SplineSans font-[500]">Key points</p>
-        <div className="grid grid-cols-1 gap-1">
+        <div className="grid grid-cols-1 gap-1 mt-1">
           {keyPoints.map((item, index) => (
             <div key={index} className="flex mt-1 items-start gap-2">
               <div className="mt-2">
                 <div className="size-2 bg-lime-950 rounded-full" />
               </div>
               <p className="font-Satoshi font-[400]">
-                Access to the region`s growing virtual assets market.
+               {item}
               </p>
             </div>
           ))}
@@ -913,7 +913,7 @@ const TradeFinancial = () => {
           <div>
             <Heading>
               Your Partner in Trade{" "}
-              <span className="text-lime-500">Finance Excellence</span>
+              <span className="text-lime-500">Finance Solutions</span>
             </Heading>
           </div>
 
@@ -949,7 +949,7 @@ const TradeFinancial = () => {
           <div>
             <Heading className="!text-center w-full">
               Trade <span className="text-lime-500">Finance Solutions</span> We
-              Provide:
+              Provide
             </Heading>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
@@ -1080,12 +1080,14 @@ const TradeFinancial = () => {
           </tbody>
         </table>
       </div>
-      <Banner
-        title={"Get our Expert Guidance "}
-        desc={
-          "Let’s discuss how we can help your business grow. Fill out our contact form, and one of our trade finance experts will reach out to you."
-        }
-      />
+      <div className="mt-14">
+        <Banner
+          title={"Get our Expert Guidance "}
+          desc={
+            "Let’s discuss how we can help your business grow. Fill out our contact form, and one of our trade finance experts will reach out to you."
+          }
+        />
+      </div>
     </div>
   );
 };

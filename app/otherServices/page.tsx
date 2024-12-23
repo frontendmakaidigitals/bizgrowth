@@ -2069,9 +2069,9 @@ const HrSolutions = () => {
       </div>
 
       <Banner
-        title={"Ready to Register Your Product?"}
+        title={"Let’s Build a Thriving Workforce Together"}
         desc={
-          "Don’t let complex regulations slow you down. Partner with Milestone Homes to simplify your product registration process and bring your products to market quickly and efficiently."
+          "Transform your HR management with our solutions. Whether you need to improve recruitment processes, enhance employee engagement, or ensure compliance, we’re here to help."
         }
       />
     </div>
@@ -2438,9 +2438,9 @@ const CorporateStructuring = () => {
       </div>
 
       <Banner
-        title={"Let’s Build a Thriving Workforce Together"}
+        title={"Get Started Today"}
         desc={
-          "Transform your HR management with our solutions. Whether you need to improve recruitment processes, enhance employee engagement, or ensure compliance, we’re here to help."
+          "Ready to structure your business for success? Contact us to schedule a consultation and learn how our corporate structuring services can unlock your company’s full potential."
         }
       />
     </div>
