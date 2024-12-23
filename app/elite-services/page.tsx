@@ -688,7 +688,7 @@ const WillFormation = () => {
             </Heading>
           </div>
           <p className="text-lg font-Satoshi mt-4">
-            Creating a WILL in the UAE is an essential step in ensuring your
+            Creating a Will in the UAE is an essential step in ensuring your
             assets are protected, and your loved ones are provided for according
             to your wishes. Our expert Will formation service simplifies this
             process, offering peace of mind.
