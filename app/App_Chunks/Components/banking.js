@@ -266,7 +266,7 @@ const data = [
       {
         title: "Access to Business Banking Features",
         icon: <MdIncompleteCircle />,
-        desc: " Business accounts offer features like business loans, merchant services, and higher transaction limits that are unavailable with personal accounts",
+        desc: " Business accounts offer features like business loans, merchant services, and higher transaction limits that are unavailable with personal accounts.",
       },
       {
         title: "Tax and Legal Compliance",
@@ -296,7 +296,7 @@ const data = [
         </span>{" "}
         A corporate account helps establish your company’s credibility with
         clients, suppliers, and investors. Clients and vendors are more likely
-        to trust a business that operates with a corporate bank account
+        to trust a business that operates with a corporate bank account.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">

@@ -636,19 +636,19 @@ const data = [
         points: [
           {
             title: "Accounts Payable & Receivable",
-            desc: "We manage your bills and invoices, ensuring timely payments and receipts for smooth cash flow",
+            desc: "We manage your bills and invoices, ensuring timely payments and receipts for smooth cash flow.",
           },
           {
             title: "General Ledger Maintenance",
-            desc: "We keep track of all your transactions and categorize them to provide accurate financial reporting",
+            desc: "We keep track of all your transactions and categorize them to provide accurate financial reporting.",
           },
           {
             title: "Bank Reconciliation",
-            desc: "We reconcile your bank statements to ensure that your books align with your financial statements",
+            desc: "We reconcile your bank statements to ensure that your books align with your financial statements.",
           },
           {
             title: "Payroll Management",
-            desc: "We handle all aspects of payroll, including deductions, taxes, and employee compensation, ensuring compliance with local laws",
+            desc: "We handle all aspects of payroll, including deductions, taxes, and employee compensation, ensuring compliance with local laws.",
           },
         ],
       },
@@ -795,7 +795,7 @@ const data = [
         isPoints: true,
         desc: null,
         points: [
-          "Income Statement (Profit & Loss Statement): The income statement summarizes the company's revenues, expenses, and profits or losses over a specific period",
+          "Income Statement (Profit & Loss Statement): The income statement summarizes the company's revenues, expenses, and profits or losses over a specific period.",
           "Balance Sheet: The balance sheet provides a snapshot of the company’s assets, liabilities, and equity at a given point in time.",
           "Cash Flow Statement: The cash flow statement tracks the movement of cash into and out of the business, categorized by operating, investing, and financing activities.",
         ],
@@ -803,7 +803,7 @@ const data = [
       {
         title: " Closing the Books",
         isPoints: false,
-        desc: "At the end of an accounting period, temporary accounts (such as revenue and expense accounts) are closed to prepare for the next period. The balances in these accounts are transferred .",
+        desc: "At the end of an accounting period, temporary accounts (such as revenue and expense accounts) are closed to prepare for the next period. The balances in these accounts are transferred.",
       },
       {
         title: "Reconciliation",
