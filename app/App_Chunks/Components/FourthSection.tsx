@@ -75,9 +75,9 @@ const FourthSection = () => {
     {
       title: "Accounting & Bookkeeping",
       icon: <HiOutlineTableCells className="text-2xl" />,
-      desc: " We provide efficient accounting and book keeping services to manage your financial records. ",
+      desc: " We provide efficient Accounting and Bookkeeping services to manage your financial records. ",
       path: "Accounting",
-      query: "Accounting and Book Keeping",
+      query: "Accounting and Bookkeeping",
     },
     {
       title: "Golden Visa",

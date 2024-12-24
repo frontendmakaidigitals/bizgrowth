@@ -359,7 +359,7 @@ const data = [
       {
         title: " Prepare the Required Documentation",
         isPoints: false,
-        desc: "Banks require specific documents to open a corporate account. Make sure you have all the necessary paperwork ready before starting the process",
+        desc: "Banks require specific documents to open a corporate account. Make sure you have all the necessary paperwork ready before starting the process.",
       },
       {
         title: "Complete the Bank`s Application Form",
@@ -369,7 +369,7 @@ const data = [
       {
         title: "Deposit the Required Initial Deposit",
         isPoints: false,
-        desc: "Most banks require an initial deposit to open a corporate account. The amount varies depending on the bank and the type of account you’re opening",
+        desc: "Most banks require an initial deposit to open a corporate account. The amount varies depending on the bank and the type of account you’re opening.",
       },
       {
         title: " Review Account Terms and Sign Agreement",

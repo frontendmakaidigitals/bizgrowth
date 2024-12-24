@@ -70,7 +70,7 @@ export const Menus = [
         points: [
           "VAT Consultancy",
           "Corporate Tax",
-          "Accounting and Book keeping",
+          "Accounting and Bookkeeping",
           "Auditing",
         ],
       },

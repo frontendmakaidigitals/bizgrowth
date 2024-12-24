@@ -608,14 +608,14 @@ const data = [
   {
     bannerTitle: "Get in Touch with Us Today",
     bannerDesc:
-      "We’d love to hear from you! Whether you’re looking for accounting services, book keeping support, or tax advice, we’re here to help.",
+      "We’d love to hear from you! Whether you’re looking for accounting services, bookkeeping support, or tax advice, we’re here to help.",
 
-    name: "Accounting and Book keeping",
+    name: "Accounting and Bookkeeping",
     heroTitle: (
       <Heading>
         Simplify Your Finances with{" "}
         <span className="text-lime-500">
-          BizGrowth’s Expert Accounting & Book Keeping
+          BizGrowth’s Expert Accounting & Bookkeeping
         </span>{' '}
         Services
       </Heading>
@@ -627,7 +627,7 @@ const data = [
     secondTitle: (
       <Heading className="!text-center w-full">
         Our <span className="text-lime-500">Accounting</span> and{" "}
-        <span className="text-lime-500">Book keeping Services</span>
+        <span className="text-lime-500">Bookkeeping Services</span>
       </Heading>
     ),
     AccBookPoints: [
@@ -694,7 +694,7 @@ const data = [
 
     thirdTitle: (
       <Heading className="w-full !text-center">
-        Why Outsource <span className="text-lime-500">Book keeping</span> and{" "}
+        Why Outsource <span className="text-lime-500">Bookkeeping</span> and{" "}
         <span className="text-lime-500">Accounting Service?</span>
       </Heading>
     ),

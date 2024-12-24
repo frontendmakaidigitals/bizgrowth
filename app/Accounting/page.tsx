@@ -54,9 +54,9 @@ const MainPage = () => {
             "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
         };
         break;
-      case "Accounting and Book keeping":
+      case "Accounting and Bookkeeping":
         metaInfo = {
-          title: "Expert Book-Keeping and Accounting Service in Dubai",
+          title: "Expert BookKeeping and Accounting Service in Dubai",
           description:
             "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of bookkeeping and accounting. Contact us today to schedule a consultation and learn more about how our services can benefit your business.",
         };
