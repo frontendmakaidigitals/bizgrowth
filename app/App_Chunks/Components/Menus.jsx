@@ -31,7 +31,7 @@ export const Menus = [
           "JAFZA",
           "RAKEZ",
           "Ajman",
-          "STRIP",
+          "SRTI",
           "DAFZA",
         ],
       },

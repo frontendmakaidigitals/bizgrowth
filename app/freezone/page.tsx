@@ -96,11 +96,11 @@ const MainPage = () => {
              "Start your business in Ajman Free Zone, a cost-effective hub for entrepreneurs. Enjoy 100% ownership, flexible packages, and UAE access. Simplify your Ajman Free Zone business setup today!",
          };
          break;
-       case "STRIP":
+       case "SRTI":
          metaInfo = {
-           title: "STRIP Free Zone Company Formation | Get Expert Guidance",
+           title: "SRTI Free Zone Company Formation | Get Expert Guidance",
            description:
-             "Set up your business in STRIP Free Zone, a dynamic hub for innovation and growth. Enjoy 100% ownership, flexible licensing options, and a quick setup process. Start your STRIP Free Zone business today!",
+             "Set up your business in SRTI Free Zone, a dynamic hub for innovation and growth. Enjoy 100% ownership, flexible licensing options, and a quick setup process. Start your SRTI Free Zone business today!",
          };
          break;
        case "DAFZA":

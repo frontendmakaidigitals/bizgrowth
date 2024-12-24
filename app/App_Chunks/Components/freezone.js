@@ -2044,22 +2044,22 @@ const data = [
     seventhPoints: [],
   },
   {
-    bannerTitle: "Launch Your Business with STRIP Freezone License",
+    bannerTitle: "Launch Your Business with SRTI Freezone License",
     bannerDesc:
-      "Ready to take your business to the next level? Get in touch with our team today to learn more about STRIP Freezone license services and how we can help you set up your business for success.",
-    name: "strip",
+      "Ready to take your business to the next level? Get in touch with our team today to learn more about SRTI Freezone license services and how we can help you set up your business for success.",
+    name: "SRTI",
     heroTitle: (
       <Heading>
         Start Your Business with{" "}
-        <span className="text-lime-500">STRIP Freezone</span> License
+        <span className="text-lime-500">SRTI Freezone</span> License
       </Heading>
     ),
     heroDescription:
-      "Unlock the full potential of your business with a STRIP Freezone license. Whether you're a startup, SME, or multinational, we provide all the services to help you navigate the Freezone licensing process, ensuring that your business is set up for success in one of the most dynamic environments.",
+      "Unlock the full potential of your business with a SRTI Freezone license. Whether you're a startup, SME, or multinational, we provide all the services to help you navigate the Freezone licensing process, ensuring that your business is set up for success in one of the most dynamic environments.",
     heroImg: "/media/mainland/dubai.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
-        Why Choose <span className="text-lime-500">STRIP Free Zone?</span>{" "}
+        Why Choose <span className="text-lime-500">SRTI Free Zone?</span>{" "}
       </Heading>
     ),
     secondSubDescription: "",
@@ -2087,86 +2087,68 @@ const data = [
       {
         title: "Global Connectivity ",
         icon: <MdIncompleteCircle />,
-        desc: "Located in one of the world’s most connected regions, STRIP Freezone provides easy access to international markets.",
+        desc: "Located in one of the world’s most connected regions, SRTI Freezone provides easy access to international markets.",
       },
       {
         title: "Business-Friendly Regulations",
         icon: <MdIncompleteCircle />,
-        desc: "STRIP Freezone’s regulations are designed to help businesses grow, with quick approval timelines.",
+        desc: "SRTI Freezone’s regulations are designed to help businesses grow, with quick approval timelines.",
       },
     ],
     thirdTitle: (
       <Heading className="w-full !text-center">
         Different Types of Licenses Available in{" "}
-        <span className="text-lime-500">STRIP Free Zone</span>
+        <span className="text-lime-500">SRTI Free Zone</span>
       </Heading>
     ),
     thirdSubDesc: "",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Business License</span> This
-        license is for companies engaging in commercial activities, such as
-        trading or providing services within the Freezone.
+        <span className="font-Synonym font-[600]">Commercial License</span> This
+        license is ideal for companies involved in trading activities such as
+        buying, selling, and distributing goods and services. Businesses in
+        e-commerce, retail, or general trading can benefit from this license.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License</span>{" "}
-        Companies involved in manufacturing or industrial activities are
-        eligible for this license. It caters to businesses engaged in the
-        production, assembly, or development of technological products.
+        <span className="font-Synonym font-[600]">Service License</span> A
+        Service License in the SRTIP Freezone is for businesses offering
+        specialized services rather than physical products. It is for
+        service-oriented sectors, including IT services, legal and financial
+        advisory, marketing, engineering, logistics, and more.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Technology License</span> This
-        is for businesses focused on technology-based activities, such as
-        software development, IT solutions, research, and tech startups. The
-        license supports innovative companies and startups within the tech
-        sector.
+        <span className="font-Synonym font-[600]">Trading License</span> A
+        Trading License in the SRTIP Freezone is designed for businesses engaged
+        in buying, selling, and distributing goods and services. Businesses can
+        trade in a variety of goods, including electronics, consumer products,
+        machinery, and more.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Service License</span> This
-        license is for companies offering specialized services, such as
-        consultancy, research, development, or any non-commercial service within
-        the park.
+        <span className="font-Synonym font-[600]">E-commerce License</span> An
+        E-Commerce License in the SRTIP Freezone is designed for businesses
+        operating online, including those selling products or services through
+        digital platforms. This license allows companies to set up an online
+        store, and engage in digital marketing.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">
-          R&D License (Research and Development)
-        </span>{" "}
-        This is for companies involved specifically in research and development,
-        particularly in areas such as technology, innovation, engineering, and
-        scientific advancements. This license supports businesses with a strong
-        focus on R&D activities.
-      </p>,
-      <p key={5} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Start-up License</span>{" "}
-        Tailored for startups, this license is aimed at smaller businesses and
-        entrepreneurs, offering flexible packages and benefits to support
-        early-stage businesses and innovative projects.
-      </p>,
-      <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">E-commerce License</span> For
-        businesses looking to operate entirely online, such as e-commerce
-        platforms or digital businesses, this license is available to facilitate
-        trade and online commerce activities.
-      </p>,
-      <p key={7} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Consultancy License</span>{" "}
-        Aimed at consultants offering professional advice in areas such as
-        technology, business strategy, management, and other specialized fields,
-        this license provides the necessary permissions for consulting
-        operations.
+        <span className="font-Synonym font-[600]">Consultancy License</span> A
+        Consultancy License in the SRTIP Freezone is designed for businesses
+        that provide expert advice and services across various industries. You
+        can offer management consulting, IT consulting, financial advisory, or
+        any other form of consultancy.
       </p>,
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
         Business Setup Process for{" "}
-        <span className="text-lime-500">STRIP Free Zone</span>
+        <span className="text-lime-500">SRTI Free Zone</span>
       </Heading>
     ),
     fourthPoints: [
       {
         title: "Select the Type of License",
         isPoints: false,
-        desc: "Choose from the different types of licenses offered by STRIP (e.g., business license, industrial license, technology license, R&D license, etc.).",
+        desc: "SRTI Park Freezone provides a range of licenses, including Commercial, Trading, Services, E-Commerce, and Consultancy, to support a diverse array of business activities.",
       },
       {
         title: "Choose the Business Structure",
@@ -2176,33 +2158,33 @@ const data = [
       {
         title: "Submit the Application",
         isPoints: false,
-        desc: "Submit the application to STRIP Freezone authorities. Documents like Passport copies of shareholders and directors, Proof of address (residential or office) are required.",
+        desc: "Submit the application to SRTI Freezone authorities. Documents like Passport copies of shareholders and directors, Proof of address (residential or office) are required.",
       },
       {
         title: "Business Name Reservation",
         isPoints: false,
-        desc: "Submit a name reservation request for your business. The name must comply with STRIP Freezone's naming regulations and be unique within the freezone.",
+        desc: "Submit a name reservation request for your business. The name must comply with SRTI Freezone's naming regulations and be unique within the freezone.",
       },
       {
         title: "Sign the License Agreement",
         isPoints: false,
-        desc: "Once the application and name reservation are approved, you will be asked to sign the license agreement with STRIP Freezone. This formalizes your registration within the free zone.",
+        desc: "Once the application and name reservation are approved, you will be asked to sign the license agreement with SRTI Freezone. This formalizes your registration within the free zone.",
       },
       {
         title: "Office Space & Facility Setup",
         isPoints: true,
-        desc: "Lease Office Space: If required, you will need to lease office space or coworking facilities within the STRIP Freezone. STRIP offers flexible office spaces, from small offices to large-scale facilities.",
+        desc: "Lease Office Space, If required, you will need to lease office space or coworking facilities within the SRTI Freezone. SRTI offers flexible office spaces, from small offices to large-scale facilities.",
       },
       {
         title: "Obtain the License",
         isPoints: false,
-        desc: "After completing all formalities, submitting the necessary documentation, and paying the required fees, STRIP will issue your business license.",
+        desc: "After completing all formalities, submitting the necessary documentation, and paying the required fees, SRTI will issue your business license.",
       },
     ],
     sixthTitle: (
       <Heading className="w-full !text-center">
         Documents Required for{" "}
-        <span className="text-lime-500">STRIP Free Zone License</span>
+        <span className="text-lime-500">SRTI Free Zone License</span>
       </Heading>
     ),
     sixthTableHead: ["Document", "Description"],
@@ -2228,13 +2210,13 @@ const data = [
       {
         title: "Completed Application Form",
         docs: [
-          "The official application form provided by STRIP Freezone, filled with company details.",
+          "The official application form provided by SRTI Freezone, filled with company details.",
         ],
       },
       {
         title: "Company Name Reservation",
         docs: [
-          "The proposed company name, ensuring it complies with STRIP's naming regulations.",
+          "The proposed company name, ensuring it complies with SRTI's naming regulations.",
         ],
       },
       {
@@ -2252,7 +2234,7 @@ const data = [
       {
         title: "Lease Agreement (if applicable)",
         docs: [
-          "Signed lease agreement for office space or virtual office services within STRIP Freezone.",
+          "Signed lease agreement for office space or virtual office services within SRTI Freezone.",
         ],
       },
       {
