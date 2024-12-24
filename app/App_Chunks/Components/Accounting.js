@@ -632,7 +632,7 @@ const data = [
     ),
     AccBookPoints: [
       {
-        title: "BookKeeping Services",
+        title: "Bookkeeping Services",
         points: [
           {
             title: "Accounts Payable & Receivable",

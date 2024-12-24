@@ -56,7 +56,7 @@ const MainPage = () => {
         break;
       case "Accounting and Bookkeeping":
         metaInfo = {
-          title: "Expert BookKeeping and Accounting Service in Dubai",
+          title: "Expert Bookkeeping and Accounting Service in Dubai",
           description:
             "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of bookkeeping and accounting. Contact us today to schedule a consultation and learn more about how our services can benefit your business.",
         };
