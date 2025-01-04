@@ -220,7 +220,7 @@ const MainPage = () => {
                   {elem.title}
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
-                <Button className="mt-3">Learn More</Button>
+                
               </div>
             </div>
           ))}

@@ -223,7 +223,7 @@ const MainPage = () => {
                   </p>
                   <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
                 </div>
-                <Button className="mt-3">Learn More</Button>
+              
               </motion.div>
             ))}
         </motion.div>

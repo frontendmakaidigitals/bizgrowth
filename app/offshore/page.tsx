@@ -166,7 +166,7 @@ const MainPage = () => {
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
               </div>
-              <Button className="mt-5">Learn More</Button>
+              
             </div>
           ))}
         </div>
