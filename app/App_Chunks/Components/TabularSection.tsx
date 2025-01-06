@@ -24,7 +24,7 @@ const TabularSection = () => {
   const mainland = [
     "100 % Ownership",
     "Diverse Business Opportunities",
-    "Unrestrict trade",
+    "Unrestricted trade",
     "Access to Government Contracts",
     "Simplified Procedures",
     "Unlimited Fund transfer",
@@ -37,7 +37,7 @@ const TabularSection = () => {
     "Strong Legal Framework",
     "Minimal Reporting Requirements",
     "Global Business Opportunities",
-    "Stategic Location",
+    "Strategic Location",
   ];
   const freezone = [
     "100% Foreign Ownership",

@@ -50,7 +50,7 @@ const AboutPage = () => {
       title: "Our Mission",
       desc: (
         <p>
-          At BizGrowth, our mission is to empower upcoming business by providing
+          At Biz Growth, our mission is to empower upcoming business by providing
           comprehensive and personalized set-up solutions that accelerate growth
           and success. We attempt to simplify the process of setting up and
           registering businesses by offering expert guidance, tailored
@@ -68,7 +68,7 @@ const AboutPage = () => {
       title: "Our Vision",
       desc: (
         <p>
-          At BizGrowth, to be the leading provider of business setup services in
+          At Biz Growth, to be the leading provider of business setup services in
           the UAE, recognized for our expertise, reliability, and customer
           satisfaction. We envision a future where every business, regardless of
           the size or industry of the company, can easily navigate the

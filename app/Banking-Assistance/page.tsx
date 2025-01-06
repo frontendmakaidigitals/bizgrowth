@@ -37,7 +37,7 @@ const MainPage = () => {
         metaInfo = {
           title: "Corporate Bank Account Assistance in DUBAI, UAE",
           description:
-            "Banking experts at BizGrowth will guide you through the process with ease and efficiency for corporate bank account opening assistance. Contact us today to schedule a consultation, and take the first step toward securing your company’s financial future.",
+            "Banking experts at Biz Growth will guide you through the process with ease and efficiency for corporate bank account opening assistance. Contact us today to schedule a consultation, and take the first step toward securing your company’s financial future.",
         };
         break;
       case "Private Bank Account":
@@ -1353,7 +1353,7 @@ const CommercialFinancing = () => {
                 the UAE
               </Heading>
               <p className="font-Satoshi mt-5 text-xl">
-                At BizGrowth, we specialize in providing innovative commercial
+                At Biz Growth, we specialize in providing innovative commercial
                 financing solutions to businesses across the UAE. Whether you`re
                 a small startup or a large enterprise, we offer flexible
                 financing options designed to help you grow and succeed in the
@@ -1550,7 +1550,7 @@ const CommercialFinancing = () => {
         </table>
       </div>
       <Banner
-        title={"Get in Touch for Commercial Financial Sercvices in the UAE"}
+        title={"Get in Touch for Commercial Financial Services in the UAE"}
         desc={
           "Ready to explore your financing options? Our experts are here to guide you through the process and help you find the right solution for your business."
         }

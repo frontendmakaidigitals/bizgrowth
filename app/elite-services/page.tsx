@@ -63,9 +63,9 @@ const MainPage = () => {
         break;
       default:
         metaInfo = {
-          title: "Expert Services in UAE | BizGrowth",
+          title: "Expert Services in UAE | Biz Growth",
           description:
-            "Explore a wide range of expert services in the UAE, including Golden Visa, Will formation, Real Estate investment, Wealth management, and Nominee Director services. Let BizGrowth guide you toward securing your future in the UAE.",
+            "Explore a wide range of expert services in the UAE, including Golden Visa, Will formation, Real Estate investment, Wealth management, and Nominee Director services. Let Biz Growth guide you toward securing your future in the UAE.",
         };
         break;
     }
@@ -356,7 +356,7 @@ const GoldenVisa = () => {
       </div>
       <div className="container w-full mt-24">
         <Heading className="!text-center w-full">
-          Documents Requried for{" "}
+          Documents Required for{" "}
           <span className="text-amber-400">Golden Visa</span> Services
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
@@ -1077,7 +1077,7 @@ const RealEstateInvestment = () => {
     {
       img: "https://static.propsearch.ae/dubai-locations/dubai-hills-estate_fV6VG_xl.jpg",
       title: "Dubai Hills Estate",
-      desc: "A family-friendly community with vast green spaces, schools, and amenities. Located near key destinations like Downtown Dubai and Dubai Marina, offering both convenience and tranquility.",
+      desc: "A family-friendly community with vast green spaces, schools, and amenities. Located near key destinations like Downtown Dubai and Dubai Marina, offering both convenience and tranquillity.",
     },
     {
       img: "https://d3h330vgpwpjr8.cloudfront.net/x/1773x/dubai_creek_harbour_788a9f98e3.webp",
@@ -1157,7 +1157,7 @@ const RealEstateInvestment = () => {
             through property investments. Whether you`re a first-time investor
             or a professional, we offer a range of services to meet your needs.
           </p>
-          <Button className="mt-5">Conatact us</Button>
+          <Button className="mt-5">Contact us</Button>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} alt="Hero" />
@@ -1547,7 +1547,7 @@ const WealthManagement = () => {
           </Heading>
           <p className="font-Satoshi">
             The UAE offers a wealth of opportunities for those looking to grow
-            and protect their assets. With a favorable tax environment, a
+            and protect their assets. With a favourable tax environment, a
             dynamic economy, and access to global financial markets, it’s no
             wonder that so many individuals and families turn to wealth
             management services to help them navigate through it. <br />{" "}
@@ -1871,7 +1871,7 @@ const NomineeDirectory = () => {
             </Heading>
           </div>
           <p className="text-lg font-Satoshi mt-4">
-            At BizGrowth, we offer professional Nominee Director Services
+            At Biz Growth, we offer professional Nominee Director Services
             designed to ensure your company remains compliant, secure, and
             operates smoothly. Whether you`re a foreign investor or need a
             third-party director for privacy or confidentiality, our experienced
@@ -1900,7 +1900,7 @@ const NomineeDirectory = () => {
             many free zones and onshore company structures require a local
             director or shareholder to meet the legal and operational
             requirements of doing business. A nominee director is often used to
-            fulfill this requirement while allowing the actual business owner to
+            fulfil this requirement while allowing the actual business owner to
             retain full control over the company’s operations.
           </p>
         </div>

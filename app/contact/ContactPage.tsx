@@ -69,7 +69,7 @@ const ContactPage = () => {
             />
           </div>
           <h1 className="text-xl lg:text-3xl text-center">
-            Get Personalized Assitance to set up your business in UAE!
+            Get Personalized Assistance to set up your business in UAE!
           </h1>
           <h2 className="mt-4 text-sm lg:text-lg font-[500] text-center">
             We’re here to help you navigate the process of setting up your

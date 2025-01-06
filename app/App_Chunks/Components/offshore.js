@@ -6,7 +6,7 @@ const data = [
   {
     bannerTitle: "Launch your business with JAFZA Offshore License!",
     bannerDesc:
-      "A JAFZA Offshore License opens doors to numerous business opportunities with tax benefits, privacy, and easy access to global markets.Contact Us Today for professional guidance in setting up your JAFZA Offshore company. Our expert team is here to simplify the process and ensure a smooth experience from start to finish.",
+      "A JAFZA Offshore License opens doors to numerous business opportunities with tax benefits, privacy, and easy access to global markets. Contact Us Today for professional guidance in setting up your JAFZA Offshore company. Our expert team is here to simplify the process and ensure a smooth experience from start to finish.",
     name: "JAFZA offshore",
     heroTitle: (
       <Heading>
@@ -184,7 +184,7 @@ const data = [
       {
         title: "Tax Efficiency",
         icon: <FaPeopleGroup />,
-        desc: "Situated in Dubai, JAFZA offers excellent access to international markets, especially in the Middle East, Asia, and Europe. It's also close to major ports and airports.",
+        desc: "Enjoy 100% tax exemptions, including no income, corporate, or capital gains tax.",
       },
       {
         title: "Privacy",
@@ -233,7 +233,7 @@ const data = [
       {
         title: "Reserve a Company Name",
         isPoints: false,
-        desc: "elect a unique company name that aligns with your business operations.",
+        desc: "Select a unique company name that aligns with your business operations.",
       },
       {
         title: " Submit Documents & Complete Company Registration",
@@ -306,7 +306,7 @@ const data = [
   {
     bannerTitle: "LAUNCH YOUR BUSINESS WITH AJMAN OFFSHORE",
     bannerDesc:
-      "Our team of experts at BIZGrowth is dedicated to simplifying the offshore company setup process. With years of experience in helping businesses navigate the Ajman Offshore regulations, we offer end-to-end services to ensure a smooth setup process.",
+      "Our team of experts at BIZ Growth is dedicated to simplifying the offshore company setup process. With years of experience in helping businesses navigate the Ajman Offshore regulations, we offer end-to-end services to ensure a smooth setup process.",
     name: "ajman offshore",
     heroTitle: (
       <Heading>
@@ -531,7 +531,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "BIZGrowth Consultancy is  your trusted partner in establishing and managing offshore businesses in Dubai. With its tax advantages, and prime location, Dubai has become a global hub for entrepreneurs to set up offshore companies. Whether you’re seeking asset protection, or enhanced privacy, we provide all services to guide you through the offshore business setup process with ease.",
+      "BIZ Growth Consultancy is  your trusted partner in establishing and managing offshore businesses in Dubai. With its tax advantages, and prime location, Dubai has become a global hub for entrepreneurs to set up offshore companies. Whether you’re seeking asset protection, or enhanced privacy, we provide all services to guide you through the offshore business setup process with ease.",
     heroImg: "/media/mainland/dubai.svg",
     secondTitle: (
       <Heading className="!text-center w-full">

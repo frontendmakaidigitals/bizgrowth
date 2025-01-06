@@ -6,7 +6,7 @@ const data = [
   {
     bannerTitle: "Start Your Business in Dubai Today with IFZA!",
     bannerDesc:
-      "Take advantage of Dubai’s business-friendly environment, world-class infrastructure, and tax advantages. With IFZA, establishing and growing your business has never been easier. Get expert consultation from BIZGROWTH to decide on which freezone to choose from according to your business activity.",
+      "Take advantage of Dubai’s business-friendly environment, world-class infrastructure, and tax advantages. With IFZA, establishing and growing your business has never been easier. Get expert consultation from BIZ GROWTH to decide on which freezone to choose from according to your business activity.",
     name: "ifza",
     heroTitle: (
       <Heading>
@@ -232,7 +232,7 @@ const data = [
     seventhPoints: [],
   },
   {
-    bannerTitle: "Get Started Today AT DMCC FREEZONE LICENSE - WITH BIZGROWTH.",
+    bannerTitle: "Get Started Today AT DMCC FREEZONE LICENSE - WITH BIZ GROWTH.",
     bannerDesc:
       "Starting your business in Dubai with DMCC is easier than you think. Let our experts guide you through the process and help you set up your company in one of the world’s most vibrant Freezones. Contact us today to learn more about how DMCC can help your business succeed.",
     name: "dmcc",
@@ -350,8 +350,7 @@ const data = [
     fourthTitle: (
       <Heading className="w-full !text-center ">
         Step-by-Step Guide to Setting Up Your{" "}
-        <span className="text-lime-500"> DMCC Freezone</span> DMCC Freezone
-        Company
+        <span className="text-lime-500"> DMCC Freezone</span> Company
       </Heading>
     ),
     fourthPoints: [
@@ -1269,16 +1268,14 @@ const data = [
         <span className="font-Synonym font-[600]">
           Branch of a Foreign Company License
         </span>{" "}
-        If you are a foreign company looking to expand your operations in Dubai
-        and Meydan, you can establish a branch office. This license allows you
-        to operate in Dubai as a branch of an existing company outside the UAE.
+        A Branch Office License allows foreign companies to establish a branch in the SPC Free Zone to conduct business activities that are in line with the parent company's scope.
       </p>,
       <p key={10} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Freelance License</span> A
         Freelance License allows individuals to operate as independent
         professionals or consultants within SPC Free Zone.
       </p>,
-      <p key={10} className="font-Satoshi text-lg">
+      <p key={11} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Virtual Office License</span>{" "}
         A Virtual Office License allows businesses to operate without the need
         for a physical office. This license is designed for companies that need
@@ -1603,7 +1600,7 @@ const data = [
   {
     bannerTitle: "Start Your Business Journey Today!",
     bannerDesc:
-      "Ready to take the next step? Start your business with RAKEZ and enjoy a seamless, efficient setup process. BIZGrowth Consultants are here to guide you through every step for setting up your business in RAKEZ.",
+      "Ready to take the next step? Start your business with RAKEZ and enjoy a seamless, efficient setup process. BIZ Growth Consultants are here to guide you through every step for setting up your business in RAKEZ.",
     name: "Rakez",
     heroTitle: (
       <Heading>
@@ -1918,7 +1915,7 @@ const data = [
     ],
     fourthTitle: (
       <Heading className="w-full !text-center ">
-        Business Setup Process in <span className="text-lime-500">Ajman</span>
+        Business Setup Process in <span className="text-lime-500">Ajman Freezone</span>
       </Heading>
     ),
     fourthPoints: [
@@ -1930,7 +1927,7 @@ const data = [
       {
         title: "Select Your Business License",
         isPoints: false,
-        desc: "Choose the appropriate license type based on your business activity. The common licenses include trading License, industrial License.",
+        desc: "Choose the appropriate license type based on your business activity. The common licenses include trading license, industrial license.",
       },
       {
         title: " Decide on a Business Structure",
@@ -2111,28 +2108,28 @@ const data = [
       </p>,
       <p key={1} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Service License</span> A
-        Service License in the SRTIP Freezone is for businesses offering
+        Service License in the SRTI Freezone is for businesses offering
         specialized services rather than physical products. It is for
         service-oriented sectors, including IT services, legal and financial
         advisory, marketing, engineering, logistics, and more.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Trading License</span> A
-        Trading License in the SRTIP Freezone is designed for businesses engaged
+        Trading License in the SRTI Freezone is designed for businesses engaged
         in buying, selling, and distributing goods and services. Businesses can
         trade in a variety of goods, including electronics, consumer products,
         machinery, and more.
       </p>,
       <p key={3} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">E-commerce License</span> An
-        E-Commerce License in the SRTIP Freezone is designed for businesses
+        E-Commerce License in the SRTI Freezone is designed for businesses
         operating online, including those selling products or services through
         digital platforms. This license allows companies to set up an online
         store, and engage in digital marketing.
       </p>,
       <p key={4} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Consultancy License</span> A
-        Consultancy License in the SRTIP Freezone is designed for businesses
+        Consultancy License in the SRTI Freezone is designed for businesses
         that provide expert advice and services across various industries. You
         can offer management consulting, IT consulting, financial advisory, or
         any other form of consultancy.

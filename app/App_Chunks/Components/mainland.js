@@ -6,7 +6,7 @@ const data = [
   {
     bannerTitle: "READY TO LAUNCH YOUR BUSINESS IN DUBAI?",
     bannerDesc:
-      "Starting your business in Dubai has never been easier. Let BIZGROWTH be your trusted partner in navigating the Dubai Mainland business setup process. Contact us today for a free consultation and let’s take the first step toward turning your business dreams into reality!",
+      "Starting your business in Dubai has never been easier. Let BIZ GROWTH be your trusted partner in navigating the Dubai Mainland business setup process. Contact us today for a free consultation and let’s take the first step toward turning your business dreams into reality!",
     name: "Dubai Mainland",
     heroTitle: (
       <Heading>
@@ -353,7 +353,7 @@ const data = [
       "This table lists the primary documents required for each business entity type in Dubai Mainland. Keep in mind that additional documents may be needed based on the specific industry, business activity, or any regulatory requirements. It’s advisable to consult with BIZ Growth business setup consultant for more detailed and accurate information based on your unique business needs.",
     seventhTitle: (
       <Heading className="w-full !text-center">
-        Why Choose <span className="text-lime-500">BIZGROWTH</span> for Your
+        Why Choose <span className="text-lime-500">BIZ GROWTH</span> for Your
         Dubai Mainland Business Setup?
       </Heading>
     ),
@@ -392,7 +392,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "Welcome to the leading platform for obtaining a Sharjah Mainland Business License. Whether you're looking to start a new business or expand your operations, our professional services ensure a seamless and efficient process for securing your Mainland license in Sharjah. Let us help you navigate the regulatory landscape and start your business journey today in Sharjah, is a dynamic emirate in the UAE, offers a thriving business environment with numerous opportunities for entrepreneurs. A Sharjah mainland license is the ideal choice for business seeking to operate within the UAE and engage directly with local and international clients.",
+      "Welcome to the leading platform for obtaining a Sharjah Mainland Business License. Whether you're looking to start a new business or expand your operations, our professional services ensure a seamless and efficient process for securing your Mainland license in Sharjah. Let us help you navigate the regulatory landscape and start your business journey today in Sharjah. Sharjah is a dynamic emirate in the UAE offering a thriving business environment with numerous opportunities for entrepreneurs. A Sharjah mainland license is the ideal choice for business seeking to operate within the UAE and engage directly with local and international clients.",
     heroImg: "/media/mainland/sharjah.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -455,7 +455,7 @@ const data = [
         products.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License :</span>An
+        <span className="font-Synonym font-[600]">Industrial License :</span> An
         Industrial License is granted to businesses involved in the
         manufacturing, production, or industrial processing of goods. Companies
         with this license can operate in factories, assembly plants, or
@@ -487,9 +487,9 @@ const data = [
         These include healthcare providers, pharmacies, and medical clinics.
       </p>,
       <p key={6} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Educational License :</span>An
-        Educational License is issued for businesses involved in educational and
-        training services. This includes schools, training centers, language
+        <span className="font-Synonym font-[600]">Educational License :</span>{" "}
+        An Educational License is issued for businesses involved in educational
+        and training services. This includes schools, training centers, language
         institutions, and educational consultancy services.
       </p>,
       <p key={7} className="font-Satoshi text-lg">
@@ -673,7 +673,7 @@ const data = [
   },
   {
     bannerTitle:
-      "GET STARTED WITH OPENING YOUR ABU DHABI MAINLAND LICENSE WITH BIZGROWTH",
+      "GET STARTED WITH OPENING YOUR ABU DHABI MAINLAND LICENSE WITH BIZ GROWTH",
     bannerDesc:
       "Starting a business in Abu Dhabi Mainland opens doors to endless possibilities. Let us be your trusted partner in navigating the business setup process and obtaining your Mainland license with ease. Reach out today, and take the first step toward realizing your business goals in one of the most vibrant economies in the world.",
     name: "Abu Dhabi Mainland",
@@ -733,7 +733,7 @@ const data = [
       </Heading>
     ),
     thirdSubDesc:
-      "In Abu Dhabi, businesses that operate on the mainland need to obtain a Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Dubai Mainland licenses:",
+      "In Abu Dhabi, businesses that operate on the mainland need to obtain a Abu Dubai Mainland License from the Department of Economic Development (DED). The type of license depends on the nature of the business activity. Below are the main types of Abu Dubai Mainland licenses:",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Commercial License :</span> A
@@ -742,8 +742,8 @@ const data = [
         distribute goods in Abu Dhabi and across the UAE.
       </p>,
       <p key={1} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License: </span> An
-        Industrial License is granted to businesses engaged in manufacturing,
+        <span className="font-Synonym font-[600]">Industrial License : </span>{" "}
+        An Industrial License is granted to businesses engaged in manufacturing,
         processing, or production activities. Companies with this license are
         permitted to establish factories or manufacturing units in Abu Dhabi.
       </p>,
@@ -953,7 +953,7 @@ const data = [
       "These documents may vary slightly depending on the specific requirements of the Department of Economic Development (DED) and any industry-specific regulations. Always consult with a business setup advisor for precise details.",
     seventhTitle: (
       <Heading className="w-full !text-center">
-        Why Choose <span className="text-indigo-500">BIZGROWTH</span> for Your{" "}
+        Why Choose <span className="text-indigo-500">BIZ GROWTH</span> for Your{" "}
         <span className="text-lime-500">ABU DHABI MAINLAND</span> Business
         Setup?
       </Heading>
@@ -1063,7 +1063,7 @@ const data = [
         wide range of service-oriented sectors.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License :</span>A
+        <span className="font-Synonym font-[600]">Industrial License :</span> A
         Professional License is issued for businesses that provide services
         based on professional expertise. This includes businesses that rely on
         individual skill and knowledge to deliver services to clients.
@@ -1181,7 +1181,7 @@ const data = [
     sixthTitle: (
       <Heading className="w-full !text-center">
         Documents required for Setting up{" "}
-        <span className="text-lime-500">Ajman Maindland License</span>
+        <span className="text-lime-500">Ajman Mainland License</span>
       </Heading>
     ),
     sixthTableHead: ["Business Structure", "Required Documents"],
@@ -1264,13 +1264,13 @@ const data = [
     heroTitle: (
       <Heading>
         WELCOME TO{" "}
-        <span className="text-lime-600 font-SplineSans">BIZGROWTH</span> - YOUR
+        <span className="text-lime-600 font-SplineSans">BIZ GROWTH</span> - YOUR
         BUSINESS SET UP PARTNER IN FUJAIRAH! BUSINESS SET UP PARTNER IN
         FUJAIRAH!
       </Heading>
     ),
     heroDescription:
-      "Welcome to BizGrowth, your trusted partner for business setup and company registration in Fujairah Mainland. Whether you’re an aspiring entrepreneur or an established business looking to expand in the UAE, we provide tailored solutions to help you establish and grow your business in Fujairah.",
+      "Welcome to Biz Growth, your trusted partner for business setup and company registration in Fujairah Mainland. Whether you’re an aspiring entrepreneur or an established business looking to expand in the UAE, we provide tailored solutions to help you establish and grow your business in Fujairah.",
     heroImg: "/media/mainland/Fujairah.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -1283,12 +1283,12 @@ const data = [
       {
         title: "Strategic Location",
         icon: <FaPeopleGroup />,
-        desc: " The cost of setting up a business in Ajman is lower compared to other Emirates, making it attractive for both small and large-scale operations.",
+        desc: "Fujairah’s proximity to international ports and its location on the east coast of the UAE makes it a key gateway for trade.",
       },
       {
         title: "Competitive Costs",
         icon: <FaBusinessTime />,
-        desc: " A Mainland business license allows you to trade directly with the UAE local market, expand freely, and have access to government contracts.",
+        desc: " Fujairah offers more affordable licensing and operational costs compared to other emirates, making it a cost-effective choice for entrepreneurs.",
       },
       {
         title: "Access to Local Market",
@@ -1333,7 +1333,7 @@ const data = [
         contractors, freelancers, and other service-oriented businesses.
       </p>,
       <p key={2} className="font-Satoshi text-lg">
-        <span className="font-Synonym font-[600]">Industrial License :</span>An
+        <span className="font-Synonym font-[600]">Industrial License :</span> An
         Industrial License is issued for businesses involved in manufacturing or
         industrial production. This license is ideal for companies engaged in
         creating, processing, or assembling goods.

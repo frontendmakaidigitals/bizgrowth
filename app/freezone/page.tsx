@@ -44,7 +44,7 @@ const MainPage = () => {
          metaInfo = {
            title: "DMCC Free Zone Business Setup",
            description:
-             "Start your business in DMCC, the leading free zone in Dubai. Benefit from flexible licensing options, and a prime location. Simplify your DMCC business setup today with BizGrowth!",
+             "Start your business in DMCC, the leading free zone in Dubai. Benefit from flexible licensing options, and a prime location. Simplify your DMCC business setup today with Biz Growth!",
          };
          break;
        case "ADGM":

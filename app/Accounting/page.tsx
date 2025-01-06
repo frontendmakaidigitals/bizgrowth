@@ -51,14 +51,14 @@ const MainPage = () => {
         metaInfo = {
           title: "Tax Consultants in Dubai, UAE",
           description:
-            "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
+            "Whether you’re a startup or an established corporation, Biz Growth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
         };
         break;
       case "Accounting and Bookkeeping":
         metaInfo = {
           title: "Expert Bookkeeping and Accounting Service in Dubai",
           description:
-            "Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of bookkeeping and accounting. Contact us today to schedule a consultation and learn more about how our services can benefit your business.",
+            "Whether you’re a startup or an established corporation, Biz Growth is your trusted partner for navigating the complexities of bookkeeping and accounting. Contact us today to schedule a consultation and learn more about how our services can benefit your business.",
         };
         break;
       case "Auditing":
@@ -70,9 +70,9 @@ const MainPage = () => {
         break;
       default:
         metaInfo = {
-          title: "Financial Services in UAE | BizGrowth",
+          title: "Financial Services in UAE | Biz Growth",
           description:
-            "Explore a range of expert financial services in Dubai, from VAT consultancy to corporate tax, accounting, and auditing services. Let BizGrowth guide your business toward financial success with our expert consulting and tailored solutions.",
+            "Explore a range of expert financial services in Dubai, from VAT consultancy to corporate tax, accounting, and auditing services. Let Biz Growth guide your business toward financial success with our expert consulting and tailored solutions.",
         };
         break;
     }

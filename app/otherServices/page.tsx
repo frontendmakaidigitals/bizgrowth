@@ -15,133 +15,130 @@ const Page = () => {
 const MainPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("name");
-   const target = searchParams.get("target");
-  
-    useEffect(() => {
-  
-      const timeoutId = setTimeout(() => {
-        if (target) {
-          const targetElement = document.getElementById(target);
-          if (targetElement) {
-            console.log("Target:", target, targetElement);
-            targetElement.scrollIntoView({ behavior: "smooth" });
-          }
+  const target = searchParams.get("target");
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (target) {
+        const targetElement = document.getElementById(target);
+        if (targetElement) {
+          console.log("Target:", target, targetElement);
+          targetElement.scrollIntoView({ behavior: "smooth" });
         }
-      }, 200);
-  
-  
-      return () => clearTimeout(timeoutId);
-    }, [target, searchParams]);
-   useEffect(() => {
-      
-       let metaInfo = {
-         title: "Business Setup in UAE - Mainland",
-         description:
-           "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
-       };
-       console.log(query)
-  
-   switch (query) {
-     case "PRO & Visa Services":
-       metaInfo = {
-         title: "PRO Services in the UAE",
-         description:
-           "Simplify your visa and PRO processes with the help of our experienced team. Whether you’re expanding your business or managing employee visas, we are here to support you every step of the way.",
-       };
-       break;
-     case "Attestation & Legalisation":
-       metaInfo = {
-         title: "Attestation & Legalization Service in UAE",
-         description:
-           "BizGrowth, is your trusted partner for professional attestation and legalization services. We make the complex process of authenticating your documents simple, fast, and hassle-free.",
-       };
-       break;
-     case "Office space solution":
-       metaInfo = {
-         title: "Office Space Solutions in Dubai, UAE",
-         description:
-           "At BizGrowth, we understand that your workspace is more than just a place to work – it’s where ideas thrive, businesses grow, and connections are made. We’re committed to helping you find the perfect office space to meet your needs.",
-       };
-       break;
-     case "Product Registration":
-       metaInfo = {
-         title: "Product Registration Service in UAE",
-         description:
-           "Don’t let complex regulations slow you down. Partner with BizGrowth to simplify your product registration process and bring your products to market quickly and efficiently.",
-       };
-       break;
-     case "Corporate Structuring":
-       metaInfo = {
-         title: "Corporate Structuring Service in UAE",
-         description:
-           "Whether you’re a startup, an expanding business, or a large enterprise, our Corporate Structuring Services help you design and implement the ideal structure to optimize operations, reduce risks, and maximize value.",
-       };
-       break;
-     case "HR Solution":
-       metaInfo = {
-         title: "HR Solutions For Your Business in UAE",
-         description:
-           "Our HR solutions are designed to support your business at every stage, ensuring your workforce remains your most valuable asset.",
-       };
-       break;
-     case "Design & Marketing Services":
-       metaInfo = {
-         title: "Design and Marketing Services For Your Business in UAE",
-         description:
-           "Our HR solutions are designed to support your business at every stage, ensuring your workforce remains your most valuable asset.",
-       };
-       break;
-     default:
-       metaInfo = {
-         title: "Expert Services for Your Business in the UAE",
-         description:
-           "BizGrowth offers a wide range of services including PRO Services, attestation & legalization, office space solutions, product registration, corporate structuring, HR solutions, and design & marketing services. Let us help your business thrive.",
-       };
-       break;
-   }
-  
-       // Dynamically update the document metadata based on the selected location
-       if (metaInfo) {
-         // Set the document title
-         document.title = metaInfo.title;
-  
-         // Set the meta description
-         const metaDescription = document.querySelector(
-           'meta[name="description"]'
-         );
-         if (metaDescription) {
-           metaDescription.setAttribute("content", metaInfo.description);
-         } else {
-           const newMetaDescription = document.createElement("meta");
-           newMetaDescription.setAttribute("name", "description");
-           newMetaDescription.setAttribute("content", metaInfo.description);
-           document.head.appendChild(newMetaDescription);
-         }
-  
-         // Optionally, you can add Open Graph meta tags as well:
-         const ogTitle = document.querySelector('meta[property="og:title"]');
-         if (ogTitle) {
-           ogTitle.setAttribute("content", metaInfo.title);
-         } else {
-           const newOgTitle = document.createElement("meta");
-           newOgTitle.setAttribute("property", "og:title");
-           newOgTitle.setAttribute("content", metaInfo.title);
-           document.head.appendChild(newOgTitle);
-         }
-  
-         const ogDescription = document.querySelector(
-           'meta[property="og:description"]'
-         );
-         if (ogDescription) {
-           ogDescription.setAttribute("content", metaInfo.description);
-         } else {
-           const newOgDescription = document.createElement("meta");
-           newOgDescription.setAttribute("property", "og:description");
-           newOgDescription.setAttribute("content", metaInfo.description);
-           document.head.appendChild(newOgDescription);
-         }
-       }
-     }, [query]);
+      }
+    }, 200);
+
+    return () => clearTimeout(timeoutId);
+  }, [target, searchParams]);
+  useEffect(() => {
+    let metaInfo = {
+      title: "Business Setup in UAE - Mainland",
+      description:
+        "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
+    };
+    console.log(query);
+
+    switch (query) {
+      case "PRO & Visa Services":
+        metaInfo = {
+          title: "PRO Services in the UAE",
+          description:
+            "Simplify your visa and PRO processes with the help of our experienced team. Whether you’re expanding your business or managing employee visas, we are here to support you every step of the way.",
+        };
+        break;
+      case "Attestation & Legalisation":
+        metaInfo = {
+          title: "Attestation & Legalization Service in UAE",
+          description:
+            "Biz Growth, is your trusted partner for professional attestation and legalization services. We make the complex process of authenticating your documents simple, fast, and hassle-free.",
+        };
+        break;
+      case "Office space solution":
+        metaInfo = {
+          title: "Office Space Solutions in Dubai, UAE",
+          description:
+            "At Biz Growth, we understand that your workspace is more than just a place to work – it’s where ideas thrive, businesses grow, and connections are made. We’re committed to helping you find the perfect office space to meet your needs.",
+        };
+        break;
+      case "Product Registration":
+        metaInfo = {
+          title: "Product Registration Service in UAE",
+          description:
+            "Don’t let complex regulations slow you down. Partner with Biz Growth to simplify your product registration process and bring your products to market quickly and efficiently.",
+        };
+        break;
+      case "Corporate Structuring":
+        metaInfo = {
+          title: "Corporate Structuring Service in UAE",
+          description:
+            "Whether you’re a startup, an expanding business, or a large enterprise, our Corporate Structuring Services help you design and implement the ideal structure to optimize operations, reduce risks, and maximize value.",
+        };
+        break;
+      case "HR Solution":
+        metaInfo = {
+          title: "HR Solutions For Your Business in UAE",
+          description:
+            "Our HR solutions are designed to support your business at every stage, ensuring your workforce remains your most valuable asset.",
+        };
+        break;
+      case "Design & Marketing Services":
+        metaInfo = {
+          title: "Design and Marketing Services For Your Business in UAE",
+          description:
+            "Our HR solutions are designed to support your business at every stage, ensuring your workforce remains your most valuable asset.",
+        };
+        break;
+      default:
+        metaInfo = {
+          title: "Expert Services for Your Business in the UAE",
+          description:
+            "Biz Growth offers a wide range of services including PRO Services, attestation & legalization, office space solutions, product registration, corporate structuring, HR solutions, and design & marketing services. Let us help your business thrive.",
+        };
+        break;
+    }
+
+    // Dynamically update the document metadata based on the selected location
+    if (metaInfo) {
+      // Set the document title
+      document.title = metaInfo.title;
+
+      // Set the meta description
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.setAttribute("name", "description");
+        newMetaDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newMetaDescription);
+      }
+
+      // Optionally, you can add Open Graph meta tags as well:
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute("content", metaInfo.title);
+      } else {
+        const newOgTitle = document.createElement("meta");
+        newOgTitle.setAttribute("property", "og:title");
+        newOgTitle.setAttribute("content", metaInfo.title);
+        document.head.appendChild(newOgTitle);
+      }
+
+      const ogDescription = document.querySelector(
+        'meta[property="og:description"]'
+      );
+      if (ogDescription) {
+        ogDescription.setAttribute("content", metaInfo.description);
+      } else {
+        const newOgDescription = document.createElement("meta");
+        newOgDescription.setAttribute("property", "og:description");
+        newOgDescription.setAttribute("content", metaInfo.description);
+        document.head.appendChild(newOgDescription);
+      }
+    }
+  }, [query]);
 
   switch (query) {
     case "PRO & Visa Services":
@@ -720,7 +717,7 @@ const Attestation = () => {
           </div>
 
           <p className="text-lg font-Satoshi mt-4">
-            Welcome to BizGrowth, your trusted partner for professional
+            Welcome to Biz Growth, your trusted partner for professional
             attestation and legalization services. We make the complex process
             of authenticating your documents simple, fast, and hassle-free.
           </p>
@@ -735,7 +732,7 @@ const Attestation = () => {
           <div>
             <Heading className="!text-center">
               What is Document{" "}
-              <span className="text-lime-500 ">Attestation</span> and
+              <span className="text-lime-500 ">Attestation</span> and{" "}
               <span className="text-lime-500">Legalization</span>
             </Heading>
           </div>
@@ -1001,7 +998,7 @@ const OfficeSpace = () => {
         <div className="w-full">
           <div>
             <Heading>
-              BizGrowth Office Space Solutions – Your Partner in Workspace
+              Biz Growth Office Space Solutions – Your Partner in Workspace
               Success
             </Heading>
           </div>
@@ -1228,7 +1225,7 @@ const ProductRegistration = () => {
         "Submit your application to the appropriate authorities, managing the process from start to finish.",
     },
     {
-      service: "Labeling & Packaging Compliance",
+      service: "Labelling & Packaging Compliance",
       description:
         "Ensure your product labels and packaging meet all market-specific regulations.",
     },
@@ -1271,7 +1268,7 @@ const ProductRegistration = () => {
         "Once approved, you will receive a product registration certificate. This serves as proof that your product has met all regulatory requirements and can be legally marketed in the UAE.",
     },
     {
-      step: "Labeling and Packaging Compliance",
+      step: "Labelling and Packaging Compliance",
       description:
         "Verify that your product’s packaging and labels meet the requirements for language (Arabic and English), content accuracy, and other market-specific needs.",
     },
@@ -1323,7 +1320,7 @@ const ProductRegistration = () => {
       applicableProducts: "Food, beverages, cosmetics, pharmaceuticals",
     },
     {
-      documentType: "Product Labeling Information",
+      documentType: "Product Labelling Information",
       description:
         "Labels in Arabic and English with product name, ingredients, manufacturing date, warnings, etc.",
       applicableProducts:
@@ -1594,7 +1591,7 @@ const ProductRegistration = () => {
       <Banner
         title={"Ready to Register Your Product?"}
         desc={
-          "Don’t let complex regulations slow you down. Partner with Bizgrowth to simplify your product registration process and bring your products to market quickly and efficiently."
+          "Don’t let complex regulations slow you down. Partner with Biz growth to simplify your product registration process and bring your products to market quickly and efficiently."
         }
       />
     </div>
@@ -1729,12 +1726,12 @@ const DesignMarketing = () => {
             <Heading>
               Your <span className="text-indigo-500">Creative Design</span> and{" "}
               <span className="text-lime-500">Marketing Partner</span> -
-              BizGrowth
+              Biz Growth
             </Heading>
           </div>
 
           <p className="text-lg font-Satoshi mt-4">
-            At BizGrowth, we bring ideas to life with innovative design and
+            At Biz Growth, we bring ideas to life with innovative design and
             marketing solutions custom to your unique brand. Whether you’re a
             startup looking to make a mark or an established business aiming to
             elevate your presence, our team is here to craft impactful
@@ -2174,7 +2171,7 @@ const CorporateStructuring = () => {
       desc: "Dubai offers a variety of legal structures for businesses, each with its own set of advantages, limitations, and regulatory requirements.",
       points: [
         {
-          title: "Mailnland",
+          title: "Mainland",
           desc: " Allows businesses to operate across the UAE and internationally but typically requires a local sponsor for foreign ownership.",
         },
         {
@@ -2201,7 +2198,7 @@ const CorporateStructuring = () => {
     },
     {
       title: "Tax Planning",
-      desc: "While Dubai provides a favorable tax environment, businesses must still engage in thoughtful tax planning to optimize financial outcomes. This involves minimizing Tax Liabilities, Regulatory Compliance, VAT Compliance, VAT Registration, VAT Reporting and Compliance",
+      desc: "While Dubai provides a favourable tax environment, businesses must still engage in thoughtful tax planning to optimize financial outcomes. This involves minimizing Tax Liabilities, Regulatory Compliance, VAT Compliance, VAT Registration, VAT Reporting and Compliance",
     },
     {
       title: "Organizational Chart",
@@ -2282,8 +2279,9 @@ const CorporateStructuring = () => {
         <div className="w-full">
           <div>
             <Heading>
-              Unlock the <span className={"text-lime-500"}>Full Potential</span>{" "}
-              of Your Business
+              Unlock the <span className={"text-indigo-500"}>Full Potential</span>{" "}
+              of <span className={"text-lime-500"}> CORPORATE STRUCTURING </span>
+
             </Heading>
           </div>
 
@@ -2412,7 +2410,7 @@ const CorporateStructuring = () => {
                 <span className="text-lime-500">Corporate Structuring</span>
               </Heading>
             </div>
-            f
+            
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
               {corporateBenefits.map((item, index) => (
                 <div

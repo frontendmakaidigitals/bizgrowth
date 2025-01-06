@@ -16,7 +16,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "At BizGrowth, we specialize in providing expert VAT consulting services for businesses of all sizes. With years of experience and a deep understanding of VAT laws and regulations, we offer tailored services to ensure your business remains compliant and efficient, helping you minimize tax liabilities and maximize opportunities for growth.",
+      "At Biz Growth, we specialize in providing expert VAT consulting services for businesses of all sizes. With years of experience and a deep understanding of VAT laws and regulations, we offer tailored services to ensure your business remains compliant and efficient, helping you minimize tax liabilities and maximize opportunities for growth.",
     heroImg: "/media/mainland/vat.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -201,7 +201,7 @@ const data = [
   {
     bannerTitle: "Contact Us Today!",
     bannerDesc:
-      "Reach out to us to schedule a consultation or learn more about how we can support your business through our audit services. BizGrowth is committed to providing you with the expertise necessary to maintain financial health, optimize operations, and achieve long-term success.",
+      "Reach out to us to schedule a consultation or learn more about how we can support your business through our audit services. Biz Growth is committed to providing you with the expertise necessary to maintain financial health, optimize operations, and achieve long-term success.",
     name: "Auditing",
     heroTitle: (
       <Heading>
@@ -210,7 +210,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "At BizGrowth, we understand the importance of ensuring your financial records are accurate, transparent, and compliant with regulatory standards. Our professional auditing services offer businesses of all sizes the assurance they need to operate confidently and efficiently. We provide expert guidance that empowers your business to make informed decisions.",
+      "At Biz Growth, we understand the importance of ensuring your financial records are accurate, transparent, and compliant with regulatory standards. Our professional auditing services offer businesses of all sizes the assurance they need to operate confidently and efficiently. We provide expert guidance that empowers your business to make informed decisions.",
     heroImg: "/media/mainland/auditing.svg",
     secondTitle: (
       <Heading className="!text-center w-full">
@@ -349,20 +349,20 @@ const data = [
   {
     bannerTitle: "Get Started Today!",
     bannerDesc:
-      "The UAE's corporate tax environment is evolving, and it’s essential to stay ahead of the curve. Whether you’re a startup or an established corporation, BizGrowth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
+      "The UAE's corporate tax environment is evolving, and it’s essential to stay ahead of the curve. Whether you’re a startup or an established corporation, Biz Growth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
 
     name: "Corporate Tax",
     heroTitle: (
       <Heading className="">
         Welcome to{" "}
         <span className="text-lime-500">
-          BizGrowth Corporate Tax Consultancy
+          Biz Growth Corporate Tax Consultancy
         </span>{" "}
         Services
       </Heading>
     ),
     heroDescription:
-      "In the UAE, businesses are evolving and facing new challenges, especially with the introduction of corporate tax laws. At BizGrowth, we are here to help you navigate the complexities of corporate taxation, ensuring compliance while optimizing your tax strategy for maximum benefit.",
+      "In the UAE, businesses are evolving and facing new challenges, especially with the introduction of corporate tax laws. At Biz Growth, we are here to help you navigate the complexities of corporate taxation, ensuring compliance while optimizing your tax strategy for maximum benefit.",
     heroImg: "/media/mainland/corpImg.svg",
     corpTaxTitle: (
       <Heading className="w-full mb-4 !text-center">
@@ -464,7 +464,7 @@ const data = [
       </Heading>
     ),
     thirdSubDesc:
-      "At BizGrowth, our expert team of tax professionals offers a range of services to ensure your business complies with UAE corporate tax laws while optimizing your tax position",
+      "At Biz Growth, our expert team of tax professionals offers a range of services to ensure your business complies with UAE corporate tax laws while optimizing your tax position",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">
@@ -615,13 +615,13 @@ const data = [
       <Heading>
         Simplify Your Finances with{" "}
         <span className="text-lime-500">
-          BizGrowth’s Expert Accounting & Bookkeeping
+          Biz Growth’s Expert Accounting & Bookkeeping
         </span>{' '}
         Services
       </Heading>
     ),
     heroDescription:
-      "At BizGrowth, we specialize in providing professional accounting and bookkeeping services designed to simplify your business operations. Whether you’re a small business owner, or part of a large corporation, we offer solutions to help you stay organized, save time, and make informed financial decisions.",
+      "At Biz Growth, we specialize in providing professional accounting and bookkeeping services designed to simplify your business operations. Whether you’re a small business owner, or part of a large corporation, we offer solutions to help you stay organized, save time, and make informed financial decisions.",
     heroImg: "/media/mainland/accountingImg.svg",
 
     secondTitle: (
@@ -699,7 +699,7 @@ const data = [
       </Heading>
     ),
     thirdSubDesc:
-      "At BizGrowth, our expert team of tax professionals offers a range of services to ensure your business complies with UAE corporate tax laws while optimizing your tax position",
+      "At Biz Growth, our expert team of tax professionals offers a range of services to ensure your business complies with UAE corporate tax laws while optimizing your tax position",
     thirdPoints: [
       <p key={0} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Cost Savings</span> By
