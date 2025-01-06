@@ -114,7 +114,7 @@ const MainPage = () => {
     }
   }, [query]);
   useEffect(() => {
-    if (query === 'golden visa') {
+    if (query === "golden visa") {
       document.body.style.backgroundColor = "#fffbeb";
     }
     return () => {
@@ -267,8 +267,10 @@ const GoldenVisa = () => {
             outstanding student, we are here to make your Golden Visa
             application journey easy.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button className="from-amber-500 to-amber-300">Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button className="!from-amber-400 text-amber-950 mt-5 !to-amber-200">
+              Get Expert Consultation
+            </Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -694,10 +696,9 @@ const WillFormation = () => {
             to your wishes. Our expert Will formation service simplifies this
             process, offering peace of mind.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button >Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
-          
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} alt="Hero" />
@@ -1161,8 +1162,8 @@ const RealEstateInvestment = () => {
             through property investments. Whether you`re a first-time investor
             or a professional, we offer a range of services to meet your needs.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button >Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -1885,8 +1886,8 @@ const NomineeDirectory = () => {
             third-party director for privacy or confidentiality, our experienced
             team provides a reliable solution.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button >Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">

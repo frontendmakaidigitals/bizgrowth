@@ -395,8 +395,8 @@ const VisaPro = () => {
             expert solutions to streamline your business operations and ensure
             compliance with local regulations.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button>Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -725,7 +725,9 @@ const Attestation = () => {
             attestation and legalization services. We make the complex process
             of authenticating your documents simple, fast, and hassle-free.
           </p>
-          <Button className="mt-5">Contact us</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -1013,8 +1015,8 @@ const OfficeSpace = () => {
             grow, and connections are made. We’re committed to helping you find
             the perfect office space to meet your needs.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button>Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -1425,7 +1427,9 @@ const ProductRegistration = () => {
             Whether you`re entering new markets or introducing innovative
             products, we are here to handle the complexities for you.
           </p>
-          <Button className="mt-5">Contact us</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -1743,7 +1747,9 @@ const DesignMarketing = () => {
             elevate your presence, our team is here to craft impactful
             strategies and visuals.
           </p>
-          <Button className="mt-5">Contact us</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -1973,7 +1979,9 @@ const HrSolutions = () => {
             Our HR solutions are designed to support your business at every
             stage, ensuring your workforce remains your most valuable asset.
           </p>
-          <Button className="mt-5">Contact us</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -2297,7 +2305,9 @@ const CorporateStructuring = () => {
             implement the ideal structure to optimize operations, reduce risks,
             and maximize value.
           </p>
-          <Button className="mt-5">Contact us</Button>
+          <Link href={"/contact"}>
+            <Button className="mt-5">Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />

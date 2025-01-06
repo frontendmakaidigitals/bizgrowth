@@ -153,8 +153,8 @@ const MainPage = () => {
               <p className="text-lg font-Satoshi mt-4">
                 {processData?.heroDescription}
               </p>
-              <Link href={"/contact"} className="mt-5">
-                <Button>Get Expert Consultation</Button>
+              <Link href={"/contact"} >
+                <Button className="mt-5">Get Expert Consultation</Button>
               </Link>
             </div>
             <div className="w-full flex justify-center items-center">
@@ -495,8 +495,8 @@ const CryptoVara = () => {
             provide end-to-end support for crypto licensing and VARA
             registration.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button>Get Expert Consultation</Button>
+          <Link href={"/contact"} >
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -924,8 +924,8 @@ const TradeFinancial = () => {
             to fuel growth and success. From letters of credit to supply chain
             finance, we provide the tools you need to thrive in global markets.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button>Get Expert Consultation</Button>
+          <Link href={"/contact"} >
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
@@ -1340,8 +1340,8 @@ const CommercialFinancing = () => {
             options, or advanced financial tools, we are committed to helping
             your business thrive.
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button>Get Expert Consultation</Button>
+          <Link href={"/contact"} >
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">

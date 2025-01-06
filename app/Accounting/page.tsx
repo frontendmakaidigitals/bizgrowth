@@ -145,8 +145,8 @@ const MainPage = () => {
           <p className="text-lg font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button>Get Expert Consultation</Button>
+          <Link href={"/contact"} >
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">

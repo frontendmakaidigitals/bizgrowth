@@ -194,8 +194,8 @@ const MainPage = () => {
           <p className="text-lg text-center lg:text-start font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <Link href={"/contact"} className="mt-5">
-            <Button >Get Expert Consultation</Button>
+          <Link href={"/contact"}>
+            <Button  className="mt-5">Get Expert Consultation</Button>
           </Link>
           
         </div>

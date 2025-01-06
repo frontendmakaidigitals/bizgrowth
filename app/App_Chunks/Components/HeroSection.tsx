@@ -18,7 +18,7 @@ const HeroSection = () => {
               Lead your way to Success by partnering with BIZ GROWTH. We are
               experts in empowering your business ideas into action.
             </h2>
-            <Link href={"/Cost-Calculator"}>
+            <Link href={"/contact"}>
               <Button>Get a Free Consultation</Button>
             </Link>
           </div>

@@ -138,8 +138,8 @@ const MainPage = () => {
             {processData?.heroDescription}
           </p>
           
-          <Link href={"/contact"} className="mt-5">
-            <Button className="">Get Expert Consultation</Button>
+          <Link href={"/contact"} >
+            <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">

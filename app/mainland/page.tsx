@@ -171,7 +171,7 @@ const MainPage = () => {
             {processData?.heroDescription}
           </p>
           <div className="flex justify-center mt-5 lg:justify-start">
-            <Link href={"/Cost-Calculator"}>
+            <Link href={"/contact"}>
               <Button>Get Expert Consultation</Button>
             </Link>
           </div>
