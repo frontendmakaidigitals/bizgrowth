@@ -6,6 +6,7 @@ import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
 import data from "../App_Chunks/Components/freezone";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Page = () => {
   return (
     <Suspense>
@@ -193,7 +194,10 @@ const MainPage = () => {
           <p className="text-lg text-center lg:text-start font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button >Get Expert Consultation</Button>
+          </Link>
+          
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={processData?.heroImg} />

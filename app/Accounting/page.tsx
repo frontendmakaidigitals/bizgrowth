@@ -5,6 +5,7 @@ import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -144,7 +145,9 @@ const MainPage = () => {
           <p className="text-lg font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button>Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={processData?.heroImg} />
@@ -223,7 +226,6 @@ const MainPage = () => {
                   </p>
                   <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
                 </div>
-              
               </motion.div>
             ))}
         </motion.div>

@@ -4,6 +4,8 @@ import Button from "@/app/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import Banner from "../App_Chunks/Components/Banner";
 import Heading from "../App_Chunks/Components/Heading";
+import Link from "next/link";
+
 const Page = () => {
   return (
     <Suspense>
@@ -393,7 +395,9 @@ const VisaPro = () => {
             expert solutions to streamline your business operations and ensure
             compliance with local regulations.
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button>Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -1009,7 +1013,9 @@ const OfficeSpace = () => {
             grow, and connections are made. We’re committed to helping you find
             the perfect office space to meet your needs.
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button>Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -1725,8 +1731,8 @@ const DesignMarketing = () => {
           <div>
             <Heading>
               Your <span className="text-indigo-500">Creative Design</span> and{" "}
-              <span className="text-lime-500">Marketing Partner</span> -
-              Biz Growth
+              <span className="text-lime-500">Marketing Partner</span> - Biz
+              Growth
             </Heading>
           </div>
 
@@ -2279,9 +2285,9 @@ const CorporateStructuring = () => {
         <div className="w-full">
           <div>
             <Heading>
-              Unlock the <span className={"text-indigo-500"}>Full Potential</span>{" "}
-              of <span className={"text-lime-500"}> CORPORATE STRUCTURING </span>
-
+              Unlock the{" "}
+              <span className={"text-indigo-500"}>Full Potential</span> of{" "}
+              <span className={"text-lime-500"}> CORPORATE STRUCTURING </span>
             </Heading>
           </div>
 
@@ -2410,7 +2416,7 @@ const CorporateStructuring = () => {
                 <span className="text-lime-500">Corporate Structuring</span>
               </Heading>
             </div>
-            
+
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-4 gap-7">
               {corporateBenefits.map((item, index) => (
                 <div

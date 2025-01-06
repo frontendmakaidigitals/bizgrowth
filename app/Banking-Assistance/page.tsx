@@ -7,6 +7,7 @@ import Banner from "../App_Chunks/Components/Banner";
 import data from "../App_Chunks/Components/banking";
 import { motion } from "framer-motion";
 import Heading from "../App_Chunks/Components/Heading";
+import Link from "next/link";
 const Page = () => {
   return (
     <Suspense>
@@ -152,7 +153,9 @@ const MainPage = () => {
               <p className="text-lg font-Satoshi mt-4">
                 {processData?.heroDescription}
               </p>
-              <Button className="mt-5">Get Expert Consultation</Button>
+              <Link href={"/contact"} className="mt-5">
+                <Button>Get Expert Consultation</Button>
+              </Link>
             </div>
             <div className="w-full flex justify-center items-center">
               <img src={processData?.heroImg} />
@@ -190,7 +193,6 @@ const MainPage = () => {
                     </p>
                     <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
                   </div>
-                   
                 </motion.div>
               ))}
             </div>
@@ -493,7 +495,9 @@ const CryptoVara = () => {
             provide end-to-end support for crypto licensing and VARA
             registration.
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button>Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -742,9 +746,7 @@ const CryptoVara = () => {
               <div className="mt-2">
                 <div className="size-2 bg-lime-950 rounded-full" />
               </div>
-              <p className="font-Satoshi font-[400]">
-               {item}
-              </p>
+              <p className="font-Satoshi font-[400]">{item}</p>
             </div>
           ))}
         </div>
@@ -922,7 +924,9 @@ const TradeFinancial = () => {
             to fuel growth and success. From letters of credit to supply chain
             finance, we provide the tools you need to thrive in global markets.
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button>Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
@@ -1336,7 +1340,9 @@ const CommercialFinancing = () => {
             options, or advanced financial tools, we are committed to helping
             your business thrive.
           </p>
-          <Button className="mt-5">Get Expert Consultation</Button>
+          <Link href={"/contact"} className="mt-5">
+            <Button>Get Expert Consultation</Button>
+          </Link>
         </div>
         <div className="w-full flex justify-center items-center">
           <img src={"media/mainland/dubai.svg"} />
