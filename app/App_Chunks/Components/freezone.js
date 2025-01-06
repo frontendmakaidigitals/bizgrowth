@@ -1268,7 +1268,7 @@ const data = [
         <span className="font-Synonym font-[600]">
           Branch of a Foreign Company License
         </span>{" "}
-        A Branch Office License allows foreign companies to establish a branch in the SPC Free Zone to conduct business activities that are in line with the parent company's scope.
+        A Branch Office License allows foreign companies to establish a branch in the SPC Free Zone to conduct business activities that are in line with the parent company`s scope.
       </p>,
       <p key={10} className="font-Satoshi text-lg">
         <span className="font-Synonym font-[600]">Freelance License</span> A
