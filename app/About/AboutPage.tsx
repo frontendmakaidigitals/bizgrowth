@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Button from "../App_Chunks/Components/Button";
 import Heading from "../App_Chunks/Components/Heading";
 import Head from "next/head";
-
+import Link from "next/link";
 const AboutPage = () => {
   const selfPraise = [
     {
@@ -50,12 +50,12 @@ const AboutPage = () => {
       title: "Our Mission",
       desc: (
         <p>
-          At Biz Growth, our mission is to empower upcoming business by providing
-          comprehensive and personalized set-up solutions that accelerate growth
-          and success. We attempt to simplify the process of setting up and
-          registering businesses by offering expert guidance, tailored
-          solutions, and unparalleled customer support. Our goal is to help
-          professionals and companies navigate the complexities of company
+          At Biz Growth, our mission is to empower upcoming business by
+          providing comprehensive and personalized set-up solutions that
+          accelerate growth and success. We attempt to simplify the process of
+          setting up and registering businesses by offering expert guidance,
+          tailored solutions, and unparalleled customer support. Our goal is to
+          help professionals and companies navigate the complexities of company
           formation which helps them to focus on their core objectives and
           achieve long-term success. Through innovation, integrity, and a
           commitment to excellence, we aim to be the trusted partner in every
@@ -68,8 +68,8 @@ const AboutPage = () => {
       title: "Our Vision",
       desc: (
         <p>
-          At Biz Growth, to be the leading provider of business setup services in
-          the UAE, recognized for our expertise, reliability, and customer
+          At Biz Growth, to be the leading provider of business setup services
+          in the UAE, recognized for our expertise, reliability, and customer
           satisfaction. We envision a future where every business, regardless of
           the size or industry of the company, can easily navigate the
           complexities of registration and compliance with government policies,
@@ -170,7 +170,9 @@ const AboutPage = () => {
               legal formalities, ensuring a smooth and efficient business
               launch.
             </h3>
-            <Button className="mt-3">Contact us</Button>
+            <Link href={"/contact"} className="mt-5">
+              <Button className="mt-3">Contact us</Button>
+            </Link>
           </div>
           <div className="relative order-1 lg:order-2">
             <div className="w-full shadow-xl h-[300px] xl:h-[550px] relative overflow-hidden rounded-xl z-[1]">
