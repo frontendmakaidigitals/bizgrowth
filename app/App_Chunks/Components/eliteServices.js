@@ -51,7 +51,7 @@ const data = [
       {
         title: "Exclusive Lifestyle",
         icon: <MdIncompleteCircle />,
-        desc: "Access Dubai's world-class healthcare, education, and lifestyle opportunities.",
+        desc: "Access UAE`s world-class healthcare, education, and lifestyle opportunities.",
       },
     ],
     goldenVisaEligibility: (

@@ -6,7 +6,7 @@ const data = [
   {
     bannerTitle: "READY TO LAUNCH YOUR BUSINESS IN DUBAI?",
     bannerDesc:
-      "Starting your business in Dubai has never been easier. Let BIZ GROWTH be your trusted partner in navigating the Dubai Mainland business setup process. Contact us today for a free consultation and let’s take the first step toward turning your business dreams into reality!",
+      "Starting your business in Dubai has never been easier. Let Biz Growth be your trusted partner in navigating the Dubai Mainland business setup process. Contact us today for a free consultation and let’s take the first step toward turning your business dreams into reality!",
     name: "Dubai Mainland",
     heroTitle: (
       <Heading>
@@ -350,7 +350,7 @@ const data = [
     ],
 
     tableFooter:
-      "This table lists the primary documents required for each business entity type in Dubai Mainland. Keep in mind that additional documents may be needed based on the specific industry, business activity, or any regulatory requirements. It’s advisable to consult with BIZ Growth business setup consultant for more detailed and accurate information based on your unique business needs.",
+      "This table lists the primary documents required for each business entity type in Dubai Mainland. Keep in mind that additional documents may be needed based on the specific industry, business activity, or any regulatory requirements. It’s advisable to consult with Biz Growth business setup consultant for more detailed and accurate information based on your unique business needs.",
     seventhTitle: (
       <Heading className="w-full !text-center">
         Why Choose <span className="text-lime-500">BIZ GROWTH</span> for Your
@@ -383,7 +383,7 @@ const data = [
   {
     bannerTitle: "Get Started Today!",
     bannerDesc:
-      "Ready to register your business? Let BIZ GROWTH Consultants guide you through the process of obtaining your Sharjah Mainland License with all the necessary documentation.",
+      "Ready to register your business? Let Biz Growth Consultants guide you through the process of obtaining your Sharjah Mainland License with all the necessary documentation.",
     name: "Sharjah Mainland",
     heroTitle: (
       <Heading>
@@ -667,13 +667,13 @@ const data = [
       },
       {
         title: "Consultation Services",
-        desc: "We recommend working with BIZ GROWTH business setup experts to ensure all documents are correctly prepared and submitted for a smooth approval process.",
+        desc: "We recommend working with Biz Growth business setup experts to ensure all documents are correctly prepared and submitted for a smooth approval process.",
       },
     ],
   },
   {
     bannerTitle:
-      "GET STARTED WITH OPENING YOUR ABU DHABI MAINLAND LICENSE WITH BIZ GROWTH",
+      "GET STARTED WITH OPENING YOUR ABU DHABI MAINLAND LICENSE WITH Biz Growth",
     bannerDesc:
       "Starting a business in Abu Dhabi Mainland opens doors to endless possibilities. Let us be your trusted partner in navigating the business setup process and obtaining your Mainland license with ease. Reach out today, and take the first step toward realizing your business goals in one of the most vibrant economies in the world.",
     name: "Abu Dhabi Mainland",

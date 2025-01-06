@@ -306,7 +306,7 @@ const data = [
   {
     bannerTitle: "LAUNCH YOUR BUSINESS WITH AJMAN OFFSHORE",
     bannerDesc:
-      "Our team of experts at BIZ Growth is dedicated to simplifying the offshore company setup process. With years of experience in helping businesses navigate the Ajman Offshore regulations, we offer end-to-end services to ensure a smooth setup process.",
+      "Our team of experts at Biz Growth is dedicated to simplifying the offshore company setup process. With years of experience in helping businesses navigate the Ajman Offshore regulations, we offer end-to-end services to ensure a smooth setup process.",
     name: "ajman offshore",
     heroTitle: (
       <Heading>
@@ -531,7 +531,7 @@ const data = [
       </Heading>
     ),
     heroDescription:
-      "BIZ Growth Consultancy is  your trusted partner in establishing and managing offshore businesses in Dubai. With its tax advantages, and prime location, Dubai has become a global hub for entrepreneurs to set up offshore companies. Whether you’re seeking asset protection, or enhanced privacy, we provide all services to guide you through the offshore business setup process with ease.",
+      "Biz Growth Consultancy is  your trusted partner in establishing and managing offshore businesses in Dubai. With its tax advantages, and prime location, Dubai has become a global hub for entrepreneurs to set up offshore companies. Whether you’re seeking asset protection, or enhanced privacy, we provide all services to guide you through the offshore business setup process with ease.",
     heroImg: "/media/mainland/dubai.svg",
     secondTitle: (
       <Heading className="!text-center w-full">

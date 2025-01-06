@@ -10,7 +10,7 @@ const BusinessSteps = () => {
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-lg font-Satoshi font-semibold  mb-2">
-            Consult Business Setup Expert Consultants at BIZ Growth
+            Consult Business Setup Expert Consultants at Biz Growth
           </p>
           <div className="w-full">
             <img
@@ -112,7 +112,7 @@ const BusinessSteps = () => {
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-lg font-Satoshi font-semibold  mb-2">
-            Set Up Your Office with BIZ Growth
+            Set Up Your Office with Biz Growth
           </p>
           <div className="w-full">
             <img

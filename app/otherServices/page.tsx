@@ -384,7 +384,7 @@ const VisaPro = () => {
               Your <span className="text-lime-500">Trusted PRO Service</span>{" "}
               Consultant:{" "}
               <span className="text-indigo-400">
-                Biz<span className="text-lime-400">Growth</span>
+                Biz<span className="text-lime-400"> Growth</span>
               </span>
             </Heading>
           </div>

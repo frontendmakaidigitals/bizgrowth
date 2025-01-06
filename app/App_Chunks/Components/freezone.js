@@ -6,7 +6,7 @@ const data = [
   {
     bannerTitle: "Start Your Business in Dubai Today with IFZA!",
     bannerDesc:
-      "Take advantage of Dubai’s business-friendly environment, world-class infrastructure, and tax advantages. With IFZA, establishing and growing your business has never been easier. Get expert consultation from BIZ GROWTH to decide on which freezone to choose from according to your business activity.",
+      "Take advantage of Dubai’s business-friendly environment, world-class infrastructure, and tax advantages. With IFZA, establishing and growing your business has never been easier. Get expert consultation from Biz GROWTH to decide on which freezone to choose from according to your business activity.",
     name: "ifza",
     heroTitle: (
       <Heading>
@@ -232,7 +232,7 @@ const data = [
     seventhPoints: [],
   },
   {
-    bannerTitle: "Get Started Today AT DMCC FREEZONE LICENSE - WITH BIZ GROWTH.",
+    bannerTitle: "Get Started Today AT DMCC FREEZONE LICENSE - WITH Biz Growth.",
     bannerDesc:
       "Starting your business in Dubai with DMCC is easier than you think. Let our experts guide you through the process and help you set up your company in one of the world’s most vibrant Freezones. Contact us today to learn more about how DMCC can help your business succeed.",
     name: "dmcc",

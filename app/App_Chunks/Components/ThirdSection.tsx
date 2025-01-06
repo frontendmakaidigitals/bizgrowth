@@ -39,7 +39,7 @@ const ThirdSection = () => {
           WITH US
         </Heading>
         <p className="text-xl font-Satoshi mt-5">
-          BIZ Growth Consultancy, your trusted partner in setting up and growing
+          Biz Growth Consultancy, your trusted partner in setting up and growing
           your business in the UAE. <br /> <br /> We simplify the complexities
           of company formation, ensuring a seamless and efficient process. We
           specialize in providing comprehensive business setup services that

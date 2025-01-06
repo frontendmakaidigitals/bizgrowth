@@ -169,7 +169,7 @@ const GoldenVisa = () => {
     {
       icon: "media/goldenVisa/lifestyle.png",
       title: "Exclusive Lifestyle",
-      desc: "Access Dubai`s world-class healthcare, education, and lifestyle opportunities.",
+      desc: "Access UAE`s world-class healthcare, education, and lifestyle opportunities.",
     },
   ];
   const eligibility = [
@@ -283,7 +283,7 @@ const GoldenVisa = () => {
           What is the UAE <span className="text-amber-400">Golden Visa?</span>
         </Heading>
         <p className="text-center w-full mt-3 text-lg font-Satoshi">
-          The Dubai Golden Visa is a long-term residency visa designed to
+          The UAE Golden Visa is a long-term residency visa designed to
           attract talent, innovation, and investment to the UAE. The 10-year
           residency visa provides a great opportunity for qualified individuals
           and their families. The scheme was introduced in 2019 and it gives a

@@ -54,7 +54,7 @@ const CalculatorPage = () => {
       data: [
         "100 % Ownership",
         "Diverse Business Opportunities",
-        "Unrestrict trade",
+        "Unrestricted trade",
         "Access to Government Contracts",
         "Simplified Procedures",
         "Unlimited Fund transfer",
@@ -84,7 +84,7 @@ const CalculatorPage = () => {
         "Strong Legal Framework",
         "Minimal Reporting Requirements",
         "Global Business Opportunities",
-        "Stategic Location",
+        "Strategic Location",
       ],
       icon: "https://cdn-icons-png.flaticon.com/512/1/1803.png",
     },

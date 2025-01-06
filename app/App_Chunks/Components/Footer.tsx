@@ -138,7 +138,7 @@ const Footer: React.FC = () => {
             <div className="col-span-2 md:col-span-1">
               <Logo className="!h-[65px]" />
               <p className="font-regular mt-3 text-sm text-[#10220a]">
-                At BIZ Growth, we are committed to providing exceptional service
+                At Biz Growth, we are committed to providing exceptional service
                 and unwavering support to our clients throughout their business
                 Setup and ongoing journey.
               </p>

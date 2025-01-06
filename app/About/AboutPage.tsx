@@ -31,7 +31,7 @@ const AboutPage = () => {
     {
       title: "Commitment to Your Success",
       img: "/icon/success.png",
-      desc: "At BIZ Growth, your success is our priority. We go above and beyond to provide ongoing support as your business evolves in the UAE market.",
+      desc: "At Biz Growth, your success is our priority. We go above and beyond to provide ongoing support as your business evolves in the UAE market.",
     },
     {
       title: "Personalized Service",
@@ -86,7 +86,7 @@ const AboutPage = () => {
       title: "Our Commitment",
       desc: (
         <p>
-          At BIZ Growth, we are committed to providing exceptional service and
+          At Biz Growth, we are committed to providing exceptional service and
           unwavering support to our clients throughout their business Set up and
           ongoing journey. We commit to deliver efficient, transparent, and
           hassle-free solutions tailored to each company’s unique needs. Our
@@ -152,7 +152,7 @@ const AboutPage = () => {
             </p>
 
             <h1 className="text-3xl xl:text-4xl xl:mt-4">
-              Welcome to BIZ Growth Consultancy, your trusted partner in setting
+              Welcome to Biz Growth Consultancy, your trusted partner in setting
               up and growing your business in the UAE
             </h1>
             <h3 className="mt-3 xl:text-lg xl:mt-4">
