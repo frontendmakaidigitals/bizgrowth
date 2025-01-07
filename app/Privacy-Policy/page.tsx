@@ -133,7 +133,7 @@ const PrivacyPolicy = () => {
         </h2>
         <p>
           We may update this Privacy Policy from time to time. Changes will be
-          posted on this page with the "Effective Date" updated. Your continued
+          posted on this page with the &quot;Effective Date&quot; updated. Your continued
           use of the Site after any changes constitutes your acceptance of the
           revised policy.
         </p>
