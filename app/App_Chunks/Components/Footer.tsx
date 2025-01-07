@@ -24,6 +24,7 @@ const widgetMenus: WidgetFooterMenu[] = [
       { href: "/About", label: "About us" },
       { href: "/contact", label: "Contact" },
       { href: "/Cost-Calculator", label: "Cost Calculator" },
+      { href: "/Privacy-Policy", label: "Privacy Policy" },
     ],
   },
   {
