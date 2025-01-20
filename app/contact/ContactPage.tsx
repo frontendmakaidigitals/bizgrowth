@@ -36,6 +36,7 @@ const ContactPage = () => {
     businessActivity: "",
     contact: "",
     message: "",
+    date: "", // Add date field
   });
 
   const [errors, setErrors] = useState({
@@ -120,7 +121,11 @@ const ContactPage = () => {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-
+    const currentDate = new Date().toISOString(); // Get current date in ISO format
+    setFormData((prev) => ({
+      ...prev,
+      date: currentDate, // Set the date field
+    }));
     try {
       const response = await emailjs.send(
         "service_redgvmv",
@@ -136,6 +141,7 @@ const ContactPage = () => {
         businessActivity: "",
         contact: "",
         message: "",
+        date: "",
       });
       setErrors({
         name: "",
