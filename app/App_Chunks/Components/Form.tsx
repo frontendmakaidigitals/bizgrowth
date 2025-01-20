@@ -123,12 +123,18 @@ const Form = () => {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    const payload = {
+      ...formData,
+      date: formattedDate,
+    };
 
     try {
       const response = await emailjs.send(
         "service_redgvmv",
         "template_zfsvreg",
-        formData,
+        payload,
         "3Ug2fqjRf9toTQ9s6"
       );
       setResp(response);
