@@ -203,8 +203,8 @@ const CalculatorPage = () => {
       businessActivity: value,
     }));
   };
-  const router = useRouter()
-  console.log(resp?.status)
+  const router = useRouter();
+  console.log(resp?.status);
   // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -244,14 +244,13 @@ const CalculatorPage = () => {
         businessDescription: "",
         businessActivity: "",
       });
-      if(resp?.status === 200){
-        router.push('/Form-Submitted')
+      if (response.status === 200) {
+        router.push("/Form-Submitted");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
-      
     }
   };
 
@@ -437,18 +436,19 @@ const CalculatorPage = () => {
                 )}
               </div>
               {resp && resp.status === 200 ? (
-              <Button disabled={true} className="px-5 mt-4" type="submit">
-                Submitted
-              </Button>
-            ) : (
-              <Button
-                type="submit"
-                className="mt-4 justify-center !w-full lg:!w-28"
-                loading={isSubmitting}
-              >
-                {isSubmitting ? "Submitting..." : "Calculate"}
-              </Button>
-            )}
+                <Button disabled={true} className="px-5 mt-4" type="submit">
+                  Submitted
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="mt-4 justify-center !w-full lg:!w-28"
+                  loading={isSubmitting}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Calculate"}
+                </Button>
+              )}
             </form>
           </div>
         </div>

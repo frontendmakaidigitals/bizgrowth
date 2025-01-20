@@ -48,8 +48,8 @@ const Page = () => {
         <div className="flex justify-center">
           <Heading className="!text-center w-full lg:w-2/3">
             Thank You for reaching out to{" "}
-            <span className="text-indigo-500">Biz</span>
-            <span className="text-lime-500">growth</span> Business Consultancy.
+            <span className="text-indigo-500">Biz</span>{" "}
+            <span className="text-lime-500">Growth</span> Business Consultancy.
           </Heading>
         </div>
       </div>

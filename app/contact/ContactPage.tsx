@@ -289,7 +289,7 @@ const ContactPage = () => {
                   Submitted
                 </Button>
               ) : (
-                <Button className="px-5" type="submit">
+                <Button loading={isSubmitting} disabled={isSubmitting} className="px-5" type="submit">
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               )}

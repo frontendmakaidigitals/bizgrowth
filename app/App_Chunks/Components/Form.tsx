@@ -296,6 +296,8 @@ const Form = () => {
             ) : (
               <Button
                 type="submit"
+                loading={isSubmitting}
+                disabled={isSubmitting}
                 className="px-4 mt-4 py-2 bg-blue-300 hover:bg-blue-400 rounded-lg"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
