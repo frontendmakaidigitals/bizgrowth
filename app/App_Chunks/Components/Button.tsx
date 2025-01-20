@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   type = "button",
   loading = false,
-  disabled = true,
+  disabled = false,
 }) => {
   return (
     <motion.button
