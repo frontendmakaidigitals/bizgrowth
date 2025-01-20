@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Button from "../App_Chunks/Components/Button";
 import {
   Select,
@@ -15,6 +16,8 @@ import { FaYoutube } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import axios from "axios";
+import emailjs from "@emailjs/browser";
 const ContactPage = () => {
   const social = [
     { icon: <FaFacebook />, id: 0 },
@@ -25,6 +28,23 @@ const ContactPage = () => {
       id: 3,
     },
   ];
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    businessActivity: "",
+    contact: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    businessActivity: "",
+    contact: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const businessActivities = [
     "Advertising",
     "Architecture",
@@ -58,6 +78,75 @@ const ContactPage = () => {
     "Wholesale of Household Goods",
     "Others",
   ];
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Validate form fields
+  const validateForm = () => {
+    let formErrors = {
+      name: "",
+      email: "",
+      businessActivity: "",
+      contact: "",
+      message: "",
+    };
+
+    if (!formData.name) formErrors.name = "Full Name is required";
+    if (!formData.email) formErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      formErrors.email = "Email is invalid";
+    if (!formData.businessActivity)
+      formErrors.businessActivity = "Please select a business activity";
+    if (!formData.contact) formErrors.contact = "Contact is required";
+    if (!formData.message) formErrors.message = "Message is required";
+
+    setErrors(formErrors);
+    return Object.values(formErrors).every((error) => !error); // If no errors, return true
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await emailjs.send(
+        "service_redgvmv",
+        "template_zfsvreg",
+        formData,
+        "3Ug2fqjRf9toTQ9s6"
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        businessActivity: "",
+        contact: "",
+        message: "",
+      });
+      setErrors({
+        name: "",
+        email: "",
+        businessActivity: "",
+        contact: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className=" mb-20">
       <div className="container  mt-1">
@@ -89,16 +178,22 @@ const ContactPage = () => {
             questions, or schedule a consultation!
           </p>
 
-          <form action="" className="mt-6">
+          <form onSubmit={handleSubmit} className="mt-6">
             <div className="mt-2">
-              <label className="">
+              <label>
                 Full Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Enter Name"
                 className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name}</p>
+              )}
             </div>
             <div className="mt-4">
               <label>
@@ -106,22 +201,30 @@ const ContactPage = () => {
               </label>
               <input
                 type="text"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter Email"
                 className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email}</p>
+              )}
             </div>
             <div className="grid mt-4 grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="grid grid-cols-1">
-                <label className=" ">Select business activitiy</label>
+                <label>Select business activity</label>
                 <div className="w-full">
-                  <Select>
-                    <SelectTrigger className="w-full mt-1 h-10 bg-slate-950/10 border-0 ">
-                      <SelectValue
-                        className="placehodler:text-slate-600"
-                        placeholder="Select Business Activity"
-                      />
+                  <Select
+                    value={formData.businessActivity}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, businessActivity: value })
+                    }
+                  >
+                    <SelectTrigger className="w-full mt-1 h-10 bg-slate-950/10 border-0">
+                      <SelectValue placeholder="Select Business Activity" />
                     </SelectTrigger>
-                    <SelectContent className=" bg-[#c7c7c7] text-slate-950">
+                    <SelectContent className="bg-[#c7c7c7] text-slate-950">
                       <SelectGroup>
                         {businessActivities.map((activity, index) => (
                           <SelectItem key={index} value={activity}>
@@ -132,16 +235,27 @@ const ContactPage = () => {
                     </SelectContent>
                   </Select>
                 </div>
+                {errors.businessActivity && (
+                  <p className="text-red-500 text-sm">
+                    {errors.businessActivity}
+                  </p>
+                )}
               </div>
-              <div className="">
+              <div>
                 <label>
                   Contact <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
+                  name="contact"
+                  value={formData.contact}
+                  onChange={handleChange}
                   placeholder="Enter your Contact"
                   className="border border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
                 />
+                {errors.contact && (
+                  <p className="text-red-500 text-sm">{errors.contact}</p>
+                )}
               </div>
             </div>
             <div className="mt-4">
@@ -149,12 +263,20 @@ const ContactPage = () => {
                 Message <span className="text-red-500">*</span>
               </label>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Enter your message here"
                 className="border h-40 resize-none border-dashed bg-gray-950/10 mt-1 border-gray-400 placeholder:text-slate-600 rounded-lg w-full p-2"
               />
+              {errors.message && (
+                <p className="text-red-500 text-sm">{errors.message}</p>
+              )}
             </div>
             <div className="mt-4">
-              <Button className="px-5">Submit</Button>
+              <Button className="px-5" type="submit">
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
             </div>
           </form>
           <div></div>
@@ -215,7 +337,6 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-   
     </div>
   );
 };
