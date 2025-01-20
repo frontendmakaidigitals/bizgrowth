@@ -120,15 +120,21 @@ const Form = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    if (validateForm()) return;
 
     setIsSubmitting(true);
+
+    // Prepare the date
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().split("T")[0];
+
+    // Prepare the payload
     const payload = {
       ...formData,
       date: formattedDate,
     };
+
+    console.log("Payload being sent to emailjs:", payload); // Debugging the payload
 
     try {
       const response = await emailjs.send(
@@ -137,6 +143,8 @@ const Form = () => {
         payload,
         "3Ug2fqjRf9toTQ9s6"
       );
+
+      console.log("EmailJS Response:", response); // Debugging the response from emailjs
       setResp(response);
 
       setFormData({
@@ -146,6 +154,7 @@ const Form = () => {
         contact: "",
         message: "",
       });
+
       setErrors({
         name: "",
         email: "",
@@ -154,7 +163,7 @@ const Form = () => {
         message: "",
       });
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error submitting form:", error); // Log any errors here
     } finally {
       setIsSubmitting(false);
     }
@@ -281,7 +290,7 @@ const Form = () => {
             </div>
 
             {resp && resp.status === 200 ? (
-              <Button disabled={true} className="px-5" type="submit">
+              <Button disabled={true} className="px-5 mt-4" type="submit">
                 Submitted
               </Button>
             ) : (

@@ -10,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import emailjs from "@emailjs/browser";
 import FourthSection from "../App_Chunks/Components/FourthSection";
 import Banner from "../App_Chunks/Components/Banner";
-
+import { useRouter } from "next/navigation";
 const CalculatorPage = () => {
   const businessActivities = [
     "Advertising",
@@ -119,7 +119,10 @@ const CalculatorPage = () => {
     businessDescription: "",
     businessActivity: "",
   });
-
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [resp, setResp] = useState<{ status: number; text: string } | null>(
+    null
+  );
   // Handle input change
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -200,13 +203,55 @@ const CalculatorPage = () => {
       businessActivity: value,
     }));
   };
-
+  const router = useRouter()
+  console.log(resp?.status)
   // Handle form submit
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) {
-      // Form is valid, proceed with further actions (e.g., calculation, API call)
-      console.log("Form submitted", formData);
+    if (!validate()) return;
+    setIsSubmitting(true);
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    const payload = {
+      ...formData,
+      date: formattedDate,
+    };
+
+    try {
+      const response = await emailjs.send(
+        "service_redgvmv",
+        "template_q5u8lhk",
+        payload,
+        "3Ug2fqjRf9toTQ9s6"
+      );
+      setResp(response);
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        visas: "",
+        businessDescription: "",
+        businessActivity: "",
+      });
+      setErrors({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        visas: "",
+        businessDescription: "",
+        businessActivity: "",
+      });
+      if(resp?.status === 200){
+        router.push('/Form-Submitted')
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+      
     }
   };
 
@@ -391,14 +436,19 @@ const CalculatorPage = () => {
                   </span>
                 )}
               </div>
-
+              {resp && resp.status === 200 ? (
+              <Button disabled={true} className="px-5 mt-4" type="submit">
+                Submitted
+              </Button>
+            ) : (
               <Button
-                loading={false}
                 type="submit"
                 className="mt-4 justify-center !w-full lg:!w-28"
+                loading={isSubmitting}
               >
-                Calculate
+                {isSubmitting ? "Submitting..." : "Calculate"}
               </Button>
+            )}
             </form>
           </div>
         </div>
@@ -434,13 +484,13 @@ const CalculatorPage = () => {
 };
 
 const Card = ({ region, target }: { region: any; target: string }) => {
-    const handleScroll = () => {
-       const targetElement = document.getElementById(target);
-         if (targetElement) {
-           targetElement.scrollIntoView({ behavior: "smooth" });
-         }
-    };
-  
+  const handleScroll = () => {
+    const targetElement = document.getElementById(target);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="w-full flex flex-col justify-between items-start bg-lime-200 border  border-slate-200 rounded-xl p-7 ">
       <div>
@@ -470,7 +520,10 @@ const Card = ({ region, target }: { region: any; target: string }) => {
           ))}
         </div>
 
-        <button onClick={handleScroll} className="mt-6 bg-blue-500 text-slate-50 py-2 px-4 font-Synonym font-[600] rounded-lg">
+        <button
+          onClick={handleScroll}
+          className="mt-6 bg-blue-500 text-slate-50 py-2 px-4 font-Synonym font-[600] rounded-lg"
+        >
           Calculate now
         </button>
       </div>
