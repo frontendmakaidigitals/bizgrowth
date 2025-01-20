@@ -8,6 +8,7 @@ interface ButtonProps {
   children: ReactNode;
   type?: "button" | "submit" | "reset";
   loading?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,19 +17,21 @@ const Button: React.FC<ButtonProps> = ({
   children,
   type = "button",
   loading = false,
+  disabled = true,
 }) => {
   return (
     <motion.button
       type={type}
       onClick={onClick}
-      whileTap={loading ? undefined : { scale: 0.9 }}
       transition={{ duration: 0.1, ease: "easeIn" }}
-      disabled={loading}
+      disabled={loading || disabled}
       className={`px-3 py-2 flex items-center ${
         loading
           ? "w-28 flex justify-center "
           : "bg-gradient-to-tr hover:bg-gradient-to-br"
-      } gap-2  disabled:bg-slate-300  transition-all duration-300 from-lime-300 text-green-950  to-lime-500 font-[600] font-Satoshi rounded-lg ${className}`}
+      } gap-2    transition-all duration-300 ${
+        disabled ? "bg-slate-300" : "from-lime-300 text-green-950  to-lime-500"
+      } font-[600] font-Satoshi rounded-lg ${className}`}
     >
       {!loading && children}
       {loading && (

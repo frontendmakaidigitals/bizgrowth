@@ -16,7 +16,6 @@ import { FaYoutube } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import axios from "axios";
 import emailjs from "@emailjs/browser";
 const ContactPage = () => {
   const social = [
@@ -28,6 +27,9 @@ const ContactPage = () => {
       id: 3,
     },
   ];
+  const [resp, setResp] = useState<{ status: number; text: string } | null>(
+    null
+  );
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -126,6 +128,7 @@ const ContactPage = () => {
         formData,
         "3Ug2fqjRf9toTQ9s6"
       );
+      setResp(response);
 
       setFormData({
         name: "",
@@ -274,9 +277,15 @@ const ContactPage = () => {
               )}
             </div>
             <div className="mt-4">
-              <Button className="px-5" type="submit">
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </Button>
+              {resp && resp.status === 200 ? (
+                <Button disabled={true} className="px-5" type="submit">
+                  Submitted
+                </Button>
+              ) : (
+                <Button className="px-5" type="submit">
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </Button>
+              )}
             </div>
           </form>
           <div></div>
