@@ -92,7 +92,7 @@ const ContactPage = () => {
 
   // Validate form fields
   const validateForm = () => {
-    let formErrors = {
+    const formErrors = {
       name: "",
       email: "",
       businessActivity: "",
