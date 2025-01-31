@@ -11,11 +11,14 @@ const Navbar = () => {
     <div ref={navRef} className=" w-full py-3">
       <div className="container flex justify-between items-center w-full">
         <Logo className="relative z-[5]" />
-        <Menu />
+        <div className="flex items-center gap-6">
+          <Menu />
+
+          <Link href={"/Cost-Calculator"} className="hidden lg:block ">
+            <Button className=" ">Cost Calculator</Button>
+          </Link>
+        </div>
         <MobileMenu navRef={navRef} />
-        <Link href={"/Cost-Calculator"} className="hidden lg:block ">
-          <Button className="xl:text-md ">Cost Calculator</Button>
-        </Link>
       </div>
     </div>
   );

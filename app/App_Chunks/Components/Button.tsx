@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       transition={{ duration: 0.1, ease: "easeIn" }}
       disabled={loading || disabled}
-      className={`px-3 py-2 flex items-center ${
+      className={`xl:px-3 py-2 px-2 text-[.9rem] xl:text-[.88rem] xxl:text-md flex items-center ${
         loading
           ? "w-28 flex justify-center "
           : "bg-gradient-to-tr hover:bg-gradient-to-br"
