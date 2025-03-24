@@ -134,17 +134,17 @@ const Footer: React.FC = () => {
             src={"/media/Footerbg.svg"}
           />
         </div>
-        <div className="container relative z-[10] grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-4 lg:gap-x-10">
-          <div className="col-span-2 grid grid-cols-4 place-items-start lg:place-items-center gap-5 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
-            <div className="col-span-2 md:col-span-1">
-              <Logo className="!h-[65px]" />
+        <div className="container relative z-[10] grid grid-cols-1 gap-x-5 gap-y-10 sm:gap-x-8  lg:grid-cols-[.6fr_1.5fr] lg:gap-x-20">
+          <div className=" flex flex-col gap-8 ">
+            <div className=" ">
+              <Logo className="!h-[50px] lg:!h-[65px]" />
               <p className="font-regular mt-3 text-sm text-[#10220a]">
                 At Biz Growth, we are committed to providing exceptional service
                 and unwavering support to our clients throughout their business
                 Setup and ongoing journey.
               </p>
             </div>
-            <div className="col-span-2 flex w-full flex-col items-start justify-between md:col-span-3">
+            <div className=" hidden lg:flex w-full flex-col items-start ">
               <p className="mb-2 font-semibold text-[#10220a]">Our Presence</p>
               <div className="grid grid-cols-2 lg:grid-cols-4  gap-2">
                 <FaSquareFacebook className="text-5xl lg:text-3xl text-[#10220a]" />
@@ -154,35 +154,49 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-          {widgetMenus.map(renderWidgetMenuItem)}
-          <div className="col-span-2 w-full lg:col-span-1">
-            <h2 className="font-semibold text-[#10220a] font-Satoshi text-lg">
-              Get in Touch
-            </h2>
-            <ul className="mt-5 space-y-4">
-              <li className="flex items-start">
-                <i className="la la-map-marker mt-1 text-xl text-primary-400"></i>
-                <p className="text-[#10220a]">
-                  Office - 3307, Churchill Towers, Business Bay, Dubai, UAE
-                </p>
-              </li>
-              <li className="flex items-center text-[#10220a] ">
-                <div className="flex items-center gap-1">
-                  <p className="text-sm text-[#10220a]">Phone - </p>
-                  <a
-                    href="tel:+971585129847"
-                    className="text-sm text-[#10220a]"
-                  >
-                    +97 15593 91238
-                  </a>
-                </div>
-              </li>
+          <div className="grid grid-cols-2 w-full place-items-start lg:grid-cols-[1fr_1.3fr_1.3fr]">
+            {widgetMenus.map(renderWidgetMenuItem)}
+            <div className="col-span-2 w-full lg:col-span-1">
+              <h2 className="font-semibold text-[#10220a] font-Satoshi text-lg">
+                Get in Touch
+              </h2>
+              <ul className="mt-5 space-y-4">
+                <li className="flex items-start">
+                  <i className="la la-map-marker mt-1 text-xl text-primary-400"></i>
+                  <p className="text-[#10220a]">
+                    Office - 3307, Churchill Towers, Business Bay, Dubai, UAE
+                  </p>
+                </li>
+                <li className="flex items-center text-[#10220a] ">
+                  <div className="flex items-center gap-1">
+                    <p className="text-sm text-[#10220a]">Phone - </p>
+                    <a
+                      href="tel:+971585129847"
+                      className="text-sm text-[#10220a]"
+                    >
+                      +97 15593 91238
+                    </a>
+                  </div>
+                </li>
 
-              <li className="flex items-center gap-1">
-                <p className="text-sm text-[#10220a]">Email - </p>
-                <p className="text-[#10220a]">info@bizgrowthconsultancy.com</p>
-              </li>
-            </ul>
+                <li className="flex items-center gap-1">
+                  <p className="text-sm text-[#10220a]">Email - </p>
+                  <p className="text-[#10220a]">
+                    info@bizgrowthconsultancy.com
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className=" lg:hidden flex w-full flex-col items-start ">
+            <p className="mb-2 font-semibold text-[#10220a]">Our Presence</p>
+            <div className="grid grid-cols-2 lg:grid-cols-4  gap-2">
+              <FaSquareFacebook className="text-5xl lg:text-3xl text-[#10220a]" />
+              <AiFillInstagram className="text-5xl lg:text-3xl text-[#10220a]" />
+              <BsTwitterX className="text-5xl lg:text-3xl text-[#10220a]" />
+              <BsYoutube className="text-5xl lg:text-3xl text-[#10220a]" />
+            </div>
           </div>
         </div>
       </div>
