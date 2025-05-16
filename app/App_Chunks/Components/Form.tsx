@@ -137,15 +137,13 @@ const Form = () => {
     console.log("Payload being sent to emailjs:", payload); // Debugging the payload
 
     try {
-      const response = await emailjs.send(
-        "service_redgvmv",
-        "template_zfsvreg",
-        payload,
-        "3Ug2fqjRf9toTQ9s6"
-      );
-
-      console.log("EmailJS Response:", response); // Debugging the response from emailjs
-      setResp(response);
+      const response = await fetch("/api/email", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+      });
+      const text = await response.text();
+      setResp({ status: response.status, text });
 
       setFormData({
         name: "",

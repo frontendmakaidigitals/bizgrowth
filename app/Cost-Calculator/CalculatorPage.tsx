@@ -204,27 +204,27 @@ const CalculatorPage = () => {
     }));
   };
   const router = useRouter();
-  console.log(resp?.status);
   // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setIsSubmitting(true);
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().split("T")[0];
     const payload = {
-      ...formData,
-      date: formattedDate,
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      businessActivity: formData.businessActivity,
+      contact: formData.phone,
+      message: formData.businessDescription,
+      visas: formData.visas,
     };
-
     try {
-      const response = await emailjs.send(
-        "service_redgvmv",
-        "template_q5u8lhk",
-        payload,
-        "3Ug2fqjRf9toTQ9s6"
-      );
-      setResp(response);
+      const response = await fetch("/api/email", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      });
+      const text = await response.text();
+      setResp({ status: response.status, text });
 
       setFormData({
         firstName: "",

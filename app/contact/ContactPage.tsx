@@ -16,7 +16,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import emailjs from "@emailjs/browser";
+
 const ContactPage = () => {
   const social = [
     { icon: <FaFacebook />, id: 0 },
@@ -129,13 +129,13 @@ const ContactPage = () => {
     };
 
     try {
-      const response = await emailjs.send(
-        "service_redgvmv",
-        "template_zfsvreg",
-        payload,
-        "3Ug2fqjRf9toTQ9s6"
-      );
-      setResp(response);
+      const response = await fetch("/api/email", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+      });
+      const text = await response.text();
+      setResp({ status: response.status, text });
 
       setFormData({
         name: "",
