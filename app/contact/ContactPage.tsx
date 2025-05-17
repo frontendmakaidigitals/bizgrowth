@@ -36,7 +36,6 @@ const ContactPage = () => {
     businessActivity: "",
     contact: "",
     message: "",
-
   });
 
   const [errors, setErrors] = useState({
@@ -121,21 +120,17 @@ const ContactPage = () => {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().split("T")[0];
-    const payload = {
-      ...formData,
-      date: formattedDate,
-    };
+ 
 
     try {
       const response = await fetch("/api/email", {
         method: "POST",
-        body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-      const text = await response.text();
-      setResp({ status: response.status, text });
+
+      const data = await response.json();
+      setResp({ status: response.status, text: data.text });
 
       setFormData({
         name: "",
@@ -289,7 +284,12 @@ const ContactPage = () => {
                   Submitted
                 </Button>
               ) : (
-                <Button loading={isSubmitting} disabled={isSubmitting} className="px-5" type="submit">
+                <Button
+                  loading={isSubmitting}
+                  disabled={isSubmitting}
+                  className="px-5"
+                  type="submit"
+                >
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               )}

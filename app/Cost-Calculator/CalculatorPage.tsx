@@ -404,6 +404,7 @@ const CalculatorPage = () => {
                 <div className="w-full">
                   <input
                     name="visas"
+                    type="number"
                     placeholder={"Number of Visas*"}
                     value={formData.visas}
                     onChange={handleChange}

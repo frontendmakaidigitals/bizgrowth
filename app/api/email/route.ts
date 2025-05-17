@@ -1,47 +1,33 @@
+// app/api/email/route.ts
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const resend = new Resend("re_6GLFhiTf_3javH3x77xZTr6qutop8Z1LS"); // Your Resend API key here
 
 export async function POST(req: Request) {
+  const raw = await req.json();
+  const sheetName = "Bizgrowth";
+  const payload: Record<string, any> = {
+    ...raw,
+    date: new Date().toISOString().split("T")[0],
+    visas: "visas" in raw ? raw.visas : "N/A",
+    sheetName: sheetName,
+  };
+
+  console.log(raw.visas)
   try {
-    const { name, email, businessActivity, contact, message, visas } =
-      await req.json();
-
-    const emailElement = await resend.batch.send([
+    const googleResponse = await fetch(
+      "https://script.google.com/macros/s/AKfycbyYS4sJSLGXCzBlh-3C6HulqGDH1RGpnfpeLLEYitR2RgHaRlGLt9JKtjt1PnPg4EBr/exec",
       {
-        from: "onboarding@resend.dev", // your email
-        to: ["frontendmakaidigitals@gmail.com"],
-        subject: `New Contact from ${name}`,
-        text: `
-        Name: ${name} 
-        Phone: ${contact}
-        Business Activity: ${businessActivity}
-        Email: ${email}
-        ${visas ? `Visa: ${visas}` : ""}
-        Message: ${message}
-      `,
-      },
-      {
-        from: "onboarding@resend.dev", // your email
-        to: ["info@bizgrowthconsultancy.com"],
-        subject: `New Contact from ${name}`,
-        text: `
-        Name: ${name} 
-        Phone: ${contact}
-        Business Activity: ${businessActivity}
-        Email: ${email}
-        ${visas ? `Visa: ${visas}` : ""}
-        Message: ${message}
-      `,
-      },
-    ]);
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }
+    );
 
-    return NextResponse.json({ success: true });
+    const text = await googleResponse.text();
+    return NextResponse.json({ text });
   } catch (error) {
-    console.error("Email send failed:", error);
-    const errorMessage =
-      error instanceof Error ? error.message : "Something went wrong";
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    console.error("API error:", error);
+    return new NextResponse("Failed to submit to Google Apps Script", {
+      status: 500,
+    });
   }
 }
