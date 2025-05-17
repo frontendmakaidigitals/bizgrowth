@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const raw = await req.json();
-  const sheetName = "Bizgrowth";
+  const sheetName = "Bizgrowth- website";
   const payload: Record<string, any> = {
     ...raw,
     date: new Date().toISOString().split("T")[0],
