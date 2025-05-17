@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Heading from "./Heading";
 import Button from "./Button";
-import emailjs from "@emailjs/browser";
+
 import {
   Select,
   SelectContent,
