@@ -4,9 +4,55 @@
 @layer base {
   :root {
     --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 body {
   background-color: #f6f8ff;
+}
+
+
+.ContentEditable__root p,
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6,
+.ContentEditable__root blockquote,
+.ContentEditable__root ul,
+.ContentEditable__root ol {
+  margin-top: 0.25em !important; /* adjust to taste */
+  margin-bottom: 0.25em; /* adjust to taste */
+  line-height: 1.4;
+  list-style: disc;
+}
+
+/* For completely tight spacing */
+.ContentEditable__root p,
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6 {
+  margin: 0;
 }

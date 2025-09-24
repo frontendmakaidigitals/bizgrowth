@@ -11,7 +11,7 @@ const Navbar = () => {
     <div ref={navRef} className=" w-full py-3">
       <div className="container flex justify-between items-center w-full">
         <Logo className="relative z-[5]" />
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-5">
           <Menu />
 
           <Link href={"/Cost-Calculator"} className="hidden lg:block ">

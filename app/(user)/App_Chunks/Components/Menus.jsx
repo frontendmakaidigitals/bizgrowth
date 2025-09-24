@@ -101,6 +101,11 @@ export const Menus = [
     ],
   },
   {
+    name: "Blogs",
+    href: "/blogs",
+    dropdown: false,
+  },
+  {
     name: "Contact",
     href: "/contact",
     dropdown: false,

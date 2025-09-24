@@ -6,11 +6,10 @@ import { AnimatePresence, motion } from "framer-motion"; // Import motion
 import { Menus } from "./Menus"; // Import Menus
 import Link from "next/link";
 const Menu = () => {
-  // State to handle visibility of dropdowns individually
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <div className="hidden lg:flex justify-center items-center font-Satoshi gap-5">
+    <div className="hidden lg:flex justify-center items-center font-Satoshi gap-3">
       {Menus.map((menu, index) =>
         // If the menu item has no dropdown, just render a link
         !menu.dropdown ? (
@@ -31,7 +30,7 @@ const Menu = () => {
             <p className="px-3 py-1 text-[.9rem] xl:text-[.88rem] xxl:text-[1.03rem] text-[#12250a] hover:bg-[#dcedc8] font-[600] cursor-default transition-all duration-300  flex items-center rounded-md gap-1">
               {menu.name}{" "}
               <IoChevronDown
-                className="mt-1"
+                className="mt-0"
                 style={{
                   rotate: openDropdown === menu.name ? "180deg" : "0deg",
                 }}

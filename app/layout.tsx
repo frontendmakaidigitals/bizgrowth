@@ -1,10 +1,5 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "./App_Chunks/Components/Navbar";
-import Footer from "./App_Chunks/Components/Footer";
-import { Providers } from "./App_Chunks/Components/ParallaxProvider";
-import Loading from "./App_Chunks/Components/Loading";
-import FloatingWhatsIcon from "./App_Chunks/Components/floatingWhatsIcon";
 import Head from "next/head"; // Import next/head
 
 const geistSans = localFont({
@@ -49,7 +44,7 @@ export default function RootLayout({
                 }(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
                 fbq('init', '590278050828322');
                 fbq('track', 'PageView');
-              `
+              `,
             }}
           />
           <noscript>
@@ -66,12 +61,10 @@ export default function RootLayout({
           />
         </Head>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navbar />
-        <Loading />
-        <FloatingWhatsIcon />
-        <Providers>{children}</Providers>
-        <Footer />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
       </body>
     </html>
   );
