@@ -10,16 +10,16 @@ function readDb() {
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ title: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { title } = await params;
 
     const formData = await req.formData();
 
     const db = readDb();
 
-    const blog = db.blogs.find((b: any) => b.id == id);
+    const blog = db.blogs.find((b: any) => b.title == title);
 
     if (!blog) {
       return NextResponse.json(
