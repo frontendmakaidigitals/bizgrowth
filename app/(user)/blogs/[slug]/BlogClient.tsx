@@ -14,9 +14,9 @@ import { Editor } from "@/components/blocks/editor-00/editor";
 
 export default function BlogClient({ blog }: { blog: any }) {
   const pathname = usePathname();
-  const blogURL = `https://dimondra.com/${pathname}`;
+  const blogURL = `https://bizgrowthconsultancy.com/${pathname}`;
   const blogTitle = blog?.title || "";
-
+ 
   function calculateReadTime(text: string) {
     const wordsPerMinute = 200;
     const wordCount = text.trim().split(/\s+/).length;

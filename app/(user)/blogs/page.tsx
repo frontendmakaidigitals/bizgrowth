@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
-
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import BgLayer from "@/components/BgLayer";
-import { Calendar, MoveUpRight, User } from "lucide-react";
 import { Editor } from "@/components/blocks/editor-00/editor";
 import Link from "next/link";
 
@@ -20,12 +17,15 @@ interface Blog {
 interface BlogsResponse {
   blogs: Blog[];
 }
+
 const Page = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
 
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [visibleCount, setVisibleCount] = useState(9); // show 9 first
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -42,27 +42,52 @@ const Page = () => {
     fetchBlogs();
   }, []);
 
+  // 👇 IntersectionObserver for infinite scroll
+  useEffect(() => {
+    if (!loadMoreRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => prev + 6); // load 6 more
+        }
+      },
+      { threshold: 1 }
+    );
+
+    observer.observe(loadMoreRef.current);
+
+    return () => observer.disconnect();
+  }, [blogs]);
+
   return (
     <div className="pb-24">
-      <div className=" mx-auto mb-10 h-[180px] lg:h-[280px] w-full flex flex-col relative justify-center overflow-hidden items-center gap-4">
+      {/* Hero */}
+      <div className="mx-auto mb-10 h-[180px] lg:h-[280px] w-full flex flex-col relative justify-center overflow-hidden items-center gap-4">
         <img
           className="w-full h-full absolute inset-0 object-cover"
-          src={
-            "https://images.unsplash.com/photo-1476242906366-d8eb64c2f661?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-          alt={"Blogs bg"}
+          src="https://images.unsplash.com/photo-1476242906366-d8eb64c2f661?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0"
+          alt="Blogs bg"
         />
-        
         <h1 className="relative z-10 font-[600] text-2xl lg:text-4xl">
           Latest News & Article
         </h1>
         <h2 className="relative z-10 font-[600]">Blogs</h2>
       </div>
+
+      {/* Blog List */}
       {blogs.length > 0 ? (
         <>
           <div className="max-w-6xl container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            <BlogCard blogs={blogs} />
+            <BlogCard blogs={blogs.slice(0, visibleCount)} />
           </div>
+
+          {/* Load more trigger */}
+          {visibleCount < blogs.length && (
+            <div ref={loadMoreRef} className="h-10 mt-10 flex justify-center">
+              <p className="text-slate-500">Loading more...</p>
+            </div>
+          )}
         </>
       ) : (
         <div className="w-full flex justify-center items-center h-[80vh]">
@@ -119,7 +144,9 @@ const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
             <hr className="w-[92%] mx-auto" />
             <CardFooter className="px-3 mt-2 pb-3">
               <div className="flex w-full justify-between items-center text-sm">
-                <p className="text-slate-600">{new Date(blog.id).toDateString()}</p>
+                <p className="text-slate-600">
+                  {new Date(blog.id).toDateString()}
+                </p>
                 <p className="text-slate-600">{blog.author}</p>
               </div>
             </CardFooter>
