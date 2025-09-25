@@ -37,13 +37,13 @@ export async function PUT(
 
     const file = formData.get("image") as File | null;
     if (file) {
-      const uploadsDir = path.join(process.cwd(), "public/uploads");
+      const uploadsDir = path.join(process.cwd(), "data/uploads");
       if (!fs.existsSync(uploadsDir)) {
         fs.mkdirSync(uploadsDir, { recursive: true });
       }
 
       if (blog.image) {
-        const oldImagePath = path.join(process.cwd(), "public", blog.image);
+        const oldImagePath = path.join(process.cwd(), "data", blog.image);
         if (fs.existsSync(oldImagePath)) {
           fs.unlinkSync(oldImagePath);
         }

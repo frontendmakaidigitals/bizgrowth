@@ -78,7 +78,7 @@ const Page = () => {
       {/* Blog List */}
       {blogs.length > 0 ? (
         <>
-          <div className="max-w-6xl container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="max-w-6xl  container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
             <BlogCard blogs={blogs.slice(0, visibleCount)} />
           </div>
 
@@ -102,57 +102,51 @@ export default Page;
 
 /* 🔹 BlogTopic Component */
 const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
-  return (
-    <div className="mt-2">
-      {blogs.map((blog) => (
-        <Link
-          key={blog.id}
-          href={`/blogs/${encodeURIComponent(
-            blog.title.toLowerCase().replace(/\s+/g, "-")
-          )}`}
-        >
-          <Card className="w-full rounded-lg">
-            <CardContent className="w-full !px-0 !pt-0 pb-5">
-              <div className="h-[250px] relative lg:h-[220px] w-full overflow-hidden">
-                <p className="absolute top-0 right-0 bg-gradient-to-tr p-2 text-sm from-lime-400 to-green-300">
-                  {blog.category}
-                </p>
-                <img
-                  className="w-full h-full object-cover"
-                  src={blog.image}
-                  alt={blog.title}
+  return blogs.map((blog) => (
+    <Link
+      key={blog.id}
+      href={`/blogs/${encodeURIComponent(
+        blog.title.toLowerCase().replace(/\s+/g, "-")
+      )}`}
+    >
+      <Card className="w-full rounded-lg">
+        <CardContent className="w-full !px-0 !pt-0 pb-5">
+          <div className="h-[250px] relative lg:h-[220px] w-full overflow-hidden">
+            <p className="absolute top-0 right-0 bg-gradient-to-tr p-2 text-sm from-lime-400 to-green-300">
+              {blog.category}
+            </p>
+            <img
+              className="w-full h-full object-cover"
+              src={blog.image}
+              alt={blog.title}
+            />
+          </div>
+          <div className="mt-3 px-3">
+            <h3 className="font-bold line-clamp-2">{blog.title}</h3>
+            <div className="mt-1">
+              {blog.content && (
+                <Editor
+                  editorSerializedState={
+                    typeof blog.content === "string"
+                      ? JSON.parse(blog.content)
+                      : blog.content
+                  }
+                  readOnly
+                  clampLines={2}
+                  blogPage={false}
                 />
-              </div>
-              <div className="mt-3 px-3">
-                <h3 className="font-bold line-clamp-2">{blog.title}</h3>
-                <div className="mt-1">
-                  {blog.content && (
-                    <Editor
-                      editorSerializedState={
-                        typeof blog.content === "string"
-                          ? JSON.parse(blog.content)
-                          : blog.content
-                      }
-                      readOnly
-                      clampLines={2}
-                      blogPage={false}
-                    />
-                  )}
-                </div>
-              </div>
-            </CardContent>
-            <hr className="w-[92%] mx-auto" />
-            <CardFooter className="px-3 mt-2 pb-3">
-              <div className="flex w-full justify-between items-center text-sm">
-                <p className="text-slate-600">
-                  {new Date(blog.id).toDateString()}
-                </p>
-                <p className="text-slate-600">{blog.author}</p>
-              </div>
-            </CardFooter>
-          </Card>
-        </Link>
-      ))}
-    </div>
-  );
+              )}
+            </div>
+          </div>
+        </CardContent>
+        <hr className="w-[92%] mx-auto" />
+        <CardFooter className="px-3 mt-2 pb-3">
+          <div className="flex w-full justify-between items-center text-sm">
+            <p className="text-slate-600">{new Date(blog.id).toDateString()}</p>
+            <p className="text-slate-600">{blog.author}</p>
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
+  ));
 };
