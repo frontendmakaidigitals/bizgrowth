@@ -38,3 +38,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+#Ignored lowdb database
+data/db.json
+
+#Ignored Blogs upload images
+public/uploads/
