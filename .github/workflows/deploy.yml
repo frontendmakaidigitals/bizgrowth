@@ -72,12 +72,16 @@ jobs:
           # Create backup
           cd /home/milestonehre/bizgrowth
           if [ -d ".next" ]; then
-            sudo cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
+            cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
           fi
           
-          # Pull latest code
+          # Initialize git repository if needed and pull latest code
+          if [ ! -d .git ]; then
+            git init
+            git remote add origin https://github.com/frontendmakaidigitals/bizgrowth.git
+          fi
           git fetch origin
-          git reset --hard origin/main 2>/dev/null || git reset --hard origin/master
+          git reset --hard origin/master
           
           # Install production dependencies
           npm ci --production
