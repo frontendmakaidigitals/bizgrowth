@@ -89,7 +89,7 @@ const BlogListPage = () => {
 
       <div className="overflow-x-auto border rounded-lg shadow-sm">
         <table className="min-w-full bg-white text-sm">
-          <thead className="bg-red-900 text-white">
+          <thead className="bg-lime-600 text-white">
             <tr>
               <th className="text-left px-6 py-3">Image</th>
               <th className="text-left px-6 py-3">Title</th>
@@ -105,7 +105,7 @@ const BlogListPage = () => {
                 <tr key={blog.id} className="border-t hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <img
-                      src={blog.image}
+                      src={`/api/uploads/${blog.image}`}
                       alt={blog.title}
                       className="w-16 h-16 object-cover rounded"
                     />
@@ -142,7 +142,10 @@ const BlogListPage = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={6} className="text-center text-lg p-6 text-slate-500">
+                <td
+                  colSpan={6}
+                  className="text-center text-lg p-6 text-slate-500"
+                >
                   No Blogs found
                 </td>
               </tr>

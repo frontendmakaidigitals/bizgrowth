@@ -41,7 +41,7 @@ next-env.d.ts
 
 
 #Ignored lowdb database
-data/db.json
+data
 
 #Ignored Blogs upload images
-public/uploads/
+public/uploads

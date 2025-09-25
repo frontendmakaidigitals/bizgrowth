@@ -40,8 +40,8 @@ export async function POST(req: Request) {
       );
     }
 
-    // Save image in public/uploads
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
+    // Save image in data/uploads
+    const uploadsDir = path.join(process.cwd(), "data", "uploads");
     if (!fs.existsSync(uploadsDir)) {
       fs.mkdirSync(uploadsDir, { recursive: true });
     }
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     fs.writeFileSync(filePath, buffer);
 
-    const imageUrl = `/uploads/${file.name}`;
+    const imageUrl = `${file.name}`;
 
     const blog = {
       id: Date.now(),
@@ -143,7 +143,7 @@ export async function DELETE(req: Request) {
     // Find the blog to delete
     const blogToDelete = db.blogs.find((blog) => blog.id == id);
     if (blogToDelete) {
-      const imagePath = path.join(process.cwd(), "public", blogToDelete.image);
+      const imagePath = path.join(process.cwd(), "data", blogToDelete.image);
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath); // delete image
       }
