@@ -103,6 +103,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
+          # Check if the application is responding
           for i in {1..5}; do
             if curl -f http://localhost:3005 > /dev/null 2>&1; then
               echo "✅ Application is healthy"
@@ -138,14 +139,3 @@ jobs:
             echo "❌ No backup found for rollback"
             pm2 restart bizgrowth
           fi
-
-    - name: PM2 status debug
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: 65.20.74.159
-        username: milestonehre
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          pm2 list
-          pm2 show bizgrowth
