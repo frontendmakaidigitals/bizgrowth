@@ -5,9 +5,11 @@ import { LogOut } from "lucide-react";
 const Head = () => {
   const path = usePathname();
   const router = useRouter();
-  const handleLogout = () => {
-    document.cookie = "admin-auth=; Max-Age=0; path=/"; // Clear the cookie
-    router.push("/dashboard/login");
+
+  const handleLogout = async () => {
+    await fetch("/api/logout", { method: "POST" });
+    router.replace("/login"); // use replace so "back" doesn’t reload dashboard
+    router.refresh(); // ensure fresh render
   };
 
   return (

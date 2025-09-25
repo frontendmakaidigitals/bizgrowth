@@ -35,7 +35,7 @@ const DashboardPage = () => {
           <p className="text-7xl mt-4">{blogs.length}</p>
           <Link
             href={"dashboard/Blogs"}
-            className="flex items-center w-fit mt-6 gap-3 rounded-2xl bg-[#58000f] hover:bg-[#800000]  text-slate-50 px-4  py-2"
+            className="flex items-center w-fit mt-6 gap-3 rounded-2xl bg-lime-600 hover:bg-lime-700  text-slate-50 px-4  py-2"
           >
             <span>View All</span>
             <span>

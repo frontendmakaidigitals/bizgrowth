@@ -321,7 +321,7 @@ export default function Page() {
             <div className="relative flex items-center border border-gray-100 shadow gap-3 line-clamp-1 bg-white w-full px-3 py-[.22rem] rounded-lg">
               <label
                 htmlFor="fileAdd"
-                className="px-3 rounded-md py-[.45rem] bg-blue-500 text-slate-50 cursor-pointer"
+                className="px-3 rounded-md py-[.45rem] bg-lime-600 text-slate-50 cursor-pointer"
               >
                 Choose
               </label>

@@ -1,5 +1,5 @@
 "use client";
-import { Home, Book, MessageSquareQuote } from "lucide-react";
+import { Home, Book, LayoutDashboard } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import {
@@ -22,6 +22,11 @@ const items = [
     icon: Home,
   },
   {
+    title: "Dashboard",
+    url: "dashboard",
+    icon: LayoutDashboard,
+  },
+  {
     title: "Blogs",
     url: "dashboard/Blogs",
     icon: Book,
@@ -33,12 +38,12 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarContent className="py-5">
         <SidebarTrigger
-          className={`bg-red-900 hover:bg-red-800 z-10 ${
-            open ? "-translate-x-1/2" : "translate-x-16"
+          className={`bg-lime-600 hover:bg-lime-700 z-10 ${
+            open ? "-translate-x-1/2" : "translate-x-1"
           } size-10 text-white hover:text-white transition-transform duration-300 rounded-full left-full  top-24 absolute`}
         />
+      <SidebarContent className="py-5">
         <SidebarGroup>
           <SidebarGroupLabel className="flex justify-center mt-5">
             <Logo />

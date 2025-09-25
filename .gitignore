@@ -44,4 +44,4 @@ next-env.d.ts
 data/db.json
 
 #Ignored Blogs upload images
-public/uploads/
+public/uploads

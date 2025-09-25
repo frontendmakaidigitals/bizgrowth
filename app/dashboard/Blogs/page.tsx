@@ -89,7 +89,7 @@ const BlogListPage = () => {
 
       <div className="overflow-x-auto border rounded-lg shadow-sm">
         <table className="min-w-full bg-white text-sm">
-          <thead className="bg-red-900 text-white">
+          <thead className="bg-lime-600 text-white">
             <tr>
               <th className="text-left px-6 py-3">Image</th>
               <th className="text-left px-6 py-3">Title</th>
