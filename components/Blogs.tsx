@@ -64,7 +64,7 @@ const Blogs = () => {
       {blogs.length !== 0 ? (
         <div className="container ">
           <motion.h1 className="text-4xl text-center lg:text-5xl font-bold  mb-6">
-            Latest from the <span className="text-blue-500">Blog</span>
+            Latest from the <span className="text-lime-600">Blog</span>
           </motion.h1>
 
           <Carousel
@@ -128,7 +128,7 @@ const Blogs = () => {
                       blog.title.toLowerCase().replace(/\s+/g, "-")
                     )}`}
                   >
-                    <button className="absolute right-4 bottom-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2">
+                    <button className="absolute right-4 bottom-4 bg-lime-500 hover:bg-lime-600 text-white rounded-lg p-2">
                       <MoveUpRight />
                     </button>
                   </Link>

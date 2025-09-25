@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import { motion } from "framer-motion";
-import Button from "@/app/App_Chunks/Components/Button";
+import Button from "../App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../App_Chunks/Components/Banner";
