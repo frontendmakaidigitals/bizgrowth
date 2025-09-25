@@ -140,12 +140,20 @@ export async function DELETE(req: Request) {
     const db = JSON.parse(data) as { blogs: Blog[] };
     db.blogs = Array.isArray(db.blogs) ? db.blogs : [];
 
-    // Find the blog to delete
     const blogToDelete = db.blogs.find((blog) => blog.id == id);
-    if (blogToDelete) {
-      const imagePath = path.join(process.cwd(), "data", blogToDelete.image);
+    if (blogToDelete?.image) {
+      const imagePath = path.join(
+        process.cwd(),
+        "data/uploads",
+        blogToDelete.image
+      );
       if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath); // delete image
+        try {
+          fs.unlinkSync(imagePath); // delete image
+          console.log(`🗑️ Deleted image: ${imagePath}`);
+        } catch (err) {
+          console.error("⚠️ Failed to delete image:", err);
+        }
       }
     }
 

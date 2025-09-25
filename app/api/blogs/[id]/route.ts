@@ -43,9 +43,14 @@ export async function PUT(
       }
 
       if (blog.image) {
-        const oldImagePath = path.join(process.cwd(), "data", blog.image);
+        const oldImagePath = path.join(uploadsDir, blog.image);
         if (fs.existsSync(oldImagePath)) {
-          fs.unlinkSync(oldImagePath);
+          try {
+            fs.unlinkSync(oldImagePath);
+            console.log(`🗑️ Deleted old image: ${oldImagePath}`);
+          } catch (err) {
+            console.error("⚠️ Failed to delete old image:", err);
+          }
         }
       }
 
