@@ -76,7 +76,7 @@ const Blogs = () => {
               {blogs.map((blog, index) => (
                 <CarouselItem
                   key={blog.id || index}
-                  className="basis-1/1 pb-10 relative lg:basis-1/5"
+                  className="basis-1/1 pb-10 relative lg:basis-1/4"
                 >
                   <div className="bg-blue-50 p-1 relative shadow-sm rounded-lg overflow-hidden">
                     <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">

@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import Blogs from "@/components/Blogs";
 import { Editor } from "@/components/blocks/editor-00/editor";
 
 export default function BlogClient({ blog }: { blog: any }) {
@@ -137,6 +137,7 @@ export default function BlogClient({ blog }: { blog: any }) {
           ) : null}
         </div>
       </div>
+      <Blogs />
     </main>
   );
 }

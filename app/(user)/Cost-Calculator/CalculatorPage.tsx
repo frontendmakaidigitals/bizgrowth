@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Heading from "@/app/App_Chunks/Components/Heading";
-import Button from "@/app/App_Chunks/Components/Button";
+import Heading from "../App_Chunks/Components/Heading";
+import Button from "../App_Chunks/Components/Button";
 import {
   Select,
   SelectContent,

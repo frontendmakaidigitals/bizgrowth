@@ -1,16 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import clsx from "clsx";
 import Autoplay from "embla-carousel-autoplay";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
+
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import BgLayer from "@/components/BgLayer";
 import { Calendar, MoveUpRight, User } from "lucide-react";
 import { Editor } from "@/components/blocks/editor-00/editor";
@@ -51,111 +44,24 @@ const Page = () => {
 
   return (
     <div className="pb-24">
+      <div className=" mx-auto mb-10 h-[180px] lg:h-[280px] w-full flex flex-col relative justify-center overflow-hidden items-center gap-4">
+        <img
+          className="w-full h-full absolute inset-0 object-cover"
+          src={
+            "https://images.unsplash.com/photo-1476242906366-d8eb64c2f661?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+          alt={"Blogs bg"}
+        />
+        
+        <h1 className="relative z-10 font-[600] text-2xl lg:text-4xl">
+          Latest News & Article
+        </h1>
+        <h2 className="relative z-10 font-[600]">Blogs</h2>
+      </div>
       {blogs.length > 0 ? (
         <>
-          <div className="w-full overflow-hidden">
-            <Carousel
-              plugins={[plugin.current]}
-              onMouseEnter={plugin.current.stop}
-              onMouseLeave={plugin.current.reset}
-              className="w-full"
-            >
-              <CarouselContent className="h-[70vh] lg:h-[95vh] p-1 rounded-xl">
-                {blogs
-                  .sort((a, b) => {
-                    const aTime = a.id ? new Date(a.id).getTime() : 0;
-                    const bTime = b.id ? new Date(b.id).getTime() : 0;
-                    return bTime - aTime;
-                  })
-                  .slice(0, 3)
-                  .map((blog) => (
-                    <CarouselItem className="h-full" key={blog.id}>
-                      <Link
-                        href={`/blogs/${encodeURIComponent(
-                          blog.title.toLowerCase().replace(/\s+/g, "-")
-                        )}`}
-                      >
-                        <div className="w-full h-full relative">
-                          <BgLayer color={"bg-slate-900/40 z-10"} />
-                          <div className="absolute inset-0 w-full rounded-lg overflow-hidden h-full">
-                            <img
-                              className="w-full h-full object-cover"
-                              src={blog.image}
-                              alt={blog.title}
-                            />
-                          </div>
-                          <BgLayer color="bg-slate-900/20" />
-                          <div className="relative z-20 flex flex-col lg:flex-row items-end justify-end lg:justify-between container py-9 w-full h-full">
-                            <div>
-                              <span className="p-2 text-xs bg-red-100 text-slate-900 rounded-lg">
-                                {blog.category}
-                              </span>
-                              <h1 className="text-4xl lg:text-5xl  max-w-2xl mt-3 text-slate-50 tracking-tighter font-[500]">
-                                {blog.title}
-                              </h1>
-                              <div className="mt-1 max-w-3xl">
-                                {blog.content && (
-                                  <Editor
-                                    editorSerializedState={
-                                      typeof blog.content === "string"
-                                        ? JSON.parse(blog.content)
-                                        : blog.content
-                                    }
-                                    readOnly
-                                    clampLines={2}
-                                    blogPage={false}
-                                    text="text-slate-50"
-                                  />
-                                )}
-                              </div>
-                            </div>
-                            <div className="mt-5 lg:mt-0">
-                              <div className="flex items-center gap-4">
-                                <div className="p-2 bg-slate-200 rounded-full">
-                                  <User className="size-[16px]" />
-                                </div>
-                                <p className="text-slate-50">{blog.author}</p>
-                              </div>
-                              <div className="flex items-center gap-4 mt-3">
-                                <div className="p-2 bg-slate-200 rounded-full">
-                                  <Calendar className="size-[16px]" />
-                                </div>
-                                <p className="text-slate-50 mt-2">
-                                  {blog.id
-                                    ? new Date(blog.id).toLocaleDateString()
-                                    : ""}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </CarouselItem>
-                  ))}
-              </CarouselContent>
-
-              {/* Carousel Controls */}
-              <div className="absolute top-1/2 left-2 lg:-left-10 flex items-center justify-center">
-                <CarouselPrevious className="relative left-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
-              </div>
-              <div className="absolute top-1/2 right-2 lg:-right-10 flex items-center justify-center">
-                <CarouselNext className="relative right-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
-              </div>
-            </Carousel>
-          </div>
-
-          {/* Topics */}
-          <div className="container my-10">
-            <h2 className="font-[600] text-4xl text-dimondra-black tracking-tighter">
-              Blogs Topics
-            </h2>
-            <p className="text-sm mt-2">
-              Discover blogs categorized by themes — from AI breakthroughs to
-              modern web development trends.
-            </p>
-          </div>
-          <div className="container">
-            <BlogTopic blogs={blogs} />
+          <div className="max-w-6xl container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <BlogCard blogs={blogs} />
           </div>
         </>
       ) : (
@@ -170,105 +76,56 @@ const Page = () => {
 export default Page;
 
 /* 🔹 BlogTopic Component */
-const BlogTopic = ({ blogs }: { blogs: Blog[] }) => {
-  const [activeTopic, setActiveTopic] = useState("All");
-
-  const sortedBlogs = useMemo(() => {
-    return [...blogs].sort((a, b) => {
-      const bTime = b.id ? new Date(b.id).getTime() : 0;
-      const aTime = a.id ? new Date(a.id).getTime() : 0;
-      return bTime - aTime;
-    });
-  }, [blogs]);
-
-  // Skip the first 3 recent blogs
-  const remainingBlogs = sortedBlogs.slice(3);
-
-  const allTopics = useMemo(() => {
-    const topicsSet = new Set<string>(["All"]);
-    remainingBlogs.forEach((blog) => {
-      if (blog.category) topicsSet.add(blog.category);
-    });
-    return Array.from(topicsSet);
-  }, [remainingBlogs]);
-
-  const filteredBlogs =
-    activeTopic === "All"
-      ? remainingBlogs
-      : remainingBlogs.filter((blog) => blog.category === activeTopic);
-
+const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
   return (
     <div className="mt-2">
-      {filteredBlogs.length > 0 ? (
-        <>
-          {/* Topic Buttons */}
-          <div className="flex flex-wrap gap-3 mb-8">
-            {allTopics.map((topic) => (
-              <button
-                key={topic}
-                onClick={() => setActiveTopic(topic)}
-                className={clsx(
-                  "px-4 py-2 rounded-lg text-sm font-medium border",
-                  activeTopic === topic
-                    ? "bg-dimondra-teal text-dimondra-white border-dimondra-tealDark"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                )}
-              >
-                {topic}
-              </button>
-            ))}
-          </div>
-
-          {/* Blog Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {filteredBlogs.map((blog) => (
-              <div key={blog.id} className="p-1 w-full relative">
-                <Card className="w-full">
-                  <CardContent className="w-full px-1 pt-1 pb-5">
-                    <div className="h-[250px] lg:h-[220px] w-full rounded-lg overflow-hidden">
-                      <img
-                        className="w-full h-full object-cover"
-                        src={blog.image}
-                        alt={blog.title}
-                      />
-                    </div>
-                    <div className="mt-3 px-2">
-                      <h3 className="font-bold line-clamp-2">{blog.title}</h3>
-                      <div className="mt-1">
-                        {blog.content && (
-                          <Editor
-                            editorSerializedState={
-                              typeof blog.content === "string"
-                                ? JSON.parse(blog.content)
-                                : blog.content
-                            }
-                            readOnly
-                            clampLines={2}
-                            blogPage={false}
-                          />
-                        )}
-                      </div>
-                      <Link
-                        href={`/blogs/${encodeURIComponent(
-                          blog.title.toLowerCase().replace(/\s+/g, "-")
-                        )}`}
-                      >
-                        <button className="absolute right-4 bottom-1 translate-y-1/2 bg-dimondra-teal hover:bg-dimondra-tealDark text-dimondra-white rounded-lg p-2">
-                          <MoveUpRight />
-                        </button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
+      {blogs.map((blog) => (
+        <Link
+          key={blog.id}
+          href={`/blogs/${encodeURIComponent(
+            blog.title.toLowerCase().replace(/\s+/g, "-")
+          )}`}
+        >
+          <Card className="w-full rounded-lg">
+            <CardContent className="w-full !px-0 !pt-0 pb-5">
+              <div className="h-[250px] relative lg:h-[220px] w-full overflow-hidden">
+                <p className="absolute top-0 right-0 bg-gradient-to-tr p-2 text-sm from-lime-400 to-green-300">
+                  {blog.category}
+                </p>
+                <img
+                  className="w-full h-full object-cover"
+                  src={blog.image}
+                  alt={blog.title}
+                />
               </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        <div className="w-full flex justify-center items-center h-[150px]">
-          <h3>No new Blogs Found</h3>
-        </div>
-      )}
+              <div className="mt-3 px-3">
+                <h3 className="font-bold line-clamp-2">{blog.title}</h3>
+                <div className="mt-1">
+                  {blog.content && (
+                    <Editor
+                      editorSerializedState={
+                        typeof blog.content === "string"
+                          ? JSON.parse(blog.content)
+                          : blog.content
+                      }
+                      readOnly
+                      clampLines={2}
+                      blogPage={false}
+                    />
+                  )}
+                </div>
+              </div>
+            </CardContent>
+            <hr className="w-[92%] mx-auto" />
+            <CardFooter className="px-3 mt-2 pb-3">
+              <div className="flex w-full justify-between items-center text-sm">
+                <p className="text-slate-600">{new Date(blog.id).toDateString()}</p>
+                <p className="text-slate-600">{blog.author}</p>
+              </div>
+            </CardFooter>
+          </Card>
+        </Link>
+      ))}
     </div>
   );
 };

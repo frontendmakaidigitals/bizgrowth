@@ -1,0 +1,15 @@
+{
+  "blogs": [
+    {
+      "id": 1758777132889,
+      "title": "asdfa",
+      "metaTitle": "asdfaasdf",
+      "metaDesc": "asfdsasdf",
+      "author": "asdf",
+      "category": "Hospitality",
+      "content": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"sdfg asfda\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\"}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+      "image": "/uploads/MacBook Pro 16_ - 22.jpg"
+    }
+  ],
+  "contacts": []
+}
