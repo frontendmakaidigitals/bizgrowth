@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     fs.writeFileSync(filePath, buffer);
 
-    const imageUrl = `/uploads/${file.name}`;
+    const imageUrl = `/data/uploads/${file.name}`;
 
     const blog = {
       id: Date.now(),

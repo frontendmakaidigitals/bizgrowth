@@ -53,7 +53,7 @@ export async function PUT(
       const buffer = Buffer.from(await file.arrayBuffer());
       fs.writeFileSync(filePath, buffer);
 
-      blog.image = `/uploads/${file.name}`;
+      blog.image = `/data/uploads/${file.name}`;
     }
 
     const dbPath = path.join(process.cwd(), "data/db.json");
