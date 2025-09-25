@@ -16,7 +16,7 @@ export default function BlogClient({ blog }: { blog: any }) {
   const pathname = usePathname();
   const blogURL = `https://bizgrowthconsultancy.com/${pathname}`;
   const blogTitle = blog?.title || "";
- 
+
   function calculateReadTime(text: string) {
     const wordsPerMinute = 200;
     const wordCount = text.trim().split(/\s+/).length;
@@ -117,7 +117,7 @@ export default function BlogClient({ blog }: { blog: any }) {
 
       <div className="w-full h-[300px] lg:h-[580px] mt-12 rounded-xl overflow-hidden">
         <img
-          src={blog?.image}
+          src={`/api/uploads/${blog.image}`}
           alt={blog?.title}
           className="w-full h-full object-cover"
         />

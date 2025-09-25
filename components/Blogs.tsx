@@ -83,7 +83,7 @@ const Blogs = () => {
                       <div className="absolute inset-0 bg-black/20 z-10" />
                       {blog.image && (
                         <Image
-                          src={blog.image}
+                          src={`/api/uploads/${blog.image}`}
                           alt={blog.title}
                           width={600}
                           height={400}

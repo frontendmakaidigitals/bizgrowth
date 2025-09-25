@@ -117,7 +117,7 @@ const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
             </p>
             <img
               className="w-full h-full object-cover"
-              src={blog.image}
+              src={`/api/uploads/${blog.image}`}
               alt={blog.title}
             />
           </div>
