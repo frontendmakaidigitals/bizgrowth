@@ -24,12 +24,9 @@ function slugify(text: string): string {
 }
 
 async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/blogs`,
-    {
-      next: { revalidate: 60 },
-    }
-  );
+  const res = await fetch(`${"https://bizgrowthconsultancy.com/"}/api/blogs`, {
+    next: { revalidate: 60 },
+  });
 
   if (!res.ok) throw new Error("Failed to fetch blogs");
   const data = await res.json();
