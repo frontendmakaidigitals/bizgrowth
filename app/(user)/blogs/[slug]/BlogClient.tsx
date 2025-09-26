@@ -44,7 +44,7 @@ export default function BlogClient({ blog }: { blog: any }) {
           </li>
           <li className="flex items-center gap-3 py-2 sm:py-0 px-3">
             <Calendar size={16} />
-            {blog.id ? <>{blog.id}</> : null}
+            {blog.id ? <>{new Date(blog.id).toLocaleDateString()}</> : null}
           </li>
           <li className="hidden lg:flex items-center py-2 sm:py-0 px-3">
             {blog?.content ? calculateReadTime(blog?.content) : null}
@@ -83,21 +83,7 @@ export default function BlogClient({ blog }: { blog: any }) {
             </Link>
           </li>
 
-          <li className="w-full lg:w-auto">
-            <Link
-              href={`https://www.instagram.com/?url=${encodeURIComponent(
-                blogURL
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full"
-            >
-              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2  border border-slate-200 rounded-lg bg-[#E4405F]">
-                <Instagram />
-              </button>
-            </Link>
-          </li>
-
+          
           <li className="w-full lg:w-auto">
             <Link
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
