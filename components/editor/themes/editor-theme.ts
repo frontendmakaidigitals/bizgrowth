@@ -1,12 +1,12 @@
-import { EditorThemeClasses } from "lexical";
+import { EditorThemeClasses } from "lexical"
 
-import "./editor-theme.css";
+import "./editor-theme.css"
 
 export const editorTheme: EditorThemeClasses = {
   ltr: "text-left",
   rtl: "text-right",
   heading: {
-    h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl lg:text-5xl",
+    h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
     h2: "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0",
     h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
     h4: "scroll-m-20 text-xl font-semibold tracking-tight",
@@ -20,9 +20,9 @@ export const editorTheme: EditorThemeClasses = {
     checklist: "relative",
     listitem: "mx-8",
     listitemChecked:
-      'relative mx-2 px-6 list-none outline-none line-through before:content-[""] before:w-4 before:h-4 before:top-0.5 before:left-0 before:cursor-pointer before:block before:bg-cover before:absolute before:border before:border-primary before:rounded before:bg-primary before:bg-no-repeat after:content-[""] after:cursor-pointer after:border-white after:border-solid after:absolute after:block after:top-[6px] after:w-[3px] after:left-[7px] after:right-[7px] after:h-[6px] after:rotate-45 after:border-r-2 after:border-b-2 after:border-l-0 after:border-t-0',
+      'relative mx-2 px-6 list-none outline-none line-through before:content-[""] before:w-4 before:h-4 before:top-0.5 before:left-0 before:cursor-pointer before:block before:bg-cover before:absolute before:border before:border-stone-900 before:rounded before:bg-stone-900 before:bg-no-repeat after:content-[""] after:cursor-pointer after:border-white after:border-solid after:absolute after:block after:top-[6px] after:w-[3px] after:left-[7px] after:right-[7px] after:h-[6px] after:rotate-45 after:border-r-2 after:border-b-2 after:border-l-0 after:border-t-0 dark:before:border-stone-50 dark:before:bg-stone-50',
     listitemUnchecked:
-      'relative mx-2 px-6 list-none outline-none before:content-[""] before:w-4 before:h-4 before:top-0.5 before:left-0 before:cursor-pointer before:block before:bg-cover before:absolute before:border before:border-primary before:rounded',
+      'relative mx-2 px-6 list-none outline-none before:content-[""] before:w-4 before:h-4 before:top-0.5 before:left-0 before:cursor-pointer before:block before:bg-cover before:absolute before:border before:border-stone-900 before:rounded dark:before:border-stone-50',
     nested: {
       listitem: "list-none before:hidden after:hidden",
     },
@@ -94,37 +94,37 @@ export const editorTheme: EditorThemeClasses = {
   characterLimit: "!bg-destructive/50",
   table: "EditorTheme__table w-fit overflow-scroll border-collapse",
   tableCell:
-    'EditorTheme__tableCell w-24 relative border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"',
+    'EditorTheme__tableCell w-24 relative border border-stone-200 px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right" dark:border-stone-800',
   tableCellActionButton:
-    "EditorTheme__tableCellActionButton bg-background block border-0 rounded-2xl w-5 h-5 text-foreground cursor-pointer",
+    "EditorTheme__tableCellActionButton bg-white block border-0 rounded-2xl w-5 h-5 text-stone-950 cursor-pointer dark:bg-stone-950 dark:text-stone-50",
   tableCellActionButtonContainer:
     "EditorTheme__tableCellActionButtonContainer block right-1 top-1.5 absolute z-10 w-5 h-5",
   tableCellEditing: "EditorTheme__tableCellEditing rounded-sm shadow-sm",
   tableCellHeader:
-    "EditorTheme__tableCellHeader bg-muted border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
+    "EditorTheme__tableCellHeader bg-stone-100 border border-stone-200 px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right dark:bg-stone-800 dark:border-stone-800",
   tableCellPrimarySelected:
-    "EditorTheme__tableCellPrimarySelected border border-primary border-solid block h-[calc(100%-2px)] w-[calc(100%-2px)] absolute -left-[1px] -top-[1px] z-10 ",
+    "EditorTheme__tableCellPrimarySelected border border-stone-200 border-stone-900 border-solid block h-[calc(100%-2px)] w-[calc(100%-2px)] absolute -left-[1px] -top-[1px] z-10  dark:border-stone-800 dark:border-stone-50",
   tableCellResizer:
     "EditorTheme__tableCellResizer absolute -right-1 h-full w-2 cursor-ew-resize z-10 top-0",
-  tableCellSelected: "EditorTheme__tableCellSelected bg-muted",
+  tableCellSelected: "EditorTheme__tableCellSelected bg-stone-100 dark:bg-stone-800",
   tableCellSortedIndicator:
-    "EditorTheme__tableCellSortedIndicator block opacity-50 bsolute bottom-0 left-0 w-full h-1 bg-muted",
+    "EditorTheme__tableCellSortedIndicator block opacity-50 bsolute bottom-0 left-0 w-full h-1 bg-stone-100 dark:bg-stone-800",
   tableResizeRuler:
-    "EditorTheme__tableCellResizeRuler block absolute w-[1px] h-full bg-primary top-0",
+    "EditorTheme__tableCellResizeRuler block absolute w-[1px] h-full bg-stone-900 top-0 dark:bg-stone-50",
   tableRowStriping:
-    "EditorTheme__tableRowStriping m-0 border-t p-0 even:bg-muted",
-  tableSelected: "EditorTheme__tableSelected ring-2 ring-primary ring-offset-2",
+    "EditorTheme__tableRowStriping m-0 border-t p-0 even:bg-stone-100 dark:even:bg-stone-800",
+  tableSelected: "EditorTheme__tableSelected ring-2 ring-stone-900 ring-offset-2 dark:ring-stone-50",
   tableSelection: "EditorTheme__tableSelection bg-transparent",
   layoutItem: "border border-dashed px-4 py-2",
   layoutContainer: "grid gap-2.5 my-2.5 mx-0",
-  autocomplete: "text-muted-foreground",
+  autocomplete: "text-stone-500 dark:text-stone-400",
   blockCursor: "",
   embedBlock: {
     base: "user-select-none",
-    focus: "ring-2 ring-primary ring-offset-2",
+    focus: "ring-2 ring-stone-900 ring-offset-2 dark:ring-stone-50",
   },
-  hr: 'p-0.5 border-none my-1 mx-0 cursor-pointer after:content-[""] after:block after:h-0.5 after:bg-muted selected:ring-2 selected:ring-primary selected:ring-offset-2 selected:user-select-none',
+  hr: 'p-0.5 border-none my-1 mx-0 cursor-pointer after:content-[""] after:block after:h-0.5 after:bg-stone-100 selected:ring-2 selected:ring-stone-900 selected:ring-offset-2 selected:user-select-none dark:after:bg-stone-800 dark:selected:ring-stone-50',
   indent: "[--lexical-indent-base-value:40px]",
   mark: "",
   markOverlap: "",
-};
+}

@@ -33,10 +33,17 @@ import { FontBackgroundToolbarPlugin } from "@/components/editor/plugins/toolbar
 import { FontFamilyToolbarPlugin } from "@/components/editor/plugins/toolbar/font-family-toolbar-plugin";
 import { FontFormatToolbarPlugin } from "@/components/editor/plugins/toolbar/font-format-toolbar-plugin";
 import { FontSizeToolbarPlugin } from "@/components/editor/plugins/toolbar/font-size-toolbar-plugin";
-
+import { LinkToolbarPlugin } from "@/components/editor/plugins/toolbar/link-toolbar-plugin";
+import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
+import type { LinkMatcher } from "@lexical/react/LexicalAutoLinkPlugin";
 import { ActionsPlugin } from "@/components/editor/plugins/actions/actions-plugin";
 import { ClearEditorActionPlugin } from "@/components/editor/plugins/actions/clear-editor-plugin";
 import { CounterCharacterPlugin } from "@/components/editor/plugins/actions/counter-character-plugin";
+import { useState } from "react";
+import { AutoLinkPlugin } from "@lexical/react/LexicalAutoLinkPlugin";
+import { AutoLinkNode, LinkNode } from "@lexical/link";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
+import { FloatingLinkEditorPlugin } from "@/components/editor/plugins/toolbar/floatingLinkToolbar";
 
 const editorConfig: InitialConfigType = {
   namespace: "Editor",
@@ -48,6 +55,8 @@ const editorConfig: InitialConfigType = {
     QuoteNode,
     ListNode,
     ListItemNode,
+    AutoLinkNode,
+    LinkNode,
   ],
   onError: (error: Error) => {
     console.error(error);
@@ -75,7 +84,7 @@ export function Editor({
 }) {
   return (
     <div
-      className={`${readOnly ? "bg-transparent" : "bg-background"} overflow-hidden ${readOnly ? "" : "rounded-lg border shadow"} `}
+      className={`${readOnly ? "bg-transparent" : "bg-background"}  overflow-hidden ${readOnly ? "" : "rounded-lg border shadow"} `}
     >
       <LexicalComposer
         initialConfig={{
@@ -123,6 +132,33 @@ export function Plugins({
   blogPage?: boolean;
   text?: string;
 }) {
+  const URL_REGEX =
+    /((https?:\/\/(www\.)?)|(www\.))[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+
+  const urlMatcher: LinkMatcher = (text: string) => {
+    const match = URL_REGEX.exec(text);
+    if (!match) return null;
+
+    const fullMatch = match[0];
+
+    return {
+      index: match.index,
+      length: fullMatch.length,
+      text: fullMatch,
+      url: fullMatch.startsWith("http") ? fullMatch : `https://${fullMatch}`,
+      // optional attributes:
+      // attributes: { rel: "noreferrer", target: "_blank" },
+    };
+  };
+  const MATCHERS: LinkMatcher[] = [urlMatcher];
+  const [floatingAnchorElem, setFloatingAnchorElem] =
+    useState<HTMLDivElement | null>(null);
+  const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
+  const onRef = (_floatingAnchorElem: HTMLDivElement) => {
+    if (_floatingAnchorElem !== null) {
+      setFloatingAnchorElem(_floatingAnchorElem);
+    }
+  };
   return (
     <div className="relative">
       {/* toolbar plugins */}
@@ -148,6 +184,7 @@ export function Plugins({
               <FontFormatToolbarPlugin format="italic" />
               <FontFormatToolbarPlugin format="underline" />
               <FontFormatToolbarPlugin format="strikethrough" />
+              <LinkToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
             </div>
           )}
         </ToolbarPlugin>
@@ -155,38 +192,56 @@ export function Plugins({
       <div className="relative">
         {readOnly && blogPage === false ? (
           <div
-            className={`${blogPage ? "" : `line-clamp-${clampLines}`} text-sm ${text}`}
+            className={`relative ${blogPage ? "" : `line-clamp-${clampLines}`} text-sm ${text}`}
           >
             {renderPlainTextFromEditorState(serialized)}
           </div>
         ) : blogPage ? (
           <RichTextPlugin
             contentEditable={
-              <ContentEditable
-                placeholder={placeholder}
-                className={`ContentEditable__root relative block ${
-                  readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
-                } focus:outline-none`}
-              />
+              <div>
+                <div className="" ref={onRef}>
+                  <ContentEditable
+                    placeholder={placeholder}
+                    className={`ContentEditable__root relative block ${
+                      readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
+                    } focus:outline-none`}
+                  />
+                </div>
+              </div>
             }
             ErrorBoundary={LexicalErrorBoundary}
           />
         ) : (
-          <RichTextPlugin
-            contentEditable={
-              <ContentEditable
-                placeholder={placeholder}
-                className={`ContentEditable__root relative block ${
-                  readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
-                } focus:outline-none`}
-              />
-            }
-            ErrorBoundary={LexicalErrorBoundary}
-          />
+          <div className="relative">
+            <RichTextPlugin
+              contentEditable={
+                <div>
+                  <div className="" ref={onRef}>
+                    <ContentEditable
+                      placeholder={placeholder}
+                      className={`ContentEditable__root relative block ${
+                        readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
+                      } focus:outline-none`}
+                    />
+                  </div>
+                </div>
+              }
+              ErrorBoundary={LexicalErrorBoundary}
+            />
+          </div>
         )}
         <ListPlugin />
         <CheckListPlugin />
         <HistoryPlugin />
+        <ClickableLinkPlugin />
+        <AutoLinkPlugin matchers={MATCHERS} />
+        <LinkPlugin />
+        <FloatingLinkEditorPlugin
+          anchorElem={floatingAnchorElem}
+          isLinkEditMode={isLinkEditMode}
+          setIsLinkEditMode={setIsLinkEditMode}
+        />
       </div>
       {!readOnly && (
         <ActionsPlugin>
