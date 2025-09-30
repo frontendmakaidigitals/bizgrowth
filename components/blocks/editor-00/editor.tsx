@@ -44,7 +44,10 @@ import { AutoLinkPlugin } from "@lexical/react/LexicalAutoLinkPlugin";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { FloatingLinkEditorPlugin } from "@/components/editor/plugins/toolbar/floatingLinkToolbar";
-
+import { TableNode, TableRowNode, TableCellNode } from "@lexical/table";
+import { InsertTable } from "@/components/editor/plugins/toolbar/block-insert/insert-table";
+import { TablePlugin } from "@lexical/react/LexicalTablePlugin"
+import { BlockInsertPlugin } from "@/components/editor/plugins/toolbar/block-insert-plugin";
 const editorConfig: InitialConfigType = {
   namespace: "Editor",
   theme: editorTheme,
@@ -57,6 +60,9 @@ const editorConfig: InitialConfigType = {
     ListItemNode,
     AutoLinkNode,
     LinkNode,
+    TableNode,
+    TableRowNode,
+    TableCellNode,
   ],
   onError: (error: Error) => {
     console.error(error);
@@ -185,6 +191,9 @@ export function Plugins({
               <FontFormatToolbarPlugin format="underline" />
               <FontFormatToolbarPlugin format="strikethrough" />
               <LinkToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
+              <BlockInsertPlugin>
+                <InsertTable />
+              </BlockInsertPlugin>
             </div>
           )}
         </ToolbarPlugin>
@@ -242,6 +251,7 @@ export function Plugins({
           isLinkEditMode={isLinkEditMode}
           setIsLinkEditMode={setIsLinkEditMode}
         />
+        <TablePlugin />
       </div>
       {!readOnly && (
         <ActionsPlugin>
