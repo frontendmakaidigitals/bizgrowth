@@ -14,13 +14,10 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
-
     const formData = await req.formData();
-
     const db = readDb();
 
     const blog = db.blogs.find((b: any) => b.id == id);
-
     if (!blog) {
       return NextResponse.json(
         { success: false, error: "Blog not found" },
@@ -28,6 +25,7 @@ export async function PUT(
       );
     }
 
+    // Update text fields
     blog.title = formData.get("title") as string;
     blog.metaTitle = formData.get("metaTitle") as string;
     blog.metaDesc = formData.get("metaDesc") as string;
@@ -36,11 +34,12 @@ export async function PUT(
     blog.content = formData.get("content") as string;
 
     const file = formData.get("image") as File | null;
-    if (file) {
+
+    if (file && file.size > 0 && file.name !== blog.image) {
+      // Only delete old image if new image is different
       const uploadsDir = path.join(process.cwd(), "data/uploads");
-      if (!fs.existsSync(uploadsDir)) {
+      if (!fs.existsSync(uploadsDir))
         fs.mkdirSync(uploadsDir, { recursive: true });
-      }
 
       if (blog.image) {
         const oldImagePath = path.join(uploadsDir, blog.image);
@@ -54,13 +53,15 @@ export async function PUT(
         }
       }
 
+      // Save new image
       const filePath = path.join(uploadsDir, file.name);
       const buffer = Buffer.from(await file.arrayBuffer());
       fs.writeFileSync(filePath, buffer);
 
-      blog.image = `${file.name}`;
+      blog.image = file.name;
     }
 
+    // Save updated DB
     const dbPath = path.join(process.cwd(), "data/db.json");
     fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
 
