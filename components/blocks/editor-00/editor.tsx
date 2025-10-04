@@ -46,8 +46,10 @@ import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { FloatingLinkEditorPlugin } from "@/components/editor/plugins/toolbar/floatingLinkToolbar";
 import { TableNode, TableRowNode, TableCellNode } from "@lexical/table";
 import { InsertTable } from "@/components/editor/plugins/toolbar/block-insert/insert-table";
-import { TablePlugin } from "@lexical/react/LexicalTablePlugin"
+import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { BlockInsertPlugin } from "@/components/editor/plugins/toolbar/block-insert-plugin";
+import { LexicalEditor } from "lexical";
+
 const editorConfig: InitialConfigType = {
   namespace: "Editor",
   theme: editorTheme,
@@ -63,8 +65,8 @@ const editorConfig: InitialConfigType = {
     TableNode,
     TableRowNode,
     TableCellNode,
-  ],
-  onError: (error: Error) => {
+  ] as any,
+  onError: (error: Error, editor: LexicalEditor) => {
     console.error(error);
   },
 };
@@ -167,11 +169,11 @@ export function Plugins({
   };
   return (
     <div className="relative">
-      {/* toolbar plugins */}
+      {/* Toolbar only visible in editing mode */}
       {!readOnly && (
         <ToolbarPlugin>
           {({ blockType }) => (
-            <div className="vertical-align-middle sticky top-0 z-10 flex gap-2 overflow-auto border-b p-1">
+            <div className="sticky top-0 z-10 flex gap-2 overflow-auto border-b p-1 items-center">
               <HistoryToolbarPlugin />
               <BlockFormatDropDown>
                 <FormatParagraph />
@@ -186,10 +188,11 @@ export function Plugins({
               <FontColorToolbarPlugin />
               <FontBackgroundToolbarPlugin />
               <FontSizeToolbarPlugin />
-              <FontFormatToolbarPlugin format="bold" />
-              <FontFormatToolbarPlugin format="italic" />
-              <FontFormatToolbarPlugin format="underline" />
-              <FontFormatToolbarPlugin format="strikethrough" />
+              {["bold", "italic", "underline", "strikethrough"].map(
+                (format) => (
+                  <FontFormatToolbarPlugin key={format} format={format} />
+                )
+              )}
               <LinkToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
               <BlockInsertPlugin>
                 <InsertTable />
@@ -198,77 +201,58 @@ export function Plugins({
           )}
         </ToolbarPlugin>
       )}
+
       <div className="relative">
-        {readOnly && blogPage === false ? (
-          <div
-            className={`relative ${blogPage ? "" : `line-clamp-${clampLines}`} text-sm ${text}`}
-          >
+        {readOnly ? (
+          // Plain text preview
+          <div className={`relative line-clamp-${clampLines} text-sm ${text}`}>
             {renderPlainTextFromEditorState(serialized)}
           </div>
-        ) : blogPage ? (
-          <RichTextPlugin
-            contentEditable={
-              <div>
-                <div className="" ref={onRef}>
+        ) : (
+          // RichTextPlugin with all plugins
+          <>
+            <RichTextPlugin
+              contentEditable={
+                <div ref={onRef}>
                   <ContentEditable
-                    placeholder={placeholder}
+                    placeholder="Start typing..."
                     className={`ContentEditable__root relative block ${
                       readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
                     } focus:outline-none`}
                   />
                 </div>
-              </div>
-            }
-            ErrorBoundary={LexicalErrorBoundary}
-          />
-        ) : (
-          <div className="relative">
-            <RichTextPlugin
-              contentEditable={
-                <div>
-                  <div className="" ref={onRef}>
-                    <ContentEditable
-                      placeholder={placeholder}
-                      className={`ContentEditable__root relative block ${
-                        readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
-                      } focus:outline-none`}
-                    />
-                  </div>
-                </div>
               }
               ErrorBoundary={LexicalErrorBoundary}
             />
-          </div>
+
+            {/* Plugins that require editor */}
+            <ListPlugin />
+            <CheckListPlugin />
+            <HistoryPlugin />
+            <ClickableLinkPlugin />
+            <AutoLinkPlugin matchers={MATCHERS} />
+            <LinkPlugin />
+            <FloatingLinkEditorPlugin
+              anchorElem={floatingAnchorElem}
+              isLinkEditMode={isLinkEditMode}
+              setIsLinkEditMode={setIsLinkEditMode}
+            />
+            <TablePlugin />
+          </>
         )}
-        <ListPlugin />
-        <CheckListPlugin />
-        <HistoryPlugin />
-        <ClickableLinkPlugin />
-        <AutoLinkPlugin matchers={MATCHERS} />
-        <LinkPlugin />
-        <FloatingLinkEditorPlugin
-          anchorElem={floatingAnchorElem}
-          isLinkEditMode={isLinkEditMode}
-          setIsLinkEditMode={setIsLinkEditMode}
-        />
-        <TablePlugin />
       </div>
+
+      {/* Bottom actions only in editing mode */}
       {!readOnly && (
         <ActionsPlugin>
-          <div
-            className={`clear-both flex items-center justify-between gap-2 overflow-auto border-t p-1`}
-          >
+          <div className="clear-both flex items-center justify-between gap-2 overflow-auto border-t p-1">
             <div className="flex flex-1 justify-start">
-              {/* left side action buttons */}
+              {/* left actions */}
             </div>
-            <>
-              <CounterCharacterPlugin charset="UTF-16" />
-            </>
-            <div className="flex flex-1  justify-end">
-              <>
-                <ClearEditorActionPlugin />
-                <ClearEditorPlugin />
-              </>
+            <CounterCharacterPlugin charset="UTF-16" />
+            <div className="flex flex-1 justify-end">
+              <ClearEditorActionPlugin />
+              <ClearEditorPlugin />
             </div>
           </div>
         </ActionsPlugin>

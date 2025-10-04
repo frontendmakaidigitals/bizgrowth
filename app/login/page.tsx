@@ -42,7 +42,7 @@ export default function LoginPage() {
         onSubmit={handleLogin}
         className="w-full border border-slate-100 max-w-md relative z-20 bg-white backdrop-filter backdrop-blur-lg p-8 rounded-lg "
       >
-        <h1 className="text-3xl text-dimondra-black font-semibold mb-10 text-start">
+        <h1 className="text-3xl text-Bizgrowth consultancy-black font-semibold mb-10 text-start">
           Admin Login
         </h1>
 
@@ -70,7 +70,7 @@ export default function LoginPage() {
           />
         </div>
         <Button
-          className="w-full flex justify-center mt-10 bg-dimondra-teal/50 hover:bg-dimondra-tealDark hover:text-dimondra-white"
+          className="w-full flex justify-center mt-10 bg-Bizgrowth consultancy-teal/50 hover:bg-Bizgrowth consultancy-tealDark hover:text-Bizgrowth consultancy-white"
           type="submit"
         >
           Login
