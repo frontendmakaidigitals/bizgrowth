@@ -203,42 +203,26 @@ export function Plugins({
       )}
 
       <div className="relative">
-        {readOnly ? (
-          // Plain text preview
+        {readOnly && blogPage === false ? (
+          // Plain text preview with clamp
           <div className={`relative line-clamp-${clampLines} text-sm ${text}`}>
             {renderPlainTextFromEditorState(serialized)}
           </div>
         ) : (
-          // RichTextPlugin with all plugins
-          <>
-            <RichTextPlugin
-              contentEditable={
-                <div ref={onRef}>
-                  <ContentEditable
-                    placeholder="Start typing..."
-                    className={`ContentEditable__root relative block ${
-                      readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
-                    } focus:outline-none`}
-                  />
-                </div>
-              }
-              ErrorBoundary={LexicalErrorBoundary}
-            />
-
-            {/* Plugins that require editor */}
-            <ListPlugin />
-            <CheckListPlugin />
-            <HistoryPlugin />
-            <ClickableLinkPlugin />
-            <AutoLinkPlugin matchers={MATCHERS} />
-            <LinkPlugin />
-            <FloatingLinkEditorPlugin
-              anchorElem={floatingAnchorElem}
-              isLinkEditMode={isLinkEditMode}
-              setIsLinkEditMode={setIsLinkEditMode}
-            />
-            <TablePlugin />
-          </>
+          // RichTextPlugin for blog page or editing mode
+          <RichTextPlugin
+            contentEditable={
+              <div ref={onRef}>
+                <ContentEditable
+                  placeholder={placeholder}
+                  className={`ContentEditable__root relative block ${
+                    readOnly ? "" : "h-72 min-h-96 overflow-auto px-8 py-4"
+                  } focus:outline-none`}
+                />
+              </div>
+            }
+            ErrorBoundary={LexicalErrorBoundary}
+          />
         )}
       </div>
 
