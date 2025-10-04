@@ -10,12 +10,12 @@ function readDb() {
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const formData = await req.formData();
-    const db = readDb();
+    const db = await readDb();
 
     const blog = db.blogs.find((b: any) => b.id == id);
     if (!blog) {
@@ -33,19 +33,19 @@ export async function PUT(
     blog.category = formData.get("category") as string;
     blog.content = formData.get("content") as string;
 
+    // Handle image upload
     const file = formData.get("image") as File | null;
 
-    if (file && file.size > 0 && file.name !== blog.image) {
-      // Only delete old image if new image is different
+    if (file && file.size > 0) {
       const uploadsDir = path.join(process.cwd(), "data/uploads");
-      if (!fs.existsSync(uploadsDir))
-        fs.mkdirSync(uploadsDir, { recursive: true });
+      if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-      if (blog.image) {
+      // Delete old image if different
+      if (blog.image && blog.image !== file.name) {
         const oldImagePath = path.join(uploadsDir, blog.image);
         if (fs.existsSync(oldImagePath)) {
           try {
-            fs.unlinkSync(oldImagePath);
+            await fsPromises.unlink(oldImagePath);
             console.log(`🗑️ Deleted old image: ${oldImagePath}`);
           } catch (err) {
             console.error("⚠️ Failed to delete old image:", err);
@@ -54,16 +54,15 @@ export async function PUT(
       }
 
       // Save new image
-      const filePath = path.join(uploadsDir, file.name);
       const buffer = Buffer.from(await file.arrayBuffer());
-      fs.writeFileSync(filePath, buffer);
+      const filePath = path.join(uploadsDir, file.name);
+      await fsPromises.writeFile(filePath, buffer);
 
       blog.image = file.name;
     }
 
     // Save updated DB
-    const dbPath = path.join(process.cwd(), "data/db.json");
-    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+    await writeDb(db);
 
     return NextResponse.json({ success: true, blog });
   } catch (err) {
