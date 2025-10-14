@@ -104,74 +104,73 @@ const AccordionMenu = ({
           <AccordionTrigger className="text-lg font-semibold p-2 w-full text-left">
             {menu.name}
           </AccordionTrigger>
-          {menu.dropdown && menu.points ? (
-            <AccordionContent>
-              <div className="space-y-2">
-                {menu.points.map((point: any, idx: number) => (
-                  <div key={idx}>
-                    {/* Check if the point is an object or a string */}
-                    {typeof point === "object" ? (
-                      // Handle the case when point is an object (with nested points)
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem
-                          value={point.title}
-                          className="border-b border-0 pl-2"
-                        >
-                          <AccordionTrigger className="text-lg font-Satoshi font-[500] p-2 w-full text-left">
-                            {point.title}
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            {point.points && point.points.length > 0 ? (
-                              <ul className="space-y-1 px-5">
-                                {point.points.map(
-                                  (item: string, id: number) => (
-                                    <Link
-                                      key={id}
-                                      href={{
-                                        pathname: point.route,
-                                        query: { name: item },
-                                      }}
-                                      onClick={() => {
-                                        setTimeout(
-                                          () => setShowMenu(false),
-                                          500
-                                        );
-                                      }}
-                                    >
-                                      <li className="text-lg underline underline-offset-4 py-1 flex items-center gap-2 font-Synonym">
-                                        {item}
-                                        <RiArrowRightUpLine />
-                                      </li>
-                                    </Link>
-                                  )
-                                )}
-                              </ul>
-                            ) : null}
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    ) : (
-                      <div className="text-md font-medium font-Synonym px-5 py-2">
-                        <Link
-                          href={{
-                            pathname: "Banking-Assistance",
-                            query: { name: point },
-                          }}
-                          onClick={() => {
-                            setTimeout(() => setShowMenu(false), 500);
-                          }}
-                          className="flex items-center gap-2"
-                        >
-                          {point}
-                          <RiArrowRightUpLine />
-                        </Link>
-                      </div>
-                    )}
+
+          <AccordionContent>
+            <div className="space-y-2">
+              {menu.points?.map((point: any, idx: number) => {
+                // CASE 1: Nested structure (like Business Formation)
+                if (point.points && Array.isArray(point.points)) {
+                  return (
+                    <Accordion
+                      key={idx}
+                      type="single"
+                      collapsible
+                      className="w-full"
+                    >
+                      <AccordionItem
+                        value={point.title}
+                        className="border-b border-0 pl-2"
+                      >
+                        <AccordionTrigger className="text-lg font-Satoshi font-[500] p-2 w-full text-left">
+                          {point.title}
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <ul className="space-y-1 px-5">
+                            {point.points.map(
+                              (
+                                item: { name: string; route: string },
+                                id: number
+                              ) => (
+                                <Link
+                                  key={id}
+                                  href={`/${menu.route.toLowerCase()}/${point.route.toLowerCase()}/${item.route.toLowerCase()}`}
+                                  onClick={() =>
+                                    setTimeout(() => setShowMenu(false), 500)
+                                  }
+                                >
+                                  <li className="text-lg underline underline-offset-4 py-1 flex items-center gap-2 font-Synonym">
+                                    {item.name}
+                                    <RiArrowRightUpLine />
+                                  </li>
+                                </Link>
+                              )
+                            )}
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  );
+                }
+
+                // CASE 2: Flat structure (like Banking Assistance)
+                return (
+                  <div
+                    key={idx}
+                    className="text-md  px-5 "
+                  >
+                    <Link
+                      href={`/${menu.route.toLowerCase()}/${point.route.toLowerCase()}`}
+                      onClick={() => setTimeout(() => setShowMenu(false), 500)}
+                      className="text-lg underline underline-offset-4  flex items-center gap-2 font-Synonym"
+                    >
+                      {point.name || point.title}
+                      <RiArrowRightUpLine />
+                    </Link>
                   </div>
-                ))}
-              </div>
-            </AccordionContent>
-          ) : null}
+                );
+              })}
+            </div>
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>

@@ -89,7 +89,7 @@ const Menu = () => {
                       )}
                     </div>
                   ) : (
-                    <div>
+                    <div className="">
                       {menu.points?.map((point: any, pointIndex) => (
                         <div key={pointIndex}>
                           <ul>
