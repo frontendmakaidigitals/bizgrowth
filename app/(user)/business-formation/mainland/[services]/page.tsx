@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import { motion } from "framer-motion";
-import Button from "../App_Chunks/Components/Button";
-import { useSearchParams } from "next/navigation";
+import Button from "../../../App_Chunks/Components/Button";
+import { usePathname, useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
-import Banner from "../App_Chunks/Components/Banner";
+import Banner from "../../../App_Chunks/Components/Banner";
 import {
   Carousel,
   CarouselContent,
@@ -13,23 +13,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
-import data from "../App_Chunks/Components/mainland";
-
+import data from "../../../App_Chunks/Components/mainland";
+import BreadCrumb from "../../../App_Chunks/Components/BreadCrumb";
+import { useParams } from "next/navigation";
 const Page = () => {
-  return (
-    <Suspense>
-      <MainPage />
-    </Suspense>
-  );
-};
-
-const MainPage = () => {
   const searchParams = useSearchParams();
-  const query = searchParams.get("name");
+  const path = usePathname();
+  const params = useParams();
+  const rawService = params?.services;
+  const serviceName = rawService
+    ? decodeURIComponent(Array.isArray(rawService) ? rawService[0] : rawService)
+    : "";
   const target = searchParams.get("target");
 
   useEffect(() => {
-
     const timeoutId = setTimeout(() => {
       if (target) {
         const targetElement = document.getElementById(target);
@@ -39,14 +36,13 @@ const MainPage = () => {
       }
     }, 200);
 
-
     return () => clearTimeout(timeoutId);
   }, [target, searchParams]);
 
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
   useEffect(() => {
     const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === query?.toLowerCase()
+      (item) => item.name.toLowerCase() === serviceName?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
 
@@ -57,36 +53,36 @@ const MainPage = () => {
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
 
-    switch (query) {
-      case "Dubai Mainland":
+    switch (serviceName) {
+      case "Dubai-Mainland".toLowerCase():
         metaInfo = {
           title: "Start Your Company in Dubai Mainland, UAE",
           description:
             "At Biz Growth, we provide a wide range of services on business formation for entrepreneurs, startups, and established businesses looking to expand to Dubai Mainland.",
         };
         break;
-      case "Sharjah Mainland":
+      case "Sharjah-Mainland".toLowerCase():
         metaInfo = {
           title: "Mainland Company Formation in Sharjah, UAE",
           description:
             "Whether you're looking to start a new business or expand your operations, our professional services ensure an efficient process for securing your Mainland license in Sharjah.",
         };
         break;
-      case "Abu Dhabi Mainland":
+      case "Abu-Dhabi-Mainland".toLowerCase():
         metaInfo = {
           title: "Setup Your Company in Abu Dhabi Mainland, UAE",
           description:
             "At Biz Growth, we provide a wide range of services for entrepreneurs, startups, and established businesses looking to expand to Abu Dhabi Mainland.",
         };
         break;
-      case "Ajman Mainland":
+      case "Ajman-Mainland".toLowerCase():
         metaInfo = {
           title: "Ajman Mainland Business Setup, UAE",
           description:
             "Ajman offers an attractive business environment for entrepreneurs and companies looking to start a company in the UAE Mainland. Whether starting a small business or setting up a large-scale operation, our professional team is here to guide you through every step.",
         };
         break;
-      case "Fujairah Mainland":
+      case "Fujairah-Mainland".toLowerCase():
         metaInfo = {
           title: "Business Setup in Fujairah Mainland, UAE",
           description:
@@ -143,7 +139,7 @@ const MainPage = () => {
         document.head.appendChild(newOgDescription);
       }
     }
-  }, [query, data]);
+  }, [serviceName, data]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
   useEffect(() => {
@@ -163,6 +159,14 @@ const MainPage = () => {
 
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>{processData?.heroTitle}</div>
@@ -215,7 +219,6 @@ const MainPage = () => {
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
               </div>
-              
             </motion.div>
           ))}
         </motion.div>
@@ -317,7 +320,7 @@ const MainPage = () => {
                     </div>
                   </td>
 
-                  {query?.toLowerCase() !== "sharjah mainland" &&
+                  {serviceName?.toLowerCase() !== "sharjah mainland" &&
                   "docs" in item &&
                   Array.isArray(item?.docs) ? (
                     <td className="border border-gray-300">
@@ -337,7 +340,7 @@ const MainPage = () => {
                     </td>
                   ) : null}
 
-                  {query?.toLowerCase() == "sharjah mainland" &&
+                  {serviceName?.toLowerCase() == "sharjah mainland" &&
                   "doc2" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
@@ -350,7 +353,7 @@ const MainPage = () => {
                       </ul>
                     </td>
                   ) : null}
-                  {query?.toLowerCase() == "sharjah mainland" &&
+                  {serviceName?.toLowerCase() == "sharjah mainland" &&
                   "doc2" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
@@ -363,7 +366,7 @@ const MainPage = () => {
                       </ul>
                     </td>
                   ) : null}
-                  {query?.toLowerCase() == "sharjah mainland" &&
+                  {serviceName?.toLowerCase() == "sharjah mainland" &&
                   "doc2" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>

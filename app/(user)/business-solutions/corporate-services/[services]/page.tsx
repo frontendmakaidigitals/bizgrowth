@@ -1,24 +1,16 @@
 "use client";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState, useRef, Suspense } from "react";
-import Button from "../App_Chunks/Components/Button";
-import { useSearchParams } from "next/navigation";
-import Banner from "../App_Chunks/Components/Banner";
-import Heading from "../App_Chunks/Components/Heading";
+import Button from "../../../App_Chunks/Components/Button";
+import { usePathname, useSearchParams } from "next/navigation";
+import Banner from "../../../App_Chunks/Components/Banner";
+import Heading from "../../../App_Chunks/Components/Heading";
 import Link from "next/link";
-
+import BreadCrumb from "../../../App_Chunks/Components/BreadCrumb";
 const Page = () => {
-  return (
-    <Suspense>
-      <MainPage />
-    </Suspense>
-  );
-};
-
-const MainPage = () => {
+  const params = useParams();
   const searchParams = useSearchParams();
-  const query = searchParams.get("name");
   const target = searchParams.get("target");
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (target) {
@@ -38,9 +30,8 @@ const MainPage = () => {
       description:
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
-    console.log(query);
 
-    switch (query) {
+    switch (params.services) {
       case "PRO & Visa Services":
         metaInfo = {
           title: "PRO Services in the UAE",
@@ -140,29 +131,35 @@ const MainPage = () => {
         document.head.appendChild(newOgDescription);
       }
     }
-  }, [query]);
+  }, [params.services]);
+  const rawService = params?.services;
 
-  switch (query) {
-    case "PRO & Visa Services":
+  const serviceName = rawService
+    ? decodeURIComponent(Array.isArray(rawService) ? rawService[0] : rawService)
+    : "";
+
+  switch (serviceName) {
+    case "PRO-and-Visa-Services".toLowerCase():
       return <VisaPro />;
-    case "Attestation & Legalisation":
+    case "Attestation-and-Legalisation".toLowerCase():
       return <Attestation />;
-    case "Office space solution":
+    case "Office-space-solution".toLowerCase():
       return <OfficeSpace />;
-    case "Product Registration":
+    case "Product-Registration".toLowerCase():
       return <ProductRegistration />;
-    case "Design & Marketing Services":
+    case "Design-and-Marketing-Services".toLowerCase():
       return <DesignMarketing />;
-    case "HR Solution":
+    case "HR-Solution".toLowerCase():
       return <HrSolutions />;
-    case "Corporate Structuring":
+    case "Corporate-Structuring".toLowerCase():
       return <CorporateStructuring />;
     default:
       return <div>No Data found</div>;
   }
 };
-
 const VisaPro = () => {
+  const params = useParams();
+  const path = usePathname();
   const benefits = [
     {
       title: "Save Time and Focus on Your Business",
@@ -328,31 +325,31 @@ const VisaPro = () => {
 
   const ourServices = [
     {
-      icon: "media/Will Formation icon/shield.png",
+      icon: "/media/Will Formation icon/shield.png",
       title: "Reliability",
       description:
         "We handle your business requirements with confidentiality and professionalism.",
     },
     {
-      icon: "media/Will Formation icon/clear.png",
+      icon: "/media/Will Formation icon/clear.png",
       title: "Clear and Transparent",
       description:
         "From the initial consultation to document collection and final approvals, we ensure that every step is clear and transparent.",
     },
     {
-      icon: "media/Will Formation icon/fast.png",
+      icon: "/media/Will Formation icon/fast.png",
       title: "Efficient and Fast",
       description:
         "Our team’s expertise ensures your documents are processed quickly, without unnecessary delays.",
     },
     {
-      icon: "media/Will Formation icon/insurance.png",
+      icon: "/media/Will Formation icon/insurance.png",
       title: "Complete Compliance",
       description:
         "We guarantee that all documentation and procedures meet the legal standards of the UAE.",
     },
     {
-      icon: "media/Will Formation icon/support.png",
+      icon: "/media/Will Formation icon/support.png",
       title: "Dedicated Support",
       description:
         "From the start to the end, our team is here to support you and provide you with the best advice and service.",
@@ -377,6 +374,14 @@ const VisaPro = () => {
   }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -400,7 +405,7 @@ const VisaPro = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
 
@@ -430,7 +435,7 @@ const VisaPro = () => {
             >
               <div>
                 <div className="size-6  mt-[1px] rounded-full">
-                  <img src={"media/mainland/checked.png"} />
+                  <img src={"/media/mainland/checked.png"} />
                 </div>
               </div>
               <div>
@@ -589,6 +594,9 @@ const VisaPro = () => {
   );
 };
 const Attestation = () => {
+  const params = useParams();
+  const path = usePathname();
+
   const attestationServices = [
     {
       title: "Educational Document Attestation",
@@ -663,29 +671,29 @@ const Attestation = () => {
 
   const attestationQualities = [
     {
-      icon: "media/Will Formation icon/team.png",
+      icon: "/media/Will Formation icon/team.png",
       title: "Experienced Team",
       description:
         "Years of expertise in handling attestation and legalization for various countries.",
     },
     {
-      icon: "media/Will Formation icon/process.png",
+      icon: "/media/Will Formation icon/process.png",
       title: "Hassle-Free Process",
       description: "We manage the entire process from start to finish.",
     },
     {
-      icon: "media/Will Formation icon/fast.png",
+      icon: "/media/Will Formation icon/fast.png",
       title: "Fast Turnaround Time",
       description: "Swift processing to meet urgent deadlines.",
     },
     {
-      icon: "media/Will Formation icon/earth.png",
+      icon: "/media/Will Formation icon/earth.png",
       title: "Country-Specific Expertise",
       description:
         "Knowledge of the unique requirements of different countries.",
     },
     {
-      icon: "media/Will Formation icon/shield.png",
+      icon: "/media/Will Formation icon/shield.png",
       title: "Secure Handling",
       description:
         "Your documents are managed with utmost care and confidentiality.",
@@ -710,6 +718,14 @@ const Attestation = () => {
   }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -730,7 +746,7 @@ const Attestation = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div className="container w-full mt-16">
@@ -865,33 +881,36 @@ const Attestation = () => {
   );
 };
 const OfficeSpace = () => {
+  const params = useParams();
+  const path = usePathname();
+
   const uaeBusinessAdvantages = [
     {
-      icon: "media/Will Formation icon/location-pin.png",
+      icon: "/media/Will Formation icon/location-pin.png",
       title: "Prime Location",
       description:
         "Situated at the crossroads of Europe, Asia, and Africa, the UAE provides unmatched access to international markets.",
     },
     {
-      icon: "media/Will Formation icon/business.png",
+      icon: "/media/Will Formation icon/business.png",
       title: "Business-Friendly Environment",
       description:
         "The UAE offers tax advantages, free zones, and robust infrastructure, making it an attractive choice for entrepreneurs and corporations alike.",
     },
     {
-      icon: "media/Will Formation icon/profit.png",
+      icon: "/media/Will Formation icon/profit.png",
       title: "Diverse Economy",
       description:
         "Beyond oil, industries such as finance, tourism, technology, and trade thrive in the UAE, offering many opportunities.",
     },
     {
-      icon: "media/Will Formation icon/welfare.png",
+      icon: "/media/Will Formation icon/welfare.png",
       title: "State-of-the-Art Facilities",
       description:
         "Modern skyscrapers, smart buildings, and advanced technology ensure your business can operate efficiently.",
     },
     {
-      icon: "media/Will Formation icon/fitness.png",
+      icon: "/media/Will Formation icon/fitness.png",
       title: "Cultural and Lifestyle Appeal",
       description:
         "The UAE provides a high standard of living, a diverse culture, and safety, making it appealing to business owners and employees.",
@@ -1000,6 +1019,14 @@ const OfficeSpace = () => {
 
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1020,7 +1047,7 @@ const OfficeSpace = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div>
@@ -1098,7 +1125,7 @@ const OfficeSpace = () => {
                 >
                   <div>
                     <div className="size-6  mt-[1px] rounded-full">
-                      <img src={"media/mainland/checked.png"} />
+                      <img src={"/media/mainland/checked.png"} />
                     </div>
                   </div>
                   <div>
@@ -1159,6 +1186,8 @@ const OfficeSpace = () => {
   );
 };
 const ProductRegistration = () => {
+  const params = useParams();
+  const path = usePathname();
   const uaeProductRegistrationBenefits = [
     {
       benefit: "Compliance with UAE Regulations",
@@ -1411,6 +1440,14 @@ const ProductRegistration = () => {
   }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1432,7 +1469,7 @@ const ProductRegistration = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div>
@@ -1453,7 +1490,7 @@ const ProductRegistration = () => {
                 >
                   <div>
                     <div className="size-6  mt-[1px] rounded-full">
-                      <img src={"media/mainland/checked.png"} />
+                      <img src={"/media/mainland/checked.png"} />
                     </div>
                   </div>
                   <div>
@@ -1507,7 +1544,7 @@ const ProductRegistration = () => {
                 >
                   <div>
                     <div className="size-6  mt-[1px] rounded-full">
-                      <img src={"media/mainland/checked.png"} />
+                      <img src={"/media/mainland/checked.png"} />
                     </div>
                   </div>
                   <div>
@@ -1608,6 +1645,9 @@ const ProductRegistration = () => {
   );
 };
 const DesignMarketing = () => {
+  const params = useParams();
+  const path = usePathname();
+
   const benefits = [
     {
       title: "Access to Expertise",
@@ -1730,6 +1770,14 @@ const DesignMarketing = () => {
 
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1752,7 +1800,7 @@ const DesignMarketing = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
 
@@ -1771,7 +1819,7 @@ const DesignMarketing = () => {
             >
               <div>
                 <div className="size-6  mt-[1px] rounded-full">
-                  <img src={"media/mainland/checked.png"} />
+                  <img src={"/media/mainland/checked.png"} />
                 </div>
               </div>
               <div>
@@ -1849,7 +1897,7 @@ const DesignMarketing = () => {
             >
               <div>
                 <div className="size-6  mt-[1px] rounded-full">
-                  <img src={"media/mainland/checked.png"} />
+                  <img src={"/media/mainland/checked.png"} />
                 </div>
               </div>
               <div>
@@ -1873,6 +1921,8 @@ const DesignMarketing = () => {
   );
 };
 const HrSolutions = () => {
+  const params = useParams();
+  const path = usePathname();
   const hrSolutions = [
     {
       service: "Standard Recruitment Processes",
@@ -1943,27 +1993,35 @@ const HrSolutions = () => {
   const services = [
     {
       title: "Technology and IT",
-      img: "media/images/tech.jpg",
+      img: "/media/images/tech.jpg",
     },
     {
       title: "Healthcare and Life Sciences",
-      img: "media/images/health.jpg",
+      img: "/media/images/health.jpg",
     },
     {
       title: "Retail and Hospitality",
-      img: "media/images/retail.jpg",
+      img: "/media/images/retail.jpg",
     },
     {
       title: "Manufacturing and Logistics",
-      img: "media/images/logistic.jpg",
+      img: "/media/images/logistic.jpg",
     },
     {
       title: "Finance and Professional Services",
-      img: "media/images/finance.jpg",
+      img: "/media/images/finance.jpg",
     },
   ];
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1984,7 +2042,7 @@ const HrSolutions = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div>
@@ -2004,7 +2062,7 @@ const HrSolutions = () => {
                 >
                   <div>
                     <div className="size-6  mt-[1px] rounded-full">
-                      <img src={"media/mainland/checked.png"} />
+                      <img src={"/media/mainland/checked.png"} />
                     </div>
                   </div>
                   <div>
@@ -2089,46 +2147,48 @@ const HrSolutions = () => {
   );
 };
 const CorporateStructuring = () => {
+  const params = useParams();
+  const path = usePathname();
   const corporateStructuringBenefits = [
     {
       benefit: "Navigating Legal and Regulatory Frameworks",
-      icon: "media/Will Formation icon/directions.png",
+      icon: "/media/Will Formation icon/directions.png",
       description:
         "Corporate structuring ensures your business complies with the specific legal requirements in the UAE business environment, whether you are seeking to operate in the local market or internationally.",
     },
     {
       benefit: "Tax Efficiency",
-      icon: "media/Will Formation icon/tax.png",
+      icon: "/media/Will Formation icon/tax.png",
       description:
         "One of the major advantages of doing business in the UAE is its tax benefits. With no federal corporate tax on most businesses and only a recently introduced tax on specific sectors, structuring your company correctly can ensure that you are fully capitalizing on these benefits.",
     },
     {
       benefit: "Asset Protection and Risk Management",
-      icon: "media/Will Formation icon/shield.png",
+      icon: "/media/Will Formation icon/shield.png",
       description:
         "In the UAE, businesses can benefit from liability protection, but it’s important to set up the correct structure to shield assets and mitigate risks. Whether you are setting up a limited liability company (LLC), a joint venture, or a free zone company, structuring your business properly helps protect your assets.",
     },
     {
       benefit: "Flexibility and Scalability",
-      icon: "media/Will Formation icon/growth.png",
+      icon: "/media/Will Formation icon/growth.png",
       description:
         "As the UAE is a hub for international trade and investment, having a flexible corporate structure can facilitate easier expansion into global markets. Depending on the nature of your business, structuring it for scalability can help you take advantage of the growing opportunities within the region.",
     },
     {
       benefit: "Enhanced Credibility and Business Relationships",
-      icon: "media/Will Formation icon/magic-wand.png",
+      icon: "/media/Will Formation icon/magic-wand.png",
       description:
         "Proper structuring can also boost your business’s credibility in the eyes of investors, customers, and partners. The UAE is known for its strong governance standards, and having a well-thought-out structure signals professionalism.",
     },
     {
       benefit: "Compliance with Local and International Standards",
-      icon: "media/Will Formation icon/check.png",
+      icon: "/media/Will Formation icon/check.png",
       description:
         "The UAE is a signatory to various international agreements and conventions. With the introduction of laws such as the Economic Substance Regulations and the Common Reporting Standard (CRS), ensuring your corporate structure complies with both local and international standards is important for avoiding penalties and ensuring smooth operations.",
     },
     {
       benefit: "Succession Planning",
-      icon: "media/Will Formation icon/planning.png",
+      icon: "/media/Will Formation icon/planning.png",
       description:
         "Corporate structuring is also critical when it comes to succession planning. By choosing the right structure, businesses can ensure continuity, proper transfer of ownership, and protection for family-owned enterprises.",
     },
@@ -2289,6 +2349,14 @@ const CorporateStructuring = () => {
 
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -2310,7 +2378,7 @@ const CorporateStructuring = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div>
@@ -2435,7 +2503,7 @@ const CorporateStructuring = () => {
                 >
                   <div>
                     <div className="size-6  mt-[1px] rounded-full">
-                      <img src={"media/mainland/checked.png"} />
+                      <img src={"/media/mainland/checked.png"} />
                     </div>
                   </div>
                   <div>
@@ -2460,5 +2528,4 @@ const CorporateStructuring = () => {
     </div>
   );
 };
-
 export default Page;

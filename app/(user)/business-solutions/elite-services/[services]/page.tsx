@@ -1,24 +1,36 @@
 "use client";
 import React, { useEffect, useState, Suspense, useRef } from "react";
-import { useSearchParams } from "next/navigation";
-import Button from "../App_Chunks/Components/Button";
+import { usePathname, useSearchParams } from "next/navigation";
+import Button from "../../../App_Chunks/Components/Button";
 import { MdLabelImportant } from "react-icons/md";
-import Banner from "../App_Chunks/Components/Banner";
-import Heading from "../App_Chunks/Components/Heading";
+import Banner from "../../../App_Chunks/Components/Banner";
+import Heading from "../../../App_Chunks/Components/Heading";
 import { motion } from "framer-motion";
 import Link from "next/link";
-// Main page that uses a suspense to load the child component dynamically
+import { useParams } from "next/navigation";
+import BreadCrumb from "../../../App_Chunks/Components/BreadCrumb";
 const Page = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <MainPage />
-    </Suspense>
-  );
-};
-
-const MainPage = () => {
+  const params = useParams();
   const searchParams = useSearchParams();
-  const query = searchParams.get("name")?.toLowerCase();
+  const target = searchParams.get("target");
+  const rawService = params?.services;
+
+  const serviceName = rawService
+    ? decodeURIComponent(Array.isArray(rawService) ? rawService[0] : rawService)
+    : "";
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (target) {
+        const targetElement = document.getElementById(target);
+        if (targetElement) {
+          console.log("Target:", target, targetElement);
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 200);
+
+    return () => clearTimeout(timeoutId);
+  }, [target, searchParams]);
   useEffect(() => {
     let metaInfo = {
       title: "Business Setup in UAE - Mainland",
@@ -26,7 +38,7 @@ const MainPage = () => {
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
 
-    switch (query) {
+    switch (serviceName) {
       case "golden visa":
         metaInfo = {
           title: "UAE Golden Visa Services | Long-term Residency",
@@ -112,62 +124,52 @@ const MainPage = () => {
         document.head.appendChild(newOgDescription);
       }
     }
-  }, [query]);
-  useEffect(() => {
-    if (query === "golden visa") {
-      document.body.style.backgroundColor = "#fffbeb";
-    }
-    return () => {
-      document.body.style.backgroundColor = "#f6f8ff";
-    };
-  }, [query]);
-
-  // Render components based on the query parameter
+  }, [params.services]);
   const renderComponent = () => {
-    switch (query) {
-      case "golden visa":
+    switch (serviceName) {
+      case "golden-visa":
         return <GoldenVisa />;
-      case "will formation":
+      case "will-formation":
         return <WillFormation />;
-      case "wealth management":
+      case "wealth-management":
         return <WealthManagement />;
-      case "nominee director services":
+      case "nominee-director-services":
         return <NomineeDirectory />;
-      case "real estate":
+      case "real-estate":
         return <RealEstateInvestment />;
       default:
         return <div>No matching component found</div>;
     }
   };
-
   return <div>{renderComponent()}</div>;
 };
 
-// Component for Golden Visa
 const GoldenVisa = () => {
+  const params = useParams();
+  const path = usePathname();
   const selfPraise = [
     {
-      icon: "media/goldenVisa/resideny.png",
+      icon: "/media/goldenVisa/resideny.png",
       title: "Long-Term Residency",
       desc: "Stay in UAE for up to 10 years with automatic renewal options.",
     },
     {
       title: "No Sponsor Requirement",
-      icon: "media/goldenVisa/no-sponsor.png",
+      icon: "/media/goldenVisa/no-sponsor.png",
       desc: "Freedom to live, work, or study without the need for a local sponsor.",
     },
     {
-      icon: "media/goldenVisa/family.png",
+      icon: "/media/goldenVisa/family.png",
       title: "Family Benefits",
       desc: "Include your spouse, children, and even domestic staff under your visa.",
     },
     {
-      icon: "media/goldenVisa/businessOpp.png",
+      icon: "/media/goldenVisa/businessOpp.png",
       title: "Business Opportunities",
       desc: "Enjoy 100% ownership of your business in Dubai’s investment market.",
     },
     {
-      icon: "media/goldenVisa/lifestyle.png",
+      icon: "/media/goldenVisa/lifestyle.png",
       title: "Exclusive Lifestyle",
       desc: "Access UAE`s world-class healthcare, education, and lifestyle opportunities.",
     },
@@ -253,6 +255,14 @@ const GoldenVisa = () => {
 
   return (
     <div>
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -274,7 +284,7 @@ const GoldenVisa = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} alt="Hero" />
+          <img src={"/media/mainland/dubai.svg"} alt="Hero" />
         </div>
       </div>
 
@@ -283,11 +293,11 @@ const GoldenVisa = () => {
           What is the UAE <span className="text-amber-400">Golden Visa?</span>
         </Heading>
         <p className="text-center w-full mt-3 text-lg font-Satoshi">
-          The UAE Golden Visa is a long-term residency visa designed to
-          attract talent, innovation, and investment to the UAE. The 10-year
-          residency visa provides a great opportunity for qualified individuals
-          and their families. The scheme was introduced in 2019 and it gives a
-          great opportunity for ‘skilled talents’ to settle in the UAE.
+          The UAE Golden Visa is a long-term residency visa designed to attract
+          talent, innovation, and investment to the UAE. The 10-year residency
+          visa provides a great opportunity for qualified individuals and their
+          families. The scheme was introduced in 2019 and it gives a great
+          opportunity for ‘skilled talents’ to settle in the UAE.
         </p>
       </div>
 
@@ -325,7 +335,7 @@ const GoldenVisa = () => {
             >
               <div>
                 <div className="size-6  mt-[1px] rounded-full">
-                  <img src={"media/mainland/checked.png"} />
+                  <img src={"/media/mainland/checked.png"} />
                 </div>
               </div>
               <div>
@@ -490,19 +500,21 @@ const GoldenVisa = () => {
 };
 
 const WillFormation = () => {
+  const params = useParams();
+  const path = usePathname();
   const willData = [
     {
-      icon: "media/Will Formation icon/balance.png",
+      icon: "/media/Will Formation icon/balance.png",
       title: "Compliance with UAE Law",
       desc: "Without a registered Will, UAE courts distribute assets according to Sharia law. A Will ensures your intentions are honored, giving you full control over your assets.",
     },
     {
-      icon: "media/Will Formation icon/shield.png",
+      icon: "/media/Will Formation icon/shield.png",
       title: "Protection for Expats",
       desc: "Expatriates in the UAE can specify asset distribution by their home country laws, safeguarding their global and local assets.",
     },
     {
-      icon: "media/Will Formation icon/child.png",
+      icon: "/media/Will Formation icon/child.png",
       title: "Guardianship of Minor Children",
       desc: "Appoint guardians for your children in your Will to avoid legal uncertainties.",
     },
@@ -682,6 +694,14 @@ const WillFormation = () => {
 
   return (
     <div>
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -701,7 +721,7 @@ const WillFormation = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} alt="Hero" />
+          <img src={"/media/mainland/dubai.svg"} alt="Hero" />
         </div>
       </div>
 
@@ -924,24 +944,26 @@ const WillFormation = () => {
   );
 };
 const RealEstateInvestment = () => {
+  const params = useParams();
+  const path = usePathname();
   const realEstateData = [
     {
-      icon: "media/Will Formation icon/growth.png",
+      icon: "/media/Will Formation icon/growth.png",
       title: "Stable and Long-Term Growth",
       desc: "Real estate is a proven, long-term investment that offers stability and consistent returns.",
     },
     {
-      icon: "media/Will Formation icon/diverse.png",
+      icon: "/media/Will Formation icon/diverse.png",
       title: "Diversification",
       desc: "Real estate allows you to diversify your investment portfolio, reducing risks and providing new avenues for growth.",
     },
     {
-      icon: "media/Will Formation icon/passive-income.png",
+      icon: "/media/Will Formation icon/passive-income.png",
       title: "Passive Income",
       desc: "Rental properties generate regular income, offering financial security through cash flow.",
     },
     {
-      icon: "media/Will Formation icon/feedback.png",
+      icon: "/media/Will Formation icon/feedback.png",
       title: "Appreciation Potential",
       desc: "Property values increase over time, providing potential for capital gains when you sell.",
     },
@@ -1148,6 +1170,14 @@ const RealEstateInvestment = () => {
 
   return (
     <div>
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1167,7 +1197,7 @@ const RealEstateInvestment = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} alt="Hero" />
+          <img src={"/media/mainland/dubai.svg"} alt="Hero" />
         </div>
       </div>
 
@@ -1350,34 +1380,36 @@ const RealEstateInvestment = () => {
   );
 };
 const WealthManagement = () => {
+  const params = useParams();
+  const path = usePathname();
   const wealthServices = [
     {
-      icon: "media/Will Formation icon/investment.png",
+      icon: "/media/Will Formation icon/investment.png",
       title: "Personalized Investment Management",
       desc: "Diversified portfolios customized to the UAE market, global equities, and alternative investments.",
     },
     {
-      icon: "media/Will Formation icon/taxPlanning.png",
+      icon: "/media/Will Formation icon/taxPlanning.png",
       title: "Tax Planning & Optimization",
       desc: "Strategies to reduce tax liabilities, considering both UAE and international tax regulations.",
     },
     {
-      icon: "media/Will Formation icon/retirement-planning.png",
+      icon: "/media/Will Formation icon/retirement-planning.png",
       title: "Financial & Retirement Planning",
       desc: "Plans to optimize savings and investments for a comfortable and secure retirement.",
     },
     {
-      icon: "media/Will Formation icon/agent.png",
+      icon: "/media/Will Formation icon/agent.png",
       title: "Estate & Succession Planning",
       desc: "Guidance on how to pass on your wealth according to your will and minimize estate taxes.",
     },
     {
-      icon: "media/Will Formation icon/risk.png",
+      icon: "/media/Will Formation icon/risk.png",
       title: "Risk Management & Insurance Solutions",
       desc: "Insurance coverage options to protect your wealth and assets.",
     },
     {
-      icon: "media/Will Formation icon/business.png",
+      icon: "/media/Will Formation icon/business.png",
       title: "Business Succession & Transition Planning",
       desc: "Strategic planning for business owners to ensure smooth succession and wealth transfer.",
     },
@@ -1524,6 +1556,14 @@ const WealthManagement = () => {
 
   return (
     <div>
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1545,7 +1585,7 @@ const WealthManagement = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} alt="Hero" />
+          <img src={"/media/mainland/dubai.svg"} alt="Hero" />
         </div>
       </div>
       <div className="w-full my-24">
@@ -1730,6 +1770,8 @@ const WealthManagement = () => {
   );
 };
 const NomineeDirectory = () => {
+  const params = useParams();
+  const path = usePathname();
   const whyChoose = [
     {
       icon: "/media/Will Formation icon/balance.png",
@@ -1871,6 +1913,14 @@ const NomineeDirectory = () => {
 
   return (
     <div>
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1891,7 +1941,7 @@ const NomineeDirectory = () => {
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} alt="Hero" />
+          <img src={"/media/mainland/dubai.svg"} alt="Hero" />
         </div>
       </div>
       <div className="w-full my-24">

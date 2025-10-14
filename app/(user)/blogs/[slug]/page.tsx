@@ -24,7 +24,7 @@ function slugify(text: string): string {
 }
 
 async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch(`${"https://bizgrowthconsultancy.com"}/api/blogs`, {
+  const res = await fetch(`${"http://localhost:3000/"}/api/blogs`, {
     next: { revalidate: 60 },
   });
 
@@ -52,7 +52,7 @@ export async function generateMetadata({
       title: blog?.metaTitle || blog?.title,
       description: blog?.metaDesc || "",
       images: blog?.imageURL ? [blog.imageURL] : [],
-      url: `https://bizgrowthconsultancy.com/blog/${slug}`,
+      url: `https://dimondra.com/blog/${slug}`,
     },
     twitter: {
       card: "summary_large_image",

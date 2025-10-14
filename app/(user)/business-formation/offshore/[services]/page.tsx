@@ -1,27 +1,23 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
-import Button from "../App_Chunks/Components/Button";
-import { useSearchParams } from "next/navigation";
+import Button from "@/app/(user)/App_Chunks/Components/Button";
 import { MdLabelImportant } from "react-icons/md";
-import Banner from "../App_Chunks/Components/Banner";
-import data from "../App_Chunks/Components/offshore";
+import Banner from "@/app/(user)/App_Chunks/Components/Banner";
+import data from "@/app/(user)/App_Chunks/Components/offshore";
 import Link from "next/link";
-
+import { useParams, usePathname } from "next/navigation";
+import BreadCrumb from "@/app/(user)/App_Chunks/Components/BreadCrumb";
 const Page = () => {
-  return (
-    <Suspense>
-      <MainPage />
-    </Suspense>
-  );
-};
-
-const MainPage = () => {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("name");
+  const params = useParams();
+  const path = usePathname();
+  const rawService = params?.services;
+  const serviceName = rawService
+    ? decodeURIComponent(Array.isArray(rawService) ? rawService[0] : rawService)
+    : "";
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
   useEffect(() => {
     const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === query?.toLowerCase()
+      (item) => item.name.toLowerCase() === serviceName?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
 
@@ -32,43 +28,43 @@ const MainPage = () => {
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
 
-   switch (query) {
-     case "Dubai Offshore":
-       metaInfo = {
-         title: "Dubai Offshore Company Formation | UAE",
-         description:
-           "Form your Dubai Offshore company with ease. Enjoy 100% foreign ownership, tax benefits, and access to global markets. Start your Dubai Offshore company setup today!",
-       };
-       break;
-     case "Jafza Offshore":
-       metaInfo = {
-         title: "Offshore Company Formation in JAFZA | UAE",
-         description:
-           "Set up your Offshore company in JAFZA, Dubai's leading free zone. Benefit from 100% ownership, tax exemptions, and access to international markets. Start your JAFZA Offshore company today!",
-       };
-       break;
-     case "Rak ICC Offshore":
-       metaInfo = {
-         title: "RAK ICC Offshore Company Formation in UAE",
-         description:
-           "Form your Offshore company in RAK ICC, Ras Al Khaimah's premier offshore jurisdiction. Enjoy 100% ownership, tax benefits, and privacy protection. Start your RAK ICC Offshore company today!",
-       };
-       break;
-     case "Ajman Offshore":
-       metaInfo = {
-         title: "Ajman Offshore Company Formation in UAE",
-         description:
-           "Set up your Offshore company in Ajman, a cost-effective and flexible jurisdiction. Enjoy 100% ownership, tax advantages, and privacy protection. Start your Ajman Offshore company today!",
-       };
-       break;
-     default:
-       metaInfo = {
-         title: "Offshore Company Formation in UAE",
-         description:
-           "Explore the best offshore company formation options in the UAE. Enjoy 100% ownership, tax benefits, and access to global markets. Start your offshore company setup today!",
-       };
-       break;
-   }
+    switch (serviceName) {
+      case "Dubai-Offshore".toLowerCase():
+        metaInfo = {
+          title: "Dubai Offshore Company Formation | UAE",
+          description:
+            "Form your Dubai Offshore company with ease. Enjoy 100% foreign ownership, tax benefits, and access to global markets. Start your Dubai Offshore company setup today!",
+        };
+        break;
+      case "Jafza-Offshore".toLowerCase():
+        metaInfo = {
+          title: "Offshore Company Formation in JAFZA | UAE",
+          description:
+            "Set up your Offshore company in JAFZA, Dubai's leading free zone. Benefit from 100% ownership, tax exemptions, and access to international markets. Start your JAFZA Offshore company today!",
+        };
+        break;
+      case "Rak-ICC-Offshore".toLowerCase():
+        metaInfo = {
+          title: "RAK ICC Offshore Company Formation in UAE",
+          description:
+            "Form your Offshore company in RAK ICC, Ras Al Khaimah's premier offshore jurisdiction. Enjoy 100% ownership, tax benefits, and privacy protection. Start your RAK ICC Offshore company today!",
+        };
+        break;
+      case "Ajman-Offshore".toLowerCase():
+        metaInfo = {
+          title: "Ajman Offshore Company Formation in UAE",
+          description:
+            "Set up your Offshore company in Ajman, a cost-effective and flexible jurisdiction. Enjoy 100% ownership, tax advantages, and privacy protection. Start your Ajman Offshore company today!",
+        };
+        break;
+      default:
+        metaInfo = {
+          title: "Offshore Company Formation in UAE",
+          description:
+            "Explore the best offshore company formation options in the UAE. Enjoy 100% ownership, tax benefits, and access to global markets. Start your offshore company setup today!",
+        };
+        break;
+    }
 
     // Dynamically update the document metadata based on the selected location
     if (metaInfo) {
@@ -111,7 +107,7 @@ const MainPage = () => {
         document.head.appendChild(newOgDescription);
       }
     }
-  }, [query, data]);
+  }, [serviceName, data]);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsRefs = useRef<HTMLDivElement[]>([]);
   useEffect(() => {
@@ -130,6 +126,14 @@ const MainPage = () => {
   }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>{processData?.heroTitle}</div>
@@ -137,8 +141,8 @@ const MainPage = () => {
           <p className="text-lg font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          
-          <Link href={"/contact"} >
+
+          <Link href={"/contact"}>
             <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
@@ -170,7 +174,6 @@ const MainPage = () => {
                 </p>
                 <p className="font-Satoshi text-lg mt-1">{elem.desc}</p>
               </div>
-              
             </div>
           ))}
         </div>
@@ -226,7 +229,7 @@ const MainPage = () => {
                 {item.title}
               </p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
-              {item.isPoints && 'points' in item && item.points ? (
+              {item.isPoints && "points" in item && item.points ? (
                 <ul className="font-Satoshi mt-3 py-3 border-t w-full border-lime-700">
                   {item.points.map((elem, index) => (
                     <li key={index} className="flex items-center gap-2">
@@ -265,7 +268,7 @@ const MainPage = () => {
                     </div>
                   </td>
 
-                  {query?.toLowerCase() !== "sharjah mainland" &&
+                  {serviceName?.toLowerCase() !== "sharjah mainland" &&
                   "docs" in item &&
                   Array.isArray(item?.docs) ? (
                     <td className="border border-gray-300">
@@ -285,7 +288,7 @@ const MainPage = () => {
                     </td>
                   ) : null}
 
-                  {query && "doc1" in item ? (
+                  {serviceName && "doc1" in item ? (
                     <td className="border border-gray-300  ">
                       <ul>
                         <li className="border flex items-start gap-2 py-2 px-5">

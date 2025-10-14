@@ -3,14 +3,14 @@ import Logo from "./Logo";
 import React from "react";
 import { FaSquareFacebook } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
-import { BsTwitterX } from "react-icons/bs";
+import { BsLinkedin, BsTwitterX } from "react-icons/bs";
 import { BsYoutube } from "react-icons/bs";
 import Link from "next/link";
 export interface WidgetFooterMenu {
   id: string;
   title: string;
   menus: {
-    href: string | { pathname: string; query: { name: string; label: string } };
+    href: string | { pathname: string };
     label: string; // Add label here as it should be a part of the menu item
   }[];
 }
@@ -28,69 +28,60 @@ const widgetMenus: WidgetFooterMenu[] = [
     ],
   },
   {
-    id: "2", // Ensure the id is unique
+    id: "2",
     title: "Popular Links",
     menus: [
       {
         href: {
-          pathname: "/mainland",
-          query: { name: "Dubai Mainland", label: "Dubai Mainland" },
+          pathname: "/business-formation/mainland/dubai-mainland",
         },
         label: "Dubai Mainland",
       },
       {
         href: {
-          pathname: "/freezone",
-          query: { name: "DMCC", label: "DMCC" },
+          pathname: "/business-formation/freezone/dmcc",
         },
         label: "DMCC",
       },
       {
         href: {
-          pathname: "/freezone",
-          query: { name: "MEYDAN", label: "MEYDAN" },
+          pathname: "/business-formation/freezone/meydan",
         },
         label: "MEYDAN",
       },
       {
         href: {
-          pathname: "/Banking-Assistance",
-          query: { name: "Corporate Bank Account", label: "Corp Bank" },
+          pathname: "/banking-assistance/corporate-bank-account",
         },
         label: "Corporate Bank Account",
       },
       {
         href: {
-          pathname: "/elite-services",
-          query: { name: "Golden Visa", label: "Golden Visa" },
+          pathname: "/business-solutions/elite-services/golden-visa",
         },
         label: "Golden Visa",
       },
       {
         href: {
-          pathname: "/otherServices",
-          query: { name: "Design & Marketing Services", label: "Marketing" },
+          pathname: "/business-solutions/corporate-services/design-and-marketing-services",
         },
         label: "Design & Marketing",
       },
       {
         href: {
-          pathname: "/otherServices",
-          query: { name: "PRO & Visa Services", label: "Dubai Mainland" },
+          pathname: "/business-solutions/corporate-services/pro-and-visa-services",
         },
         label: "PRO services",
       },
       {
         href: {
-          pathname: "/Accounting",
-          query: { name: "VAT Consultancy", label: "Dubai Mainland" },
+          pathname: "/business-solutions/accounting/vat-consultancy",
         },
         label: "VAT Consultancy",
       },
       {
         href: {
-          pathname: "/elite-services",
-          query: { name: "Real Estate", label: "Dubai Mainland" },
+          pathname: "/business-solutions/elite-services/real-estate",
         },
         label: "Real Estate",
       },
@@ -112,7 +103,7 @@ const Footer: React.FC = () => {
                 href={
                   typeof item.href === "string"
                     ? item.href
-                    : { pathname: item.href.pathname, query: item.href.query }
+                    : { pathname: item.href.pathname }
                 }
                 className="rounded-xl py-1 text-[#10220a] hover:bg-indigo-200 px-3 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
               >
@@ -146,11 +137,19 @@ const Footer: React.FC = () => {
             </div>
             <div className=" hidden lg:flex w-full flex-col items-start ">
               <p className="mb-2 font-semibold text-[#10220a]">Our Presence</p>
-              <div className="grid grid-cols-2 lg:grid-cols-4  gap-2">
-                <FaSquareFacebook className="text-5xl lg:text-3xl text-[#10220a]" />
-                <AiFillInstagram className="text-5xl lg:text-3xl text-[#10220a]" />
-                <BsTwitterX className="text-5xl lg:text-3xl text-[#10220a]" />
-                <BsYoutube className="text-5xl lg:text-3xl text-[#10220a]" />
+              <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center  gap-2">
+                <Link href={'https://www.facebook.com/profile.php?id=61571182376298'}>
+                  <FaSquareFacebook className="text-5xl lg:text-3xl text-[#10220a]" />{" "}
+                </Link>
+                <Link  href={'https://www.instagram.com/bizgrowthconsultancy?igsh=MWIxNTVtN2syZGtkZw%3D%3D&utm_source=qr'}>
+                  <AiFillInstagram className="text-5xl lg:text-3xl text-[#10220a]" />
+                </Link>
+                <Link href={'https://www.linkedin.com/company/biz-growth-management-consultancy/?viewAsMember=true'}>
+                  <BsLinkedin className="text-5xl lg:text-2xl text-[#10220a]" />
+                </Link>
+                <Link href={'https://www.youtube.com/channel/UClP4eQveraGLOcvVA_KCKZA'}>
+                  <BsYoutube className="text-5xl lg:text-3xl text-[#10220a]" />
+                </Link>
               </div>
             </div>
           </div>

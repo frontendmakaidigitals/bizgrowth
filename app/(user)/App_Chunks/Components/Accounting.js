@@ -8,7 +8,7 @@ const data = [
     bannerTitle: "Get in Touch Today",
     bannerDesc:
       "If your business is ready to optimize your VAT processes or need professional advice, contact us today for a free consultation. Our team is ready to assist you with all your VAT needs.",
-    name: "VAT Consultancy",
+    name: "VAT-Consultancy",
     heroTitle: (
       <Heading>
         Expert in <span className="text-lime-500">VAT Consultancy</span> Services
@@ -351,7 +351,7 @@ const data = [
     bannerDesc:
       "The UAE's corporate tax environment is evolving, and it’s essential to stay ahead of the curve. Whether you’re a startup or an established corporation, Biz Growth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
 
-    name: "Corporate Tax",
+    name: "Corporate-Tax",
     heroTitle: (
       <Heading className="">
         Welcome to{" "}
@@ -610,7 +610,7 @@ const data = [
     bannerDesc:
       "We’d love to hear from you! Whether you’re looking for accounting services, bookkeeping support, or tax advice, we’re here to help.",
 
-    name: "Accounting and Bookkeeping",
+    name: "Accounting-and-Bookkeeping",
     heroTitle: (
       <Heading>
         Simplify Your Finances with{" "}

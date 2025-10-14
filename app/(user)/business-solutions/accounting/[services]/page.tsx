@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import { motion } from "framer-motion";
-import Button from "../App_Chunks/Components/Button";
+import Button from "@/app/(user)/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
-import Banner from "../App_Chunks/Components/Banner";
+import Banner from "@/app/(user)/App_Chunks/Components/Banner";
 import Link from "next/link";
 import {
   Carousel,
@@ -13,56 +13,74 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import data from "../App_Chunks/Components/Accounting";
-
+import data from "@/app/(user)/App_Chunks/Components/Accounting";
+import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import BreadCrumb from "@/app/(user)/App_Chunks/Components/BreadCrumb";
 const Page = () => {
-  return (
-    <Suspense>
-      <MainPage />
-    </Suspense>
-  );
-};
-
-const MainPage = () => {
+  const params = useParams();
+const path = usePathname();
   const searchParams = useSearchParams();
-  const query = searchParams.get("name");
+  const target = searchParams.get("target");
+  const rawService = params?.services;
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
+  const [currentStep, setCurrentStep] = useState(0);
+  const stepsRefs = useRef<HTMLDivElement[]>([]);
+  const serviceName = rawService
+    ? decodeURIComponent(Array.isArray(rawService) ? rawService[0] : rawService)
+    : "";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
+      for (let i = 0; i < stepOffsets.length; i++) {
+        if (scrollPosition >= stepOffsets[i] - 200) {
+          setCurrentStep(i);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === query?.toLowerCase()
+      (item) => item.name.toLowerCase() === serviceName?.toLowerCase()
     );
+
     setProcessData(matchingItem || null); // Set the found item or null if no match
 
-    // Dynamic title and meta description based on query
     let metaInfo = {
       title: "Business Setup in UAE - Mainland",
       description:
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
 
-    switch (query) {
-      case "VAT Consultancy":
+    switch (serviceName) {
+      case "VAT-Consultancy".toLowerCase():
         metaInfo = {
           title: "VAT Consultancy Service in Dubai, UAE",
           description:
             "We specialize in providing expert VAT consulting services for businesses of all sizes. If your business is ready to optimize your VAT processes or need professional advice, contact us today for a free consultation.",
         };
         break;
-      case "Corporate Tax":
+      case "Corporate-Tax".toLowerCase():
         metaInfo = {
           title: "Tax Consultants in Dubai, UAE",
           description:
             "Whether you’re a startup or an established corporation, Biz Growth is your trusted partner for navigating the complexities of corporate tax. Contact us today to schedule a consultation and learn more about how our corporate tax services can benefit your business.",
         };
         break;
-      case "Accounting and Bookkeeping":
+      case "Accounting-and-Bookkeeping".toLowerCase():
         metaInfo = {
           title: "Expert Bookkeeping and Accounting Service in Dubai",
           description:
             "Whether you’re a startup or an established corporation, Biz Growth is your trusted partner for navigating the complexities of bookkeeping and accounting. Contact us today to schedule a consultation and learn more about how our services can benefit your business.",
         };
         break;
-      case "Auditing":
+      case "Auditing".toLowerCase():
         metaInfo = {
           title: "Professional Auditing Service in Dubai, UAE",
           description:
@@ -119,25 +137,18 @@ const MainPage = () => {
         document.head.appendChild(newOgDescription);
       }
     }
-  }, [query, data]);
-  const [currentStep, setCurrentStep] = useState(0);
-  const stepsRefs = useRef<HTMLDivElement[]>([]);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const stepOffsets = stepsRefs.current.map((ref) => ref.offsetTop);
-      for (let i = 0; i < stepOffsets.length; i++) {
-        if (scrollPosition >= stepOffsets[i] - 200) {
-          setCurrentStep(i);
-        }
-      }
-    };
+  }, [target, searchParams]);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>{processData?.heroTitle}</div>
@@ -145,7 +156,7 @@ const MainPage = () => {
           <p className="text-lg font-Satoshi mt-4">
             {processData?.heroDescription}
           </p>
-          <Link href={"/contact"} >
+          <Link href={"/contact"}>
             <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
@@ -264,7 +275,7 @@ const MainPage = () => {
                         </div>
                       </td>
 
-                      {query?.toLowerCase() !== "auditing" &&
+                      {serviceName?.toLowerCase() !== "auditing" &&
                       "desc1" in item ? (
                         <td className="border border-gray-300  ">
                           <ul>
@@ -276,7 +287,7 @@ const MainPage = () => {
                         </td>
                       ) : null}
 
-                      {query?.toLowerCase() !== "auditing" &&
+                      {serviceName?.toLowerCase() !== "auditing" &&
                       "desc2" in item ? (
                         <td className="border border-gray-300  ">
                           <ul>
@@ -401,7 +412,7 @@ const MainPage = () => {
                           </div>
                         </td>
 
-                        {query?.toLowerCase() !== "auditing" &&
+                        {serviceName?.toLowerCase() !== "auditing" &&
                         "doc1" in item ? (
                           <td className="border border-gray-300  ">
                             <ul>

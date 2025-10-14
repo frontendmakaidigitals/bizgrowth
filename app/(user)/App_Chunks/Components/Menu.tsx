@@ -15,7 +15,7 @@ const Menu = () => {
         !menu.dropdown ? (
           <Link
             key={index}
-            href={menu.href}
+            href={menu.href.toLowerCase()}
             className="px-3 py-1 text-[#12250a] hover:bg-[#dcedc8] font-[600] text-[.9rem] xl:text-[.88rem] xxl:text-md transition-all duration-300 rounded-md"
           >
             {menu.name}
@@ -41,7 +41,7 @@ const Menu = () => {
             <AnimatePresence>
               {openDropdown === menu.name && (
                 <motion.div
-                  className={`absolute flex flex-col top-10 ${index !==3 && '-left-full'} z-30 bg-[#c5e1a5] 
+                  className={`absolute flex flex-col top-10 ${index !== 3 && "-left-full"} z-30 bg-[#c5e1a5] 
     ${index === 3 ? "max-w-5xl" : index === 2 ? "w-[900px]" : "w-[600px]"} 
     shadow-xl rounded-sm p-6`}
                   initial={{ y: -20, opacity: 0 }}
@@ -62,18 +62,16 @@ const Menu = () => {
                           </p>
                           <ul>
                             {point.points.map(
-                              (item: string, itemIndex: number) => (
+                              (item: any, itemIndex: number) => (
                                 <Link
                                   key={itemIndex}
-                                  href={{
-                                    pathname: point.route
-                                      ? point.route
-                                      : point.title.toLowerCase(),
-                                    query: { name: item },
-                                  }}
+                                 
+                                  href={`/${menu.route.toLowerCase()}/${point.route.toLowerCase()}/${
+                                    item.route.toLowerCase()
+                                  }`}
                                 >
                                   <li className="mt-2 hover:underline flex text-[#12250a] items-center gap-2">
-                                    {item}
+                                    {item.name}
                                   </li>
                                 </Link>
                               )
@@ -96,13 +94,12 @@ const Menu = () => {
                         <div key={pointIndex}>
                           <ul>
                             <Link
-                              href={{
-                                pathname: "/Banking-Assistance",
-                                query: { name: point },
-                              }}
+                              href={`/${point.route}/${encodeURIComponent(
+                                point.route.toLowerCase()
+                              )}`}
                             >
                               <li className="mt-2 font-[500] hover:underline text-[#12250a] flex items-start gap-2">
-                                {point}
+                                {point.name}
                               </li>
                             </Link>
                           </ul>

@@ -1,28 +1,30 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
-import Button from "../App_Chunks/Components/Button";
-import { useSearchParams } from "next/navigation";
+import Button from "../../App_Chunks/Components/Button";
+import { usePathname, useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
-import Banner from "../App_Chunks/Components/Banner";
-import data from "../App_Chunks/Components/banking";
+import Banner from "../../App_Chunks/Components/Banner";
+import data from "../../App_Chunks/Components/banking";
 import { motion } from "framer-motion";
-import Heading from "../App_Chunks/Components/Heading";
+import Heading from "../../App_Chunks/Components/Heading";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import BreadCrumb from "../../App_Chunks/Components/BreadCrumb";
 const Page = () => {
-  return (
-    <Suspense>
-      <MainPage />
-    </Suspense>
-  );
-};
-
-const MainPage = () => {
+  const params = useParams();
+  const path = usePathname();
   const searchParams = useSearchParams();
-  const query = searchParams.get("name");
+  const rawService = params?.services;
+  const serviceName = rawService
+    ? decodeURIComponent(Array.isArray(rawService) ? rawService[0] : rawService)
+    : "";
+  const [currentStep, setCurrentStep] = useState(0);
+  const stepsRefs = useRef<HTMLDivElement[]>([]);
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
+
   useEffect(() => {
     const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === query?.toLowerCase()
+      (item) => item.name.toLowerCase() === serviceName?.toLowerCase()
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
 
@@ -33,36 +35,36 @@ const MainPage = () => {
         "Learn about the business setup process in the UAE Mainland. Find out the best solutions for establishing your company.",
     };
 
-    switch (query) {
-      case "Corporate Bank Account":
+    switch (serviceName) {
+      case "Corporate-Bank-Account".toLowerCase():
         metaInfo = {
           title: "Corporate Bank Account Assistance in DUBAI, UAE",
           description:
             "Banking experts at Biz Growth will guide you through the process with ease and efficiency for corporate bank account opening assistance. Contact us today to schedule a consultation, and take the first step toward securing your company’s financial future.",
         };
         break;
-      case "Private Bank Account":
+      case "Private-Bank-Account".toLowerCase():
         metaInfo = {
           title: "Private Bank Account Assistance in DUBAI, UAE",
           description:
             "With our deep expertise and personalized service, our private bank account opening service will ensure that the entire process is smooth and efficient. Contact us today for a consultation, and let us help you unlock the benefits of private banking in Dubai.",
         };
         break;
-      case "Commercial Financial Services":
+      case "Commercial-Financial-Services".toLowerCase():
         metaInfo = {
           title: "Commercial Financial Service in DUBAI, UAE",
           description:
             "Whether you`re looking for advice, funding options, or advanced financial tools, we are committed to helping your business thrive. Our experts are here to guide you through the process and help you find the right solution for your business.",
         };
         break;
-      case "Trade Financial Services":
+      case "Trade-Financial-Services".toLowerCase():
         metaInfo = {
           title: "Trade Financial Service Consultants in Dubai, UAE",
           description:
             "Explore our professional trade financial services, offering personalized solutions for international trade, financing, and risk management. Ensure smooth and secure transactions for your business globally.",
         };
         break;
-      case "Crypto & VARA Registration":
+      case "Crypto-and-VARA-Registration".toLowerCase():
         metaInfo = {
           title: "Crypto Currency License in UAE | VARA Registration",
           description:
@@ -119,9 +121,8 @@ const MainPage = () => {
         document.head.appendChild(newOgDescription);
       }
     }
-  }, [query, data]);
-  const [currentStep, setCurrentStep] = useState(0);
-  const stepsRefs = useRef<HTMLDivElement[]>([]);
+  }, [searchParams, data]);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -136,16 +137,25 @@ const MainPage = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  switch (query) {
-    case "Trade Financial Services":
+
+  switch (serviceName) {
+    case "Trade-Financial-Services".toLowerCase():
       return <TradeFinancial />;
-    case "Crypto & VARA Registration":
+    case "Crypto-and-VARA-Registration".toLowerCase():
       return <CryptoVara />;
-    case "Commercial Financial Services":
+    case "Commercial-Financial-Services".toLowerCase():
       return <CommercialFinancing />;
     default:
       return (
         <div className="w-full">
+          <BreadCrumb
+            path={path}
+            params={
+              Array.isArray(params?.services)
+                ? params.services[0]
+                : (params?.services ?? "")
+            }
+          />
           <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
             <div className="w-full">
               <div>{processData?.heroTitle}</div>
@@ -153,7 +163,7 @@ const MainPage = () => {
               <p className="text-lg font-Satoshi mt-4">
                 {processData?.heroDescription}
               </p>
-              <Link href={"/contact"} >
+              <Link href={"/contact"}>
                 <Button className="mt-5">Get Expert Consultation</Button>
               </Link>
             </div>
@@ -278,7 +288,7 @@ const MainPage = () => {
                           </div>
                         </td>
 
-                        {query?.toLowerCase() !== "sharjah mainland" &&
+                        {serviceName?.toLowerCase() !== "sharjah mainland" &&
                         "docs" in item &&
                         Array.isArray(item?.docs) ? (
                           <td className="border border-gray-300">
@@ -298,7 +308,7 @@ const MainPage = () => {
                           </td>
                         ) : null}
 
-                        {query && "doc1" in item ? (
+                        {serviceName && "doc1" in item ? (
                           <td className="border border-gray-300  ">
                             <ul>
                               <li className="border flex items-start gap-2 py-2 px-5">
@@ -331,6 +341,8 @@ const MainPage = () => {
 };
 
 const CryptoVara = () => {
+  const params = useParams();
+  const path = usePathname();
   const regulatoryAuthorities = [
     {
       title: "Virtual Assets Regulatory Authority (VARA)",
@@ -480,6 +492,14 @@ const CryptoVara = () => {
   }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -495,12 +515,12 @@ const CryptoVara = () => {
             provide end-to-end support for crypto licensing and VARA
             registration.
           </p>
-          <Link href={"/contact"} >
+          <Link href={"/contact"}>
             <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div className="container w-full my-24">
@@ -634,7 +654,7 @@ const CryptoVara = () => {
                 >
                   <div>
                     <div className="size-6  mt-[1px] rounded-full">
-                      <img src={"media/mainland/checked.png"} />
+                      <img src={"/media/mainland/checked.png"} />
                     </div>
                   </div>
                   <div>
@@ -762,6 +782,8 @@ const CryptoVara = () => {
 };
 
 const TradeFinancial = () => {
+  const params = useParams();
+  const path = usePathname();
   const tradeFinanceServices = [
     {
       title: "Letters of Credit (LC)",
@@ -790,27 +812,27 @@ const TradeFinancial = () => {
   ];
   const services = [
     {
-      icon: "media/Will Formation icon/manufacturing.png",
+      icon: "/media/Will Formation icon/manufacturing.png",
       title: "Manufacturing",
       desc: "Optimize cash flow and supply chain operations.",
     },
     {
-      icon: "media/Will Formation icon/construction.png",
+      icon: "/media/Will Formation icon/construction.png",
       title: "Construction",
       desc: "Access financing for large-scale projects.",
     },
     {
-      icon: "media/Will Formation icon/bags.png",
+      icon: "/media/Will Formation icon/bags.png",
       title: "Retail & Distribution",
       desc: "Meet seasonal demands with flexible funding.",
     },
     {
-      icon: "media/Will Formation icon/oil-drum.png",
+      icon: "/media/Will Formation icon/oil-drum.png",
       title: "Oil & Gas",
       desc: "Specialized financial services for energy trade.",
     },
     {
-      icon: "media/Will Formation icon/sprout.png",
+      icon: "/media/Will Formation icon/sprout.png",
       title: "Agriculture",
       desc: "Support for import and export of agricultural commodities.",
     },
@@ -910,6 +932,14 @@ const TradeFinancial = () => {
   }, []);
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -924,12 +954,12 @@ const TradeFinancial = () => {
             to fuel growth and success. From letters of credit to supply chain
             finance, we provide the tools you need to thrive in global markets.
           </p>
-          <Link href={"/contact"} >
+          <Link href={"/contact"}>
             <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
       <div className="container w-full my-24">
@@ -964,7 +994,7 @@ const TradeFinancial = () => {
               >
                 <div>
                   <div className="size-6  mt-[1px] rounded-full">
-                    <img src={"media/mainland/checked.png"} />
+                    <img src={"/media/mainland/checked.png"} />
                   </div>
                 </div>
                 <div>
@@ -1096,6 +1126,8 @@ const TradeFinancial = () => {
   );
 };
 const CommercialFinancing = () => {
+  const params = useParams();
+  const path = usePathname();
   const tradeFinanceServices = [
     {
       title: "Business Consulting Services",
@@ -1171,27 +1203,27 @@ const CommercialFinancing = () => {
   ];
   const advanteges = [
     {
-      icon: "media/Will Formation icon/company.png",
+      icon: "/media/Will Formation icon/company.png",
       title: "Startups",
       desc: "Gain access to essential capital to launch and grow your business.",
     },
     {
-      icon: "media/Will Formation icon/sme.png",
+      icon: "/media/Will Formation icon/sme.png",
       title: "SMEs",
       desc: "Secure the funding needed for expansion, innovation, and scaling your operations.",
     },
     {
-      icon: "media/Will Formation icon/company.png",
+      icon: "/media/Will Formation icon/company.png",
       title: "Large Enterprises",
       desc: "Benefit from advanced financing options tailored to the complex needs of large corporations.",
     },
     {
-      icon: "media/Will Formation icon/free-trade.png",
+      icon: "/media/Will Formation icon/free-trade.png",
       title: "Exporters and Importers",
       desc: "Optimize your trade and export processes with flexible trade finance options.",
     },
     {
-      icon: "media/Will Formation icon/enterprise.png",
+      icon: "/media/Will Formation icon/enterprise.png",
       title: "Real Estate Investors",
       desc: "Invest in commercial properties or develop new real estate projects with our financing solutions.",
     },
@@ -1322,6 +1354,14 @@ const CommercialFinancing = () => {
 
   return (
     <div className="w-full">
+      <BreadCrumb
+        path={path}
+        params={
+          Array.isArray(params?.services)
+            ? params.services[0]
+            : (params?.services ?? "")
+        }
+      />
       <div className="container w-full mt-12 grid place-items-center grid-cols-1 lg:grid-cols-2 gap-14">
         <div className="w-full">
           <div>
@@ -1340,12 +1380,12 @@ const CommercialFinancing = () => {
             options, or advanced financial tools, we are committed to helping
             your business thrive.
           </p>
-          <Link href={"/contact"} >
+          <Link href={"/contact"}>
             <Button className="mt-5">Get Expert Consultation</Button>
           </Link>
         </div>
         <div className="w-full flex justify-center items-center">
-          <img src={"media/mainland/dubai.svg"} />
+          <img src={"/media/mainland/dubai.svg"} />
         </div>
       </div>
 
@@ -1431,7 +1471,7 @@ const CommercialFinancing = () => {
               >
                 <div>
                   <div className="size-6  mt-[1px] rounded-full">
-                    <img src={"media/mainland/checked.png"} />
+                    <img src={"/media/mainland/checked.png"} />
                   </div>
                 </div>
                 <div>
@@ -1502,7 +1542,9 @@ const CommercialFinancing = () => {
       <div className="container w-full my-24">
         <Heading className="!text-center w-full">
           Documents Required for{" "}
-          <span className="text-lime-500">Commercial Financial Services</span>{" "}
+          <span className="text-lime-500">
+            Commercial Financial Services
+          </span>{" "}
         </Heading>
         <table className="w-full border-collapse mt-10 border border-gray-300">
           <thead className="w-full  bg-lime-200 ">
