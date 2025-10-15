@@ -224,6 +224,18 @@ export function Plugins({
             ErrorBoundary={LexicalErrorBoundary}
           />
         )}
+        <ClickableLinkPlugin />
+        <AutoLinkPlugin matchers={MATCHERS} />
+        <LinkPlugin />
+        <FloatingLinkEditorPlugin
+          anchorElem={floatingAnchorElem}
+          isLinkEditMode={isLinkEditMode}
+          setIsLinkEditMode={setIsLinkEditMode}
+        />
+        <HistoryPlugin />
+        <TablePlugin />
+        <ListPlugin />
+        <CheckListPlugin />
       </div>
 
       {/* Bottom actions only in editing mode */}
