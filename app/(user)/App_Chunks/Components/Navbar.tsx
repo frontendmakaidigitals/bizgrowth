@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="flex items-center gap-5">
           <Menu />
 
-          <Link href={"/cost-calculator"} className="hidden lg:block ">
+          <Link href={"/Cost-Calculator"} className="hidden lg:block ">
             <Button className=" ">Cost Calculator</Button>
           </Link>
         </div>

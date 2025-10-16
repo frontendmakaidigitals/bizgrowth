@@ -1,7 +1,7 @@
 // src/components/MenuData.ts
 export const Menus = [
   { name: "Home", href: "/", dropdown: false },
-  { name: "About us", href: "/about", dropdown: false },
+  { name: "About us", href: "/About", dropdown: false },
   {
     name: "Business Formation",
     href: "/",
