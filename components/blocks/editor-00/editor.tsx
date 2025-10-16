@@ -206,10 +206,10 @@ export function Plugins({
         {readOnly && blogPage === false ? (
           // Plain text preview with clamp
           <div className={`relative line-clamp-${clampLines} text-sm ${text}`}>
+         
             {renderPlainTextFromEditorState(serialized)}
           </div>
         ) : (
-          // RichTextPlugin for blog page or editing mode
           <RichTextPlugin
             contentEditable={
               <div ref={onRef}>
@@ -233,7 +233,7 @@ export function Plugins({
           setIsLinkEditMode={setIsLinkEditMode}
         />
         <HistoryPlugin />
-        <TablePlugin />
+         {!readOnly && <TablePlugin />}
         <ListPlugin />
         <CheckListPlugin />
       </div>

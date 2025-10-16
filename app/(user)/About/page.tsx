@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Your trusted partner in setting up and growing your business in the UAE. We simplify the complexities of company formation, ensuring a quick and efficient process",
 };
-const page = () => {
+const Page = () => {
   return (
     <>
       <AboutPage />
@@ -14,4 +14,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
