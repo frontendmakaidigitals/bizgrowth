@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
-import db from "@/lib/db";
+import { dbAll, dbGet, dbRun } from "@/lib/db";
 import zlib from "zlib";
+
 export async function GET() {
   try {
-    const blogs = db.prepare("SELECT * FROM blogs ORDER BY updatedAt DESC").all();
+    const blogs = await dbAll("SELECT * FROM blogs ORDER BY updatedAt DESC");
 
     interface CompressedBlog extends Blog {
       content: string;
@@ -83,17 +84,14 @@ export async function POST(req: Request): Promise<Response> {
     fs.writeFileSync(filePath, buffer);
     const imageUrl = file.name;
 
-    const id = uuidv4();
     const now = new Date().toISOString();
 
-    // ✅ Insert into SQLite
-    const info = db
-      .prepare(
-        `INSERT INTO blogs 
-   (title, metaTitle, metaDesc, author, category, content, image, createdAt, updatedAt)
-   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
-      )
-      .run(
+    // ✅ Insert into SQLite - let database auto-generate the ID
+    const result = await dbRun(
+      `INSERT INTO blogs 
+       (title, metaTitle, metaDesc, author, category, content, image, createdAt, updatedAt)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
         title ?? "",
         metaTitle ?? "",
         metaDesc ?? "",
@@ -103,10 +101,11 @@ export async function POST(req: Request): Promise<Response> {
         imageUrl ?? "",
         now,
         now
-      );
+      ]
+    );
 
     const blog: Blog = {
-      id: info.lastInsertRowid.toString(),
+      id: result.lastID.toString(), // Use the auto-generated integer ID
       title: title ?? "",
       metaTitle: metaTitle ?? "",
       metaDesc: metaDesc ?? "",
@@ -127,7 +126,6 @@ export async function POST(req: Request): Promise<Response> {
     );
   }
 }
-
 interface DeleteBlogRequest extends Request {}
 
 interface DeleteBlogResponse {
@@ -147,9 +145,8 @@ export async function DELETE(req: DeleteBlogRequest): Promise<Response> {
       );
     }
 
-    const blog: Blog | undefined = db.prepare(
-      "SELECT * FROM blogs WHERE id = ?"
-    );
+    // Check if blog exists
+    const blog = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
     if (!blog) {
       return NextResponse.json(
         { success: false, error: "Blog not found" } as DeleteBlogResponse,
@@ -170,11 +167,10 @@ export async function DELETE(req: DeleteBlogRequest): Promise<Response> {
     }
 
     // ✅ Delete blog from SQLite
-    db.prepare("DELETE FROM blogs WHERE id = ?").run(id);
+    await dbRun("DELETE FROM blogs WHERE id = ?", [id]);
 
-    const blogs: Blog[] = db
-      .prepare("SELECT * FROM blogs ORDER BY updatedAt DESC")
-      .all();
+    // Get updated blogs list
+    const blogs: Blog[] = await dbAll("SELECT * FROM blogs ORDER BY updatedAt DESC");
 
     return NextResponse.json({ success: true, blogs } as DeleteBlogResponse);
   } catch (err) {

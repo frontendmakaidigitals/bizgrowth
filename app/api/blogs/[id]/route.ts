@@ -2,17 +2,18 @@ import { NextResponse, NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 import zlib from "zlib";
-import db from "@/lib/db";
+import { dbGet, dbRun } from "@/lib/db";
 
 const uploadsDir = path.join(process.cwd(), "data/uploads");
 
 // --- PUT (Update blog) ---
-export async function PUT( req: NextRequest, { params }: { params: Promise<{ id: string }> } ) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const formData = await req.formData();
 
-    const existing = db.prepare("SELECT * FROM blogs WHERE id = ?").get(id);
+    // Check if blog exists
+    const existing = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
     if (!existing) {
       return NextResponse.json(
         { success: false, error: "Blog not found" },
@@ -62,13 +63,15 @@ export async function PUT( req: NextRequest, { params }: { params: Promise<{ id:
     const now = new Date().toISOString();
 
     // --- Update SQLite record ---
-    db.prepare(
+    await dbRun(
       `UPDATE blogs
        SET title = ?, metaTitle = ?, metaDesc = ?, author = ?, category = ?, content = ?, image = ?, updatedAt = ?
-       WHERE id = ?`
-    ).run(title, metaTitle, metaDesc, author, category, content, image, now, id);
+       WHERE id = ?`,
+      [title, metaTitle, metaDesc, author, category, content, image, now, id]
+    );
 
-    const updated = db.prepare("SELECT * FROM blogs WHERE id = ?").get(id);
+    // Get updated blog
+    const updated = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
 
     return NextResponse.json({ success: true, blog: updated });
   } catch (err) {
@@ -81,10 +84,10 @@ export async function PUT( req: NextRequest, { params }: { params: Promise<{ id:
 }
 
 // --- GET (Fetch single blog) ---
-export async function GET( req: NextRequest, { params }: { params: Promise<{ id: string }> } ) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const blog = db.prepare("SELECT * FROM blogs WHERE id = ?").get(id);
+    const blog = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
 
     if (!blog) {
       return NextResponse.json(
@@ -109,6 +112,45 @@ export async function GET( req: NextRequest, { params }: { params: Promise<{ id:
     console.error("Fetch failed:", err);
     return NextResponse.json(
       { success: false, error: "Failed to fetch blog" },
+      { status: 500 }
+    );
+  }
+}
+
+// --- DELETE (Remove blog) ---
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params;
+
+    // Check if blog exists and get image info
+    const existing = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
+    if (!existing) {
+      return NextResponse.json(
+        { success: false, error: "Blog not found" },
+        { status: 404 }
+      );
+    }
+
+    // Delete associated image file
+    if (existing.image) {
+      const imagePath = path.join(uploadsDir, existing.image);
+      if (fs.existsSync(imagePath)) {
+        try {
+          await fs.promises.unlink(imagePath);
+        } catch (err) {
+          console.warn("⚠️ Failed to delete image file:", err);
+        }
+      }
+    }
+
+    // Delete from database
+    await dbRun("DELETE FROM blogs WHERE id = ?", [id]);
+
+    return NextResponse.json({ success: true, message: "Blog deleted successfully" });
+  } catch (err) {
+    console.error("Delete failed:", err);
+    return NextResponse.json(
+      { success: false, error: "Delete failed" },
       { status: 500 }
     );
   }
