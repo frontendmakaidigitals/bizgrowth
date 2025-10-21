@@ -2,16 +2,23 @@ name: Deploy Bizgrowth
 
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-deploy:
+    name: Build and Deploy to VPS
     runs-on: ubuntu-latest
-
+    env:
+      NEXT_PUBLIC_EMAIL_USER: ${{ secrets.NEXT_PUBLIC_EMAIL_USER }}
+      NEXT_PUBLIC_EMAIL_PASS: ${{ secrets.NEXT_PUBLIC_EMAIL_PASS }}
+      NEXT_PUBLIC_EMAIL_TO: ${{ secrets.NEXT_PUBLIC_EMAIL_TO }}
     steps:
       # 1️⃣ Checkout repo
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       # 2️⃣ Setup Node.js
       - name: Setup Node.js
@@ -20,16 +27,16 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # 3️⃣ Install dependencies (dev included for build)
+      # 3️⃣ Install dependencies (for build)
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      # 4️⃣ Build the Next.js app
-      - name: Build application
+      # 4️⃣ Build Next.js
+      - name: Build project
         run: npm run build
 
       # 5️⃣ Package build for deployment
-      - name: Create deployment package
+      - name: Package build
         run: |
           tar -czf bizgrowth-deploy.tar.gz \
             .next public package.json package-lock.json next.config.* 2>/dev/null || true
@@ -41,89 +48,63 @@ jobs:
           name: bizgrowth-build
           path: bizgrowth-deploy.tar.gz
 
-      # 7️⃣ Deploy to server
+      # 7️⃣ Deploy to VPS
       - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: 65.20.74.159
-          username: milestonehre
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            cd /home/milestonehre/bizgrowth
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          rsync -avz --delete --exclude '.git' --exclude 'node_modules' \
+            -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" \
+            ./ milestonehre@65.20.74.159:~/bizgrowth/
+
+      # 8️⃣ Run deployment and PM2 setup on VPS
+      - name: Deploy and start app
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no milestonehre@65.20.74.159 "
+            cd ~/bizgrowth
 
             # Backup old build
-            if [ -d ".next" ]; then
-              cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
+            if [ -d '.next' ]; then
+              cp -r .next .next.backup.\$(date +%Y%m%d_%H%M%S)
             fi
 
             # Clean old build folders only
             rm -rf .next public next.config.*
 
             # Extract new build
-            tar -xzf /home/milestonehre/bizgrowth-deploy.tar.gz -C .
+            tar -xzf bizgrowth-deploy.tar.gz -C .
 
-            # Ensure package.json exists before npm install
+            # Ensure package.json exists
             if [ ! -f package.json ]; then
-              echo "❌ package.json missing! Deployment aborted."
+              echo '❌ package.json missing! Deployment aborted.'
               exit 1
             fi
 
             # Install production dependencies
-            npm install --production --legacy-peer-deps
+            npm ci --omit=dev --legacy-peer-deps
 
             # Rebuild better-sqlite3 if exists
-            if [ -d "node_modules/better-sqlite3" ]; then
+            if [ -d 'node_modules/better-sqlite3' ]; then
               npm rebuild better-sqlite3 --build-from-source || true
             fi
 
-            # Start or restart app with PM2
-            pm2 restart bizgrowth || PORT=3005 pm2 start npm --name "bizgrowth" -- start
+            # Stop existing PM2 process
+            pm2 delete bizgrowth || true
 
-      # 8️⃣ Health check
-      - name: Health check
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: 65.20.74.159
-          username: milestonehre
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
+            # Start app with PM2
+            PORT=3005 pm2 start npm --name bizgrowth -- start
+            pm2 save
+            pm2 set pm2:logs:timestamp true
+
+            # Health check
             for i in {1..5}; do
-              if curl -f http://localhost:3005 > /dev/null 2>&1; then
-                echo "✅ Application is healthy"
-                pm2 logs bizgrowth --lines 50 --nostream
-                exit 0
-              fi
-              echo "⏳ Attempt $i: Waiting for application..."
-              sleep 10
-            done
-            echo "❌ Application health check failed"
-            pm2 logs bizgrowth --lines 100 --nostream
-            exit 1
-
-      # 9️⃣ Rollback on failure
-      - name: Rollback on failure
-        if: failure()
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: 65.20.74.159
-          username: milestonehre
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            echo "🔄 Deployment failed, attempting rollback..."
-            cd /home/milestonehre/bizgrowth
-            BACKUP=$(ls -t .next.backup.* 2>/dev/null | head -n1)
-            if [ -n "$BACKUP" ]; then
-              echo "📦 Restoring from backup: $BACKUP"
-              rm -rf .next
-              mv "$BACKUP" .next
-              pm2 restart bizgrowth
+              curl -f http://localhost:3005 && echo '✅ App healthy' && exit 0
+              echo '⏳ Waiting for app...'
               sleep 5
-              echo "✅ Rollback completed"
-            else
-              echo "❌ No backup found for rollback"
-              pm2 restart bizgrowth
-            fi
-            pm2 logs bizgrowth --lines 50 --nostream
+            done
+            echo '❌ App failed health check'
+            pm2 logs bizgrowth --lines 50
+            exit 1
+          "
