@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
 import {
@@ -49,7 +49,8 @@ import { InsertTable } from "@/components/editor/plugins/toolbar/block-insert/in
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { BlockInsertPlugin } from "@/components/editor/plugins/toolbar/block-insert-plugin";
 import { LexicalEditor } from "lexical";
-import { PreventAutoFocusPlugin } from "@/components/editor/plugins/PreventAutoFocusPlugin";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { SafeAutoLinkPlugin } from "@/components/editor/plugins/safeAutoPlugin";
 const editorConfig: InitialConfigType = {
   namespace: "Editor",
   theme: editorTheme,
@@ -115,8 +116,6 @@ export function Editor({
           <OnChangePlugin
             ignoreSelectionChange={true}
             onChange={(editorState, editor, tags) => {
-              // Only trigger callbacks if the change is meaningful
-              // Skip if it's just a history merge or selection change
               const shouldUpdate = !tags.has("history-merge") && tags.size > 0;
 
               if (shouldUpdate || tags.size === 0) {
@@ -230,7 +229,7 @@ export function Plugins({
           />
         )}
         <ClickableLinkPlugin />
-        <AutoLinkPlugin matchers={MATCHERS} />
+        <SafeAutoLinkPlugin matchers={MATCHERS} />
         <LinkPlugin />
         <FloatingLinkEditorPlugin
           anchorElem={floatingAnchorElem}
@@ -241,7 +240,6 @@ export function Plugins({
         {!readOnly && <TablePlugin />}
         <ListPlugin />
         <CheckListPlugin />
-        <PreventAutoFocusPlugin />
       </div>
 
       {/* Bottom actions only in editing mode */}
