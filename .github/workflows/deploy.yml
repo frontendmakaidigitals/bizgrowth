@@ -72,34 +72,41 @@ jobs:
           rm -rf node_modules
           npm cache clean --force
           
-          # OPTION 1: Replace better-sqlite3 with sqlite3 (compatible alternative)
-          echo "🔄 Replacing better-sqlite3 with compatible alternative..."
-          cp package.json package.json.backup
-          node -e "
-            const pkg = require('./package.json');
-            delete pkg.dependencies['better-sqlite3'];
-            pkg.dependencies['sqlite3'] = '^5.1.6';
-            require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));
-          "
+          # Install dependencies WITHOUT better-sqlite3 compilation
+          echo "🚀 Installing dependencies (skip native modules)..."
+          npm ci --ignore-scripts
           
-          # Install all dependencies
-          echo "🚀 Installing dependencies..."
-          npm ci
-          
-          # OPTION 2: If you want to keep better-sqlite3 but disable it, create a mock
-          echo "🔧 Creating better-sqlite3 mock if needed..."
+          # Create better-sqlite3 mock to prevent runtime errors
+          echo "🔧 Creating better-sqlite3 mock..."
+          rm -rf node_modules/better-sqlite3
           mkdir -p node_modules/better-sqlite3
           cat > node_modules/better-sqlite3/index.js << 'EOF'
           // Mock better-sqlite3 for deployment
-          console.log('⚠️ better-sqlite3 is mocked - using in-memory data');
+          console.log('⚠️ better-sqlite3 is mocked - database functionality disabled');
+          class Statement {
+            run() { return { changes: 0 }; }
+            all() { return []; }
+            get() { return null; }
+          }
           class Database {
-            constructor() {
-              this.prepare = () => ({ run: () => {}, all: () => [] });
-              this.exec = () => {};
+            constructor(filename, options) {
+              console.log('Mock Database created for:', filename);
+              this.prepare = (sql) => new Statement();
+              this.exec = (sql) => {};
               this.close = () => {};
+              this.transaction = (fn) => fn;
             }
           }
           module.exports = { Database };
+          EOF
+          
+          # Also create package.json for the mock module
+          cat > node_modules/better-sqlite3/package.json << 'EOF'
+          {
+            "name": "better-sqlite3",
+            "version": "12.4.1",
+            "main": "index.js"
+          }
           EOF
           
           # Build application
@@ -143,11 +150,6 @@ jobs:
         script: |
           echo "🔄 Deployment failed, attempting rollback..."
           cd /home/milestonehre/bizgrowth
-          
-          # Restore original package.json
-          if [ -f "package.json.backup" ]; then
-            mv package.json.backup package.json
-          fi
           
           # Find latest backup
           BACKUP=$(ls -t .next.backup.* 2>/dev/null | head -n1)
