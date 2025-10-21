@@ -2,29 +2,25 @@ name: Deploy Bizgrowth
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Run tests
-      run: npm test --if-present
-    
-    - name: Build application
-      run: npm run build
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test --if-present
+      - name: Build application
+        run: npm run build
 
   deploy:
     needs: test
@@ -46,21 +42,6 @@ jobs:
     - name: Build application
       run: npm run build
     
-    - name: Create deployment package
-      run: |
-        mkdir -p deploy
-        cp -r .next deploy/
-        cp -r public deploy/ 2>/dev/null || true
-        cp package.json package-lock.json deploy/
-        cp next.config.* deploy/ 2>/dev/null || true
-        cd deploy && tar -czf ../bizgrowth-deploy.tar.gz .
-    
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: bizgrowth-build
-        path: bizgrowth-deploy.tar.gz
-    
     - name: Deploy to server
       uses: appleboy/ssh-action@v1.0.0
       with:
@@ -69,13 +50,19 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          # Create backup
           cd /home/milestonehre/bizgrowth
+          
+          # Create backup
           if [ -d ".next" ]; then
             cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
           fi
           
-          # Initialize git repository if needed and pull latest code
+          # Install latest GCC and build tools
+          echo "🔧 Installing latest GCC and build tools..."
+          sudo dnf update -y
+          sudo dnf install -y gcc-toolset-12 gcc-c++ make python3 nodejs npm
+          
+          # Initialize git and pull latest code
           if [ ! -d .git ]; then
             git init
             git remote add origin https://github.com/frontendmakaidigitals/bizgrowth.git
@@ -83,13 +70,25 @@ jobs:
           git fetch origin
           git reset --hard origin/master
           
-          # Install production dependencies
-          npm ci 
+          # Clean install and rebuild
+          echo "📦 Clean installation..."
+          rm -rf node_modules
+          npm cache clean --force
+          
+          # Install dependencies with build tools
+          echo "🚀 Installing dependencies..."
+          npm ci
+          
+          # Rebuild native modules with latest GCC
+          echo "🔨 Rebuilding native modules..."
+          npm rebuild
           
           # Build application
+          echo "🏗️ Building application..."
           npm run build
           
           # Restart PM2 process
+          echo "🔄 Restarting application..."
           pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
           
           # Wait for app to start
@@ -125,8 +124,6 @@ jobs:
         port: 22
         script: |
           echo "🔄 Deployment failed, attempting rollback..."
-            sudo dnf groupinstall 'Development Tools' -y
-            sudo dnf install gcc-c++ make python3 -y
           cd /home/milestonehre/bizgrowth
           
           # Find latest backup
