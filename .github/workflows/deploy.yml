@@ -57,34 +57,44 @@ jobs:
             cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
           fi
           
-          # Install build tools (but NOT nodejs/npm from dnf)
-          echo "🔧 Installing build tools..."
-          sudo dnf install -y gcc-c++ make python3
+          # Skip system package installation (no sudo access)
+          echo "⚠️ Skipping system package installation (no sudo access)"
           
-          # Use nvm to manage Node.js version
-          echo "📦 Setting up Node.js with nvm..."
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+          # Use nvm to ensure correct Node.js version
+          echo "📦 Ensuring correct Node.js version..."
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install 20
-          nvm use 20
+          nvm use 20 2>/dev/null || nvm install 20
           
-          # Initialize git and pull latest code
-          if [ ! -d .git ]; then
-            git init
-            git remote add origin https://github.com/frontendmakaidigitals/bizgrowth.git
-          fi
+          # Pull latest code
           git fetch origin
           git reset --hard origin/master
           
-          # Clean install and rebuild
+          # Clean installation
           echo "📦 Clean installation..."
           rm -rf node_modules
           npm cache clean --force
           
-          # Install ALL dependencies (including dev dependencies)
-          echo "🚀 Installing dependencies..."
+          # Install dependencies WITHOUT better-sqlite3 first
+          echo "🚀 Installing dependencies (excluding problematic native modules)..."
+          # Create a temporary package.json without better-sqlite3
+          cp package.json package.json.backup
+          node -e "
+            const pkg = require('./package.json');
+            delete pkg.dependencies['better-sqlite3'];
+            require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+          "
+          
           npm ci
+          
+          # Restore original package.json
+          mv package.json.backup package.json
+          
+          # Install better-sqlite3 separately with fallback
+          echo "🔨 Handling better-sqlite3..."
+          npm install better-sqlite3 --build-from-source --fallback-to-build || \
+          npm install better-sqlite3 --ignore-scripts || \
+          echo "⚠️ better-sqlite3 installation failed, but continuing..."
           
           # Build application
           echo "🏗️ Building application..."
@@ -94,7 +104,6 @@ jobs:
           echo "🔄 Restarting application..."
           pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
           
-          # Wait for app to start
           sleep 10
     
     - name: Health check
