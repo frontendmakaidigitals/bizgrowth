@@ -2,82 +2,41 @@ name: Deploy Bizgrowth - Full Build
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_EMAIL_USER: ${{ secrets.NEXT_PUBLIC_EMAIL_USER }}
-      NEXT_PUBLIC_EMAIL_PASS: ${{ secrets.NEXT_PUBLIC_EMAIL_PASS }}
-      NEXT_PUBLIC_EMAIL_TO: ${{ secrets.NEXT_PUBLIC_EMAIL_TO }}
 
     steps:
-      # 1️⃣ Checkout repo
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      # 3️⃣ Install all dependencies (dev + prod for build)
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+      - run: npm ci --legacy-peer-deps
 
-      # 4️⃣ Build Next.js app
-      - name: Build application
-        run: npm run build
+      - run: npm run build
 
-      # 5️⃣ Package everything for deployment
-      - name: Create deployment package
-        run: |
-          tar -czf bizgrowth-deploy.tar.gz \
-            .next public node_modules package.json package-lock.json next.config.* 2>/dev/null || true
+      - run: |
+          tar -czf bizgrowth-deploy.tar.gz .next public node_modules package.json package-lock.json next.config.* || true
 
-      # 6️⃣ Upload artifact (optional)
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: bizgrowth-build
-          path: bizgrowth-deploy.tar.gz
-
-      # 7️⃣ Deploy to VPS
-      - name: Deploy to VPS
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-        run: |
+      - run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
           rsync -avz --delete --exclude '.git' \
             -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" \
-            bizgrowth-deploy.tar.gz $SSH_USER@$SSH_HOST:~/bizgrowth/
+            bizgrowth-deploy.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/bizgrowth/
 
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ~/bizgrowth
-
-            # Backup old build
-            if [ -d .next ]; then
-              cp -r .next .next.backup.\$(date +%Y%m%d_%H%M%S)
-            fi
-
-            # Clean old build except node_modules & package.json
-            rm -rf .next public next.config.*
-
-            # Extract new build
+            pm2 stop bizgrowth || true
             tar -xzf bizgrowth-deploy.tar.gz -C .
-
-            # Start/restart app with PM2
-            pm2 restart bizgrowth || PORT=3005 pm2 start npm --name 'bizgrowth' -- start
-
-            # Optional: check logs briefly
-            pm2 logs bizgrowth --lines 20 --nostream
+            npm ci --omit=dev --legacy-peer-deps
+            PORT=3005 pm2 start npm --name 'bizgrowth' -- start
           "
