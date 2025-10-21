@@ -1,4 +1,4 @@
-name: Deploy Bizgrowth - Full Build
+name: Deploy Bizgrowth
 
 on:
   push:
@@ -6,86 +6,136 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  test:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_EMAIL_USER: ${{ secrets.NEXT_PUBLIC_EMAIL_USER }}
-      NEXT_PUBLIC_EMAIL_PASS: ${{ secrets.NEXT_PUBLIC_EMAIL_PASS }}
-      NEXT_PUBLIC_EMAIL_TO: ${{ secrets.NEXT_PUBLIC_EMAIL_TO }}
-
     steps:
-      # 1️⃣ Checkout repository
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test --if-present
+    
+    - name: Build application
+      run: npm run build
 
-      # 2️⃣ Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      # 3️⃣ Install all dependencies (dev + prod for build)
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
-      # 4️⃣ Build Next.js app
-      - name: Build application
-        run: npm run build
-
-      # 5️⃣ Package only the necessary build files
-      - name: Create deployment package
-        run: |
-          tar -czf bizgrowth-deploy.tar.gz \
-            .next public package.json package-lock.json next.config.* 2>/dev/null || true
-
-      # 6️⃣ Upload artifact (optional)
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: bizgrowth-build
-          path: bizgrowth-deploy.tar.gz
-
-      # 7️⃣ Deploy to VPS
-      - name: Deploy to VPS
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-          # Transfer build package
-          rsync -avz --delete --exclude '.git' \
-            -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" \
-            bizgrowth-deploy.tar.gz $SSH_USER@$SSH_HOST:~/bizgrowth/
-
-          # SSH into VPS and deploy
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
-            cd ~/bizgrowth
-
-            # Backup old build
-            if [ -d .next ]; then
-              cp -r .next .next.backup.\$(date +%Y%m%d_%H%M%S)
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Create deployment package
+      run: |
+        mkdir -p deploy
+        cp -r .next deploy/
+        cp -r public deploy/ 2>/dev/null || true
+        cp package.json package-lock.json deploy/
+        cp next.config.* deploy/ 2>/dev/null || true
+        cd deploy && tar -czf ../bizgrowth-deploy.tar.gz .
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bizgrowth-build
+        path: bizgrowth-deploy.tar.gz
+    
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 65.20.74.159
+        username: milestonehre
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # Create backup
+          cd /home/milestonehre/bizgrowth
+          if [ -d ".next" ]; then
+            cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
+          fi
+          
+          # Initialize git repository if needed and pull latest code
+          if [ ! -d .git ]; then
+            git init
+            git remote add origin https://github.com/frontendmakaidigitals/bizgrowth.git
+          fi
+          git fetch origin
+          git reset --hard origin/master
+          
+          # Install production dependencies
+          npm ci 
+          
+          # Build application
+          npm run build
+          
+          # Restart PM2 process
+          pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
+          
+          # Wait for app to start
+          sleep 10
+    
+    - name: Health check
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 65.20.74.159
+        username: milestonehre
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # Check if the application is responding
+          for i in {1..5}; do
+            if curl -f http://localhost:3005 > /dev/null 2>&1; then
+              echo "✅ Application is healthy"
+              exit 0
             fi
-
-            # Clean old build (keep node_modules & package.json)
-            rm -rf .next public next.config.*
-
-            # Extract new build
-            tar -xzf bizgrowth-deploy.tar.gz -C .
-
-            # Ensure dependencies exist for this environment
-            npm ci --production --legacy-peer-deps
-
-            # Rebuild native modules if needed
-            [ -d 'node_modules/better-sqlite3' ] && npm rebuild better-sqlite3 --build-from-source || true
-
-            # Start/restart app with PM2
-            pm2 restart bizgrowth || PORT=3005 pm2 start npm --name 'bizgrowth' -- start
-
-            # Optional: brief log check
-            pm2 logs bizgrowth --lines 20 --nostream
-          "
+            echo "⏳ Attempt $i: Waiting for application..."
+            sleep 10
+          done
+          echo "❌ Application health check failed"
+          exit 1
+    
+    - name: Rollback on failure
+      if: failure()
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 65.20.74.159
+        username: milestonehre
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          echo "🔄 Deployment failed, attempting rollback..."
+          cd /home/milestonehre/bizgrowth
+          
+          # Find latest backup
+          BACKUP=$(ls -t .next.backup.* 2>/dev/null | head -n1)
+          if [ -n "$BACKUP" ]; then
+            echo "📦 Restoring from backup: $BACKUP"
+            rm -rf .next
+            mv "$BACKUP" .next
+            pm2 restart bizgrowth
+            echo "✅ Rollback completed"
+          else
+            echo "❌ No backup found for rollback"
+            pm2 restart bizgrowth
+          fi
