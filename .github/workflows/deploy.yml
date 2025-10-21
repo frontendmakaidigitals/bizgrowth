@@ -24,24 +24,24 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-
-      # 5️⃣ Build the Next.js app
+      # 4️⃣ Build the Next.js app
       - name: Build application
         run: npm run build
 
-      # 6️⃣ Package build for deployment
+      # 5️⃣ Package build for deployment
       - name: Create deployment package
         run: |
-          tar -czf bizgrowth-deploy.tar.gz .next public package.json package-lock.json next.config.* 2>/dev/null || true
+          tar -czf bizgrowth-deploy.tar.gz \
+            .next public package.json package-lock.json next.config.* 2>/dev/null || true
 
-      # 7️⃣ Upload artifact (optional, useful for debugging)
+      # 6️⃣ Upload artifact (optional)
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: bizgrowth-build
           path: bizgrowth-deploy.tar.gz
 
-      # 8️⃣ Deploy to server
+      # 7️⃣ Deploy to server
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -57,8 +57,8 @@ jobs:
               cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
             fi
 
-            # Clean old build (keep node_modules)
-            rm -rf .next public package.json package-lock.json next.config.*
+            # Clean old build (keep node_modules & package.json)
+            rm -rf .next public next.config.*
 
             # Extract new build
             tar -xzf /home/milestonehre/bizgrowth-deploy.tar.gz -C .
@@ -74,7 +74,7 @@ jobs:
             # Start or restart app with PM2
             pm2 restart bizgrowth || PORT=3005 pm2 start npm --name "bizgrowth" -- start
 
-      # 9️⃣ Health check
+      # 8️⃣ Health check
       - name: Health check
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -96,7 +96,7 @@ jobs:
             pm2 logs bizgrowth --lines 100 --nostream
             exit 1
 
-      # 🔄 Rollback on failure
+      # 9️⃣ Rollback on failure
       - name: Rollback on failure
         if: failure()
         uses: appleboy/ssh-action@v1.0.0
