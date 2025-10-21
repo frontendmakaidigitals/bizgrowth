@@ -6,154 +6,121 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
-    
-    - name: Run tests
-      run: npm test --if-present
-    
-    - name: Build application
-      run: npm run build
-
   deploy:
-    needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
-    
-    - name: Build application
-      run: npm run build
-    
-    - name: Create deployment package
-      run: |
-        mkdir -p deploy
-        cp -r .next deploy/
-        cp -r public deploy/ 2>/dev/null || true
-        cp package.json package-lock.json deploy/
-        cp next.config.* deploy/ 2>/dev/null || true
-        cd deploy && tar -czf ../bizgrowth-deploy.tar.gz .
-    
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: bizgrowth-build
-        path: bizgrowth-deploy.tar.gz
-    
-    - name: Deploy to server
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: 65.20.74.159
-        username: milestonehre
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          # Create backup
-          cd /home/milestonehre/bizgrowth
-          if [ -d ".next" ]; then
-            cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
-          fi
-          
-          # Initialize git repository if needed and pull latest code
-          if [ ! -d .git ]; then
-            git init
-            git remote add origin https://github.com/frontendmakaidigitals/bizgrowth.git
-          fi
-          git fetch origin
-          git reset --hard origin/master
-          
-          # Clean old builds
-          rm -rf node_modules
-          rm -rf .next
-          
-          # Install production dependencies with legacy peer deps
-          npm install --production --legacy-peer-deps
-          
-          # Handle better-sqlite3 if it exists
-          if [ -d "node_modules/better-sqlite3" ]; then
-            echo "Attempting to rebuild better-sqlite3..."
-            npm rebuild better-sqlite3 --build-from-source || echo "Warning: better-sqlite3 rebuild failed"
-          fi
-          
-          # Build application
-          NODE_ENV=production npm run build
-          
-          # Restart PM2 process
-          pm2 restart bizgrowth || PORT=3005 pm2 start npm --name "bizgrowth" -- start
-          
-          # Wait for app to start
-          sleep 10
-    
-    - name: Health check
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: 65.20.74.159
-        username: milestonehre
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          # Check if the application is responding
-          for i in {1..5}; do
-            if curl -f http://localhost:3005 > /dev/null 2>&1; then
-              echo "✅ Application is healthy"
-              pm2 logs bizgrowth --lines 50 --nostream
-              exit 0
+      # 1️⃣ Checkout repo
+      - uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3️⃣ Install dependencies (dev included for build)
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # 4️⃣ Run tests (optional)
+      - name: Run tests
+        run: npm test --if-present
+
+      # 5️⃣ Build the Next.js app
+      - name: Build application
+        run: npm run build
+
+      # 6️⃣ Package build for deployment
+      - name: Create deployment package
+        run: |
+          tar -czf bizgrowth-deploy.tar.gz .next public package.json package-lock.json next.config.* 2>/dev/null || true
+
+      # 7️⃣ Upload artifact (optional, useful for debugging)
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bizgrowth-build
+          path: bizgrowth-deploy.tar.gz
+
+      # 8️⃣ Deploy to server
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 65.20.74.159
+          username: milestonehre
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home/milestonehre/bizgrowth
+
+            # Backup old build
+            if [ -d ".next" ]; then
+              cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
             fi
-            echo "⏳ Attempt $i: Waiting for application..."
-            sleep 10
-          done
-          echo "❌ Application health check failed"
-          echo "📋 Recent logs:"
-          pm2 logs bizgrowth --lines 100 --nostream
-          exit 1
-    
-    - name: Rollback on failure
-      if: failure()
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: 65.20.74.159
-        username: milestonehre
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          echo "🔄 Deployment failed, attempting rollback..."
-          cd /home/milestonehre/bizgrowth
-          
-          # Find latest backup
-          BACKUP=$(ls -t .next.backup.* 2>/dev/null | head -n1)
-          if [ -n "$BACKUP" ]; then
-            echo "📦 Restoring from backup: $BACKUP"
-            rm -rf .next
-            mv "$BACKUP" .next
-            pm2 restart bizgrowth
-            sleep 5
-            echo "✅ Rollback completed"
-          else
-            echo "❌ No backup found for rollback"
-            pm2 restart bizgrowth
-          fi
-          
-          # Show logs
-          echo "📋 Application logs after rollback:"
-          pm2 logs bizgrowth --lines 50 --nostream
+
+            # Clean old build (keep node_modules)
+            rm -rf .next public package.json package-lock.json next.config.*
+
+            # Extract new build
+            tar -xzf /home/milestonehre/bizgrowth-deploy.tar.gz -C .
+
+            # Install production dependencies
+            npm install --production --legacy-peer-deps
+
+            # Rebuild better-sqlite3 if exists
+            if [ -d "node_modules/better-sqlite3" ]; then
+              npm rebuild better-sqlite3 --build-from-source || true
+            fi
+
+            # Start or restart app with PM2
+            pm2 restart bizgrowth || PORT=3005 pm2 start npm --name "bizgrowth" -- start
+
+      # 9️⃣ Health check
+      - name: Health check
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 65.20.74.159
+          username: milestonehre
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            for i in {1..5}; do
+              if curl -f http://localhost:3005 > /dev/null 2>&1; then
+                echo "✅ Application is healthy"
+                pm2 logs bizgrowth --lines 50 --nostream
+                exit 0
+              fi
+              echo "⏳ Attempt $i: Waiting for application..."
+              sleep 10
+            done
+            echo "❌ Application health check failed"
+            pm2 logs bizgrowth --lines 100 --nostream
+            exit 1
+
+      # 🔄 Rollback on failure
+      - name: Rollback on failure
+        if: failure()
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 65.20.74.159
+          username: milestonehre
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            echo "🔄 Deployment failed, attempting rollback..."
+            cd /home/milestonehre/bizgrowth
+            BACKUP=$(ls -t .next.backup.* 2>/dev/null | head -n1)
+            if [ -n "$BACKUP" ]; then
+              echo "📦 Restoring from backup: $BACKUP"
+              rm -rf .next
+              mv "$BACKUP" .next
+              pm2 restart bizgrowth
+              sleep 5
+              echo "✅ Rollback completed"
+            else
+              echo "❌ No backup found for rollback"
+              pm2 restart bizgrowth
+            fi
+            pm2 logs bizgrowth --lines 50 --nostream
