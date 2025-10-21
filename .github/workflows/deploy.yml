@@ -100,7 +100,7 @@ jobs:
           NODE_ENV=production npm run build
           
           # Restart PM2 process
-          pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
+          pm2 restart bizgrowth || PORT=3005 pm2 start npm --name "bizgrowth" -- start
           
           # Wait for app to start
           sleep 10
