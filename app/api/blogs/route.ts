@@ -1,36 +1,69 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
 import path from "path";
-
+import fs from "fs";
+import { v4 as uuidv4 } from "uuid";
+import db from "@/lib/db";
+import zlib from "zlib";
 export async function GET() {
   try {
-    const dbPath = path.join(process.cwd(), "data", "db.json");
-    if (!fs.existsSync(dbPath)) {
-      return NextResponse.json({ blogs: [] });
+    const blogs = db.prepare("SELECT * FROM blogs ORDER BY updatedAt DESC").all();
+
+    interface CompressedBlog extends Blog {
+      content: string;
     }
 
-    const data = fs.readFileSync(dbPath, "utf-8");
-    const db = JSON.parse(data);
+    const processedBlogs: Blog[] = blogs.map((blog: CompressedBlog) => {
+      if (blog.content?.startsWith("gz:")) {
+        try {
+          const compressed: Buffer = Buffer.from(blog.content.slice(3), "base64");
+          blog.content = zlib.gunzipSync(compressed).toString("utf-8");
+        } catch (err: unknown) {
+          console.warn("Failed to decompress blog", blog.id, err);
+        }
+      }
+      return blog;
+    });
 
-    return NextResponse.json({ blogs: db.blogs || [] });
+    return NextResponse.json({ blogs: processedBlogs });
   } catch (err) {
     console.error("Error reading blogs:", err);
-    return NextResponse.json(
-      { success: false, error: "Failed to fetch blogs" },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: "Failed to fetch blogs" }, { status: 500 });
   }
 }
-export async function POST(req: Request) {
+
+interface Blog {
+  id: string;
+  title: string;
+  metaTitle: string;
+  metaDesc: string;
+  author: string;
+  category: string;
+  content: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface BlogFormData {
+  title: string | null;
+  metaTitle: string | null;
+  metaDesc: string | null;
+  author: string | null;
+  category: string | null;
+  content: string | null;
+  image: File | null;
+}
+
+export async function POST(req: Request): Promise<Response> {
   try {
     const formData = await req.formData();
-    const title = formData.get("title") as string;
-    const metaTitle = formData.get("metaTitle") as string;
-    const metaDesc = formData.get("metaDesc") as string;
-    const author = formData.get("author") as string;
-    const category = formData.get("category") as string;
-    const content = formData.get("content") as string;
-    const file = formData.get("image") as File;
+    const title = formData.get("title") as string | null;
+    const metaTitle = formData.get("metaTitle") as string | null;
+    const metaDesc = formData.get("metaDesc") as string | null;
+    const author = formData.get("author") as string | null;
+    const category = formData.get("category") as string | null;
+    const content = formData.get("content") as string | null;
+    const file = formData.get("image") as File | null;
 
     if (!file) {
       return NextResponse.json(
@@ -39,7 +72,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Save image in data/uploads
+    // ✅ Save image in data/uploads
     const uploadsDir = path.join(process.cwd(), "data", "uploads");
     if (!fs.existsSync(uploadsDir)) {
       fs.mkdirSync(uploadsDir, { recursive: true });
@@ -48,55 +81,46 @@ export async function POST(req: Request) {
     const filePath = path.join(uploadsDir, file.name);
     const buffer = Buffer.from(await file.arrayBuffer());
     fs.writeFileSync(filePath, buffer);
+    const imageUrl = file.name;
 
-    const imageUrl = `${file.name}`;
+    const id = uuidv4();
+    const now = new Date().toISOString();
 
-    const blog = {
-      id: Date.now(),
-      title,
-      metaTitle,
-      metaDesc,
-      author,
-      category,
-      content,
-      image: imageUrl,
-    };
-
-    // Path to db.json
-    const dbDir = path.join(process.cwd(), "data");
-    const dbPath = path.join(dbDir, "db.json");
-
-    // Ensure data directory exists
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
-
-    // Ensure db.json exists with default structure
-    if (!fs.existsSync(dbPath)) {
-      fs.writeFileSync(
-        dbPath,
-        JSON.stringify({ blogs: [], contacts: [] }, null, 2),
-        "utf-8"
+    // ✅ Insert into SQLite
+    const info = db
+      .prepare(
+        `INSERT INTO blogs 
+   (title, metaTitle, metaDesc, author, category, content, image, createdAt, updatedAt)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      )
+      .run(
+        title ?? "",
+        metaTitle ?? "",
+        metaDesc ?? "",
+        author ?? "",
+        category ?? "",
+        content ?? "",
+        imageUrl ?? "",
+        now,
+        now
       );
-    }
 
-    // Read existing db
-    const data = fs.readFileSync(dbPath, "utf-8");
-    const db = JSON.parse(data);
-
-    // Make sure blogs exists
-    if (!Array.isArray(db.blogs)) {
-      db.blogs = [];
-    }
-
-    db.blogs.push(blog);
-
-    // Write back to db.json
-    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), "utf-8");
+    const blog: Blog = {
+      id: info.lastInsertRowid.toString(),
+      title: title ?? "",
+      metaTitle: metaTitle ?? "",
+      metaDesc: metaDesc ?? "",
+      author: author ?? "",
+      category: category ?? "",
+      content: content ?? "",
+      image: imageUrl,
+      createdAt: now,
+      updatedAt: now,
+    };
 
     return NextResponse.json({ success: true, blog });
   } catch (err) {
-    console.error(err);
+    console.error("Error creating blog:", err);
     return NextResponse.json(
       { success: false, error: "Upload failed" },
       { status: 500 }
@@ -104,73 +128,59 @@ export async function POST(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
+interface DeleteBlogRequest extends Request {}
+
+interface DeleteBlogResponse {
+  success: boolean;
+  error?: string;
+  blogs?: Blog[];
+}
+
+export async function DELETE(req: DeleteBlogRequest): Promise<Response> {
   try {
-    const dbPath = path.join(process.cwd(), "data", "db.json");
-
-    if (!fs.existsSync(dbPath)) {
-      return NextResponse.json(
-        { success: false, error: "No blogs found" },
-        { status: 404 }
-      );
-    }
-
     const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const id: string | null = searchParams.get("id");
     if (!id) {
       return NextResponse.json(
-        { success: false, error: "Missing id" },
+        { success: false, error: "Missing id" } as DeleteBlogResponse,
         { status: 400 }
       );
     }
 
-    type Blog = {
-      id: string;
-      title: string;
-      metaTitle: string;
-      metaDesc: string;
-      author: string;
-      category: string;
-      content: string;
-      image: string; // e.g., "/uploads/filename.jpg"
-    };
+    const blog: Blog | undefined = db.prepare(
+      "SELECT * FROM blogs WHERE id = ?"
+    );
+    if (!blog) {
+      return NextResponse.json(
+        { success: false, error: "Blog not found" } as DeleteBlogResponse,
+        { status: 404 }
+      );
+    }
 
-    const data = fs.readFileSync(dbPath, "utf-8");
-    const db = JSON.parse(data) as { blogs: Blog[] };
-    db.blogs = Array.isArray(db.blogs) ? db.blogs : [];
-
-    const blogToDelete = db.blogs.find((blog) => blog.id == id);
-    if (blogToDelete?.image) {
-      const imagePath = path.join(
+    // ✅ Delete associated image
+    if (blog.image) {
+      const imagePath: string = path.join(
         process.cwd(),
         "data/uploads",
-        blogToDelete.image
+        blog.image
       );
       if (fs.existsSync(imagePath)) {
-        try {
-          fs.unlinkSync(imagePath); // delete image
-          console.log(`🗑️ Deleted image: ${imagePath}`);
-        } catch (err) {
-          console.error("⚠️ Failed to delete image:", err);
-        }
+        fs.unlinkSync(imagePath);
       }
     }
 
-    // Filter out the blog
-    const filteredBlogs = db.blogs.filter((blog) => blog.id != id);
+    // ✅ Delete blog from SQLite
+    db.prepare("DELETE FROM blogs WHERE id = ?").run(id);
 
-    // Save updated blogs
-    fs.writeFileSync(
-      dbPath,
-      JSON.stringify({ blogs: filteredBlogs }, null, 2),
-      "utf-8"
-    );
+    const blogs: Blog[] = db
+      .prepare("SELECT * FROM blogs ORDER BY updatedAt DESC")
+      .all();
 
-    return NextResponse.json({ success: true, blogs: filteredBlogs });
+    return NextResponse.json({ success: true, blogs } as DeleteBlogResponse);
   } catch (err) {
     console.error("Error deleting blog:", err);
     return NextResponse.json(
-      { success: false, error: "Failed to delete blog" },
+      { success: false, error: "Failed to delete blog" } as DeleteBlogResponse,
       { status: 500 }
     );
   }

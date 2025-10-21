@@ -62,7 +62,8 @@
     "styled-components": "^6.1.13",
     "swiper": "^11.1.15",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.20",
