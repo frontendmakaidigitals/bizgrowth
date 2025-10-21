@@ -57,10 +57,17 @@ jobs:
             cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
           fi
           
-          # Install latest GCC and build tools
-          echo "🔧 Installing latest GCC and build tools..."
-          sudo dnf update -y
-          sudo dnf install -y gcc-toolset-12 gcc-c++ make python3 nodejs npm
+          # Install build tools (but NOT nodejs/npm from dnf)
+          echo "🔧 Installing build tools..."
+          sudo dnf install -y gcc-c++ make python3
+          
+          # Use nvm to manage Node.js version
+          echo "📦 Setting up Node.js with nvm..."
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install 20
+          nvm use 20
           
           # Initialize git and pull latest code
           if [ ! -d .git ]; then
@@ -75,13 +82,9 @@ jobs:
           rm -rf node_modules
           npm cache clean --force
           
-          # Install dependencies with build tools
+          # Install ALL dependencies (including dev dependencies)
           echo "🚀 Installing dependencies..."
           npm ci
-          
-          # Rebuild native modules with latest GCC
-          echo "🔨 Rebuilding native modules..."
-          npm rebuild
           
           # Build application
           echo "🏗️ Building application..."
