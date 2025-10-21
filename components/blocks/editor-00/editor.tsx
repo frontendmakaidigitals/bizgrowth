@@ -49,7 +49,7 @@ import { InsertTable } from "@/components/editor/plugins/toolbar/block-insert/in
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { BlockInsertPlugin } from "@/components/editor/plugins/toolbar/block-insert-plugin";
 import { LexicalEditor } from "lexical";
-
+import { PreventAutoFocusPlugin } from "@/components/editor/plugins/PreventAutoFocusPlugin";
 const editorConfig: InitialConfigType = {
   namespace: "Editor",
   theme: editorTheme,
@@ -114,9 +114,15 @@ export function Editor({
           />
           <OnChangePlugin
             ignoreSelectionChange={true}
-            onChange={(editorState) => {
-              onChange?.(editorState);
-              onSerializedChange?.(editorState.toJSON());
+            onChange={(editorState, editor, tags) => {
+              // Only trigger callbacks if the change is meaningful
+              // Skip if it's just a history merge or selection change
+              const shouldUpdate = !tags.has("history-merge") && tags.size > 0;
+
+              if (shouldUpdate || tags.size === 0) {
+                onChange?.(editorState);
+                onSerializedChange?.(editorState.toJSON());
+              }
             }}
           />
         </TooltipProvider>
@@ -206,7 +212,6 @@ export function Plugins({
         {readOnly && blogPage === false ? (
           // Plain text preview with clamp
           <div className={`relative line-clamp-${clampLines} text-sm ${text}`}>
-         
             {renderPlainTextFromEditorState(serialized)}
           </div>
         ) : (
@@ -233,9 +238,10 @@ export function Plugins({
           setIsLinkEditMode={setIsLinkEditMode}
         />
         <HistoryPlugin />
-         {!readOnly && <TablePlugin />}
+        {!readOnly && <TablePlugin />}
         <ListPlugin />
         <CheckListPlugin />
+        <PreventAutoFocusPlugin />
       </div>
 
       {/* Bottom actions only in editing mode */}

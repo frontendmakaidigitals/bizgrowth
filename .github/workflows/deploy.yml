@@ -14,11 +14,11 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm ci --legacy-peer-deps
     
     - name: Run tests
       run: npm test --if-present
@@ -37,11 +37,11 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm ci --legacy-peer-deps
     
     - name: Build application
       run: npm run build
@@ -83,11 +83,21 @@ jobs:
           git fetch origin
           git reset --hard origin/master
           
-          # Install production dependencies
-          npm ci 
+          # Clean old builds
+          rm -rf node_modules
+          rm -rf .next
+          
+          # Install production dependencies with legacy peer deps
+          npm install --production --legacy-peer-deps
+          
+          # Handle better-sqlite3 if it exists
+          if [ -d "node_modules/better-sqlite3" ]; then
+            echo "Attempting to rebuild better-sqlite3..."
+            npm rebuild better-sqlite3 --build-from-source || echo "Warning: better-sqlite3 rebuild failed"
+          fi
           
           # Build application
-          npm run build
+          NODE_ENV=production npm run build
           
           # Restart PM2 process
           pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
@@ -107,12 +117,15 @@ jobs:
           for i in {1..5}; do
             if curl -f http://localhost:3005 > /dev/null 2>&1; then
               echo "✅ Application is healthy"
+              pm2 logs bizgrowth --lines 50 --nostream
               exit 0
             fi
             echo "⏳ Attempt $i: Waiting for application..."
             sleep 10
           done
           echo "❌ Application health check failed"
+          echo "📋 Recent logs:"
+          pm2 logs bizgrowth --lines 100 --nostream
           exit 1
     
     - name: Rollback on failure
@@ -134,8 +147,13 @@ jobs:
             rm -rf .next
             mv "$BACKUP" .next
             pm2 restart bizgrowth
+            sleep 5
             echo "✅ Rollback completed"
           else
             echo "❌ No backup found for rollback"
             pm2 restart bizgrowth
           fi
+          
+          # Show logs
+          echo "📋 Application logs after rollback:"
+          pm2 logs bizgrowth --lines 50 --nostream
