@@ -57,11 +57,17 @@ jobs:
               cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
             fi
 
-            # Clean old build (keep node_modules & package.json)
+            # Clean old build folders only
             rm -rf .next public next.config.*
 
             # Extract new build
             tar -xzf /home/milestonehre/bizgrowth-deploy.tar.gz -C .
+
+            # Ensure package.json exists before npm install
+            if [ ! -f package.json ]; then
+              echo "❌ package.json missing! Deployment aborted."
+              exit 1
+            fi
 
             # Install production dependencies
             npm install --production --legacy-peer-deps
