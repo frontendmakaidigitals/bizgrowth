@@ -24,7 +24,7 @@ function slugify(text: string): string {
 }
 
 async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch(`${"http://localhost:3000/"}/api/blogs`, {
+  const res = await fetch(`${"https://bizgrowthconsultancy.com/"}/api/blogs`, {
     next: { revalidate: 60 },
   });
 
