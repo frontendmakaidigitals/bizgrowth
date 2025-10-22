@@ -60,7 +60,7 @@ const Blogs = () => {
   }, []);
 
   return (
-    <section className=" py-1 lg:py-10 text-gray-900 relative">
+    <section className=" py-1 mt-16 mb-12 lg:mb-0 lg:mt-0 lg:py-10 text-gray-900 relative">
       {blogs.length !== 0 ? (
         <div className="container ">
           <motion.h1 className="text-4xl text-center lg:text-5xl font-bold  mb-6">
@@ -70,13 +70,13 @@ const Blogs = () => {
           <Carousel
             opts={{ align: "start" }}
             setApi={setApi}
-            className="w-full mt-12"
+            className=" mt-12"
           >
             <CarouselContent className="-ml-4">
               {blogs.map((blog, index) => (
                 <CarouselItem
                   key={blog.id || index}
-                  className="basis-1/1 pb-10 relative lg:basis-1/4"
+                  className="pb-10 relative basis-full sm:basis-1/2 lg:basis-1/4"
                 >
                   <div className="bg-blue-50 p-1 relative shadow-sm rounded-lg overflow-hidden">
                     <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
