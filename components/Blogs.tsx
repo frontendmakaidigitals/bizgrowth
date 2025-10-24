@@ -18,6 +18,7 @@ const Blogs = () => {
     title: string;
     content: string;
     image?: string;
+    createdAt: string;
     author?: string;
     [key: string]: any;
   }
@@ -117,7 +118,7 @@ const Blogs = () => {
                         <span>{blog.author ?? "Unknown"}</span>
                         <span>
                           {blog.id
-                            ? new Date(blog.id).toLocaleDateString()
+                            ? new Date(blog.createdAt).toLocaleDateString()
                             : "Unknown"}
                         </span>
                       </div>

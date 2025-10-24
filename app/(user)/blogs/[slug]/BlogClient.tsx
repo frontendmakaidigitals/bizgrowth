@@ -1,12 +1,5 @@
 "use client";
-import {
-  User,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Calendar,
-} from "lucide-react";
+import { User, Facebook, Twitter, Linkedin, Calendar } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Blogs from "@/components/Blogs";
@@ -44,6 +37,7 @@ export default function BlogClient({ blog }: { blog: any }) {
           </li>
           <li className="flex items-center gap-3 py-2 sm:py-0 px-3">
             <Calendar size={16} />
+            <p>{blog?.createdAt}</p>
           </li>
           <li className="hidden lg:flex items-center py-2 sm:py-0 px-3">
             {blog?.content ? calculateReadTime(blog?.content) : null}
