@@ -94,12 +94,12 @@ const Menu = () => {
                         <div key={pointIndex}>
                           <ul>
                             <Link
-                              href={`/${point.route}/${encodeURIComponent(
+                              href={`/${menu.route}/${encodeURIComponent(
                                 point.route.toLowerCase()
                               )}`}
                             >
                               <li className="mt-2 font-[500] hover:underline text-[#12250a] flex items-start gap-2">
-                                {point.name}
+                                {point.name} 
                               </li>
                             </Link>
                           </ul>

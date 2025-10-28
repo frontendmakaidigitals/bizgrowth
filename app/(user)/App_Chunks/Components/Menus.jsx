@@ -51,14 +51,14 @@ export const Menus = [
   {
     name: "Banking Assistance",
     href: "/",
-     route:'banking-assistance',
+    route:'banking-assistance',
     dropdown: true,
     points: [
       { name: "Corporate Bank Account", route: "corporate-bank-account" },
       { name: "Private Bank Account", route: "private-bank-account" },
       {
         name: "Commercial Financial Services",
-        route: "commercial financial services",
+        route: "commercial-financial-services",
       },
       { name: "Trade Financial Services", route: "trade-financial-services" },
       {

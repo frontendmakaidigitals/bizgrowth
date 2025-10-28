@@ -4,7 +4,7 @@ import { FaBusinessTime } from "react-icons/fa";
 import { MdIncompleteCircle } from "react-icons/md";
 const data = [
   {
-    name: "golden visa",
+    name: "golden-visa",
     heroTitle: (
       <Heading>
         Your <span className="text-amber-400">Trusted Partner</span> for
@@ -195,7 +195,7 @@ const data = [
     bannerTitle: "Secure Your Future Today",
     bannerDesc:
       "Take control of your legacy and protect your loved ones. Contact us to begin your Will formation proces. Don’t wait—planning ahead ensures peace of mind for you and your family.",
-    name: "will formation",
+    name: "will-formation",
     heroTitle: (
       <Heading>
         Secure Your Legacy with Ease -{" "}
@@ -445,7 +445,7 @@ const data = [
     bannerTitle: "Get Started Today!",
     bannerDesc:
       "Ready to invest in real estate? Contact us for a free consultation and begin your journey to building wealth through property investments.",
-    name: "real estate investments",
+    name: "real-estate-investments",
     heroTitle: (
       <Heading>
         <span className="text-lime-500">Unlock</span> the Potential of{" "}

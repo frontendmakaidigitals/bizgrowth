@@ -7,7 +7,7 @@ const data = [
     bannerTitle: "Launch your business with JAFZA Offshore License!",
     bannerDesc:
       "A JAFZA Offshore License opens doors to numerous business opportunities with tax benefits, privacy, and easy access to global markets. Contact Us Today for professional guidance in setting up your JAFZA Offshore company. Our expert team is here to simplify the process and ensure a smooth experience from start to finish.",
-    name: "JAFZA-offshore",
+    name: "jafza-offshore",
     heroTitle: (
       <Heading>
         <span className="text-lime-600 font-SplineSans">

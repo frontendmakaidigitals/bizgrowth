@@ -2,11 +2,13 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3005",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-sitemap": "node sitemap.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -44,6 +46,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^11.11.17",
+    "globby": "^15.0.0",
     "lenis": "^1.1.17",
     "lexical": "^0.36.2",
     "lodash": "^4.17.21",
