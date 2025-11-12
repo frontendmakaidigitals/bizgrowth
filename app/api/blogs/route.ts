@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
-import { v4 as uuidv4 } from "uuid";
+import { updateSitemap } from "@/lib/updatesitemap";
 import { dbAll, dbGet, dbRun } from "@/lib/db";
 import zlib from "zlib";
 
@@ -16,7 +16,10 @@ export async function GET() {
     const processedBlogs: Blog[] = blogs.map((blog: CompressedBlog) => {
       if (blog.content?.startsWith("gz:")) {
         try {
-          const compressed: Buffer = Buffer.from(blog.content.slice(3), "base64");
+          const compressed: Buffer = Buffer.from(
+            blog.content.slice(3),
+            "base64"
+          );
           blog.content = zlib.gunzipSync(compressed).toString("utf-8");
         } catch (err: unknown) {
           console.warn("Failed to decompress blog", blog.id, err);
@@ -28,7 +31,10 @@ export async function GET() {
     return NextResponse.json({ blogs: processedBlogs });
   } catch (err) {
     console.error("Error reading blogs:", err);
-    return NextResponse.json({ success: false, error: "Failed to fetch blogs" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch blogs" },
+      { status: 500 }
+    );
   }
 }
 
@@ -100,7 +106,7 @@ export async function POST(req: Request): Promise<Response> {
         content ?? "",
         imageUrl ?? "",
         now,
-        now
+        now,
       ]
     );
 
@@ -116,6 +122,10 @@ export async function POST(req: Request): Promise<Response> {
       createdAt: now,
       updatedAt: now,
     };
+    const blogs = await dbAll(
+      "SELECT id, title FROM blogs ORDER BY updatedAt DESC"
+    );
+    await updateSitemap(blogs);
 
     return NextResponse.json({ success: true, blog });
   } catch (err) {
@@ -170,7 +180,10 @@ export async function DELETE(req: DeleteBlogRequest): Promise<Response> {
     await dbRun("DELETE FROM blogs WHERE id = ?", [id]);
 
     // Get updated blogs list
-    const blogs: Blog[] = await dbAll("SELECT * FROM blogs ORDER BY updatedAt DESC");
+    const blogs: Blog[] = await dbAll(
+      "SELECT * FROM blogs ORDER BY updatedAt DESC"
+    );
+    await updateSitemap(blogs);
 
     return NextResponse.json({ success: true, blogs } as DeleteBlogResponse);
   } catch (err) {

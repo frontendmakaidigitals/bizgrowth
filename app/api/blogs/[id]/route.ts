@@ -2,12 +2,15 @@ import { NextResponse, NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 import zlib from "zlib";
-import { dbGet, dbRun } from "@/lib/db";
-
+import { dbAll, dbGet, dbRun } from "@/lib/db";
+import { updateSitemap } from "@/lib/updatesitemap";
 const uploadsDir = path.join(process.cwd(), "data/uploads");
 
 // --- PUT (Update blog) ---
-export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await params;
     const formData = await req.formData();
@@ -72,6 +75,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
     // Get updated blog
     const updated = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
+    const blogs = await dbAll(
+      "SELECT id, title FROM blogs ORDER BY updatedAt DESC"
+    );
+    await updateSitemap(blogs);
 
     return NextResponse.json({ success: true, blog: updated });
   } catch (err) {
@@ -84,7 +91,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 }
 
 // --- GET (Fetch single blog) ---
-export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await params;
     const blog = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
@@ -118,7 +128,10 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 }
 
 // --- DELETE (Remove blog) ---
-export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await params;
 
@@ -146,7 +159,10 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
     // Delete from database
     await dbRun("DELETE FROM blogs WHERE id = ?", [id]);
 
-    return NextResponse.json({ success: true, message: "Blog deleted successfully" });
+    return NextResponse.json({
+      success: true,
+      message: "Blog deleted successfully",
+    });
   } catch (err) {
     console.error("Delete failed:", err);
     return NextResponse.json(
