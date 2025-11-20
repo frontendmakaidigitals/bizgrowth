@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const SITEMAP_PATH = path.join(process.cwd(), "public", "sitemap.xml");
-const SITE_URL = "https://bizgrowthconsultancy.com";
+const SITE_URL = "https://www.bizgrowthconsultancy.com";
 
 type BlogRow = {
   id: string;
