@@ -8,9 +8,12 @@ import Toast from "./Toast";
 const ThirdSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState("");
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="container grid grid-cols-1 items-center lg:grid-cols-2 gap-14 mb-20">
-      {isOpen && <Form setIsOpen={setIsOpen} setStatus={setStatus} />}
+      {isOpen && <Form onClose={handleClose} setStatus={setStatus} />}
       <AnimatePresence mode="wait">
         {status === "success" && (
           <Toast
