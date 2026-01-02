@@ -7,15 +7,15 @@ import Heading from "./Heading";
 const TabularSection = () => {
   const tabs = [
     {
-      img: "https://intuitconsultancy.com/wp-content/uploads/2022/09/dubai-mainland-company-formation.png",
+      img: "/tabular-images/mainland.png",
       title: "Mainland",
     },
     {
-      img: "https://rockyrealestate.com/wp-content/uploads/2022/05/free-zone-areas-in-dubai.jpg",
+      img: "/tabular-images/free-zone.jpeg",
       title: "Free Zone",
     },
     {
-      img: "https://www.dubai-offshore.com/wp-content/uploads/2021/10/resort-exterior-1.jpg",
+      img: "/tabular-images/offshore.jpg",
       title: "Offshore",
     },
   ];
