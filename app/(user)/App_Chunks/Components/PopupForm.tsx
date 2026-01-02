@@ -71,14 +71,8 @@ const Form = ({
     };
 
     setIsSubmitting(true);
-    axios.get("https://admin.yatriclubs.com/sanctum/csrf-cookie", {
-      withCredentials: true,
-    });
     axios
-      .post("https://admin.yatriclubs.com/api/query", updatedData, {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post("/api/email", updatedData)
       .then(() => {
         setStatus("success");
         setIsSubmitting(false);
