@@ -14,7 +14,7 @@ type Blog = {
   updatedAt?: string | null;
 };
 
-const serverUrl = "http://localhost:3000";
+const serverUrl = "https://www.bizgrowthconsultancy.com";
 
 function slugify(text: string): string {
   return text

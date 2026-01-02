@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Banner from "../../App_Chunks/Components/Banner";
 import Form from "../../App_Chunks/Components/PopupForm";
 
-const serverUrl = "http://localhost:3000";
+const serverUrl = "https://www.bizgrowthconsultancy.com";
 const POPUP_DELAY = 70 * 1000;
 export default function BlogClient({ blog }: { blog: any }) {
   const pathname = usePathname();
