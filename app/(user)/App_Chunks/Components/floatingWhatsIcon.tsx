@@ -7,18 +7,23 @@ const FloatingWhatsIcon = () => {
   const phoneNumber = "+971559391238"; // Replace with the desired phone number
 
   return (
-    <div className="fixed z-[99] bottom-5 right-5">
+    <div className="fixed z-[99] bottom-10 right-14">
+      <span className="absolute inset-0 rounded-full animate-ripple bg-[#25d366]/70"></span>
+      <span className="absolute inset-0 rounded-full animate-ripple delay-700 bg-[#25d366]/50"></span>
       <a
-        href={`https://wa.me/${phoneNumber}`} // WhatsApp link with phone number
-        target="_blank" // Opens in a new tab
-        rel="noopener noreferrer" // Security feature
-        className="size-14 grid shadow-lg grid-cols-1 place-items-center rounded-full border border-gray-300 bg-white/80 backdrop:filter backdrop-blur-lg"
+        href={`https://wa.me/${phoneNumber}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative size-14 grid place-items-center rounded-full border border-gray-300 bg-white/80 backdrop-blur-lg shadow-lg"
       >
+        {/* Ripple rings */}
+
         <motion.div
           initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
+          animate={{ scale: 1 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          className="relative z-10"
         >
           <IoLogoWhatsapp className="text-4xl text-[#25d366]" />
         </motion.div>

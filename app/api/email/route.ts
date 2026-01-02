@@ -1,4 +1,3 @@
-// app/api/email/route.ts
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -11,7 +10,6 @@ export async function POST(req: Request) {
     sheetName: sheetName,
   };
 
-  console.log(raw.visas)
   try {
     const googleResponse = await fetch(
       "https://script.google.com/macros/s/AKfycbyYS4sJSLGXCzBlh-3C6HulqGDH1RGpnfpeLLEYitR2RgHaRlGLt9JKtjt1PnPg4EBr/exec",
