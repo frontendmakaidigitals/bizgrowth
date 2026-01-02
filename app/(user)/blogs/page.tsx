@@ -143,7 +143,9 @@ const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
         <hr className="w-[92%] mx-auto" />
         <CardFooter className="px-3 mt-2 pb-3">
           <div className="flex w-full justify-between items-center text-sm">
-            <p className="text-slate-600">{new Date(blog.createdAt).toDateString()}</p>
+            <p className="text-slate-600">
+              {new Date(blog.createdAt).toDateString()}
+            </p>
             <p className="text-slate-600">{blog.author}</p>
           </div>
         </CardFooter>

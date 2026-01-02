@@ -4,21 +4,48 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Blogs from "@/components/Blogs";
 import { Editor } from "@/components/blocks/editor-00/editor";
+import { useEffect, useState } from "react";
+import Banner from "../../App_Chunks/Components/Banner";
+import Form from "../../App_Chunks/Components/PopupForm";
 
+const serverUrl = "http://localhost:3000";
+const POPUP_DELAY = 70 * 1000;
 export default function BlogClient({ blog }: { blog: any }) {
   const pathname = usePathname();
-  const blogURL = `https://bizgrowthconsultancy.com/${pathname}`;
+  const blogURL = `${serverUrl}/${pathname}`;
   const blogTitle = blog?.title || "";
-
   function calculateReadTime(text: string) {
     const wordsPerMinute = 200;
     const wordCount = text.trim().split(/\s+/).length;
     const minutes = Math.ceil(wordCount / wordsPerMinute);
     return `${minutes} min read`;
   }
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const closedAt = localStorage.getItem("popupClosedAt");
+
+    if (!closedAt) {
+      setIsOpen(true);
+      return;
+    }
+
+    const elapsed = Date.now() - Number(closedAt);
+
+    if (elapsed >= POPUP_DELAY) {
+      localStorage.removeItem("popupClosedAt");
+      setIsOpen(true);
+    }
+  }, []);
+
+  // Handle popup close
+  const handleClose = () => {
+    setIsOpen(false);
+    localStorage.setItem("popupClosedAt", Date.now().toString());
+  };
 
   return (
-    <main className="pt-28 relative container ">
+    <main className="pt-14 relative container ">
+      {isOpen ? <Form onClose={handleClose} /> : null}
       <div className="flex flex-col items-center">
         <p className="p-2 text-xs bg-teal-100 text-teal-700 rounded-lg font-bold font-quicksand text-center mb-2">
           {blog?.category}
@@ -116,6 +143,14 @@ export default function BlogClient({ blog }: { blog: any }) {
         </div>
       </div>
       <Blogs />
+
+      <section className="mt-14">
+        {" "}
+        <Banner
+          title="Get Expert Help to Build, Scale, and Launch Your Next Project"
+          desc="Whether you're starting from scratch or improving an existing product, our experts are ready to guide you with clear strategy, clean execution, and real results. Share your details and let’s move your project forward—faster and smarter."
+        />
+      </section>
     </main>
   );
 }

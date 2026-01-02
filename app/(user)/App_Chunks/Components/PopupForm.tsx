@@ -17,17 +17,15 @@ type Inputs = {
   phone: string;
   company: string;
   message: string;
-  activity: string; // Added to store selected business activity
+  activity: string;
 };
 
 const Form = ({
-  setIsOpen,
+  onClose,
   setStatus,
-
 }: {
-  setStatus: any;
-  setIsOpen: any;
-
+  setStatus?: any;
+  onClose: () => void;
 }) => {
   const { register, handleSubmit, setValue } = useForm<Inputs>();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -84,7 +82,7 @@ const Form = ({
       .then(() => {
         setStatus("success");
         setIsSubmitting(false);
-        setIsOpen(false);
+        onClose();
         setTimeout(() => {
           setStatus(null);
         }, 2000);
@@ -109,7 +107,7 @@ const Form = ({
           className="relative flex w-full flex-col gap-y-5 bg-slate-50 overflow-auto rounded-lg bg-primary-50 px-[30px] py-6 shadow-[0_4px_60px_0_rgba(0,0,0,0.1)] lg:w-auto"
         >
           <IoMdClose
-            onClick={() => setIsOpen(false)}
+            onClick={onClose}
             className="absolute right-5 top-5 cursor-pointer rounded-full p-1 text-3xl hover:bg-red-500 hover:text-slate-50"
           />
           <div>
@@ -128,7 +126,7 @@ const Form = ({
                 type="text"
                 {...register("name")}
                 placeholder="Adam Smith"
-                className="rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
+                className="rounded-[10px]  border border-slate-300/80 bg-slate-200 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
                 required
               />
             </div>
@@ -144,7 +142,7 @@ const Form = ({
                 type="email"
                 {...register("email")}
                 placeholder="Enter your email"
-                className="rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
+                className="rounded-[10px]  border border-slate-300/80 bg-slate-200 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
                 required
               />
             </div>
@@ -162,7 +160,7 @@ const Form = ({
                 type="number"
                 {...register("phone")}
                 placeholder="12345 67890"
-                className="rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
+                className="rounded-[10px]  border border-slate-300/80 bg-slate-200 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm"
                 required
               />
             </div>
@@ -179,10 +177,10 @@ const Form = ({
                   <Select
                     onValueChange={(value) => setValue("activity", value)}
                   >
-                    <SelectTrigger className="!w-full h-10 bg-indigo-100 border-0">
+                    <SelectTrigger className="!w-full border-slate/80-300 bg-slate-200 border-0">
                       <SelectValue placeholder="Select Business Activity" />
                     </SelectTrigger>
-                    <SelectContent className="bg-indigo-200 !w-full z-[999999] font-Synonym font-[500] text-slate-950">
+                    <SelectContent className="bg-slate-200 !w-full z-[999999] font-Synonym font-[500] text-slate-950">
                       <SelectGroup>
                         {businessActivities.map((activity, index) => (
                           <SelectItem key={index} value={activity}>
@@ -209,7 +207,7 @@ const Form = ({
                 id="contact-message"
                 required
                 {...register("message")}
-                className="h-24 resize-none rounded-[10px] border-0 bg-indigo-100 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm xxl:h-[180px]"
+                className="h-24 resize-none rounded-[10px]  border border-slate-300/80 bg-slate-200 px-4 py-2 font-[400] text-black outline-none transition-all placeholder:text-gray-600 focus:border-primary-500 focus:shadow-sm xxl:h-[180px]"
                 placeholder="Write your message here..."
               />
             </div>

@@ -14,6 +14,8 @@ type Blog = {
   updatedAt?: string | null;
 };
 
+const serverUrl = "http://localhost:3000";
+
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -24,7 +26,7 @@ function slugify(text: string): string {
 }
 
 async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch(`${"https://bizgrowthconsultancy.com/"}/api/blogs`, {
+  const res = await fetch(`${serverUrl}/api/blogs`, {
     next: { revalidate: 60 },
   });
 
@@ -52,7 +54,7 @@ export async function generateMetadata({
       title: blog?.metaTitle || blog?.title,
       description: blog?.metaDesc || "",
       images: blog?.imageURL ? [blog.imageURL] : [],
-      url: `https://dimondra.com/blog/${slug}`,
+      url: `${serverUrl}/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
