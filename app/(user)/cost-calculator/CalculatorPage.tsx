@@ -244,7 +244,7 @@ const CalculatorPage = () => {
         businessActivity: "",
       });
       if (response.status === 200) {
-        router.push("/Form-Submitted");
+        router.push("/form-submitted");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
