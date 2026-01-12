@@ -3,7 +3,6 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const raw = await req.json();
-  console.log(raw);
 
   const payload = {
     ...raw,
@@ -17,6 +16,7 @@ export async function POST(req: Request) {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
+        port: 587,
     });
 
     await transporter.sendMail({

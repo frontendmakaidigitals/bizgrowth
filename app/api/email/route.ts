@@ -17,6 +17,7 @@ export async function POST(req: Request) {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
+      port: 587,
     });
 
     await transporter.sendMail({
