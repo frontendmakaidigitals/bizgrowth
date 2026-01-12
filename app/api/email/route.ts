@@ -1,31 +1,45 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const raw = await req.json();
-  const sheetName = "Bizgrowth- website";
-  const payload: Record<string, any> = {
+
+  const payload = {
     ...raw,
     date: new Date().toISOString().split("T")[0],
-    visas: "visas" in raw ? raw.visas : "N/A",
-    sheetName: sheetName,
   };
 
   try {
-    const googleResponse = await fetch(
-      "https://script.google.com/macros/s/AKfycbyYS4sJSLGXCzBlh-3C6HulqGDH1RGpnfpeLLEYitR2RgHaRlGLt9JKtjt1PnPg4EBr/exec",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }
-    );
 
-    const text = await googleResponse.text();
-    return NextResponse.json({ text });
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Bizgrowth Website" <${process.env.GMAIL_USER}>`,
+      to: "Info@bizgrowthconsultancy.com", 
+      subject: "New Website Lead from Form",
+      text: `
+        New lead received:
+          `,
+          html: `
+            <h3>New Website Lead</h3>
+            <p><b>Name:</b> ${raw.name}</p>
+            <p><b>Email:</b> ${raw.email}</p>
+            <p><b>Phone:</b> ${raw.contact}</p>
+            <p><b>Phone:</b> ${raw.businessActivity}</p>
+            <p><b>Visas:</b> ${payload.message}</p>
+            <p><b>Date:</b> ${payload.date}</p>
+          `,
+    });
+
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("API error:", error);
-    return new NextResponse("Failed to submit to Google Apps Script", {
-      status: 500,
-    });
+    return new NextResponse("Failed to submit form", { status: 500 });
   }
 }

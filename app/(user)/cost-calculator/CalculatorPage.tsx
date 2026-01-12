@@ -66,9 +66,7 @@ const CalculatorPage = () => {
         >
           <div className={"  rounded-lg "}>
             <Heading className="font-bold !text-start !text-4xl">
-              <span className="text-indigo-500">Expenses for Starting</span> and{" "}
-              <span className="text-lime-500">Registering a Business</span> in
-              Dubai and the UAE
+              Calculate the Cost of Starting a Business in Dubai & the UAE
             </Heading>
             <p className={"font-Satoshi text-lg mt-7"}>
               To begin, kindly share some key details about yourself and your

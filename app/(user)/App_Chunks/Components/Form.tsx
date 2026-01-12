@@ -116,25 +116,10 @@ const Form = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (validateForm()) return;
-
     setIsSubmitting(true);
-
-    // Prepare the date
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().split("T")[0];
-
-    // Prepare the payload
-    const payload = {
-      ...formData,
-      date: formattedDate,
-    };
-
-    console.log("Payload being sent to emailjs:", payload); // Debugging the payload
 
     try {
       const response = await fetch("/api/email", {

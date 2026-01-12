@@ -42,7 +42,7 @@ const CalculatorModal = ({ onClose }: { onClose: () => void }) => {
     };
 
     try {
-      const response = await fetch("/api/email", {
+      const response = await fetch("/api/cost-calculator", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -85,7 +85,7 @@ const CalculatorModal = ({ onClose }: { onClose: () => void }) => {
         answers[currentQuestion].length >= 0)) &&
     (currentQuestion !== 8 ||
       (typeof answers[currentQuestion] === "string" &&
-        answers[currentQuestion].trim().length > 5)) &&
+        answers[currentQuestion].trim().length > 3)) &&
     (currentQuestion !== 9 ||
       (typeof answers[currentQuestion] === "string" &&
         answers[currentQuestion].trim() !== "" &&
@@ -351,6 +351,7 @@ const QuestionONE: React.FC<SingleQuestionProps> = ({
       opacity: 0,
     }),
   };
+
   return (
     <div className="mt-8">
       <div>
@@ -381,10 +382,10 @@ const QuestionONE: React.FC<SingleQuestionProps> = ({
             >
               <button
                 onClick={() => onAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
-                  selectedAnswer === answer
+                className={` border flex items-center gap-2  rounded-xl w-full text-start p-4 transition-colors ${
+                  selectedAnswer == answer
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
@@ -479,10 +480,10 @@ const QuestionTWO: React.FC<SingleQuestionProps> = ({
             >
               <button
                 onClick={() => onAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
+                className={` border flex items-center gap-2  rounded-xl w-full text-start p-4 transition-colors ${
                   selectedAnswer === answer
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
@@ -593,10 +594,10 @@ const QuestionTHREE: React.FC<SingleQuestionProps> = ({
             >
               <button
                 onClick={() => onAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
+                className={` border flex items-center gap-2 rounded-xl w-full text-start p-4 transition-colors ${
                   selectedAnswer === answer
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
@@ -691,10 +692,10 @@ const QuestionFOUR: React.FC<SingleQuestionProps> = ({
             >
               <button
                 onClick={() => onAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
+                className={` border flex items-center gap-2 rounded-xl w-full text-start p-4 transition-colors ${
                   selectedAnswer === answer
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
@@ -797,10 +798,10 @@ const QuestionFIVE: React.FC<SingleQuestionProps> = ({
             >
               <button
                 onClick={() => onAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
+                className={` border flex items-center gap-2 rounded-xl w-full text-start p-4 transition-colors ${
                   selectedAnswer === answer
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
@@ -903,10 +904,10 @@ const QuestionSIX: React.FC<SingleQuestionProps> = ({
             >
               <button
                 onClick={() => onAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
+                className={` border flex items-center gap-2 rounded-xl w-full text-start p-4 transition-colors ${
                   selectedAnswer === answer
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
@@ -1027,10 +1028,10 @@ const QuestionSEVEN: React.FC<MultiQuestionProps> = ({
             >
               <button
                 onClick={() => toggleAnswer(answer)}
-                className={`bg-stone-100/50 border flex items-center gap-2 border-slate-500/20 rounded-xl w-full text-start p-4 transition-colors ${
+                className={` border flex items-center gap-2  rounded-xl w-full text-start p-4 transition-colors ${
                   selectedAnswers.includes(answer)
                     ? "bg-green-300/20 border-green-300"
-                    : ""
+                    : "bg-stone-100/50 border-slate-500/20"
                 }`}
               >
                 <p
