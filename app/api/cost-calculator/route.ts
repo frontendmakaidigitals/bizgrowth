@@ -13,8 +13,8 @@ export async function POST(req: Request) {
   };
 
   try {
-    await resend.emails.send({
-      from: "Bizgrowth Website <no-reply@bizgrowth.ae>",
+    const res =await resend.emails.send({
+      from: "Bizgrowth Website <bizgrowth@spok.digital>",
       to: "Info@bizgrowthconsultancy.com", // your receiver email
       subject: "Submission received from Cost Calculator",
       text: `
@@ -45,7 +45,7 @@ Date: ${payload.date}
 <p><b>Date:</b> ${payload.date}</p>
       `,
     });
-
+    
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Resend API error:", error);

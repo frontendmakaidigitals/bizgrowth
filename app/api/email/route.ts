@@ -12,8 +12,8 @@ export async function POST(req: Request) {
   };
 
   try {
-    await resend.emails.send({
-      from: "Bizgrowth Website <no-reply@insightvision.marketing>",
+    const res = await resend.emails.send({
+      from: "Bizgrowth Website <bizgrowth@spok.digital>",
       to: "Info@bizgrowthconsultancy.com",
       subject: "New Website Lead from Form",
       html: `
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         <p><b>Date:</b> ${payload.date}</p>
       `,
     });
-
+    console.log(res)
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Resend API error:", error);
