@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { RiArrowRightUpLine } from "react-icons/ri";
+import Button from "./Button";
 const MobileMenu = ({ navRef }: { navRef: any }) => {
   const [showMenu, setShowMenu] = React.useState(false);
 
@@ -84,6 +85,11 @@ const Menu = ({ navRef, setShowMenu }: { navRef: any; setShowMenu: any }) => {
             <AccordionMenu key={index} menu={menu} setShowMenu={setShowMenu} />
           )
         )}
+        <Link href={"/cost-calculator"} className="block ">
+          <Button className="w-full h-12 px-2 text-lg font-semibold">
+            Cost Calculator
+          </Button>
+        </Link>
       </div>
     </motion.div>
   );
@@ -154,10 +160,7 @@ const AccordionMenu = ({
 
                 // CASE 2: Flat structure (like Banking Assistance)
                 return (
-                  <div
-                    key={idx}
-                    className="text-md  px-5 "
-                  >
+                  <div key={idx} className="text-md  px-5 ">
                     <Link
                       href={`/${menu.route.toLowerCase()}/${point.route.toLowerCase()}`}
                       onClick={() => setTimeout(() => setShowMenu(false), 500)}
