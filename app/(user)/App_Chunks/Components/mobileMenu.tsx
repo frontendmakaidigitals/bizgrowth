@@ -66,9 +66,9 @@ const Menu = ({ navRef, setShowMenu }: { navRef: any; setShowMenu: any }) => {
         top: `${height}px`,
         height: `calc(100vh - ${height}px)`,
       }}
-      className="fixed left-0 w-full overflow-scroll flex flex-col justify-center items-start shadow-lg h-screen bg-[#f6f8ff] z-[2]"
+      className="fixed left-0 w-full overflow-scroll  shadow-lg  bg-[#f6f8ff] z-[2]"
     >
-      <div className="container h-full justify-center flex flex-col p-4 w-full text-[#0c1700] space-y-4">
+      <div className="container h-full justify-start mt-10 flex flex-col p-4 w-full text-[#0c1700] space-y-4">
         {Menus.map((menu, index) =>
           !menu.dropdown ? (
             <Link
@@ -85,7 +85,7 @@ const Menu = ({ navRef, setShowMenu }: { navRef: any; setShowMenu: any }) => {
             <AccordionMenu key={index} menu={menu} setShowMenu={setShowMenu} />
           )
         )}
-        <Link href={"/cost-calculator"} className="block ">
+        <Link onClick={()=>setShowMenu(false)} href={"/cost-calculator"} className="block ">
           <Button className="w-full h-12 px-2 text-lg font-semibold">
             Cost Calculator
           </Button>
