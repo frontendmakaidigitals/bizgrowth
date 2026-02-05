@@ -44,7 +44,7 @@ export async function generateMetadata({
   const blogs = await getBlogs();
 
   const blog = blogs.find(
-    (b) => slugify(b.title) === slugify(decodeURIComponent(slug))
+    (b) => slugify(b.title) === slugify(decodeURIComponent(slug)),
   );
 
   return {
@@ -72,9 +72,8 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const blogs = await getBlogs();
-  const blog = blogs.find(
-    (b) => slugify(b.title) === slugify(decodeURIComponent(slug))
-  );
+
+  const blog = blogs.find((b) => slugify(b.title) === slugify(slug));
 
   if (!blog) {
     return <div className="p-8 text-center text-gray-500">Blog not found</div>;

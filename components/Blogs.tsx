@@ -12,6 +12,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Editor } from "@/components/blocks/editor-00/editor";
 
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/—/g, "-")
+    .replace(/[^\w\s-]/g, "") // remove punctuation
+    .replace(/\s+/g, "-");
+}
 const Blogs = () => {
   interface Blog {
     id: string | number;
@@ -125,9 +133,7 @@ const Blogs = () => {
                     </div>
                   </div>
                   <Link
-                    href={`/blogs/${encodeURIComponent(
-                      blog.title.toLowerCase().replace(/\s+/g, "-")
-                    )}`}
+                    href={`/blogs/${slugify(blog.title)}`}
                   >
                     <button className="absolute right-4 bottom-4 bg-lime-500 hover:bg-lime-600 text-white rounded-lg p-2">
                       <MoveUpRight />

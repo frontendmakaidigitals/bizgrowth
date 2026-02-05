@@ -5,7 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Editor } from "@/components/blocks/editor-00/editor";
 import Link from "next/link";
-
+import { slugify } from "@/components/Blogs";
 interface Blog {
   id: string;
   title: string;
@@ -106,9 +106,7 @@ const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
   return blogs.map((blog) => (
     <Link
       key={blog.id}
-      href={`/blogs/${encodeURIComponent(
-        blog.title.toLowerCase().replace(/\s+/g, "-")
-      )}`}
+      href={`/blogs/${slugify(blog.title)}`}
     >
       <Card className="w-full rounded-lg">
         <CardContent className="w-full !px-0 !pt-0 pb-5">
