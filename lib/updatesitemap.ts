@@ -6,8 +6,7 @@ const SITE_URL = "https://www.bizgrowthconsultancy.com";
 
 type BlogRow = {
   id: string;
-  slug?: string | null;
-  title?: string | null;
+  slugTitle?: string | null; // <-- use slugTitle from DB
   updatedAt?: string | null;
 };
 
@@ -24,12 +23,12 @@ export async function updateSitemap(blogs: BlogRow[]) {
     if (!sitemap.includes("<!-- BLOG_URLS_START -->")) {
       sitemap = sitemap.replace(
         /<\/urlset>\s*$/,
-        "\n  <!-- BLOG_URLS_START -->\n  <!-- BLOG_URLS_END -->\n</urlset>"
+        "\n  <!-- BLOG_URLS_START -->\n  <!-- BLOG_URLS_END -->\n</urlset>",
       );
       fs.writeFileSync(SITEMAP_PATH, sitemap, "utf8");
     }
 
-    // Deduplicate by id (just in case) — keep the first (most recent) occurrence
+    // Deduplicate by id
     const byId = new Map<string, BlogRow>();
     for (const b of blogs) {
       if (!b.id) continue;
@@ -39,13 +38,15 @@ export async function updateSitemap(blogs: BlogRow[]) {
     }
     const uniqueBlogs = Array.from(byId.values());
 
-    // Build <url> entries but keep the *correct public URL* as <loc>.
-    // Use stored slug if present, otherwise slugify the title.
+    // Build <url> entries using slugTitle directly
     const blogUrls = uniqueBlogs
       .map((b) => {
-        const slug = (b.slug && String(b.slug).trim()) || slugify(String(b.title || ""));
-        const loc = `${SITE_URL}/blogs/${slug}`; // <-- KEEP YOUR CORRECT PUBLIC URL FORMAT HERE
-        const lastmod = b.updatedAt ? `<lastmod>${isoDate(b.updatedAt)}</lastmod>` : "";
+        const slug =
+          (b.slugTitle && String(b.slugTitle).trim()) || "missing-slug";
+        const loc = `${SITE_URL}/blogs/${slug}`;
+        const lastmod = b.updatedAt
+          ? `<lastmod>${isoDate(b.updatedAt)}</lastmod>`
+          : "";
         return `
   <url>
     <loc>${loc}</loc>
@@ -59,7 +60,7 @@ export async function updateSitemap(blogs: BlogRow[]) {
     // Replace the blog block safely
     const updated = sitemap.replace(
       /<!-- BLOG_URLS_START -->[\s\S]*?<!-- BLOG_URLS_END -->/,
-      `<!-- BLOG_URLS_START -->${blogUrls}\n  <!-- BLOG_URLS_END -->`
+      `<!-- BLOG_URLS_START -->${blogUrls}\n  <!-- BLOG_URLS_END -->`,
     );
 
     fs.writeFileSync(SITEMAP_PATH, updated, "utf8");
@@ -67,14 +68,6 @@ export async function updateSitemap(blogs: BlogRow[]) {
   } catch (err) {
     console.error("Failed to update sitemap:", err);
   }
-}
-
-function slugify(input: string) {
-  return String(input || "")
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "");
 }
 
 function isoDate(input: string) {
