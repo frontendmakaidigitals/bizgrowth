@@ -120,7 +120,7 @@ export default function BlogClient({ blog }: { blog: any }) {
         </ul>
       </div>
 
-      <div className="w-full h-[300px] lg:h-[580px] mt-12 rounded-xl overflow-hidden">
+      <div className="w-full relative h-[300px] lg:h-[580px] mt-12 rounded-xl overflow-hidden">
         <Image
           fill
           src={`/api/uploads/${blog.image}`}

@@ -74,3 +74,17 @@ export default async function Page({
 
   return <BlogClient blog={blog} />;
 }
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(`${serverUrl}/api/blogs`, {
+      next: { revalidate: 3600 },
+    });
+    const data = await res.json();
+    return (data.blogs ?? []).map((b: { slugTitle: string }) => ({
+      slug: b.slugTitle,
+    }));
+  } catch {
+    return [];
+  }
+}
