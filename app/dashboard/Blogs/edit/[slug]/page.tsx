@@ -245,6 +245,22 @@ export default function Page() {
           <div>
             <Label
               className="block text-sm font-medium mb-[6px]"
+              htmlFor="slugTitle"
+            >
+              Blog Slug <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id={"slugTitle"}
+              name={"slugTitle"}
+              placeholder="Slug Title"
+              value={blogData.slugTitle}
+              onChange={(e) => handleChange("slugTitle", e.target.value)}
+              className="h-12"
+            />
+          </div>
+          <div>
+            <Label
+              className="block text-sm font-medium mb-[6px]"
               htmlFor="metaTitle"
             >
               Meta Title
