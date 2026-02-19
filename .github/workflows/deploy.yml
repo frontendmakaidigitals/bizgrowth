@@ -37,6 +37,7 @@ jobs:
           mkdir -p deploy
           cp -r .next deploy/
           cp -r public deploy/
+          cp -r lib deploy/
           cp package.json package-lock.json deploy/
           cp next.config.* deploy/ 2>/dev/null || true
           cd deploy && tar -czf ../bizgrowth-build.tar.gz .
