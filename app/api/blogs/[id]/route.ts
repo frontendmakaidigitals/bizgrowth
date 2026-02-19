@@ -13,12 +13,12 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
-    console.log(id, "isdfsdf");
     const formData = await req.formData();
 
     const existing = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [
       id,
     ]);
+    console.log(id, "isdfsdf", existing);
     if (!existing) {
       return NextResponse.json(
         { success: false, error: "Blog not found" },
@@ -67,7 +67,7 @@ export async function PUT(
     await dbRun(
       `UPDATE blogs
        SET title = ?, slugTitle = ?, metaTitle = ?, metaDesc = ?, author = ?, category = ?, content = ?, image = ?, updatedAt = ?
-       WHERE id = ?`,
+       WHERE slugTitle = ?`,
       [
         title,
         slugTitle,
@@ -82,9 +82,11 @@ export async function PUT(
       ], // ✅ slug added
     );
 
-    const updated = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
+    const updated = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [
+      id,
+    ]);
     const blogs = await dbAll(
-      "SELECT id, title FROM blogs ORDER BY updatedAt DESC",
+      "SELECT slugTitle, updatedAt FROM blogs ORDER BY updatedAt DESC",
     );
     await updateSitemap(blogs);
 

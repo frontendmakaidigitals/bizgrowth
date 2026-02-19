@@ -5,8 +5,7 @@ const SITEMAP_PATH = path.join(process.cwd(), "public", "sitemap.xml");
 const SITE_URL = "https://www.bizgrowthconsultancy.com";
 
 type BlogRow = {
-  id: string;
-  slugTitle?: string | null; // <-- use slugTitle from DB
+  slugTitle?: string | null;
   updatedAt?: string | null;
 };
 
@@ -28,22 +27,22 @@ export async function updateSitemap(blogs: BlogRow[]) {
       fs.writeFileSync(SITEMAP_PATH, sitemap, "utf8");
     }
 
-    // Deduplicate by id
+    // Deduplicate by id (just in case) — keep the first (most recent) occurrence
     const byId = new Map<string, BlogRow>();
     for (const b of blogs) {
-      if (!b.id) continue;
-      if (!byId.has(b.id)) {
-        byId.set(b.id, b);
+      if (!b.slugTitle) continue;
+      if (!byId.has(b.slugTitle)) {
+        byId.set(b.slugTitle, b);
       }
     }
     const uniqueBlogs = Array.from(byId.values());
 
-    // Build <url> entries using slugTitle directly
+    // Build <url> entries but keep the *correct public URL* as <loc>.
+    // Use stored slug if present, otherwise slugify the title.
     const blogUrls = uniqueBlogs
       .map((b) => {
-        const slug =
-          (b.slugTitle && String(b.slugTitle).trim()) || "missing-slug";
-        const loc = `${SITE_URL}/blogs/${slug}`;
+        const slug = b.slugTitle || "missing-slug";
+        const loc = `${SITE_URL}/blogs/${slug}`; // <-- KEEP YOUR CORRECT PUBLIC URL FORMAT HERE
         const lastmod = b.updatedAt
           ? `<lastmod>${isoDate(b.updatedAt)}</lastmod>`
           : "";
