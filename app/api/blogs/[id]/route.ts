@@ -9,43 +9,42 @@ const uploadsDir = path.join(process.cwd(), "data/uploads");
 // --- PUT (Update blog) ---
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
+    console.log(id, "isdfsdf");
     const formData = await req.formData();
 
-    // Check if blog exists
-    const existing = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
+    const existing = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [
+      id,
+    ]);
     if (!existing) {
       return NextResponse.json(
         { success: false, error: "Blog not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
-    // Extract form fields
     const title = formData.get("title");
     const metaTitle = formData.get("metaTitle");
     const metaDesc = formData.get("metaDesc");
     const author = formData.get("author");
     const category = formData.get("category");
     const rawContent = formData.get("content");
+    const slugTitle = formData.get("slugTitle");
     const file = formData.get("image");
 
-    // --- Compress content ---
     let content = existing.content;
     if (typeof rawContent === "string" && rawContent.length > 0) {
       const compressed = zlib.gzipSync(rawContent);
       content = "gz:" + compressed.toString("base64");
     }
 
-    // --- Handle image ---
     let image = existing.image;
     if (file instanceof File && file.size > 0) {
       await fs.promises.mkdir(uploadsDir, { recursive: true });
 
-      // Delete old image if new one is different
       if (image && image !== file.name) {
         const oldPath = path.join(uploadsDir, image);
         if (fs.existsSync(oldPath)) {
@@ -65,18 +64,27 @@ export async function PUT(
 
     const now = new Date().toISOString();
 
-    // --- Update SQLite record ---
     await dbRun(
       `UPDATE blogs
-       SET title = ?, metaTitle = ?, metaDesc = ?, author = ?, category = ?, content = ?, image = ?, updatedAt = ?
+       SET title = ?, slugTitle = ?, metaTitle = ?, metaDesc = ?, author = ?, category = ?, content = ?, image = ?, updatedAt = ?
        WHERE id = ?`,
-      [title, metaTitle, metaDesc, author, category, content, image, now, id]
+      [
+        title,
+        slugTitle,
+        metaTitle,
+        metaDesc,
+        author,
+        category,
+        content,
+        image,
+        now,
+        id,
+      ], // ✅ slug added
     );
 
-    // Get updated blog
     const updated = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
     const blogs = await dbAll(
-      "SELECT id, title FROM blogs ORDER BY updatedAt DESC"
+      "SELECT id, title FROM blogs ORDER BY updatedAt DESC",
     );
     await updateSitemap(blogs);
 
@@ -85,7 +93,7 @@ export async function PUT(
     console.error("Update failed:", err);
     return NextResponse.json(
       { success: false, error: "Update failed" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -93,20 +101,19 @@ export async function PUT(
 // --- GET (Fetch single blog) ---
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
-    const blog = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
+    const blog = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [id]);
 
     if (!blog) {
       return NextResponse.json(
         { success: false, error: "Blog not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
-    // --- Decompress content if gzipped ---
     if (blog.content?.startsWith("gz:")) {
       try {
         const compressed = Buffer.from(blog.content.slice(3), "base64");
@@ -122,7 +129,7 @@ export async function GET(
     console.error("Fetch failed:", err);
     return NextResponse.json(
       { success: false, error: "Failed to fetch blog" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -130,21 +137,21 @@ export async function GET(
 // --- DELETE (Remove blog) ---
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
 
-    // Check if blog exists and get image info
-    const existing = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
+    const existing = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [
+      id,
+    ]);
     if (!existing) {
       return NextResponse.json(
         { success: false, error: "Blog not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
-    // Delete associated image file
     if (existing.image) {
       const imagePath = path.join(uploadsDir, existing.image);
       if (fs.existsSync(imagePath)) {
@@ -156,8 +163,7 @@ export async function DELETE(
       }
     }
 
-    // Delete from database
-    await dbRun("DELETE FROM blogs WHERE id = ?", [id]);
+    await dbRun("DELETE FROM blogs WHERE slugTitle = ?", [id]);
 
     return NextResponse.json({
       success: true,
@@ -167,7 +173,7 @@ export async function DELETE(
     console.error("Delete failed:", err);
     return NextResponse.json(
       { success: false, error: "Delete failed" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

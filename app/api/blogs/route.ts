@@ -18,7 +18,7 @@ export async function GET() {
         try {
           const compressed: Buffer = Buffer.from(
             blog.content.slice(3),
-            "base64"
+            "base64",
           );
           blog.content = zlib.gunzipSync(compressed).toString("utf-8");
         } catch (err: unknown) {
@@ -33,7 +33,7 @@ export async function GET() {
     console.error("Error reading blogs:", err);
     return NextResponse.json(
       { success: false, error: "Failed to fetch blogs" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -49,16 +49,7 @@ interface Blog {
   image: string;
   createdAt: string;
   updatedAt: string;
-}
-
-interface BlogFormData {
-  title: string | null;
-  metaTitle: string | null;
-  metaDesc: string | null;
-  author: string | null;
-  category: string | null;
-  content: string | null;
-  image: File | null;
+  slugTitle: string;
 }
 
 export async function POST(req: Request): Promise<Response> {
@@ -69,13 +60,14 @@ export async function POST(req: Request): Promise<Response> {
     const metaDesc = formData.get("metaDesc") as string | null;
     const author = formData.get("author") as string | null;
     const category = formData.get("category") as string | null;
+    const slugTitle = formData.get("slugTitle") as string | null;
     const content = formData.get("content") as string | null;
     const file = formData.get("image") as File | null;
 
     if (!file) {
       return NextResponse.json(
         { success: false, error: "No file uploaded" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -95,8 +87,8 @@ export async function POST(req: Request): Promise<Response> {
     // ✅ Insert into SQLite - let database auto-generate the ID
     const result = await dbRun(
       `INSERT INTO blogs 
-       (title, metaTitle, metaDesc, author, category, content, image, createdAt, updatedAt)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+   (title, metaTitle, metaDesc, author, category, content, image, slugTitle, createdAt, updatedAt)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         title ?? "",
         metaTitle ?? "",
@@ -105,9 +97,10 @@ export async function POST(req: Request): Promise<Response> {
         category ?? "",
         content ?? "",
         imageUrl ?? "",
+        slugTitle ?? "",
         now,
         now,
-      ]
+      ],
     );
 
     const blog: Blog = {
@@ -118,12 +111,13 @@ export async function POST(req: Request): Promise<Response> {
       author: author ?? "",
       category: category ?? "",
       content: content ?? "",
-      image: imageUrl,
+      image: imageUrl ?? "",
+      slugTitle: slugTitle ?? "",
       createdAt: now,
       updatedAt: now,
     };
     const blogs = await dbAll(
-      "SELECT id, title FROM blogs ORDER BY updatedAt DESC"
+      "SELECT id, title FROM blogs ORDER BY updatedAt DESC",
     );
     await updateSitemap(blogs);
 
@@ -132,65 +126,7 @@ export async function POST(req: Request): Promise<Response> {
     console.error("Error creating blog:", err);
     return NextResponse.json(
       { success: false, error: "Upload failed" },
-      { status: 500 }
-    );
-  }
-}
-interface DeleteBlogRequest extends Request {}
-
-interface DeleteBlogResponse {
-  success: boolean;
-  error?: string;
-  blogs?: Blog[];
-}
-
-export async function DELETE(req: DeleteBlogRequest): Promise<Response> {
-  try {
-    const { searchParams } = new URL(req.url);
-    const id: string | null = searchParams.get("id");
-    if (!id) {
-      return NextResponse.json(
-        { success: false, error: "Missing id" } as DeleteBlogResponse,
-        { status: 400 }
-      );
-    }
-
-    // Check if blog exists
-    const blog = await dbGet("SELECT * FROM blogs WHERE id = ?", [id]);
-    if (!blog) {
-      return NextResponse.json(
-        { success: false, error: "Blog not found" } as DeleteBlogResponse,
-        { status: 404 }
-      );
-    }
-
-    // ✅ Delete associated image
-    if (blog.image) {
-      const imagePath: string = path.join(
-        process.cwd(),
-        "data/uploads",
-        blog.image
-      );
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
-      }
-    }
-
-    // ✅ Delete blog from SQLite
-    await dbRun("DELETE FROM blogs WHERE id = ?", [id]);
-
-    // Get updated blogs list
-    const blogs: Blog[] = await dbAll(
-      "SELECT * FROM blogs ORDER BY updatedAt DESC"
-    );
-    await updateSitemap(blogs);
-
-    return NextResponse.json({ success: true, blogs } as DeleteBlogResponse);
-  } catch (err) {
-    console.error("Error deleting blog:", err);
-    return NextResponse.json(
-      { success: false, error: "Failed to delete blog" } as DeleteBlogResponse,
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

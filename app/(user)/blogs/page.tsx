@@ -14,16 +14,13 @@ interface Blog {
   author: string;
   category: string;
   createdAt: string;
+  slugTitle: string;
 }
 interface BlogsResponse {
   blogs: Blog[];
 }
 
 const Page = () => {
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
-
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [visibleCount, setVisibleCount] = useState(9); // show 9 first
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -53,7 +50,7 @@ const Page = () => {
           setVisibleCount((prev) => prev + 6); // load 6 more
         }
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
 
     observer.observe(loadMoreRef.current);
@@ -104,10 +101,7 @@ export default Page;
 /* 🔹 BlogTopic Component */
 const BlogCard = ({ blogs }: { blogs: Blog[] }) => {
   return blogs.map((blog) => (
-    <Link
-      key={blog.id}
-      href={`/blogs/${slugify(blog.title)}`}
-    >
+    <Link key={blog.id} href={`/blogs/${blog.slugTitle}`}>
       <Card className="w-full rounded-lg">
         <CardContent className="w-full !px-0 !pt-0 pb-5">
           <div className="h-[250px] relative lg:h-[220px] w-full overflow-hidden">

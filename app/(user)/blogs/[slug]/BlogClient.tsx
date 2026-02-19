@@ -7,13 +7,13 @@ import { Editor } from "@/components/blocks/editor-00/editor";
 import { useEffect, useState } from "react";
 import Banner from "../../App_Chunks/Components/Banner";
 import Form from "../../App_Chunks/Components/PopupForm";
-
+import Image from "next/image";
 const serverUrl = "https://www.bizgrowthconsultancy.com";
 const POPUP_DELAY = 70 * 1000;
 export default function BlogClient({ blog }: { blog: any }) {
   const pathname = usePathname();
   const blogURL = `${serverUrl}/${pathname}`;
-  const blogTitle = blog?.title || "";
+  const blogTitle = blog?.slugTitle || "";
   function calculateReadTime(text: string) {
     const wordsPerMinute = 200;
     const wordCount = text.trim().split(/\s+/).length;
@@ -76,7 +76,7 @@ export default function BlogClient({ blog }: { blog: any }) {
           <li className="w-full lg:w-auto">
             <Link
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                blogTitle
+                blogTitle,
               )}&url=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -91,7 +91,7 @@ export default function BlogClient({ blog }: { blog: any }) {
           <li className="w-full lg:w-auto">
             <Link
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                blogURL
+                blogURL,
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -106,7 +106,7 @@ export default function BlogClient({ blog }: { blog: any }) {
           <li className="w-full lg:w-auto">
             <Link
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                blogURL
+                blogURL,
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -121,7 +121,8 @@ export default function BlogClient({ blog }: { blog: any }) {
       </div>
 
       <div className="w-full h-[300px] lg:h-[580px] mt-12 rounded-xl overflow-hidden">
-        <img
+        <Image
+          fill
           src={`/api/uploads/${blog.image}`}
           alt={blog?.image}
           className="w-full h-full object-cover"

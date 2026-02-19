@@ -12,27 +12,25 @@ type Blog = {
   imageURL?: string;
   createdAt?: string | null;
   updatedAt?: string | null;
+  slugTitle?: string;
 };
 
 const serverUrl = "https://www.bizgrowthconsultancy.com";
 
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/—/g, "-")
-    .replace(/[^\w\s-]/g, "") // remove punctuation
-    .replace(/\s+/g, "-");
-}
+async function getBlog(slug: string): Promise<Blog | null> {
+  try {
+    const res = await fetch(`${serverUrl}/api/blogs/${slug}`, {
+      next: { revalidate: 60 },
+    });
 
-async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch(`${serverUrl}/api/blogs`, {
-    next: { revalidate: 60 },
-  });
+    if (!res.ok) return null;
 
-  if (!res.ok) throw new Error("Failed to fetch blogs");
-  const data = await res.json();
-  return data.blogs;
+    const data = await res.json();
+    return data.blog ?? null; // assume API returns { blog: Blog }
+  } catch (err) {
+    console.error("Failed to fetch blog:", err);
+    return null;
+  }
 }
 
 export async function generateMetadata({
@@ -41,11 +39,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const blogs = await getBlogs();
-
-  const blog = blogs.find(
-    (b) => slugify(b.title) === slugify(decodeURIComponent(slug)),
-  );
+  const blog = await getBlog(slug);
 
   return {
     title: blog?.metaTitle || blog?.title || "Blog",
@@ -54,7 +48,7 @@ export async function generateMetadata({
       title: blog?.metaTitle || blog?.title,
       description: blog?.metaDesc || "",
       images: blog?.imageURL ? [blog.imageURL] : [],
-      url: `${serverUrl}/${slug}`,
+      url: `${serverUrl}/blogs/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -62,6 +56,7 @@ export async function generateMetadata({
       description: blog?.metaDesc || "",
       images: blog?.imageURL ? [blog.imageURL] : [],
     },
+    alternates: { canonical: `${serverUrl}/blogs/${slug}` },
   };
 }
 
@@ -71,9 +66,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const blogs = await getBlogs();
-
-  const blog = blogs.find((b) => slugify(b.title) === slugify(slug));
+  const blog = await getBlog(slug);
 
   if (!blog) {
     return <div className="p-8 text-center text-gray-500">Blog not found</div>;

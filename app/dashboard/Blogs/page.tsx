@@ -16,6 +16,7 @@ const BlogListPage = () => {
     createdAt: string;
     author: string;
     category?: string;
+    slugTitle: string;
   }
 
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -39,12 +40,12 @@ const BlogListPage = () => {
 
   const handleDeleteBlog = async (id: string) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this blog?"
+      "Are you sure you want to delete this blog?",
     );
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`/api/blogs?id=${id}`, {
+      const res = await fetch(`/api/blogs/${id}`, {
         method: "DELETE",
       });
 
@@ -124,14 +125,14 @@ const BlogListPage = () => {
                     <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() =>
-                          router.push(`/dashboard/Blogs/edit/${blog.id}`)
+                          router.push(`/dashboard/Blogs/edit/${blog.slugTitle}`)
                         }
                         className="px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded"
                       >
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDeleteBlog(blog.id)}
+                        onClick={() => handleDeleteBlog(blog.slugTitle)}
                         className="px-3 py-1 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded"
                       >
                         Delete

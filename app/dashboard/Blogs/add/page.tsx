@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Eye, Upload, User, Facebook, Twitter } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { slugify } from "@/components/Blogs";
 export default function AddBlogPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -31,6 +32,7 @@ export default function AddBlogPage() {
     author: "",
     category: "",
     content: "",
+    slugTitle: "",
     image: null as File | null,
   });
 
@@ -71,7 +73,7 @@ export default function AddBlogPage() {
 
   const handleChange = (
     key: keyof typeof blogData,
-    value: string | File | null
+    value: string | File | null,
   ) => {
     setBlogData((prev) => ({
       ...prev,
@@ -92,12 +94,24 @@ export default function AddBlogPage() {
     setLoading(true);
 
     try {
+      if (blogData.slugTitle) {
+        const slugRegex = /^[a-z0-9-]+$/;
+
+        if (!slugRegex.test(blogData.slugTitle)) {
+          toast.error(
+            "Slug can only contain lowercase letters, numbers, and hyphens.",
+            { className: "!bg-red-500/80 !text-slate-50" },
+          );
+          return;
+        }
+      }
       if (
         !blogData.title ||
         !blogData.content ||
         !blogData.image ||
         !blogData.category ||
-        !blogData.author
+        !blogData.author ||
+        !blogData.slugTitle
       ) {
         toast.error("Please fill in all fields and upload an image.");
         setLoading(false);
@@ -112,6 +126,7 @@ export default function AddBlogPage() {
       formData.append("author", blogData.author);
       formData.append("category", blogData.category);
       formData.append("content", blogData.content);
+      formData.append("slugTitle", blogData.slugTitle);
       formData.append("image", blogData.image as File);
 
       const res = await fetch("/api/blogs", {
@@ -132,6 +147,7 @@ export default function AddBlogPage() {
           category: "",
           content: "",
           image: null,
+          slugTitle: "",
         });
         setImagePreview(null);
       } else {
@@ -158,6 +174,14 @@ export default function AddBlogPage() {
     }
     setShowPreview(true);
   };
+  useEffect(() => {
+    if (blogData.title) {
+      setBlogData((prev) => ({
+        ...prev,
+        slugTitle: slugify(blogData.title),
+      }));
+    }
+  }, [blogData.title]);
   return (
     <div className="pb-10">
       <h1 className="text-2xl font-semibold">Add New Blog</h1>
@@ -165,12 +189,11 @@ export default function AddBlogPage() {
       <form className="grid space-y-8 !mt-8" onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-5">
           <div>
-            {" "}
             <Label
               className="block text-sm font-medium mb-[6px]"
               htmlFor="blogTitle"
             >
-              Blog Title
+              Blog Title <span className="text-red-500">*</span>
             </Label>
             <Input
               id={"blogTitle"}
@@ -178,6 +201,22 @@ export default function AddBlogPage() {
               placeholder="Blog Title"
               value={blogData.title}
               onChange={(e) => handleChange("title", e.target.value)}
+              className="h-12 "
+            />
+          </div>
+          <div>
+            <Label
+              className="block text-sm font-medium mb-[6px]"
+              htmlFor="slugTitle"
+            >
+              Blog Slug <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id={"slugTitle"}
+              name={"slugTitle"}
+              placeholder="Slug Title"
+              value={blogData.slugTitle}
+              onChange={(e) => handleChange("slugTitle", e.target.value)}
               className="h-12"
             />
           </div>
@@ -186,7 +225,7 @@ export default function AddBlogPage() {
               className="block text-sm font-medium mb-[6px]"
               htmlFor="metaTitle"
             >
-              Meta Title
+              Meta Title <span className="text-red-500">*</span>
             </Label>
             <Input
               id={"metaTitle"}
@@ -202,7 +241,7 @@ export default function AddBlogPage() {
               className="block text-sm font-medium mb-[6px]"
               htmlFor="metaDesc"
             >
-              Meta Description
+              Meta Description <span className="text-red-500">*</span>
             </Label>
             <Input
               id={"metaDesc"}
@@ -218,7 +257,7 @@ export default function AddBlogPage() {
               className="block text-sm font-medium mb-[6px]"
               htmlFor="author"
             >
-              Author
+              Author <span className="text-red-500">*</span>
             </Label>
             <Input
               name={"author"}
@@ -235,7 +274,7 @@ export default function AddBlogPage() {
               htmlFor="category"
               className="block text-sm font-medium mb-[6px]"
             >
-              Select Category
+              Select Category <span className="text-red-500">*</span>
             </Label>
             <Select
               value={blogData.category}
@@ -244,7 +283,7 @@ export default function AddBlogPage() {
               <SelectTrigger
                 name={"category"}
                 id={"category"}
-                className="!h-12 w-full"
+                className="!h-12 w-full bg-gray-50 text-stone-500 border-stone-300"
               >
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -264,9 +303,9 @@ export default function AddBlogPage() {
               htmlFor="fileAdd"
               className="block text-sm font-medium mb-[6px]"
             >
-              Image
+              Image <span className="text-red-500">*</span>
             </Label>
-            <div className="relative flex items-center border border-gray-100 shadow gap-3 line-clamp-1 bg-white w-full px-3 py-[.22rem] rounded-lg">
+            <div className="relative flex items-center border border-stone-300 shadow gap-3 line-clamp-1 bg-gray-50 w-full px-3 !h-12 rounded-lg">
               <label
                 htmlFor="fileAdd"
                 className="px-3 rounded-md py-[.45rem] bg-lime-500 text-slate-50 cursor-pointer"

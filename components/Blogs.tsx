@@ -132,9 +132,7 @@ const Blogs = () => {
                       </div>
                     </div>
                   </div>
-                  <Link
-                    href={`/blogs/${slugify(blog.title)}`}
-                  >
+                  <Link href={`/blogs/${blog.slugTitle}`}>
                     <button className="absolute right-4 bottom-4 bg-lime-500 hover:bg-lime-600 text-white rounded-lg p-2">
                       <MoveUpRight />
                     </button>

@@ -30,6 +30,7 @@ type Blog = {
   content: string;
   image: string | File;
   createdAt?: string;
+  slugTitle?: string;
 };
 
 export default function Page() {
@@ -81,6 +82,7 @@ export default function Page() {
     content: "",
     image: "" as string | File,
     id: "",
+    slugTitle: "",
   });
   const router = useRouter();
   useEffect(() => {
@@ -99,6 +101,7 @@ export default function Page() {
           category: blog.category,
           content: blog.content,
           image: blog.image,
+          slugTitle: blog.slugTitle,
         });
         if (typeof blog.image === "string" && blog.image) {
           setImagePreview(blog.image);
@@ -110,7 +113,7 @@ export default function Page() {
 
   const handleChange = (
     key: keyof typeof blogData,
-    value: string | File | null
+    value: string | File | null,
   ) => {
     setBlogData((prev) => ({
       ...prev,
@@ -133,7 +136,8 @@ export default function Page() {
         !blogData.title ||
         !blogData.content ||
         !blogData.category ||
-        !blogData.author
+        !blogData.author ||
+        !blogData.slugTitle
       ) {
         toast.error("Please fill in all required fields.");
         setLoading(false);
@@ -148,6 +152,7 @@ export default function Page() {
       formData.append("category", blogData.category);
       formData.append("content", blogData.content);
       formData.append("id", blogData.id);
+      formData.append("slugTitle", blogData.slugTitle);
 
       if (blogData.image instanceof File) {
         formData.append("image", blogData.image);
@@ -162,7 +167,7 @@ export default function Page() {
 
       if (result.success) {
         toast.success(
-          blogData ? "Blog updated successfully!" : "Blog saved successfully!"
+          blogData ? "Blog updated successfully!" : "Blog saved successfully!",
         );
         router.push("/dashboard/Blogs");
 
@@ -176,6 +181,7 @@ export default function Page() {
             content: "",
             image: "" as string | File,
             id: "",
+            slugTitle: "",
           });
           setImagePreview(null);
         }
@@ -329,8 +335,8 @@ export default function Page() {
                 {typeof blogData.image === "string"
                   ? blogData.image
                   : blogData.image instanceof File
-                  ? blogData.image.name
-                  : ""}
+                    ? blogData.image.name
+                    : ""}
               </p>
               <Input
                 id="fileAdd"
@@ -407,8 +413,8 @@ export default function Page() {
               {typeof blogData.image === "string"
                 ? blogData.image
                 : blogData.image instanceof File
-                ? blogData.image.name
-                : ""}
+                  ? blogData.image.name
+                  : ""}
             </DialogTitle>
             {imagePreview && (
               <img
