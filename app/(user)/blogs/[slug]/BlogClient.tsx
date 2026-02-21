@@ -8,49 +8,148 @@ import { useEffect, useState } from "react";
 import Banner from "../../App_Chunks/Components/Banner";
 import Form from "../../App_Chunks/Components/PopupForm";
 import Image from "next/image";
+
 const serverUrl = "https://www.bizgrowthconsultancy.com";
 const POPUP_DELAY = 70 * 1000;
+
+// ---------------------------------------------------------------------------
+// Lexical JSON → plain HTML (runs on both server and client)
+// Converts the serialized Lexical editor state into semantic HTML so that
+// Googlebot sees the full article content in the raw HTML, not just after JS.
+// ---------------------------------------------------------------------------
+type LexicalNode = {
+  type: string;
+  text?: string;
+  format?: number;
+  tag?: string;
+  listType?: string;
+  children?: LexicalNode[];
+  url?: string;
+  src?: string;
+  altText?: string;
+  level?: number;
+};
+
+function lexicalNodeToHtml(node: LexicalNode): string {
+  const children = node.children
+    ? node.children.map(lexicalNodeToHtml).join("")
+    : "";
+
+  switch (node.type) {
+    case "root":
+      return children;
+
+    case "paragraph":
+      return `<p>${children}</p>`;
+
+    case "heading": {
+      const tag = node.tag || `h${node.level || 2}`;
+      return `<${tag}>${children}</${tag}>`;
+    }
+
+    case "list":
+      return node.listType === "bullet"
+        ? `<ul>${children}</ul>`
+        : `<ol>${children}</ol>`;
+
+    case "listitem":
+      return `<li>${children}</li>`;
+
+    case "quote":
+      return `<blockquote>${children}</blockquote>`;
+
+    case "link":
+      return `<a href="${node.url || "#"}">${children}</a>`;
+
+    case "image":
+      return `<img src="${node.src || ""}" alt="${node.altText || ""}" />`;
+
+    case "text": {
+      let text = node.text || "";
+      // Lexical format bitmask: 1=bold, 2=italic, 4=strikethrough, 8=underline, 16=code
+      if (node.format) {
+        if (node.format & 16) text = `<code>${text}</code>`;
+        if (node.format & 4) text = `<s>${text}</s>`;
+        if (node.format & 8) text = `<u>${text}</u>`;
+        if (node.format & 2) text = `<em>${text}</em>`;
+        if (node.format & 1) text = `<strong>${text}</strong>`;
+      }
+      return text;
+    }
+
+    case "linebreak":
+      return "<br />";
+
+    default:
+      return children;
+  }
+}
+
+function lexicalToHtml(serializedState: { root: LexicalNode } | null): string {
+  if (!serializedState?.root) return "";
+  try {
+    return lexicalNodeToHtml(serializedState.root);
+  } catch {
+    return "";
+  }
+}
+
+// ---------------------------------------------------------------------------
+
 export default function BlogClient({ blog }: { blog: any }) {
   const pathname = usePathname();
   const blogURL = `${serverUrl}/${pathname}`;
   const blogTitle = blog?.slugTitle || "";
+
   function calculateReadTime(text: string) {
     const wordsPerMinute = 200;
     const wordCount = text.trim().split(/\s+/).length;
     const minutes = Math.ceil(wordCount / wordsPerMinute);
     return `${minutes} min read`;
   }
+
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     const closedAt = localStorage.getItem("popupClosedAt");
-
     if (!closedAt) {
       setIsOpen(true);
       return;
     }
-
     const elapsed = Date.now() - Number(closedAt);
-
     if (elapsed >= POPUP_DELAY) {
       localStorage.removeItem("popupClosedAt");
       setIsOpen(true);
     }
   }, []);
 
-  // Handle popup close
   const handleClose = () => {
     setIsOpen(false);
     localStorage.setItem("popupClosedAt", Date.now().toString());
   };
 
+  // Parse the content once
+  const parsedContent =
+    typeof blog?.content === "string"
+      ? (() => {
+          try {
+            return JSON.parse(blog.content);
+          } catch {
+            return null;
+          }
+        })()
+      : null;
+
+  // Pre-render the content as static HTML for SEO
+  const staticHtml = lexicalToHtml(parsedContent);
+
   return (
-    <main className="pt-14 relative container ">
+    <main className="pt-14 relative container">
       {isOpen ? <Form onClose={handleClose} /> : null}
       <div className="flex flex-col items-center">
         <p className="p-2 text-xs bg-teal-100 text-teal-700 rounded-lg font-bold font-quicksand text-center mb-2">
           {blog?.category}
         </p>
-        <h1 className="text-4xl lg:text-5xl  tracking-tighter font-[600] text-center">
+        <h1 className="text-4xl lg:text-5xl tracking-tighter font-[600] text-center">
           {blog?.title}
         </h1>
       </div>
@@ -72,47 +171,39 @@ export default function BlogClient({ blog }: { blog: any }) {
         </ul>
 
         {/* Social Share Buttons */}
-        <ul className="grid grid-cols-2 lg:flex lg:flex-wrap lg:justify-center lg:items-center mt-5 gap-3 w-full ">
+        <ul className="grid grid-cols-2 lg:flex lg:flex-wrap lg:justify-center lg:items-center mt-5 gap-3 w-full">
           <li className="w-full lg:w-auto">
             <Link
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                blogTitle,
-              )}&url=${encodeURIComponent(blogURL)}`}
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blogTitle)}&url=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full"
             >
-              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2  border border-slate-200 rounded-lg bg-[#1DA1F2]">
+              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2 border border-slate-200 rounded-lg bg-[#1DA1F2]">
                 <Twitter />
               </button>
             </Link>
           </li>
-
           <li className="w-full lg:w-auto">
             <Link
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                blogURL,
-              )}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full"
             >
-              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2  border border-slate-200 rounded-lg bg-[#1877F2]">
+              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2 border border-slate-200 rounded-lg bg-[#1877F2]">
                 <Facebook />
               </button>
             </Link>
           </li>
-
           <li className="w-full lg:w-auto">
             <Link
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                blogURL,
-              )}`}
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full"
             >
-              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2  border border-slate-200 rounded-lg bg-[#0A66C2]">
+              <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2 border border-slate-200 rounded-lg bg-[#0A66C2]">
                 <Linkedin />
               </button>
             </Link>
@@ -128,28 +219,43 @@ export default function BlogClient({ blog }: { blog: any }) {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="max-w-5xl mx-auto ">
+
+      <div className="max-w-5xl mx-auto">
         <div className="mt-8">
-          {blog?.content ? (
-            <Editor
-              editorSerializedState={
-                typeof blog.content === "string"
-                  ? JSON.parse(blog.content)
-                  : null
-              }
-              readOnly
-              blogPage={true}
-            />
+          {parsedContent ? (
+            <>
+              {/*
+                SEO layer: static HTML rendered on the server so Googlebot
+                can read the full article content without executing JavaScript.
+                Hidden visually once the interactive Editor hydrates.
+              */}
+              <div
+                className="seo-content prose prose-lg max-w-none"
+                dangerouslySetInnerHTML={{ __html: staticHtml }}
+                aria-hidden="true"
+                style={{ display: "none" }}
+              />
+
+              {/*
+                Interactive editor for users — client-side rendered.
+                This is what users see and interact with.
+              */}
+              <Editor
+                editorSerializedState={parsedContent}
+                readOnly
+                blogPage={true}
+              />
+            </>
           ) : null}
         </div>
       </div>
+
       <Blogs />
 
       <section className="mt-14">
-        {" "}
         <Banner
           title="Get Expert Help to Build, Scale, and Launch Your Next Project"
-          desc="Whether you're starting from scratch or improving an existing product, our experts are ready to guide you with clear strategy, clean execution, and real results. Share your details and let’s move your project forward—faster and smarter."
+          desc="Whether you're starting from scratch or improving an existing product, our experts are ready to guide you with clear strategy, clean execution, and real results. Share your details and let's move your project forward—faster and smarter."
         />
       </section>
     </main>

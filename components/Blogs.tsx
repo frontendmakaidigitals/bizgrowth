@@ -10,27 +10,54 @@ import {
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Editor } from "@/components/blocks/editor-00/editor";
 
 export function slugify(text: string): string {
   return text
     .toLowerCase()
     .trim()
     .replace(/—/g, "-")
-    .replace(/[^\w\s-]/g, "") // remove punctuation
+    .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-");
 }
-const Blogs = () => {
-  interface Blog {
-    id: string | number;
-    title: string;
-    content: string;
-    image?: string;
-    createdAt: string;
-    author?: string;
-    [key: string]: any;
-  }
 
+// ---------------------------------------------------------------------------
+// Lexical JSON → plain text (for blog card previews)
+// ---------------------------------------------------------------------------
+type LexicalNode = {
+  type: string;
+  text?: string;
+  children?: LexicalNode[];
+};
+
+function extractPlainText(node: LexicalNode): string {
+  if (node.type === "text") return node.text || "";
+  if (node.children) return node.children.map(extractPlainText).join(" ");
+  return "";
+}
+
+function lexicalToPlainText(content: string | object | null): string {
+  if (!content) return "";
+  try {
+    const parsed = typeof content === "string" ? JSON.parse(content) : content;
+    return extractPlainText(parsed.root).replace(/\s+/g, " ").trim();
+  } catch {
+    return "";
+  }
+}
+// ---------------------------------------------------------------------------
+
+interface Blog {
+  id: string | number;
+  title: string;
+  content: string;
+  image?: string;
+  createdAt: string;
+  author?: string;
+  slugTitle?: string;
+  [key: string]: any;
+}
+
+const Blogs = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [api, setApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -38,15 +65,12 @@ const Blogs = () => {
 
   useEffect(() => {
     if (!api) return;
-
     const update = () => {
       setCanScrollPrev(api.canScrollPrev());
       setCanScrollNext(api.canScrollNext());
     };
-
     update();
     api.on("select", update);
-
     return () => {
       api.off?.("select", update);
     };
@@ -57,90 +81,80 @@ const Blogs = () => {
       try {
         const res = await fetch("/api/blogs");
         if (!res.ok) throw new Error("Failed to fetch blogs");
-
         const data = await res.json();
         setBlogs(data.blogs || []);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       }
     };
-
     fetchBlogs();
   }, []);
 
   return (
-    <section className=" py-1 mt-16 mb-12 lg:mb-0 lg:mt-0 lg:py-10 text-gray-900 relative">
+    <section className="py-1 mt-16 mb-12 lg:mb-0 lg:mt-0 lg:py-10 text-gray-900 relative">
       {blogs.length !== 0 ? (
-        <div className="container ">
-          <motion.h1 className="text-4xl text-center lg:text-5xl font-bold  mb-6">
+        <div className="container">
+          <motion.h1 className="text-4xl text-center lg:text-5xl font-bold mb-6">
             Latest from the <span className="text-lime-600">Blog</span>
           </motion.h1>
 
-          <Carousel
-            opts={{ align: "start" }}
-            setApi={setApi}
-            className=" mt-12"
-          >
+          <Carousel opts={{ align: "start" }} setApi={setApi} className="mt-12">
             <CarouselContent className="-ml-4">
-              {blogs.map((blog, index) => (
-                <CarouselItem
-                  key={blog.id || index}
-                  className="pb-10 relative basis-full sm:basis-1/2 lg:basis-1/4"
-                >
-                  <div className="bg-blue-50 p-1 relative shadow-sm rounded-lg overflow-hidden">
-                    <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
-                      <div className="absolute inset-0 bg-black/20 z-10" />
-                      {blog.image && (
-                        <Image
-                          src={`/api/uploads/${blog.image}`}
-                          alt={blog.title}
-                          width={600}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                    </div>
+              {blogs.map((blog, index) => {
+                // Extract plain text preview once per blog
+                const previewText = lexicalToPlainText(blog.content);
 
-                    {/* Blog Info */}
-                    <div className="p-4 relative z-20">
-                      <h3 className="font-bold text-lg line-clamp-2">
-                        {blog.title}
-                      </h3>
-
-                      <div className="mt-1 text-sm text-gray-600">
-                        {blog.content ? (
-                          <Editor
-                            editorSerializedState={
-                              typeof blog.content === "string"
-                                ? JSON.parse(blog.content)
-                                : blog.content
-                            }
-                            readOnly
-                            clampLines={2}
-                            blogPage={false}
+                return (
+                  <CarouselItem
+                    key={blog.id || index}
+                    className="pb-10 relative basis-full sm:basis-1/2 lg:basis-1/4"
+                  >
+                    <div className="bg-blue-50 p-1 relative shadow-sm rounded-lg overflow-hidden">
+                      <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
+                        <div className="absolute inset-0 bg-black/20 z-10" />
+                        {blog.image && (
+                          <Image
+                            src={`/api/uploads/${blog.image}`}
+                            alt={blog.title}
+                            width={600}
+                            height={400}
+                            className="w-full h-full object-cover"
                           />
-                        ) : null}
+                        )}
                       </div>
 
-                      <div className="flex text-slate-500 mt-2 text-xs items-center justify-between">
-                        <span>{blog.author ?? "Unknown"}</span>
-                        <span>
-                          {blog.id
-                            ? new Date(blog.createdAt).toLocaleDateString()
-                            : "Unknown"}
-                        </span>
+                      {/* Blog Info */}
+                      <div className="p-4 relative z-20">
+                        <h3 className="font-bold text-lg line-clamp-2">
+                          {blog.title}
+                        </h3>
+
+                        {/* Plain text preview — no Editor needed, works server-side */}
+                        <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+                          {previewText}
+                        </p>
+
+                        <div className="flex text-slate-500 mt-2 text-xs items-center justify-between">
+                          <span>{blog.author ?? "Unknown"}</span>
+                          <span>
+                            {blog.createdAt
+                              ? new Date(blog.createdAt).toLocaleDateString()
+                              : "Unknown"}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <Link href={`/blogs/${blog.slugTitle}`}>
-                    <button className="absolute right-4 bottom-4 bg-lime-500 hover:bg-lime-600 text-white rounded-lg p-2">
-                      <MoveUpRight />
-                    </button>
-                  </Link>
-                </CarouselItem>
-              ))}
+                    <Link href={`/blogs/${blog.slugTitle}`}>
+                      <button className="absolute right-4 bottom-4 bg-lime-500 hover:bg-lime-600 text-white rounded-lg p-2">
+                        <MoveUpRight />
+                      </button>
+                    </Link>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
           </Carousel>
+
           <div className="mt-7 lg:mt-0 flex justify-end gap-2">
             <button
               disabled={!canScrollPrev}
