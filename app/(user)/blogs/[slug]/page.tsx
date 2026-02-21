@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import BlogClient from "./BlogClient";
+import { dbGet, dbAll } from "@/lib/db";
+import zlib from "zlib";
 
 type Blog = {
   id: string;
@@ -9,7 +11,7 @@ type Blog = {
   content?: string;
   metaTitle?: string;
   metaDesc?: string;
-  imageURL?: string;
+  image?: string;
   createdAt?: string | null;
   updatedAt?: string | null;
   slugTitle?: string;
@@ -19,16 +21,23 @@ const serverUrl = "https://www.bizgrowthconsultancy.com";
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
-    const res = await fetch(`${serverUrl}/api/blogs/${slug}`, {
-      next: { revalidate: 60 },
-    });
+    const blog = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [slug]);
 
-    if (!res.ok) return null;
+    if (!blog) return null;
 
-    const data = await res.json();
-    return data.blog ?? null; // assume API returns { blog: Blog }
+    // Decompress content if gzipped
+    if (blog.content?.startsWith("gz:")) {
+      try {
+        const compressed = Buffer.from(blog.content.slice(3), "base64");
+        blog.content = zlib.gunzipSync(compressed).toString("utf-8");
+      } catch (err) {
+        console.warn("⚠️ Failed to decompress content for blog:", slug, err);
+      }
+    }
+
+    return blog;
   } catch (err) {
-    console.error("Failed to fetch blog:", err);
+    console.error("Failed to fetch blog from DB:", err);
     return null;
   }
 }
@@ -41,20 +50,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const blog = await getBlog(slug);
 
+  const imageUrl = blog?.image
+    ? `${serverUrl}/api/uploads/${blog.image}`
+    : undefined;
+
   return {
     title: blog?.metaTitle || blog?.title || "Blog",
     description: blog?.metaDesc || "",
     openGraph: {
       title: blog?.metaTitle || blog?.title,
       description: blog?.metaDesc || "",
-      images: blog?.imageURL ? [blog.imageURL] : [],
+      images: imageUrl ? [imageUrl] : [],
       url: `${serverUrl}/blogs/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
       title: blog?.metaTitle || blog?.title,
       description: blog?.metaDesc || "",
-      images: blog?.imageURL ? [blog.imageURL] : [],
+      images: imageUrl ? [imageUrl] : [],
     },
     alternates: { canonical: `${serverUrl}/blogs/${slug}` },
   };
@@ -77,14 +90,15 @@ export default async function Page({
 
 export async function generateStaticParams() {
   try {
-    const res = await fetch(`${serverUrl}/api/blogs`, {
-      next: { revalidate: 3600 },
-    });
-    const data = await res.json();
-    return (data.blogs ?? []).map((b: { slugTitle: string }) => ({
+    const blogs = await dbAll(
+      "SELECT slugTitle FROM blogs ORDER BY updatedAt DESC",
+      [],
+    );
+    return (blogs ?? []).map((b: { slugTitle: string }) => ({
       slug: b.slugTitle,
     }));
-  } catch {
+  } catch (err) {
+    console.error("Failed to fetch slugs for static params:", err);
     return [];
   }
 }
