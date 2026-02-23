@@ -126,6 +126,10 @@ export default function BlogClient({ blog }: { blog: any }) {
     setIsOpen(false);
     localStorage.setItem("popupClosedAt", Date.now().toString());
   };
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   // Parse the content once
   const parsedContent =
@@ -232,8 +236,7 @@ export default function BlogClient({ blog }: { blog: any }) {
               <div
                 className="seo-content prose prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: staticHtml }}
-                aria-hidden="true"
-                style={{ display: "none" }}
+                style={hydrated ? { display: "none" } : undefined}
               />
 
               {/*
