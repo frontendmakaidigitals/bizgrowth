@@ -117,7 +117,7 @@ export async function POST(req: Request): Promise<Response> {
       updatedAt: now,
     };
     const blogs = await dbAll(
-      "SELECT id, title FROM blogs ORDER BY updatedAt DESC",
+      "SELECT slugTitle, updatedAt FROM blogs ORDER BY updatedAt DESC",
     );
     await updateSitemap(blogs);
 
