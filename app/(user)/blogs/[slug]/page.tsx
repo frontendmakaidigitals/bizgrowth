@@ -17,15 +17,26 @@ type Blog = {
   slugTitle?: string;
 };
 
+type LexicalNode = {
+  type: string;
+  text?: string;
+  format?: number;
+  tag?: string;
+  listType?: string;
+  children?: LexicalNode[];
+  url?: string;
+  src?: string;
+  altText?: string;
+  level?: number;
+};
+
 const serverUrl = "https://www.bizgrowthconsultancy.com";
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
     const blog = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [slug]);
-
     if (!blog) return null;
 
-    // Decompress content if gzipped
     if (blog.content?.startsWith("gz:")) {
       try {
         const compressed = Buffer.from(blog.content.slice(3), "base64");
@@ -39,6 +50,59 @@ async function getBlog(slug: string): Promise<Blog | null> {
   } catch (err) {
     console.error("Failed to fetch blog from DB:", err);
     return null;
+  }
+}
+
+function lexicalNodeToHtml(node: LexicalNode): string {
+  const children = node.children
+    ? node.children.map(lexicalNodeToHtml).join("")
+    : "";
+
+  switch (node.type) {
+    case "root":
+      return children;
+    case "paragraph":
+      return `<p>${children}</p>`;
+    case "heading": {
+      const tag = node.tag || `h${node.level || 2}`;
+      return `<${tag}>${children}</${tag}>`;
+    }
+    case "list":
+      return node.listType === "bullet"
+        ? `<ul>${children}</ul>`
+        : `<ol>${children}</ol>`;
+    case "listitem":
+      return `<li>${children}</li>`;
+    case "quote":
+      return `<blockquote>${children}</blockquote>`;
+    case "link":
+      return `<a href="${node.url || "#"}">${children}</a>`;
+    case "image":
+      return `<img src="${node.src || ""}" alt="${node.altText || ""}" />`;
+    case "text": {
+      let text = node.text || "";
+      if (node.format) {
+        if (node.format & 16) text = `<code>${text}</code>`;
+        if (node.format & 4) text = `<s>${text}</s>`;
+        if (node.format & 8) text = `<u>${text}</u>`;
+        if (node.format & 2) text = `<em>${text}</em>`;
+        if (node.format & 1) text = `<strong>${text}</strong>`;
+      }
+      return text;
+    }
+    case "linebreak":
+      return "<br />";
+    default:
+      return children;
+  }
+}
+
+function lexicalToHtml(serializedState: { root: LexicalNode } | null): string {
+  if (!serializedState?.root) return "";
+  try {
+    return lexicalNodeToHtml(serializedState.root);
+  } catch {
+    return "";
   }
 }
 
@@ -85,7 +149,53 @@ export default async function Page({
     return <div className="p-8 text-center text-gray-500">Blog not found</div>;
   }
 
-  return <BlogClient blog={blog} />;
+  // Parse and render HTML on the server — no client JS needed
+  const parsedContent = (() => {
+    if (typeof blog.content !== "string") return null;
+    try {
+      return JSON.parse(blog.content);
+    } catch {
+      return null;
+    }
+  })();
+
+  const staticHtml = lexicalToHtml(parsedContent);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.metaTitle || blog.title,
+    description: blog.metaDesc || "",
+    image: blog.image ? `${serverUrl}/api/uploads/${blog.image}` : undefined,
+    author: {
+      "@type": "Person",
+      name: blog.author || "Biz Growth Consultancy",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Biz Growth Consultancy",
+      logo: {
+        "@type": "ImageObject",
+        url: `${serverUrl}/logo.png`,
+      },
+    },
+    datePublished: blog.createdAt ?? undefined,
+    dateModified: blog.updatedAt ?? blog.createdAt ?? undefined,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${serverUrl}/blogs/${slug}`,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogClient blog={blog} staticHtml={staticHtml} />
+    </>
+  );
 }
 
 export async function generateStaticParams() {

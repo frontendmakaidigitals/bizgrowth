@@ -3,126 +3,45 @@ import { User, Facebook, Twitter, Linkedin, Calendar } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Blogs from "@/components/Blogs";
-import { Editor } from "@/components/blocks/editor-00/editor";
-import { useEffect, useState } from "react";
 import Banner from "../../App_Chunks/Components/Banner";
-
 import Image from "next/image";
 
 const serverUrl = "https://www.bizgrowthconsultancy.com";
-type LexicalNode = {
-  type: string;
-  text?: string;
-  format?: number;
-  tag?: string;
-  listType?: string;
-  children?: LexicalNode[];
-  url?: string;
-  src?: string;
-  altText?: string;
-  level?: number;
-};
 
-function lexicalNodeToHtml(node: LexicalNode): string {
-  const children = node.children
-    ? node.children.map(lexicalNodeToHtml).join("")
-    : "";
-
-  switch (node.type) {
-    case "root":
-      return children;
-
-    case "paragraph":
-      return `<p>${children}</p>`;
-
-    case "heading": {
-      const tag = node.tag || `h${node.level || 2}`;
-      return `<${tag}>${children}</${tag}>`;
-    }
-
-    case "list":
-      return node.listType === "bullet"
-        ? `<ul>${children}</ul>`
-        : `<ol>${children}</ol>`;
-
-    case "listitem":
-      return `<li>${children}</li>`;
-
-    case "quote":
-      return `<blockquote>${children}</blockquote>`;
-
-    case "link":
-      return `<a href="${node.url || "#"}">${children}</a>`;
-
-    case "image":
-      return `<img src="${node.src || ""}" alt="${node.altText || ""}" />`;
-
-    case "text": {
-      let text = node.text || "";
-      // Lexical format bitmask: 1=bold, 2=italic, 4=strikethrough, 8=underline, 16=code
-      if (node.format) {
-        if (node.format & 16) text = `<code>${text}</code>`;
-        if (node.format & 4) text = `<s>${text}</s>`;
-        if (node.format & 8) text = `<u>${text}</u>`;
-        if (node.format & 2) text = `<em>${text}</em>`;
-        if (node.format & 1) text = `<strong>${text}</strong>`;
-      }
-      return text;
-    }
-
-    case "linebreak":
-      return "<br />";
-
-    default:
-      return children;
-  }
-}
-
-function lexicalToHtml(serializedState: { root: LexicalNode } | null): string {
-  if (!serializedState?.root) return "";
+function formatDate(dateStr?: string | null): string {
+  if (!dateStr) return "";
   try {
-    return lexicalNodeToHtml(serializedState.root);
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(dateStr));
   } catch {
-    return "";
+    return dateStr;
   }
 }
 
-// ---------------------------------------------------------------------------
+function calculateReadTime(text: string): string {
+  const wordsPerMinute = 200;
+  const wordCount = text.trim().split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min read`;
+}
 
-export default function BlogClient({ blog }: { blog: any }) {
+export default function BlogClient({
+  blog,
+  staticHtml,
+}: {
+  blog: any;
+  staticHtml: string;
+}) {
   const pathname = usePathname();
-  const blogURL = `${serverUrl}/${pathname}`;
-  const blogTitle = blog?.slugTitle || "";
-
-  function calculateReadTime(text: string) {
-    const wordsPerMinute = 200;
-    const wordCount = text.trim().split(/\s+/).length;
-    const minutes = Math.ceil(wordCount / wordsPerMinute);
-    return `${minutes} min read`;
-  }
-
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  // Parse the content once
-  const parsedContent =
-    typeof blog?.content === "string"
-      ? (() => {
-          try {
-            return JSON.parse(blog.content);
-          } catch {
-            return null;
-          }
-        })()
-      : null;
-
-  // Pre-render the content as static HTML for SEO
-  const staticHtml = lexicalToHtml(parsedContent);
+  const blogURL = `${serverUrl}${pathname}`;
+  const blogTitle = blog?.title || "";
 
   return (
     <main className="pt-14 relative container">
+      {/* Title */}
       <div className="flex flex-col items-center">
         <p className="p-2 text-xs bg-teal-100 text-teal-700 rounded-lg font-bold font-quicksand text-center mb-2">
           {blog?.category}
@@ -132,8 +51,8 @@ export default function BlogClient({ blog }: { blog: any }) {
         </h1>
       </div>
 
+      {/* Meta */}
       <div className="flex flex-col items-center mt-8">
-        {/* Blog Info */}
         <ul className="flex flex-row justify-between lg:justify-center items-center text-sm sm:divide-y-0 sm:divide-x divide-slate-300 w-full lg:px-0">
           <li className="flex items-center gap-3 py-2 sm:py-0 px-3">
             <User size={16} />
@@ -141,21 +60,22 @@ export default function BlogClient({ blog }: { blog: any }) {
           </li>
           <li className="flex items-center gap-3 py-2 sm:py-0 px-3">
             <Calendar size={16} />
-            <p>{blog?.createdAt}</p>
+            <time dateTime={blog?.createdAt ?? undefined}>
+              {formatDate(blog?.createdAt)}
+            </time>
           </li>
           <li className="hidden lg:flex items-center py-2 sm:py-0 px-3">
-            {blog?.content ? calculateReadTime(blog?.content) : null}
+            {blog?.content ? calculateReadTime(blog.content) : null}
           </li>
         </ul>
 
-        {/* Social Share Buttons */}
+        {/* Share Buttons */}
         <ul className="grid grid-cols-2 lg:flex lg:flex-wrap lg:justify-center lg:items-center mt-5 gap-3 w-full">
           <li className="w-full lg:w-auto">
             <Link
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blogTitle)}&url=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full"
             >
               <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2 border border-slate-200 rounded-lg bg-[#1DA1F2]">
                 <Twitter />
@@ -167,7 +87,6 @@ export default function BlogClient({ blog }: { blog: any }) {
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full"
             >
               <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2 border border-slate-200 rounded-lg bg-[#1877F2]">
                 <Facebook />
@@ -179,7 +98,6 @@ export default function BlogClient({ blog }: { blog: any }) {
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(blogURL)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full"
             >
               <button className="w-full justify-center p-2 flex text-slate-50 items-center gap-2 border border-slate-200 rounded-lg bg-[#0A66C2]">
                 <Linkedin />
@@ -189,42 +107,22 @@ export default function BlogClient({ blog }: { blog: any }) {
         </ul>
       </div>
 
+      {/* Hero Image */}
       <div className="w-full relative h-[300px] lg:h-[580px] mt-12 rounded-xl overflow-hidden">
         <Image
           fill
           src={`/api/uploads/${blog.image}`}
-          alt={blog?.image}
+          alt={blog?.title || "Blog image"}
           className="w-full h-full object-cover"
         />
       </div>
 
+      {/* Blog Content — server-rendered HTML, styled via globals.css */}
       <div className="max-w-5xl mx-auto">
-        <div className="mt-8">
-          {parsedContent ? (
-            <>
-              {/*
-                SEO layer: static HTML rendered on the server so Googlebot
-                can read the full article content without executing JavaScript.
-                Hidden visually once the interactive Editor hydrates.
-              */}
-              <div
-                className="seo-content prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: staticHtml }}
-                style={hydrated ? { display: "none" } : undefined}
-              />
-
-              {/*
-                Interactive editor for users — client-side rendered.
-                This is what users see and interact with.
-              */}
-              <Editor
-                editorSerializedState={parsedContent}
-                readOnly
-                blogPage={true}
-              />
-            </>
-          ) : null}
-        </div>
+        <div
+          className="blog-content mt-8"
+          dangerouslySetInnerHTML={{ __html: staticHtml }}
+        />
       </div>
 
       <Blogs />
