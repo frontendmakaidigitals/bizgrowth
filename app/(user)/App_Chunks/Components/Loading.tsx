@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useTransition } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Loading = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={null}>
       <Loader />
     </Suspense>
   );
@@ -14,28 +14,35 @@ const Loading = () => {
 export default Loading;
 
 const Loader = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const query = searchParams.get("name");
 
   useEffect(() => {
-    // Log when the loading state is updated
-    console.log(isLoading, "rendered");
+    // Show loader immediately when navigation starts
+    setIsLoading(true);
 
-    setIsLoading(true); // Set loading to true when path or query changes
-    setTimeout(() => {
-      setIsLoading(false); // Set loading to false after 1 second
-    }, 1000);
-  }, [pathname, query]); // Re-run the effect when the pathname or query changes
+    // Hide loader once the new page has fully painted
+    const frame = requestAnimationFrame(() => {
+      // Wait for the browser to commit the new page to the DOM
+      const timeout = setTimeout(() => {
+        setIsLoading(false);
+      }, 0); // 0ms — yields to the browser paint cycle, no artificial delay
+
+      return () => clearTimeout(timeout);
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, searchParams]); // Fires only on real navigation
 
   return (
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
+          initial={{ y: 0 }}
           exit={{ y: "-100%" }}
-          transition={{ duration: 0.5 }}
-          className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed shadown-lg bg-indigo-50 z-[9999]"
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          className="top-0 left-0 flex items-center justify-center h-screen w-screen fixed bg-indigo-50 z-[9999]"
         >
           <svg
             className="LoaderContainer"
@@ -63,42 +70,37 @@ const Loader = () => {
             />
           </svg>
 
-          <style>
-            {`.LoaderContainer {
-    --uib-size: 80px;
-    --uib-color: black;
-    --uib-speed: .8s;
-    --uib-bg-opacity: 0.1;
-    height: var(--uib-size);
-    width: var(--uib-size);
-    transform-origin: center;
-    animation: rotate var(--uib-speed) linear infinite;
-    will-change: transform;
-    overflow: visible;
-  }
-
-  .car {
-    fill: none;
-    stroke: var(--uib-color);
-    stroke-dasharray: 25, 75;
-    stroke-dashoffset: 0;
-    stroke-linecap: round;
-    transition: stroke 0.5s ease;
-  }
-
-  .track {
-    fill: none;
-    stroke: var(--uib-color);
-    opacity: var(--uib-bg-opacity);
-    transition: stroke 0.5s ease;
-  }
-
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }`}
-          </style>
+          <style>{`
+            .LoaderContainer {
+              --uib-size: 80px;
+              --uib-color: black;
+              --uib-speed: .8s;
+              --uib-bg-opacity: 0.1;
+              height: var(--uib-size);
+              width: var(--uib-size);
+              transform-origin: center;
+              animation: rotate var(--uib-speed) linear infinite;
+              will-change: transform;
+              overflow: visible;
+            }
+            .car {
+              fill: none;
+              stroke: var(--uib-color);
+              stroke-dasharray: 25, 75;
+              stroke-dashoffset: 0;
+              stroke-linecap: round;
+              transition: stroke 0.5s ease;
+            }
+            .track {
+              fill: none;
+              stroke: var(--uib-color);
+              opacity: var(--uib-bg-opacity);
+              transition: stroke 0.5s ease;
+            }
+            @keyframes rotate {
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
         </motion.div>
       )}
     </AnimatePresence>

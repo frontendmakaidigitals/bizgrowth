@@ -6,17 +6,10 @@ import Blogs from "@/components/Blogs";
 import { Editor } from "@/components/blocks/editor-00/editor";
 import { useEffect, useState } from "react";
 import Banner from "../../App_Chunks/Components/Banner";
-import Form from "../../App_Chunks/Components/PopupForm";
+
 import Image from "next/image";
 
 const serverUrl = "https://www.bizgrowthconsultancy.com";
-const POPUP_DELAY = 70 * 1000;
-
-// ---------------------------------------------------------------------------
-// Lexical JSON → plain HTML (runs on both server and client)
-// Converts the serialized Lexical editor state into semantic HTML so that
-// Googlebot sees the full article content in the raw HTML, not just after JS.
-// ---------------------------------------------------------------------------
 type LexicalNode = {
   type: string;
   text?: string;
@@ -108,24 +101,6 @@ export default function BlogClient({ blog }: { blog: any }) {
     return `${minutes} min read`;
   }
 
-  const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    const closedAt = localStorage.getItem("popupClosedAt");
-    if (!closedAt) {
-      setIsOpen(true);
-      return;
-    }
-    const elapsed = Date.now() - Number(closedAt);
-    if (elapsed >= POPUP_DELAY) {
-      localStorage.removeItem("popupClosedAt");
-      setIsOpen(true);
-    }
-  }, []);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    localStorage.setItem("popupClosedAt", Date.now().toString());
-  };
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     setHydrated(true);
@@ -148,7 +123,6 @@ export default function BlogClient({ blog }: { blog: any }) {
 
   return (
     <main className="pt-14 relative container">
-      {isOpen ? <Form onClose={handleClose} /> : null}
       <div className="flex flex-col items-center">
         <p className="p-2 text-xs bg-teal-100 text-teal-700 rounded-lg font-bold font-quicksand text-center mb-2">
           {blog?.category}

@@ -79,7 +79,7 @@ export async function PUT(
         image,
         now,
         id,
-      ], // ✅ slug added
+      ], 
     );
 
     const updated = await dbGet("SELECT * FROM blogs WHERE slugTitle = ?", [
