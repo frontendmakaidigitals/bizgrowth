@@ -3,7 +3,7 @@ import { User, Facebook, Twitter, Linkedin, Calendar } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Blogs from "@/components/Blogs";
-import { Editor } from "@/components/blocks/editor-00/editor";
+
 import { useEffect, useState } from "react";
 import Banner from "../../App_Chunks/Components/Banner";
 
@@ -101,11 +101,6 @@ export default function BlogClient({ blog }: { blog: any }) {
     return `${minutes} min read`;
   }
 
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
   // Parse the content once
   const parsedContent =
     typeof blog?.content === "string"
@@ -200,29 +195,16 @@ export default function BlogClient({ blog }: { blog: any }) {
 
       <div className="max-w-5xl mx-auto">
         <div className="mt-8">
-          {parsedContent ? (
-            <>
-              {/*
-                SEO layer: static HTML rendered on the server so Googlebot
-                can read the full article content without executing JavaScript.
-                Hidden visually once the interactive Editor hydrates.
-              */}
-              <div
-                className="seo-content prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: staticHtml }}
-                style={hydrated ? { display: "none" } : undefined}
-              />
-
-              {/*
-                Interactive editor for users — client-side rendered.
-                This is what users see and interact with.
-              */}
-              <Editor
-                editorSerializedState={parsedContent}
-                readOnly
-                blogPage={true}
-              />
-            </>
+          {staticHtml ? (
+            <div
+              className="prose prose-lg max-w-none
+          prose-headings:font-semibold prose-headings:tracking-tight
+          prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline
+          prose-blockquote:border-teal-400 prose-blockquote:text-slate-600
+          prose-code:bg-slate-100 prose-code:px-1 prose-code:rounded
+          prose-img:rounded-xl prose-img:shadow-md"
+              dangerouslySetInnerHTML={{ __html: staticHtml }}
+            />
           ) : null}
         </div>
       </div>
