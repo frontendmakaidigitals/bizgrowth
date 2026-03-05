@@ -170,6 +170,7 @@ export default async function Page({
     author: {
       "@type": "Person",
       name: blog.author || "Biz Growth Consultancy",
+      url: `${serverUrl}/about-us`, // ← add this, point to your about/team page
     },
     publisher: {
       "@type": "Organization",
