@@ -7,7 +7,7 @@ import Button from "../(user)/App_Chunks/Components/Button";
 import { Label } from "@/components/ui/label";
 import BgLayer from "@/components/BgLayer";
 const validEmail = "admin";
-const validPassword = "12345678";
+const validPassword = "mshrebiz221";
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
