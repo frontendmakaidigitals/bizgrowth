@@ -5,11 +5,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /dashboard/
 
-# System / non-SEO pages
-Disallow: /api/
-Disallow: /_next/
 
-# Optional — only if this folder exists publicly
-Disallow: /static/
 
 Sitemap: https://www.bizgrowthconsultancy.com/sitemap.xml
