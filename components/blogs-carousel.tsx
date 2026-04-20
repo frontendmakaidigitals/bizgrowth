@@ -19,27 +19,6 @@ export function slugify(text: string): string {
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-");
 }
-type LexicalNode = {
-  type: string;
-  text?: string;
-  children?: LexicalNode[];
-};
-
-function extractPlainText(node: LexicalNode): string {
-  if (node.type === "text") return node.text || "";
-  if (node.children) return node.children.map(extractPlainText).join(" ");
-  return "";
-}
-
-function lexicalToPlainText(content: string | object | null): string {
-  if (!content) return "";
-  try {
-    const parsed = typeof content === "string" ? JSON.parse(content) : content;
-    return extractPlainText(parsed.root).replace(/\s+/g, " ").trim();
-  } catch {
-    return "";
-  }
-}
 
 interface Blog {
   id: string | number;
@@ -88,7 +67,6 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
         <Carousel opts={{ align: "start" }} setApi={setApi} className="mt-12">
           <CarouselContent className="-ml-4">
             {blogs.map((blog, index) => {
-              const previewText = lexicalToPlainText(blog.content);
               return (
                 <CarouselItem
                   key={blog.id || index}
@@ -112,7 +90,7 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
                         {blog.title}
                       </h3>
                       <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-                        {previewText}
+                        {blog.previewText}
                       </p>
                       <div className="flex text-slate-500 mt-2 text-xs items-center justify-between">
                         <span>{blog.author ?? "Unknown"}</span>
