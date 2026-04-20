@@ -2,7 +2,7 @@
 import { User, Facebook, Twitter, Linkedin, Calendar } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Blogs from "@/components/Blogs";
+
 import Banner from "../../App_Chunks/Components/Banner";
 import Image from "next/image";
 
@@ -125,7 +125,7 @@ export default function BlogClient({
         />
       </div>
 
-      <Blogs />
+      
 
       <section className="mt-14">
         <Banner

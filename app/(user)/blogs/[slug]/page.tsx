@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import BlogClient from "./BlogClient";
 import { dbGet, dbAll } from "@/lib/db";
 import zlib from "zlib";
-
+import Blogs from "@/components/Blogs";
 type Blog = {
   id: string;
   title: string;
@@ -195,6 +195,7 @@ export default async function Page({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <BlogClient blog={blog} staticHtml={staticHtml} />
+      <Blogs />
     </>
   );
 }

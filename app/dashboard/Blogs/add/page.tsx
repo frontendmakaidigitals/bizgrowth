@@ -19,7 +19,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Eye, Upload, User, Facebook, Twitter } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { slugify } from "@/components/Blogs";
+import { slugify } from "@/components/blogs-carousel";
 export default function AddBlogPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);

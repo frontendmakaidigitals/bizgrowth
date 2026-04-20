@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const key =process.env.RESEND_API_KEY || ''
+const key = process.env.RESEND_API_KEY || "";
 const resend = new Resend(key);
 
 export async function POST(req: Request) {
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   };
 
   try {
-    const res =await resend.emails.send({
+    const res = await resend.emails.send({
       from: "Bizgrowth Website <bizgrowth@spok.digital>",
       to: "Info@bizgrowthconsultancy.com", // your receiver email
       subject: "Submission received from Cost Calculator",
@@ -45,7 +45,7 @@ Date: ${payload.date}
 <p><b>Date:</b> ${payload.date}</p>
       `,
     });
-    
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Resend API error:", error);
