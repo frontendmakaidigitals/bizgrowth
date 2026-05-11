@@ -1,7 +1,7 @@
 import { dbAll } from "@/lib/db";
 import BlogsFilter from "./Blogsfilter";
 
-export const revalidate = 3600; // ISR: revalidate every hour
+export const revalidate = 0; // ← always fetch fresh
 
 export interface Blog {
   id: string;
