@@ -1,15 +1,14 @@
-"use client"; // needs Link + Image; safe because data is passed as props from server
+// app/blogs/BlogsGrid.tsx
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Editor } from "@/components/blocks/editor-00/editor";
-import type { Blog } from "./page"; // shared type
+import type { Blog } from "./page";
 
 interface BlogsGridProps {
   blogs: Blog[];
-  /** sentinel div ref for IntersectionObserver — only needed in paginated view */
-  loadMoreRef?: React.RefObject<HTMLDivElement>;
+  loadMoreRef?: React.RefObject<HTMLDivElement | null>;
   hasMore?: boolean;
 }
 
@@ -22,18 +21,14 @@ export default function BlogsGrid({
 
   return (
     <>
-      {/* FIX #5 — grid stays here, adjacent to item rendering, not in a parent
-                   that doesn't know how many children there are */}
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
         {blogs.map((blog) => (
-          // FIX #2 — proper component per item, not a flat-array pseudo-component
           <BlogCard key={blog.id} blog={blog} />
         ))}
       </div>
 
-      {/* Sentinel for IntersectionObserver — only rendered when there are more items */}
       {hasMore && loadMoreRef && (
-        <div ref={loadMoreRef} className="h-10 mt-10 flex justify-center">
+        <div ref={loadMoreRef as React.RefObject<HTMLDivElement>} className="h-10 mt-10 flex justify-center">
           <p className="text-muted-foreground text-sm">Loading more…</p>
         </div>
       )}
@@ -42,24 +37,43 @@ export default function BlogsGrid({
 }
 
 // ---------------------------------------------------------------------------
-// BlogCard — single card; now a proper named component, not a list-returning fn
+// Extract plain text from Lexical JSON — no Editor component needed on cards.
+// Editor is heavy, requires hydration, and crashes the grid if state is malformed.
+// A card only needs a 2-line text excerpt, which we can get from the JSON directly.
+// ---------------------------------------------------------------------------
+function extractTextFromLexical(content: string | undefined): string {
+  if (!content) return "";
+  try {
+    const parsed = typeof content === "string" ? JSON.parse(content) : content;
+    const texts: string[] = [];
+
+    function walk(node: any) {
+      if (!node) return;
+      if (node.type === "text" && typeof node.text === "string") {
+        texts.push(node.text);
+      }
+      if (Array.isArray(node.children)) {
+        node.children.forEach(walk);
+      }
+    }
+
+    walk(parsed?.root ?? parsed);
+    return texts.join(" ").trim();
+  } catch {
+    return "";
+  }
+}
+
+// ---------------------------------------------------------------------------
+// BlogCard
 // ---------------------------------------------------------------------------
 function BlogCard({ blog }: { blog: Blog }) {
-  // FIX #3 — safe JSON parse; malformed editor state silently renders nothing
-  const parsedContent = (() => {
-    if (!blog.content) return null;
-    if (typeof blog.content !== "string") return blog.content;
-    try {
-      return JSON.parse(blog.content);
-    } catch {
-      return null;
-    }
-  })();
-
-  // FIX #4 — never produce /blogs/undefined or /blogs/null
   const href = blog.slugTitle
     ? `/blogs/${blog.slugTitle}`
     : `/blogs/${blog.id}`;
+
+  // Plain text excerpt — no Editor, no hydration risk
+  const excerpt = extractTextFromLexical(blog.content);
 
   return (
     <Link href={href}>
@@ -69,7 +83,6 @@ function BlogCard({ blog }: { blog: Blog }) {
             <p className="absolute top-0 right-0 bg-gradient-to-tr p-2 text-sm from-lime-400 to-green-300 z-10">
               {blog.category}
             </p>
-            {/* Next.js Image — lazy-load, WebP, responsive srcset */}
             <Image
               fill
               src={`/api/uploads/${blog.image}`}
@@ -81,16 +94,12 @@ function BlogCard({ blog }: { blog: Blog }) {
 
           <div className="mt-3 px-3">
             <h3 className="font-bold line-clamp-2">{blog.title}</h3>
-            <div className="mt-1">
-              {parsedContent && (
-                <Editor
-                  editorSerializedState={parsedContent}
-                  readOnly
-                  clampLines={2}
-                  blogPage={false}
-                />
-              )}
-            </div>
+            {/* Plain text excerpt — 2 lines, no Editor dependency */}
+            {excerpt && (
+              <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                {excerpt}
+              </p>
+            )}
           </div>
         </CardContent>
 

@@ -1,5 +1,3 @@
-
-
 import { Metadata } from "next";
 import BlogClient from "./BlogClient";
 import { dbGet, dbAll } from "@/lib/db";
@@ -7,9 +5,6 @@ import zlib from "zlib";
 import sanitizeHtml from "sanitize-html"; // ← replaces isomorphic-dompurify
 import Blogs from "@/components/Blogs";
 
-// ---------------------------------------------------------------------------
-// Shared Blog type — imported by BlogClient too
-// ---------------------------------------------------------------------------
 export type Blog = {
   id: string;
   title: string;
