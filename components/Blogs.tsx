@@ -50,6 +50,7 @@ function lexicalToPlainText(content: any): string {
     return "";
   }
 }
+
 export default async function Blogs() {
   let blogs = [];
 

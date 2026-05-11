@@ -13,7 +13,9 @@ export default function Home() {
       <TabularSection />
       <ThirdSection />
       <FourthSection />
-      <Blogs />
+      <div className="">
+        <Blogs />
+      </div>
       <LogoMarquee />
       <Form />
     </div>
