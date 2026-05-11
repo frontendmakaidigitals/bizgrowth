@@ -28,7 +28,10 @@ export default function BlogsGrid({
       </div>
 
       {hasMore && loadMoreRef && (
-        <div ref={loadMoreRef as React.RefObject<HTMLDivElement>} className="h-10 mt-10 flex justify-center">
+        <div
+          ref={loadMoreRef as React.RefObject<HTMLDivElement>}
+          className="h-10 mt-10 flex justify-center"
+        >
           <p className="text-muted-foreground text-sm">Loading more…</p>
         </div>
       )}
@@ -41,28 +44,7 @@ export default function BlogsGrid({
 // Editor is heavy, requires hydration, and crashes the grid if state is malformed.
 // A card only needs a 2-line text excerpt, which we can get from the JSON directly.
 // ---------------------------------------------------------------------------
-function extractTextFromLexical(content: string | undefined): string {
-  if (!content) return "";
-  try {
-    const parsed = typeof content === "string" ? JSON.parse(content) : content;
-    const texts: string[] = [];
 
-    function walk(node: any) {
-      if (!node) return;
-      if (node.type === "text" && typeof node.text === "string") {
-        texts.push(node.text);
-      }
-      if (Array.isArray(node.children)) {
-        node.children.forEach(walk);
-      }
-    }
-
-    walk(parsed?.root ?? parsed);
-    return texts.join(" ").trim();
-  } catch {
-    return "";
-  }
-}
 
 // ---------------------------------------------------------------------------
 // BlogCard
@@ -71,9 +53,6 @@ function BlogCard({ blog }: { blog: Blog }) {
   const href = blog.slugTitle
     ? `/blogs/${blog.slugTitle}`
     : `/blogs/${blog.id}`;
-
-  // Plain text excerpt — no Editor, no hydration risk
-  const excerpt = extractTextFromLexical(blog.content);
 
   return (
     <Link href={href}>
@@ -94,10 +73,10 @@ function BlogCard({ blog }: { blog: Blog }) {
 
           <div className="mt-3 px-3">
             <h3 className="font-bold line-clamp-2">{blog.title}</h3>
-            {/* Plain text excerpt — 2 lines, no Editor dependency */}
-            {excerpt && (
+            {/* Use server-extracted excerpt directly */}
+            {blog.excerpt && (
               <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
-                {excerpt}
+                {blog.excerpt}
               </p>
             )}
           </div>
