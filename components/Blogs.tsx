@@ -2,28 +2,20 @@
 import { dbAll } from "@/lib/db";
 import BlogsCarousel from "./blogs-carousel";
 import zlib from "zlib";
+
 function lexicalToPlainText(content: any): string {
   if (!content) return "";
 
   try {
     let raw = content;
 
-    // 🔥 HANDLE GZIP (your case)
     if (typeof raw === "string" && raw.startsWith("gz:")) {
-      const base64 = raw.replace("gz:", "");
-
-      const buffer = Buffer.from(base64, "base64");
-      const decompressed = zlib.gunzipSync(buffer).toString("utf-8");
-
-      raw = JSON.parse(decompressed);
-    }
-
-    // normal JSON string
-    else if (typeof raw === "string") {
+      const buffer = Buffer.from(raw.slice(3), "base64");
+      raw = JSON.parse(zlib.gunzipSync(buffer).toString("utf-8"));
+    } else if (typeof raw === "string") {
       raw = JSON.parse(raw);
     }
 
-    // handle double-string JSON
     if (typeof raw === "string") {
       raw = JSON.parse(raw);
     }
@@ -32,27 +24,23 @@ function lexicalToPlainText(content: any): string {
 
     const extract = (node: any): string => {
       if (!node) return "";
-
       let text = "";
-
       if (node.text) text += node.text + " ";
-
       if (Array.isArray(node.children)) {
         text += node.children.map(extract).join(" ");
       }
-
       return text;
     };
 
     return extract(root).replace(/\s+/g, " ").trim();
   } catch (e) {
-    console.log("❌ FINAL ERROR:", e);
+    console.error("❌ lexicalToPlainText error:", e);
     return "";
   }
 }
 
 export default async function Blogs() {
-  let blogs = [];
+  let blogs: any[] = [];
 
   try {
     const data = await dbAll(
@@ -60,15 +48,27 @@ export default async function Blogs() {
       [],
     );
 
+    console.log("🔵 Blogs carousel - count:", data?.length);
+
+    if (!data?.length) {
+      console.log("🔴 Blogs carousel - no data returned from DB");
+      return null;
+    }
+
     blogs = data.map((blog: any) => ({
       ...blog,
-      previewText: lexicalToPlainText(blog.content), // 👈 THIS WAS MISSING
+      previewText: lexicalToPlainText(blog.content),
+      content: "", // strip gz content — don't send to client
     }));
   } catch (e) {
-    console.error("Blogs fetch failed:", e);
+    console.error("🔴 Blogs fetch failed:", e);
+    return null;
   }
 
-  if (!blogs.length) return null;
+  if (!blogs.length) {
+    console.log("🔴 Blogs carousel - returning null after map");
+    return null;
+  }
 
   return <BlogsCarousel blogs={blogs} />;
 }
