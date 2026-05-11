@@ -4,11 +4,11 @@ import { Metadata } from "next";
 import BlogClient from "./BlogClient";
 import { dbGet, dbAll } from "@/lib/db";
 import zlib from "zlib";
-import DOMPurify from "isomorphic-dompurify"; // FIX #4 — npm i isomorphic-dompurify @types/dompurify
+import sanitizeHtml from "sanitize-html"; // ← replaces isomorphic-dompurify
 import Blogs from "@/components/Blogs";
 
 // ---------------------------------------------------------------------------
-// Shared type — also imported by BlogClient (fixes blog: any)
+// Shared Blog type — imported by BlogClient too
 // ---------------------------------------------------------------------------
 export type Blog = {
   id: string;
@@ -41,6 +41,64 @@ type LexicalNode = {
 };
 
 const serverUrl = "https://www.bizgrowthconsultancy.com";
+
+// ---------------------------------------------------------------------------
+// sanitize-html config — allow all standard blog formatting tags;
+// strip <script>, inline event handlers (onerror, onclick, etc.), <iframe>, etc.
+// ---------------------------------------------------------------------------
+const sanitizeConfig: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "p",
+    "br",
+    "hr",
+    "strong",
+    "em",
+    "u",
+    "s",
+    "code",
+    "pre",
+    "blockquote",
+    "ul",
+    "ol",
+    "li",
+    "a",
+    "img",
+    "table",
+    "thead",
+    "tbody",
+    "tr",
+    "th",
+    "td",
+    "div",
+    "span",
+  ],
+  allowedAttributes: {
+    a: ["href", "target", "rel"],
+    img: ["src", "alt", "loading", "style", "width", "height"],
+    "*": [], // no event handlers on anything else
+  },
+  // Force all external links to open safely
+  transformTags: {
+    a: (tagName, attribs) => {
+      const isExternal = attribs.href?.startsWith("http");
+      return {
+        tagName,
+        attribs: {
+          ...attribs,
+          ...(isExternal
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {}),
+        },
+      };
+    },
+  },
+};
 
 // ---------------------------------------------------------------------------
 // DB helper
@@ -97,16 +155,14 @@ function lexicalNodeToHtml(node: LexicalNode): string {
     case "quote":
       return `<blockquote>${children}</blockquote>`;
 
-    // FIX #6 — external links open safely in new tab; internal links untouched
     case "link": {
       const href = node.url || "#";
       const isExternal = href.startsWith("http");
       const target = isExternal ? ' target="_blank"' : "";
-      const rel    = isExternal ? ' rel="noopener noreferrer"' : "";
+      const rel = isExternal ? ' rel="noopener noreferrer"' : "";
       return `<a href="${href}"${target}${rel}>${children}</a>`;
     }
 
-    // FIX #5 — lazy load + constrained dimensions prevent layout shift (CLS)
     case "image":
       return `<img src="${node.src || ""}" alt="${
         node.altText || ""
@@ -116,10 +172,10 @@ function lexicalNodeToHtml(node: LexicalNode): string {
       let text = node.text || "";
       if (node.format) {
         if (node.format & 16) text = `<code>${text}</code>`;
-        if (node.format & 4)  text = `<s>${text}</s>`;
-        if (node.format & 8)  text = `<u>${text}</u>`;
-        if (node.format & 2)  text = `<em>${text}</em>`;
-        if (node.format & 1)  text = `<strong>${text}</strong>`;
+        if (node.format & 4) text = `<s>${text}</s>`;
+        if (node.format & 8) text = `<u>${text}</u>`;
+        if (node.format & 2) text = `<em>${text}</em>`;
+        if (node.format & 1) text = `<strong>${text}</strong>`;
       }
       return text;
     }
@@ -152,7 +208,6 @@ export async function generateMetadata({
   const { slug } = await params;
   const blog = await getBlog(slug);
 
-  // FIX #8 — .trim() guard: empty string would produce ".../api/uploads/"
   const imageUrl = blog?.image?.trim()
     ? `${serverUrl}/api/uploads/${blog.image.trim()}`
     : undefined;
@@ -188,12 +243,9 @@ export default async function Page({
   const blog = await getBlog(slug);
 
   if (!blog) {
-    return (
-      <div className="p-8 text-center text-gray-500">Blog not found</div>
-    );
+    return <div className="p-8 text-center text-gray-500">Blog not found</div>;
   }
 
-  // Safe JSON parse of Lexical content
   const parsedContent = (() => {
     if (typeof blog.content !== "string") return null;
     try {
@@ -203,15 +255,11 @@ export default async function Page({
     }
   })();
 
-  // Convert Lexical → raw HTML
   const rawHtml = lexicalToHtml(parsedContent);
 
-  // FIX #4 — sanitize on the server before it reaches dangerouslySetInnerHTML
-  const staticHtml = DOMPurify.sanitize(rawHtml, {
-    USE_PROFILES: { html: true }, // keeps standard formatting, strips <script> + event handlers
-  });
+  // BUILD FIX — sanitize-html instead of isomorphic-dompurify (no ESM issues)
+  const staticHtml = sanitizeHtml(rawHtml, sanitizeConfig);
 
-  // FIX #8 — same trim guard as generateMetadata
   const imageUrl = blog.image?.trim()
     ? `${serverUrl}/api/uploads/${blog.image.trim()}`
     : undefined;
@@ -221,7 +269,7 @@ export default async function Page({
     "@type": "Article",
     headline: blog.metaTitle || blog.title,
     description: blog.metaDesc || "",
-    image: imageUrl, // FIX #8 — never an empty-string URL
+    image: imageUrl,
     author: {
       "@type": "Person",
       name: blog.author || "Biz Growth Consultancy",
@@ -243,7 +291,6 @@ export default async function Page({
     },
   };
 
-  // FIX #9 — pass blogURL as prop so BlogClient drops usePathname entirely
   const blogURL = `${serverUrl}/blogs/${slug}`;
 
   return (
@@ -263,13 +310,12 @@ export default async function Page({
 // ---------------------------------------------------------------------------
 export async function generateStaticParams() {
   try {
-    // FIX #7 — COALESCE handles rows where updatedAt IS NULL
     const blogs = await dbAll(
       "SELECT slugTitle FROM blogs ORDER BY COALESCE(updatedAt, createdAt) DESC",
       [],
     );
     return (blogs ?? [])
-      .filter((b: { slugTitle: string }) => Boolean(b.slugTitle)) // skip null/empty slugs
+      .filter((b: { slugTitle: string }) => Boolean(b.slugTitle))
       .map((b: { slugTitle: string }) => ({ slug: b.slugTitle }));
   } catch (err) {
     console.error("Failed to fetch slugs for static params:", err);
