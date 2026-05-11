@@ -4,7 +4,7 @@ import ThirdSection from "./App_Chunks/Components/ThirdSection";
 import FourthSection from "./App_Chunks/Components/FourthSection";
 import LogoMarquee from "./App_Chunks/Components/LogoMarquee";
 import Form from "./App_Chunks/Components/Form";
-import { Metadata } from "next";
+import Blogs from "@/components/Blogs";
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
       <TabularSection />
       <ThirdSection />
       <FourthSection />
+      <Blogs />
       <LogoMarquee />
       <Form />
     </div>
