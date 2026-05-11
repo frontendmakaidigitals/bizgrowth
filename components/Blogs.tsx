@@ -1,73 +1,67 @@
-// components/Blogs.tsx  ← Server Component (no "use client")
 import { dbAll } from "@/lib/db";
 import BlogsCarousel from "./blogs-carousel";
 import zlib from "zlib";
 
-function lexicalToPlainText(content: any): string {
-  if (!content) return "";
+export const revalidate = 0;
 
+export interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  author: string;
+  category: string;
+  createdAt: string;
+  slugTitle: string;
+  excerpt?: string; // ← add this
+}
+
+function extractExcerpt(content: string): string {
+  if (!content) return "";
   try {
     let raw = content;
 
-    if (typeof raw === "string" && raw.startsWith("gz:")) {
+    if (raw.startsWith("gz:")) {
       const buffer = Buffer.from(raw.slice(3), "base64");
-      raw = JSON.parse(zlib.gunzipSync(buffer).toString("utf-8"));
-    } else if (typeof raw === "string") {
-      raw = JSON.parse(raw);
+      raw = zlib.gunzipSync(buffer).toString("utf-8");
     }
 
-    if (typeof raw === "string") {
-      raw = JSON.parse(raw);
-    }
+    const parsed = JSON.parse(raw);
+    const texts: string[] = [];
 
-    const root = raw?.root || raw;
-
-    const extract = (node: any): string => {
-      if (!node) return "";
-      let text = "";
-      if (node.text) text += node.text + " ";
-      if (Array.isArray(node.children)) {
-        text += node.children.map(extract).join(" ");
+    function walk(node: any) {
+      if (!node) return;
+      if (node.type === "text" && typeof node.text === "string") {
+        texts.push(node.text);
       }
-      return text;
-    };
+      if (Array.isArray(node.children)) node.children.forEach(walk);
+    }
 
-    return extract(root).replace(/\s+/g, " ").trim();
-  } catch (e) {
-    console.error("❌ lexicalToPlainText error:", e);
+    walk(parsed?.root ?? parsed);
+    return texts.join(" ").trim();
+  } catch {
     return "";
   }
 }
 
-export default async function Blogs() {
-  let blogs: any[] = [];
-
+export default async function Page() {
+  let blogs: Blog[] = [];
   try {
-    const data = await dbAll(
-      "SELECT id, title, image, author, createdAt, slugTitle, content FROM blogs ORDER BY createdAt DESC LIMIT 12",
-      [],
-    );
+    const rows =
+      (await dbAll(
+        "SELECT id, title, content, image, author, category, createdAt, slugTitle FROM blogs ORDER BY createdAt DESC",
+        [],
+      )) ?? [];
 
-    console.log("🔵 Blogs carousel - count:", data?.length);
-
-    if (!data?.length) {
-      console.log("🔴 Blogs carousel - no data returned from DB");
-      return null;
-    }
-
-    blogs = data.map((blog: any) => ({
+    blogs = rows.map((blog: any) => ({
       ...blog,
-      previewText: lexicalToPlainText(blog.content),
-      content: "", // strip gz content — don't send to client
+      previewText: extractExcerpt(blog.content),
+      content: "", // don't send full content to client
     }));
-  } catch (e) {
-    console.error("🔴 Blogs fetch failed:", e);
-    return null;
-  }
 
-  if (!blogs.length) {
-    console.log("🔴 Blogs carousel - returning null after map");
-    return null;
+    console.log("Blogs fetched:", blogs);
+  } catch (err) {
+    console.error("Failed to fetch blogs:", err);
   }
 
   return <BlogsCarousel blogs={blogs} />;

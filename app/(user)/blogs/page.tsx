@@ -52,14 +52,13 @@ export default async function Page() {
       [],
     )) ?? [];
 
-    // Extract excerpt server-side, strip content to save memory
     blogs = rows.map((blog: any) => ({
       ...blog,
       excerpt: extractExcerpt(blog.content),
       content: "", // don't send full content to client
     }));
 
-    console.log("Blogs fetched:", blogs.length);
+    console.log("Blogs fetched:", blogs);
   } catch (err) {
     console.error("Failed to fetch blogs:", err);
   }
