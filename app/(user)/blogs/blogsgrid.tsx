@@ -45,7 +45,6 @@ export default function BlogsGrid({
 // A card only needs a 2-line text excerpt, which we can get from the JSON directly.
 // ---------------------------------------------------------------------------
 
-
 // ---------------------------------------------------------------------------
 // BlogCard
 // ---------------------------------------------------------------------------
@@ -66,6 +65,7 @@ function BlogCard({ blog }: { blog: Blog }) {
               fill
               src={`/api/uploads/${blog.image}`}
               alt={blog.title}
+              loading="lazy"
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />

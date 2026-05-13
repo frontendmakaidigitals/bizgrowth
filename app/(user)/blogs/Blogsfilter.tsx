@@ -137,13 +137,13 @@ export default function BlogsFilter({
 
       {/* Filters */}
       <div className="container mb-4">
-        <div className="flex flex-col md:flex-row justify-between gap-4">
-          <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex flex-col md:flex-row lg:justify-between gap-4">
+          <div className="flex justify-start items-start">
             <ToggleGroup
               type="single"
               value={selectedTopic}
               onValueChange={(val) => setSelectedTopic(val || "all")}
-              className="flex flex-wrap gap-1.5"
+              className="flex justify-start items-start  flex-nowrap gap-1.5"
             >
               <ToggleGroupItem
                 value="all"

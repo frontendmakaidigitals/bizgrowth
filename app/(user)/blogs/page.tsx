@@ -16,7 +16,7 @@ export interface Blog {
   excerpt?: string; // ← add this
 }
 
-function extractExcerpt(content: string): string {
+function extractExcerpt(content: string, maxLength = 160): string {
   if (!content) return "";
   try {
     let raw = content;
@@ -38,7 +38,22 @@ function extractExcerpt(content: string): string {
     }
 
     walk(parsed?.root ?? parsed);
-    return texts.join(" ").trim();
+
+    const full = texts.join(" ").trim();
+    if (!full) return "";
+    if (full.length <= maxLength) return full;
+
+    // Prefer cutting at a sentence boundary first
+    const sentenceEnd = full.search(/[.!?]/);
+    if (sentenceEnd > 0 && sentenceEnd <= maxLength) {
+      return full.slice(0, sentenceEnd + 1).trim();
+    }
+
+    // Fall back to last word boundary before maxLength
+    const cut = full.lastIndexOf(" ", maxLength);
+    return (
+      (cut > 0 ? full.slice(0, cut) : full.slice(0, maxLength)).trim() + "…"
+    );
   } catch {
     return "";
   }
@@ -47,10 +62,11 @@ function extractExcerpt(content: string): string {
 export default async function Page() {
   let blogs: Blog[] = [];
   try {
-    const rows = (await dbAll(
-      "SELECT id, title, content, image, author, category, createdAt, slugTitle FROM blogs ORDER BY createdAt DESC",
-      [],
-    )) ?? [];
+    const rows =
+      (await dbAll(
+        "SELECT id, title, content, image, author, category, createdAt, slugTitle FROM blogs ORDER BY createdAt DESC",
+        [],
+      )) ?? [];
 
     blogs = rows.map((blog: any) => ({
       ...blog,
