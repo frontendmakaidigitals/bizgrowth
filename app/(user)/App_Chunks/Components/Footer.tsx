@@ -85,6 +85,12 @@ const widgetMenus: WidgetFooterMenu[] = [
         },
         label: "Real Estate",
       },
+      {
+        href: {
+          pathname: "/mortgage",
+        },
+        label: "Mortgage Services",
+      },
     ],
   },
 ];

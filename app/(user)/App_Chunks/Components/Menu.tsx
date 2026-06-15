@@ -9,14 +9,14 @@ const Menu = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <div className="hidden lg:flex justify-center items-center font-Satoshi gap-3">
+    <div className="hidden lg:flex  justify-center items-center font-Satoshi tracking-tight gap-2">
       {Menus.map((menu, index) =>
         // If the menu item has no dropdown, just render a link
         !menu.dropdown ? (
           <Link
             key={index}
             href={menu.href.toLowerCase()}
-            className="px-3 py-1 text-[#12250a] hover:bg-[#dcedc8] font-[600] text-[.9rem] xl:text-[.88rem] xxl:text-md transition-all duration-300 rounded-md"
+            className="px-3 py-1  text-[#12250a] hover:bg-[#dcedc8] font-[600] text-[.9rem] xl:text-[.94rem] xxl:text-md transition-all duration-300 rounded-md"
           >
             {menu.name}
           </Link>
@@ -27,7 +27,7 @@ const Menu = () => {
             onMouseEnter={() => setOpenDropdown(menu.name)} // Set dropdown to open when hovered
             onMouseLeave={() => setOpenDropdown(null)} // Close dropdown when mouse leaves
           >
-            <p className="px-3 py-1 text-[.9rem] xl:text-[.88rem] xxl:text-[1.03rem] text-[#12250a] hover:bg-[#dcedc8] font-[600] cursor-default transition-all duration-300  flex items-center rounded-md gap-1">
+            <p className="px-3 py-1 text-[.9rem] xl:text-[.94rem] xxl:text-[1.03rem] text-[#12250a] hover:bg-[#dcedc8] font-[600] cursor-default transition-all duration-300  flex items-center rounded-md gap-1">
               {menu.name}{" "}
               <IoChevronDown
                 className="mt-0"
@@ -57,7 +57,7 @@ const Menu = () => {
                     >
                       {menu.points?.map((point: any, pointIndex) => (
                         <div key={pointIndex}>
-                          <p className="text-[.9rem] xl:text-[.88rem] xxl:text-[1.03rem] text-[#1e3d11] font-[600]">
+                          <p className="text-[.9rem] xl:text-[.94rem] xxl:text-[1.03rem] text-[#1e3d11] font-[600]">
                             {point.title}
                           </p>
                           <ul>

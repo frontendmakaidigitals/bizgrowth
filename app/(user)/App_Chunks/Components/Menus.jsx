@@ -5,7 +5,7 @@ export const Menus = [
   {
     name: "Business Formation",
     href: "/",
-    route:'business-formation',
+    route: "business-formation",
     dropdown: true,
     points: [
       {
@@ -51,7 +51,7 @@ export const Menus = [
   {
     name: "Banking Assistance",
     href: "/",
-    route:'banking-assistance',
+    route: "banking-assistance",
     dropdown: true,
     points: [
       { name: "Corporate Bank Account", route: "corporate-bank-account" },
@@ -70,7 +70,7 @@ export const Menus = [
   {
     name: "Business Solutions",
     href: "/",
-    route:'business-solutions',
+    route: "business-solutions",
     dropdown: true,
     points: [
       {
@@ -127,8 +127,8 @@ export const Menus = [
     dropdown: false,
   },
   {
-    name: "Contact",
-    href: "/contact",
+    name: "Mortgage Services",
+    href: "/mortgage",
     dropdown: false,
   },
 ];
