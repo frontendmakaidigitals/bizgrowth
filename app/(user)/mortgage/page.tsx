@@ -67,9 +67,7 @@ const page = () => {
               At Biz Growth Consultancy, we make property financing simple,
               transparent, and stress‑free. Our mortgage support service helps
               clients secure the right financing with faster processing, clear
-              guidance, and end‑to‑end assistance. From pre‑approval to
-              refinancing and equity release, we ensure a smooth experience at
-              every step.
+              guidance, and end‑to‑end assistance.  
             </p>
           </div>
           <div
