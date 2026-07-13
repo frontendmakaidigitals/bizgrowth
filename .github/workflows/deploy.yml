@@ -107,6 +107,7 @@ jobs:
 
             # Install production dependencies only
             npm ci --omit=dev
+            npx prisma generate
 
             # Clean up
             rm -f /home/milestonehre/bizgrowth-build.tar.gz
