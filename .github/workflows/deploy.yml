@@ -33,7 +33,7 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'dummy_key_for_build' }}
-          DATABASE_URL: ${{ vars.DATABASE_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./prisma/dev.db' }}
         run: npm run build
 
       - name: Create deployment package
@@ -58,11 +58,17 @@ jobs:
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.0
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: milestonehre
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          envs: GMAIL_USER,GMAIL_APP_PASSWORD,RESEND_API_KEY,DATABASE_URL
           script: |
             set -e
             cd /home/milestonehre/bizgrowth
@@ -89,6 +95,15 @@ jobs:
             [ -d data.tmp ] && rm -rf data && mv data.tmp data
             [ -d public_uploads.tmp ] && mkdir -p public && mv public_uploads.tmp public/uploads
             [ -f public_sitemap.xml.tmp ] && mv public_sitemap.xml.tmp public/sitemap.xml
+
+            # Write/refresh .env.production from secrets (always keeps server env in sync with GitHub secrets)
+            cat > .env.production <<EOF
+            DATABASE_URL=${DATABASE_URL}
+            GMAIL_USER=${GMAIL_USER}
+            GMAIL_APP_PASSWORD=${GMAIL_APP_PASSWORD}
+            RESEND_API_KEY=${RESEND_API_KEY}
+            EOF
+            chmod 600 .env.production
 
             # Install production dependencies only
             npm ci --omit=dev
