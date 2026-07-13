@@ -46,3 +46,5 @@ data
 #Ignored Blogs upload images
 public/uploads
 public/sitemap.xml
+
+prisma/dev.db
