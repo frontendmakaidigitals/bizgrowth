@@ -27,10 +27,6 @@ const config: runtime.GetPrismaClientConfig = {
       "fromEnvVar": null
     },
     "config": {
-      "inaryTargets": [
-        "native",
-        "rhel-openssl-1.1.x"
-      ],
       "engineType": "library"
     },
     "binaryTargets": [
@@ -38,6 +34,10 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-1.1.x"
       }
     ],
     "previewFeatures": [],
@@ -60,8 +60,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider     = \"prisma-client\"\n  output       = \"../app/generated/prisma\"\n  inaryTargets = [\"native\", \"rhel-openssl-1.1.x\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BlogPost {\n  id          Int       @id @default(autoincrement())\n  title       String\n  slug        String    @unique\n  excerpt     String?\n  body        String\n  author      String?\n  category    String?\n  tags        String? // stored as comma-separated string\n  status      String    @default(\"draft\") // \"draft\" | \"published\"\n  publishedAt DateTime?\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n\n  // Images — stored as file paths relative to /public/uploads/\n  coverImage String?\n  ogImage    String?\n\n  // SEO\n  metaTitle       String?\n  metaDescription String?\n  metaKeywords    String?\n  canonicalUrl    String?\n  noIndex         Boolean @default(false)\n  focusKeyword    String?\n\n  // Open Graph\n  ogTitle       String?\n  ogDescription String?\n\n  // Schema.org\n  schemaType String @default(\"BlogPosting\")\n}\n",
-  "inlineSchemaHash": "3f3d4d04f575c4f132a44662c6cc5d7115af32a6aafb58dda1b2d087700456ba",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../app/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-1.1.x\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BlogPost {\n  id          Int       @id @default(autoincrement())\n  title       String\n  slug        String    @unique\n  excerpt     String?\n  body        String\n  author      String?\n  category    String?\n  tags        String? // stored as comma-separated string\n  status      String    @default(\"draft\") // \"draft\" | \"published\"\n  publishedAt DateTime?\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n\n  // Images — stored as file paths relative to /public/uploads/\n  coverImage String?\n  ogImage    String?\n\n  // SEO\n  metaTitle       String?\n  metaDescription String?\n  metaKeywords    String?\n  canonicalUrl    String?\n  noIndex         Boolean @default(false)\n  focusKeyword    String?\n\n  // Open Graph\n  ogTitle       String?\n  ogDescription String?\n\n  // Schema.org\n  schemaType String @default(\"BlogPosting\")\n}\n",
+  "inlineSchemaHash": "1c84ec816cd02829aa286791a4c39ce28bc26b20df50e845cb0b47b695e1525e",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},

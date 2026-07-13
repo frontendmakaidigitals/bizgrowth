@@ -30,7 +30,7 @@ export async function generateStaticParams() {
     where: { status: "published" },
     select: { slug: true },
   });
-  return posts.map((p) => ({ slug: p.slug }));
+  return posts.map((p : {slug:string}) => ({ slug: p.slug }));
 }
 
 /* ── Metadata ── */
@@ -46,12 +46,11 @@ export async function generateMetadata({
   const title = post.metaTitle ?? post.title;
   const description = post.metaDescription ?? post.excerpt ?? "";
 
-  
   const image = post.ogImage
     ? `/uploads/blog/${encodeURIComponent(post.ogImage)}`
     : post.coverImage
-    ? `/uploads/blog/${encodeURIComponent(post.coverImage)}`
-    : undefined;
+      ? `/uploads/blog/${encodeURIComponent(post.coverImage)}`
+      : undefined;
   const url = `${BASE_URL}/blogs/${slug}`;
 
   return {
@@ -150,7 +149,7 @@ export default async function BlogPostPage({
   const tags =
     post.tags
       ?.split(",")
-      .map((t) => t.trim())
+      .map((t: string) => t.trim())
       .filter(Boolean) ?? [];
 
   const jsonLd = {
@@ -179,7 +178,6 @@ export default async function BlogPostPage({
     keywords: post.metaKeywords ?? post.tags ?? undefined,
     articleSection: post.category ?? undefined,
   };
-
 
   return (
     <>
@@ -214,7 +212,12 @@ export default async function BlogPostPage({
 
         {/* ── Main layout: article + sidebar ── */}
         <div className="max-w-6xl mx-auto px-4 py-10">
-          <div className={cn(`grid grid-cols-1  gap-12 items-start`, recent.length > 0 ? 'lg:grid-cols-[1fr_320px]' : '')}>
+          <div
+            className={cn(
+              `grid grid-cols-1  gap-12 items-start`,
+              recent.length > 0 ? "lg:grid-cols-[1fr_320px]" : "",
+            )}
+          >
             {/* ── LEFT: article ── */}
             <div>
               {/* Header */}
@@ -254,7 +257,7 @@ export default async function BlogPostPage({
                 {tags.length > 0 && (
                   <div className="flex items-center gap-2 flex-wrap">
                     <TagIcon size={12} className="text-foreground-muted" />
-                    {tags.map((tag) => (
+                    {tags.map((tag : string) => (
                       <span
                         key={tag}
                         className="text-xs bg-foreground/5 text-foreground-muted rounded-full px-2.5 py-1 border border-border"
@@ -290,7 +293,9 @@ export default async function BlogPostPage({
                   prose-img:rounded-xl prose-img:border prose-img:border-border
                   prose-hr:border-border
                   prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl"
-                  dangerouslySetInnerHTML={{ __html: normalizeBlankParagraphs(post.body) }}
+                dangerouslySetInnerHTML={{
+                  __html: normalizeBlankParagraphs(post.body),
+                }}
               />
             </div>
 
@@ -305,7 +310,7 @@ export default async function BlogPostPage({
                     Recent Posts
                   </h3>
                   <ul className="space-y-4">
-                    {recent.map((rp) => (
+                    {recent.map((rp: (typeof recent)[number]) => (
                       <li key={rp.id}>
                         <Link
                           href={`/blogs/${rp.slug}`}
@@ -372,8 +377,7 @@ export default async function BlogPostPage({
   );
 }
 
-
- function normalizeBlankParagraphs(html: string) {
+function normalizeBlankParagraphs(html: string) {
   // Matches <p></p>, <p><br></p>, <p><br/></p>, and whitespace-only variants
   return html.replace(/<p>(\s|<br\s*\/?>)*<\/p>/g, "<p>&nbsp;</p>");
 }

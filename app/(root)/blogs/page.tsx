@@ -42,8 +42,9 @@ async function getData() {
   // Collect all tags with counts
   const tagMap: Record<string, number> = {};
   posts.forEach((p) => {
-    p.tags
-      ?.split(",")
+    const tagsStr = p.tags ?? "";
+    tagsStr
+      .split(",")
       .map((t) => t.trim())
       .filter(Boolean)
       .forEach((tag) => {
@@ -68,12 +69,6 @@ export default async function BlogPage() {
 
       <BlogClient
         posts={posts}
-        categories={categories.map((c) => ({
-          name: c.category as string,
-          count: c._count.category,
-        }))}
-        latest={latest}
-        tags={tags}
       />
     </div>
   );
