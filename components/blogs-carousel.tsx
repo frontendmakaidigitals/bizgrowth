@@ -72,7 +72,7 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
                   key={blog.id || index}
                   className="pb-10 relative basis-full sm:basis-1/2 lg:basis-1/4"
                 >
-                  <div className="bg-blue-50 p-1 relative shadow-sm rounded-lg overflow-hidden">
+                  <div className="bg-blue-50 p-1 relative shadow-xs rounded-lg overflow-hidden">
                     <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
                       <div className="absolute inset-0 bg-black/20 z-10" />
                       {blog.image && (

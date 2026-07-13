@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import Logo from "@/app/(user)/App_Chunks/Components/Logo";
+import Logo from "@/app/(root)/App_Chunks/Components/Logo";
 
 const items = [
   {
@@ -38,11 +38,11 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-        <SidebarTrigger
-          className={`bg-lime-600 hover:bg-lime-700 z-10 ${
-            open ? "-translate-x-1/2" : "translate-x-1"
-          } size-10 text-white hover:text-white transition-transform duration-300 rounded-full left-full  top-24 absolute`}
-        />
+      <SidebarTrigger
+        className={`bg-lime-600 hover:bg-lime-700 z-10 ${
+          open ? "-translate-x-1/2" : "translate-x-1"
+        } size-10 text-white hover:text-white transition-transform duration-300 rounded-full left-full  top-24 absolute`}
+      />
       <SidebarContent className="py-5">
         <SidebarGroup>
           <SidebarGroupLabel className="flex justify-center mt-5">
@@ -57,7 +57,7 @@ export function AppSidebar() {
                     className="hover:bg-red-900 hover:text-slate-50 py-5 transition-colors duration-250"
                   >
                     <Link href={`/${item.url}`}>
-                      <item.icon className="!w-5 !h-5" />
+                      <item.icon className="w-5! h-5!" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
