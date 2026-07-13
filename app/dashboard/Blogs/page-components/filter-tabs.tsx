@@ -108,7 +108,7 @@ const FilterTabs = ({
           <Button
             key={view}
             size="sm"
-            variant={blogView === view ? "default" : "outline-solid"}
+            variant={blogView === view ? "default" : "outline"}
             onClick={() => setBlogView(view)}
           >
             {view === "list" ? <List /> : <Grid3x3 />}
