@@ -271,16 +271,19 @@ export default async function BlogPostPage({
 
               {/* Body */}
               <article
-                className="pt-8 text-black! prose-sm md:prose-base pb-16 prose prose-neutral dark:prose-invert max-w-none
+                className="pt-8 text-black! prose-sm md:prose-base pb-16 prose prose-neutral  max-w-none
                   prose-p:text-foreground-muted prose-p:leading-relaxed
-                  prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                  prose-a:text-blue-500! prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-foreground
                   prose-ul:text-foreground-muted prose-ol:text-foreground-muted
                   prose-li:marker:text-primary
                   prose-p:my-0!
-                  prose-h1:my-0!
-                  prose-h2:my-0!
-                  prose-h3:my-0!
+                  prose-h1:mt-7!
+                  prose-h2:mt-7!
+                  prose-h3:mt-7!
+                  prose-h1:mb-0!
+                  prose-h2:mb-0!
+                  prose-h3:mb-0!
                   prose-li:my-0!
                   prose-ul:my-0!
                   prose-ol:my-0!

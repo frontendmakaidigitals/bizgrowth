@@ -129,7 +129,7 @@ body {
 .rte-editor .tiptap h2 { @apply text-2xl font-semibold mb-2; }
 
 .rte-editor .tiptap h3 {
-  @apply text-xl font-semibold mb-2;
+  @apply text-xl font-semibold mb-2 ;
 }
 
 
