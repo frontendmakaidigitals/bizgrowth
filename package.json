@@ -9,7 +9,7 @@
     "start": "next start -p 3005",
     "lint": "next lint",
     "generate-sitemap": "node sitemap.ts",
-     "postinstall": "prisma generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -90,6 +90,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/lodash": "^4.17.20",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.5",
