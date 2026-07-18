@@ -60,6 +60,7 @@ type SeoOverlay = {
   ogDescription?: string | null;
 };
 
+
 function main() {
   const seedPath = path.join(__dirname, "blogpost_seed.json");
   const overlayPath = path.join(__dirname, "seo_overlay.json");

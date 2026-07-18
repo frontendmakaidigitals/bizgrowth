@@ -23,7 +23,7 @@ const formatDate = (d: string | Date) =>
     day: "numeric",
   });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yoursite.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bizgrowthconsultancy.com/";
 
 /* ── Static params ── */
 export async function generateStaticParams() {
