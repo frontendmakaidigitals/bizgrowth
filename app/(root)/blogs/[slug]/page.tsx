@@ -26,13 +26,7 @@ const formatDate = (d: string | Date) =>
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bizgrowthconsultancy.com/";
 
 /* ── Static params ── */
-export async function generateStaticParams() {
-  const posts = await prisma.blogPost.findMany({
-    where: { status: "published" },
-    select: { slug: true },
-  });
-  return posts.map((p : {slug:string}) => ({ slug: p.slug }));
-}
+ 
 
 /* ── Metadata ── */
 export async function generateMetadata({
