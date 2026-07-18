@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
-
 import { RelatedCarousel } from "./components/related-carousel";
 import { cn } from "@/lib/utils";
 import { Calendar, Clock, TagIcon } from "lucide-react";

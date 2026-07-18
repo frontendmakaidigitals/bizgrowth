@@ -34,7 +34,7 @@ const BlogList = ({ post, setConfirmPost, deletingId }: Props) => {
       <div className="hidden sm:flex  w-68 aspect-6/4 rounded overflow-hidden border border-border bg-background items-center justify-center">
         {post.coverImage ? (
           <img
-            src={`/uploads/blog/${encodeURIComponent(post.coverImage)}`}
+            src={`/${encodeURIComponent(post.coverImage)}`}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           />

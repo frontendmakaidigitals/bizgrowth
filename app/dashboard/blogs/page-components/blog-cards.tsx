@@ -26,7 +26,7 @@ const BlogCards = ({ post, setConfirmPost, deletingId }: Props) => {
       <div className="w-full h-60 bg-background border-b border-border overflow-hidden ">
         {post.coverImage ? (
           <img
-           src={`/uploads/blog/${encodeURIComponent(post.coverImage)}`}
+           src={`/${encodeURIComponent(post.coverImage)}`}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
