@@ -157,7 +157,7 @@ export function BlogGrid({
               <div className="relative h-52 bg-background overflow-hidden">
                 {post.coverImage ? (
                   <Image
-                    src={`/${encodeURIComponent(post.coverImage)}`}
+                    src={`${encodeURIComponent(post.coverImage)}`}
                     alt={post.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
