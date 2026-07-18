@@ -7,6 +7,8 @@ import { RelatedCarousel } from "./components/related-carousel";
 import { cn } from "@/lib/utils";
 import { Calendar, Clock, TagIcon } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
 /* ── Helpers ── */
 const readingTime = (body: string) =>
   Math.max(
@@ -191,7 +193,7 @@ export default async function BlogPostPage({
           <div className="max-w-6xl mx-auto px-4 pt-8">
             <div className="relative h-64 md:h-[480px] rounded-2xl overflow-hidden border border-border">
               <Image
-                src={`/uploads/blog/${encodeURIComponent(post.coverImage)}`}
+                src={`/${encodeURIComponent(post.coverImage)}`}
                 alt={post.title}
                 fill
                 className="object-cover"

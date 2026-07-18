@@ -77,7 +77,7 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
                       <div className="absolute inset-0 bg-black/20 z-10" />
                       {blog.image && (
                         <Image
-                          src={`/api/uploads/${blog.image}`}
+                          src={`/${blog.image}`}
                           alt={blog.title}
                           width={600}
                           height={400}

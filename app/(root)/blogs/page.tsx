@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import { BlogClient } from "./components/blog-client";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog — Ideas That Inspire",
   description: "Read our latest articles, guides, and insights.",
