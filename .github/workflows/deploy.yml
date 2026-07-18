@@ -84,6 +84,7 @@ jobs:
             [ -f .env.production ] && cp .env.production .env.production.tmp
             [ -d data ] && mv data data.tmp
             [ -d public/uploads ] && mv public/uploads public_uploads.tmp
+            [ -d migration ] && mv migration migration.tmp
              [ -d prisma/dev.db ] && mv prisma/dev.db prisma_dev.tmp
             [ -f public/sitemap.xml ] && cp public/sitemap.xml public_sitemap.xml.tmp
 
