@@ -48,9 +48,9 @@ export async function generateMetadata({
   const description = post.metaDescription ?? post.excerpt ?? "";
 
   const image = post.ogImage
-    ? `/uploads/blog/${encodeURIComponent(post.ogImage)}`
+    ? `post.ogImage`
     : post.coverImage
-      ? `/uploads/blog/${encodeURIComponent(post.coverImage)}`
+      ? `post.coverImage`
       : undefined;
   const url = `${BASE_URL}/blogs/${slug}`;
 
@@ -193,7 +193,7 @@ export default async function BlogPostPage({
           <div className="max-w-6xl mx-auto px-4 pt-8">
             <div className="relative h-64 md:h-[480px] rounded-2xl overflow-hidden border border-border">
               <Image
-                src={`${encodeURIComponent(post.coverImage)}`}
+                src={post.coverImage}
                 alt={post.title}
                 fill
                 className="object-cover"

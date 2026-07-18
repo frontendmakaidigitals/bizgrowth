@@ -114,8 +114,8 @@ export default function EditBlogPostPage() {
         });
 
         // Show existing server images as previews
-        if (post.coverImage) setCoverPreview(`/uploads/blog/${encodeURIComponent(post.coverImage)}`);
-        if (post.ogImage) setOgPreview(`/uploads/blog/${encodeURIComponent(post.ogImage)}`);
+        if (post.coverImage) setCoverPreview(post.coverImage);
+        if (post.ogImage) setOgPreview(post.ogImage);
       } catch {
         setFetchError("Could not load post. It may have been deleted.");
       } finally {
