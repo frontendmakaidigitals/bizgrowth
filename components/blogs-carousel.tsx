@@ -76,7 +76,7 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
                     <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
                       <div className="absolute inset-0 bg-black/20 z-10" />
                       {blog.image && (
-                        <Image
+                        <img
                           src={`/${blog.image}`}
                           alt={blog.title}
                           width={600}
@@ -90,7 +90,7 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
                         {blog.title}
                       </h3>
                       <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-                        {blog.previewText}
+                        {blog.excerpt}
                       </p>
                       <div className="flex text-slate-500 mt-2 text-xs items-center justify-between">
                         <span>{blog.author ?? "Unknown"}</span>

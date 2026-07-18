@@ -2,7 +2,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
+
 import {
   Search,
   Calendar,
@@ -156,11 +156,10 @@ export function BlogGrid({
             >
               <div className="relative h-52 bg-background overflow-hidden">
                 {post.coverImage ? (
-                  <Image
+                  <img
                     src={post.coverImage}
                     alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                    className="object-cover size-full absolute inset-0 transition-transform duration-300 group-hover:scale-[1.04]"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-black text-foreground/10 uppercase">

@@ -186,12 +186,10 @@ export default async function BlogPostPage({
         {post.coverImage && (
           <div className="max-w-6xl mx-auto px-4 pt-8">
             <div className="relative h-64 md:h-[480px] rounded-2xl overflow-hidden border border-border">
-              <Image
+              <img
                 src={post.coverImage}
                 alt={post.title}
-                fill
-                className="object-cover"
-                priority
+                className="object-cover size-full absolute inset-0"
               />
               {/* Gradient overlay for header readability */}
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
