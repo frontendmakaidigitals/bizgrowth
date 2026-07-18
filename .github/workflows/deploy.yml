@@ -84,7 +84,7 @@ jobs:
             [ -f .env.production ] && cp .env.production .env.production.tmp
             [ -d data ] && mv data data.tmp
             [ -d public/uploads ] && mv public/uploads public_uploads.tmp
-            [ -d migration ] && mv migration migration.tmp
+            [ -d scripts/migration ] && mv scripts/migration scripts_migration.tmp
              [ -d prisma/dev.db ] && mv prisma/dev.db prisma_dev.tmp
             [ -f public/sitemap.xml ] && cp public/sitemap.xml public_sitemap.xml.tmp
 
@@ -95,6 +95,7 @@ jobs:
             [ -f .env.local.tmp ] && mv .env.local.tmp .env.local
             [ -f .env.production.tmp ] && mv .env.production.tmp .env.production
             [ -d data.tmp ] && rm -rf data && mv data.tmp data
+             [ -d scripts_migration.tmp ] && rm -rf scripts && mv scripts_migration.tmp scripts
             [ -d public_uploads.tmp ] && mkdir -p public && mv public_uploads.tmp public/uploads
             [ -f public_sitemap.xml.tmp ] && mv public_sitemap.xml.tmp public/sitemap.xml
 
