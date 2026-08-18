@@ -138,7 +138,7 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
-  console.log(post)
+ 
 
   const { related, recent } = await getSidebarData(post.category, slug);
   const rt = readingTime(post.body);
@@ -189,7 +189,7 @@ export default async function BlogPostPage({
           <div className="max-w-6xl mx-auto px-4 pt-8">
             <div className="relative h-64 md:h-[480px] rounded-2xl overflow-hidden border border-border">
               <img
-                src={post.coverImage}
+                src={`/${post.coverImage}`}
                 alt={post.title}
                 className="object-cover size-full absolute inset-0"
               />
@@ -317,7 +317,7 @@ export default async function BlogPostPage({
                           <div className="relative shrink-0 w-14 h-12 rounded-lg overflow-hidden border border-border bg-background">
                             {rp.coverImage ? (
                               <Image
-                                src={`/uploads/blog/${encodeURIComponent(rp.coverImage)}`}
+                                src={`/${rp.coverImage}`}
                                 alt={rp.title}
                                 fill
                                 className="object-cover"
