@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Input } from "@/components/ui/input";
 import Logo from "./Logo";
 import { useRouter } from "next/navigation";
@@ -95,7 +95,7 @@ const CalculatorModal = ({ onClose }: { onClose: () => void }) => {
 
     if (hasAnswers) {
       const confirmed = window.confirm(
-        "You have already entered some details. If you close now, all your data will be erased. Are you sure you want to continue?"
+        "You have already entered some details. If you close now, all your data will be erased. Are you sure you want to continue?",
       );
 
       if (!confirmed) return;

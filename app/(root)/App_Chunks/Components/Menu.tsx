@@ -2,7 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
-import { AnimatePresence, motion } from "framer-motion"; // Import motion
+import { AnimatePresence, motion } from "motion/react"; // Import motion
 import { Menus } from "./Menus"; // Import Menus
 import Link from "next/link";
 const Menu = () => {
@@ -65,16 +65,13 @@ const Menu = () => {
                               (item: any, itemIndex: number) => (
                                 <Link
                                   key={itemIndex}
-                                 
-                                  href={`/${menu.route.toLowerCase()}/${point.route.toLowerCase()}/${
-                                    item.route.toLowerCase()
-                                  }`}
+                                  href={`/${menu.route.toLowerCase()}/${point.route.toLowerCase()}/${item.route.toLowerCase()}`}
                                 >
                                   <li className="mt-2 hover:underline flex text-[#12250a] items-center gap-2">
                                     {item.name}
                                   </li>
                                 </Link>
-                              )
+                              ),
                             )}
                           </ul>
                         </div>
@@ -95,11 +92,11 @@ const Menu = () => {
                           <ul>
                             <Link
                               href={`/${menu.route}/${encodeURIComponent(
-                                point.route.toLowerCase()
+                                point.route.toLowerCase(),
                               )}`}
                             >
                               <li className="mt-2 font-medium hover:underline text-[#12250a] flex items-start gap-2">
-                                {point.name} 
+                                {point.name}
                               </li>
                             </Link>
                           </ul>
@@ -111,7 +108,7 @@ const Menu = () => {
               )}
             </AnimatePresence>
           </div>
-        )
+        ),
       )}
     </div>
   );

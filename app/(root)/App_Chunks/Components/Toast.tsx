@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 const Toast = ({
   title,
   desc,
@@ -14,8 +14,8 @@ const Toast = ({
     type === "success"
       ? "bg-green-500"
       : type === "error"
-      ? "bg-red-500"
-      : "bg-gray-50"; // Default color for 'default'
+        ? "bg-red-500"
+        : "bg-gray-50"; // Default color for 'default'
 
   return (
     <div className="fixed bottom-5 right-5 z-999">

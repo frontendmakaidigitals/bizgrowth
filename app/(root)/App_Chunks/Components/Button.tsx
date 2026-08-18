@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 // Define the types for the props
 interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>; // onClick is a function that handles the mouse click event

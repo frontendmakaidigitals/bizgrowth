@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Button from "../App_Chunks/Components/Button";
 import Heading from "../App_Chunks/Components/Heading";
 import Head from "next/head";

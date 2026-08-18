@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const FloatingWhatsIcon = () => {
   const phoneNumber = "+971559391238"; // Replace with the desired phone number

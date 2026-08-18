@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import Heading from "./Heading";
 import Form from "./PopupForm";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import Toast from "./Toast";
 const ThirdSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,9 +29,7 @@ const ThirdSection = () => {
       <div className="h-[300px] relative lg:h-[500px] rounded-xl">
         <img
           className="w-full h-full object-cover relative z-10 rounded-xl"
-          src={
-            "/about-image.avif"
-          }
+          src={"/about-image.avif"}
         />
         <div className="shadow-xl absolute -top-3 left-3 xxl:-top-10 xl:-top-5 xl:left-5 xxl:left-10 rounded-xl w-full bg-slate-950/70 h-full" />
       </div>
@@ -49,7 +47,9 @@ const ThirdSection = () => {
           streamline the process of establishing a company in one of the world’s
           most dynamic and business-friendly environments.
         </p>
-        <Button onClick={()=>setIsOpen(true)} className="mt-5">Contact us</Button>
+        <Button onClick={() => setIsOpen(true)} className="mt-5">
+          Contact us
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Button from "../../../App_Chunks/Components/Button";
 import { usePathname, useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
@@ -42,7 +42,7 @@ const Page = () => {
   const [processData, setProcessData] = useState<(typeof data)[0] | null>(null);
   useEffect(() => {
     const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === serviceName?.toLowerCase()
+      (item) => item.name.toLowerCase() === serviceName?.toLowerCase(),
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
 
@@ -105,7 +105,7 @@ const Page = () => {
 
       // Set the meta description
       const metaDescription = document.querySelector(
-        'meta[name="description"]'
+        'meta[name="description"]',
       );
       if (metaDescription) {
         metaDescription.setAttribute("content", metaInfo.description);
@@ -128,7 +128,7 @@ const Page = () => {
       }
 
       const ogDescription = document.querySelector(
-        'meta[property="og:description"]'
+        'meta[property="og:description"]',
       );
       if (ogDescription) {
         ogDescription.setAttribute("content", metaInfo.description);

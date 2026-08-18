@@ -8,7 +8,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import Image from "next/image";
+import type { Blog } from "./Blogs";
 import Link from "next/link";
 
 export function slugify(text: string): string {
@@ -20,16 +20,6 @@ export function slugify(text: string): string {
     .replace(/\s+/g, "-");
 }
 
-interface Blog {
-  id: string | number;
-  title: string;
-  content: string;
-  image?: string;
-  createdAt: string;
-  author?: string;
-  slugTitle?: string;
-  [key: string]: any;
-}
 export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
   const [api, setApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -75,9 +65,9 @@ export default function BlogsCarousel({ blogs }: { blogs: Blog[] }) {
                   <div className="bg-blue-50 p-1 relative shadow-xs rounded-lg overflow-hidden">
                     <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
                       <div className="absolute inset-0 bg-black/20 z-10" />
-                      {blog.image && (
+                      {blog.coverImage && (
                         <img
-                          src={`/${blog.image}`}
+                          src={`${blog.coverImage}`}
                           alt={blog.title}
                           width={600}
                           height={400}

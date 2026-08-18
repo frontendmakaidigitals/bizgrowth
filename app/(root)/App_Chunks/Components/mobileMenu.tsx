@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link"; // For navigation
 import { Menus } from "./Menus"; // Import Menus
@@ -83,9 +83,13 @@ const Menu = ({ navRef, setShowMenu }: { navRef: any; setShowMenu: any }) => {
             </Link>
           ) : (
             <AccordionMenu key={index} menu={menu} setShowMenu={setShowMenu} />
-          )
+          ),
         )}
-        <Link onClick={()=>setShowMenu(false)} href={"/cost-calculator"} className="block ">
+        <Link
+          onClick={() => setShowMenu(false)}
+          href={"/cost-calculator"}
+          className="block "
+        >
           <Button className="w-full h-12 px-2 text-lg font-semibold">
             Cost Calculator
           </Button>
@@ -135,7 +139,7 @@ const AccordionMenu = ({
                             {point.points.map(
                               (
                                 item: { name: string; route: string },
-                                id: number
+                                id: number,
                               ) => (
                                 <Link
                                   key={id}
@@ -149,7 +153,7 @@ const AccordionMenu = ({
                                     <RiArrowRightUpLine />
                                   </li>
                                 </Link>
-                              )
+                              ),
                             )}
                           </ul>
                         </AccordionContent>

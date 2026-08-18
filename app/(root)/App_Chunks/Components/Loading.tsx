@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, Suspense, useTransition } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 
 const Loading = () => {
   return (

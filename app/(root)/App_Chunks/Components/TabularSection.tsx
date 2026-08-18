@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { MdArrowOutward } from "react-icons/md";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import Heading from "./Heading";

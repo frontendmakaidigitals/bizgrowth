@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef, Suspense } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Button from "@/app/(root)/App_Chunks/Components/Button";
 import { useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
@@ -362,7 +362,9 @@ const Page = () => {
               }`}
             >
               <p className="text-xl font-SplineSans">Step {index + 1}</p>
-              <p className="font-SplineSans font-medium text-xl">{item.title}</p>
+              <p className="font-SplineSans font-medium text-xl">
+                {item.title}
+              </p>
               <p className="font-Satoshi text-lg">{item.desc}</p>
               {item.points && item.isPoints ? (
                 <ul className="font-Satoshi mt-3 py-3 border-t w-full border-lime-700">

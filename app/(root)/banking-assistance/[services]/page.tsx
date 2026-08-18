@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../../App_Chunks/Components/Banner";
 import data from "../../App_Chunks/Components/banking";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Heading from "../../App_Chunks/Components/Heading";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -24,7 +24,7 @@ const Page = () => {
 
   useEffect(() => {
     const matchingItem = data.find(
-      (item) => item.name.toLowerCase() === serviceName?.toLowerCase()
+      (item) => item.name.toLowerCase() === serviceName?.toLowerCase(),
     );
     setProcessData(matchingItem || null); // Set the found item or null if no match
 
@@ -87,7 +87,7 @@ const Page = () => {
 
       // Set the meta description
       const metaDescription = document.querySelector(
-        'meta[name="description"]'
+        'meta[name="description"]',
       );
       if (metaDescription) {
         metaDescription.setAttribute("content", metaInfo.description);
@@ -110,7 +110,7 @@ const Page = () => {
       }
 
       const ogDescription = document.querySelector(
-        'meta[property="og:description"]'
+        'meta[property="og:description"]',
       );
       if (ogDescription) {
         ogDescription.setAttribute("content", metaInfo.description);
@@ -321,7 +321,7 @@ const Page = () => {
                           </td>
                         ) : null}
                       </tr>
-                    )
+                    ),
                   )}
                 </tbody>
               </table>

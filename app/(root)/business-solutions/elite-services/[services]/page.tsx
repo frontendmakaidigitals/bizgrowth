@@ -5,7 +5,7 @@ import Button from "../../../App_Chunks/Components/Button";
 import { MdLabelImportant } from "react-icons/md";
 import Banner from "../../../App_Chunks/Components/Banner";
 import Heading from "../../../App_Chunks/Components/Heading";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import BreadCrumb from "../../../App_Chunks/Components/BreadCrumb";
@@ -90,7 +90,7 @@ const Page = () => {
 
       // Set the meta description
       const metaDescription = document.querySelector(
-        'meta[name="description"]'
+        'meta[name="description"]',
       );
       if (metaDescription) {
         metaDescription.setAttribute("content", metaInfo.description);
@@ -113,7 +113,7 @@ const Page = () => {
       }
 
       const ogDescription = document.querySelector(
-        'meta[property="og:description"]'
+        'meta[property="og:description"]',
       );
       if (ogDescription) {
         ogDescription.setAttribute("content", metaInfo.description);
@@ -458,7 +458,9 @@ const GoldenVisa = () => {
             </div>
             <div>
               <p className="font-Satoshi">
-                <span className="font-SplineSans font-medium">5-years Visa</span>{" "}
+                <span className="font-SplineSans font-medium">
+                  5-years Visa
+                </span>{" "}
                 Minimum property investment of AED 1 million (completed
                 properties only).
               </p>
@@ -470,7 +472,9 @@ const GoldenVisa = () => {
             </div>
             <div>
               <p className="font-Satoshi">
-                <span className="font-SplineSans font-medium">2-years Visa</span>{" "}
+                <span className="font-SplineSans font-medium">
+                  2-years Visa
+                </span>{" "}
                 Minimum property investment of AED 750,000 (completed properties
                 only).
               </p>
