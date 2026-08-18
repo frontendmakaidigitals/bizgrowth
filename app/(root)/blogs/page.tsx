@@ -65,6 +65,7 @@ async function getData() {
 export default async function BlogPage() {
   const { posts, categories, tags } = await getData();
   const latest = posts.slice(0, 3);
+ 
 
   return (
     <div className="min-h-screen bg-background">

@@ -138,6 +138,8 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
+  console.log(post)
+
   const { related, recent } = await getSidebarData(post.category, slug);
   const rt = readingTime(post.body);
   const url = `${BASE_URL}/blogs/${slug}`;
