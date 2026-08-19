@@ -49,7 +49,6 @@ jobs:
           cp -r public deploy/
           cp -r lib deploy/
           cp -r prisma deploy/
-          cp -r scripts deploy/
           cp package.json package-lock.json deploy/
           cp next.config.* deploy/ 2>/dev/null || true
           cd deploy && tar -czf ../bizgrowth-build.tar.gz .
@@ -67,65 +66,64 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.0
         env:
-            GMAIL_USER: ${{ secrets.GMAIL_USER }}
-            GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-            RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-            DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         with:
-            host: ${{ secrets.SSH_HOST }}
-            username: milestonehre
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: ${{ secrets.SSH_PORT }}
-            envs: GMAIL_USER,GMAIL_APP_PASSWORD,RESEND_API_KEY,DATABASE_URL
-            script: |
-              set -e
-              cd /home/milestonehre/bizgrowth
+          host: ${{ secrets.SSH_HOST }}
+          username: milestonehre
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          envs: GMAIL_USER,GMAIL_APP_PASSWORD,RESEND_API_KEY,DATABASE_URL
+          script: |
+            set -e
+            cd /home/milestonehre/bizgrowth
 
-              # Create backup
-              [ -d ".next" ] && cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
+            # Create backup
+            [ -d ".next" ] && cp -r .next .next.backup.$(date +%Y%m%d_%H%M%S)
 
-              # Keep only last 3 backups
-              ls -t .next.backup.* 2>/dev/null | tail -n +4 | xargs -r rm -rf
+            # Keep only last 3 backups
+            ls -t .next.backup.* 2>/dev/null | tail -n +4 | xargs -r rm -rf
 
-              # Preserve important files/folders
-              [ -f .env.production ] && cp .env.production .env.production.tmp
-              [ -d data ] && mv data data.tmp
-              [ -d public/uploads ] && mv public/uploads public_uploads.tmp
-              [ -d scripts/migration ] && mv scripts/migration scripts_migration.tmp
-              [ -f prisma/dev.db ] && cp prisma/dev.db "prisma_dev.tmp.$(date +%Y%m%d_%H%M%S)" && mv prisma/dev.db prisma_dev.tmp
-              [ -f public/sitemap.xml ] && cp public/sitemap.xml public_sitemap.xml.tmp
+            # Preserve important files/folders
+            
+            [ -f .env.production ] && cp .env.production .env.production.tmp
+            [ -d data ] && mv data data.tmp
+            [ -d public/uploads ] && mv public/uploads public_uploads.tmp
+            [ -d scripts/migration ] && mv scripts/migration scripts_migration.tmp
+            [ -f prisma/dev.db ] && cp prisma/dev.db "prisma_dev.tmp.$(date +%Y%m%d_%H%M%S)" && mv prisma/dev.db prisma_dev.tmp
+            [ -f public/sitemap.xml ] && cp public/sitemap.xml public_sitemap.xml.tmp
 
-              # Extract new build
-              tar -xzf /home/milestonehre/bizgrowth-build.tar.gz -C /home/milestonehre/bizgrowth
+            # Extract new build
+            tar -xzf /home/milestonehre/bizgrowth-build.tar.gz -C /home/milestonehre/bizgrowth
 
-              # Restore preserved files/folders
-              [ -f .env.production.tmp ] && mv .env.production.tmp .env.production
-              [ -d data.tmp ] && rm -rf data && mv data.tmp data
-              [ -d scripts_migration.tmp ] && mkdir -p scripts && mv scripts_migration.tmp scripts/migration
-              [ -f prisma_dev.tmp ] && mkdir -p prisma && mv prisma_dev.tmp prisma/dev.db
-              [ -d public_uploads.tmp ] && mkdir -p public && mv public_uploads.tmp public/uploads
-              [ -f public_sitemap.xml.tmp ] && mv public_sitemap.xml.tmp public/sitemap.xml
+            # Restore preserved files/folders
+           
+            [ -f .env.production.tmp ] && mv .env.production.tmp .env.production
+            [ -d data.tmp ] && rm -rf data && mv data.tmp data
+            [ -d scripts_migration.tmp ] && rm -rf scripts && mv scripts_migration.tmp scripts
+            [ -f prisma_dev.tmp ] && mkdir -p prisma && mv prisma_dev.tmp prisma/dev.db
+            [ -d public_uploads.tmp ] && mkdir -p public && mv public_uploads.tmp public/uploads
+            [ -f public_sitemap.xml.tmp ] && mv public_sitemap.xml.tmp public/sitemap.xml
 
-              # Write/refresh .env.production from secrets
-              cat > .env.production <<EOF
-              DATABASE_URL=${DATABASE_URL}
-              GMAIL_USER=${GMAIL_USER}
-              GMAIL_APP_PASSWORD=${GMAIL_APP_PASSWORD}
-              RESEND_API_KEY=${RESEND_API_KEY}
-              EOF
-              chmod 600 .env.production
+            # Write/refresh .env.production from secrets (always keeps server env in sync with GitHub secrets)
+            cat > .env.production <<EOF
+            DATABASE_URL=${DATABASE_URL}
+            GMAIL_USER=${GMAIL_USER}
+            GMAIL_APP_PASSWORD=${GMAIL_APP_PASSWORD}
+            RESEND_API_KEY=${RESEND_API_KEY}
+            EOF
+            chmod 600 .env.production
 
-              # Install production dependencies only
-              npm ci --omit=dev
+            # Install production dependencies only
+            npm ci --omit=dev
 
-              # Clean up
-              rm -f /home/milestonehre/bizgrowth-build.tar.gz
-
-              # Generate sitemap against real production DB
-              node scripts/generate-sitemap.cjs
-
-              # Restart PM2
-              pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
+            # Clean up
+            rm -f /home/milestonehre/bizgrowth-build.tar.gz
+            node /home/milestonehre/bizgrowth/scripts/generate-sitemap.js
+            # Restart PM2
+            pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
 
       - name: Health check
         uses: appleboy/ssh-action@v1.0.0
