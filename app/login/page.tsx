@@ -19,7 +19,6 @@ export default function LoginPage() {
     setError("");
 
     if (email === validEmail && password === validPassword) {
-      console.log(email);
       document.cookie = `admin-auth=true; path=/; max-age=${7 * 24 * 60 * 60}`;
       router.push("/dashboard");
     } else {

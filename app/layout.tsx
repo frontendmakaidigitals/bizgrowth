@@ -26,10 +26,8 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-9R376G6XFN"
           strategy="afterInteractive"
         />
-        <meta
-          name="google-site-verification"
-          content="eo7GiFtdq4aS4bJUdL7J3t2YDKMI0uYdLX_Y-60IcIo"
-        />
+       
+        <meta name="google-site-verification" content="IYbrxVf0JRD17cFu-H25oZuEvy1WoZf2vWCkPzcEakE" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];

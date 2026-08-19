@@ -80,7 +80,7 @@ jobs:
             ls -t .next.backup.* 2>/dev/null | tail -n +4 | xargs -r rm -rf
 
             # Preserve important files/folders
-            [ -f .env.local ] && cp .env.local .env.local.tmp
+            
             [ -f .env.production ] && cp .env.production .env.production.tmp
             [ -d data ] && mv data data.tmp
             [ -d public/uploads ] && mv public/uploads public_uploads.tmp
@@ -92,7 +92,7 @@ jobs:
             tar -xzf /home/milestonehre/bizgrowth-build.tar.gz -C /home/milestonehre/bizgrowth
 
             # Restore preserved files/folders
-            [ -f .env.local.tmp ] && mv .env.local.tmp .env.local
+           
             [ -f .env.production.tmp ] && mv .env.production.tmp .env.production
             [ -d data.tmp ] && rm -rf data && mv data.tmp data
              [ -d scripts_migration.tmp ] && rm -rf scripts && mv scripts_migration.tmp scripts
