@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma' // adjust to your prisma client path
 
 const BASE_URL = 'https://www.bizgrowthconsultancy.com'
 
+export const dynamic = 'force-dynamic' // don't prerender at build time
 export const revalidate = 86400 // regenerate at most once a day
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -79,22 +80,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
   }))
 
-  // 2. Dynamic blog routes from DB
-  const posts = await prisma.blogPost.findMany({
-    select: { slug: true, publishedAt: true, updatedAt: true, createdAt: true },
-    where: {
-      status: 'published',
-      noIndex: false,
-      canonicalUrl: null,
-    },
-  })
+  // 2. Dynamic blog routes from DB — wrapped so a DB hiccup never kills the whole sitemap
+  let blogRoutes: MetadataRoute.Sitemap = []
+  try {
+    const posts = await prisma.blogPost.findMany({
+      select: { slug: true, publishedAt: true, updatedAt: true, createdAt: true },
+      where: {
+        status: 'published',
+        noIndex: false,
+        canonicalUrl: null,
+      },
+    })
 
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${BASE_URL}/blogs/${post.slug}`,
-    lastModified: post.publishedAt ?? post.updatedAt ?? post.createdAt,
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }))
+    blogRoutes = posts.map((post) => ({
+      url: `${BASE_URL}/blogs/${post.slug}`,
+      lastModified: post.publishedAt ?? post.updatedAt ?? post.createdAt,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }))
+  } catch (err) {
+    console.error('sitemap: failed to fetch blog posts', err)
+    // fall back to static routes only rather than failing the whole build
+  }
 
   return [...staticRoutes, ...blogRoutes]
 }
