@@ -69,7 +69,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       where: {
         status: 'published',
         noIndex: false,
-        canonicalUrl: null,
+        // Some posts (esp. migrated ones) have canonicalUrl stored as ''
+        // instead of null — accept both so they aren't silently excluded.
+        OR: [{ canonicalUrl: null }, { canonicalUrl: '' }],
       },
     })
 
@@ -79,6 +81,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.6,
     }))
+
+    console.log(`sitemap: ${blogRoutes.length} blog posts included`)
   } catch (err) {
     console.error('sitemap: failed to fetch blog posts', err)
   }
