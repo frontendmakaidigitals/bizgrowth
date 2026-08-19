@@ -121,7 +121,7 @@ jobs:
 
             # Clean up
             rm -f /home/milestonehre/bizgrowth-build.tar.gz
-
+            node scripts/generate-sitemap.js
             # Restart PM2
             pm2 restart bizgrowth || pm2 start npm --name "bizgrowth" -- start -- --port 3005
 
