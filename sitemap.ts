@@ -1,165 +1,100 @@
-import fs from "fs";
-import path from "path";
+// app/sitemap.ts
+import { MetadataRoute } from 'next'
+import prisma from '@/lib/prisma' // adjust to your prisma client path
 
-const SITE_URL = "https://bizgrowthconsultancy.com"; // ⬅️ Replace with your actual domain
+const BASE_URL = 'https://www.bizgrowthconsultancy.com'
 
-// Folder where your component data files are stored
-const componentsDir = path.join(
-  process.cwd(),
-  "app/(user)/App_Chunks/Components"
-);
+export const revalidate = 86400 // regenerate at most once a day
 
-// Route mapping for pages that fetch from the DB
-const ROUTE_MAP = {
-  "banking-assistance": "banking",
-  "business-formation/freezone": "freezone",
-  "business-formation/mainland": "mainland",
-  "business-formation/offshore": "offshore",
-  "business-solutions/accounting": "Accounting",
-};
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // 1. Static routes
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { route: '', priority: 1 },
+    { route: '/about', priority: 0.7 },
+    { route: '/contact', priority: 0.7 },
+    { route: '/blogs', priority: 0.7 },
+    { route: '/cost-calculator', priority: 0.7 },
+    { route: '/mortgage', priority: 0.7 },
+    { route: '/privacy-policy', priority: 0.5 },
 
-// Static Elite Services (non-DB pages)
-const STATIC_CORPORATE_SERVICES = [
-  "pro-and-visa-services",
-  "attestation-and-legalisation",
-  "office-space-solution",
-  "product-registration",
-  "corporate-structuring",
-  "hr-solution",
-  "design-and-marketing-services",
-];
-const STATIC_ELITE_SERVICES = [
-  "golden-visa",
-  "will-formation",
-  "wealth-management",
-  "nominee-director-services",
-  "real-estate",
-];
+    // Banking assistance
+    { route: '/banking-assistance/private-bank-account', priority: 0.7 },
+    { route: '/banking-assistance/corporate-bank-account', priority: 0.7 },
 
-// Helper: Slugify names
-function slugify(str:string) {
-  return str
-    .toString()
-    .trim()
-    .toLowerCase()
-    .replace(/[\s_]+/g, "-")
-    .replace(/[^\w-]+/g, "");
+    // Business formation - Freezone
+    { route: '/business-formation/freezone/ifza', priority: 0.7 },
+    { route: '/business-formation/freezone/dmcc', priority: 0.7 },
+    { route: '/business-formation/freezone/adgm', priority: 0.7 },
+    { route: '/business-formation/freezone/difc', priority: 0.7 },
+    { route: '/business-formation/freezone/meydan', priority: 0.7 },
+    { route: '/business-formation/freezone/spc', priority: 0.7 },
+    { route: '/business-formation/freezone/jafza', priority: 0.7 },
+    { route: '/business-formation/freezone/rakez', priority: 0.7 },
+    { route: '/business-formation/freezone/ajman', priority: 0.7 },
+    { route: '/business-formation/freezone/srti', priority: 0.7 },
+    { route: '/business-formation/freezone/dafza', priority: 0.7 },
+
+    // Business formation - Mainland
+    { route: '/business-formation/mainland/dubai-mainland', priority: 0.7 },
+    { route: '/business-formation/mainland/sharjah-mainland', priority: 0.7 },
+    { route: '/business-formation/mainland/abu-dhabi-mainland', priority: 0.7 },
+    { route: '/business-formation/mainland/ajman-mainland', priority: 0.7 },
+    { route: '/business-formation/mainland/fujairah-mainland', priority: 0.7 },
+
+    // Business formation - Offshore
+    { route: '/business-formation/offshore/jafza-offshore', priority: 0.7 },
+    { route: '/business-formation/offshore/rak-icc-offshore', priority: 0.7 },
+    { route: '/business-formation/offshore/ajman-offshore', priority: 0.7 },
+    { route: '/business-formation/offshore/dubai-offshore', priority: 0.7 },
+
+    // Business solutions - Accounting
+    { route: '/business-solutions/accounting/vat-consultancy', priority: 0.7 },
+    { route: '/business-solutions/accounting/auditing', priority: 0.7 },
+    { route: '/business-solutions/accounting/corporate-tax', priority: 0.7 },
+    { route: '/business-solutions/accounting/accounting-and-bookkeeping', priority: 0.7 },
+
+    // Business solutions - misc
+    { route: '/business-solutions/menus', priority: 0.5 },
+    { route: '/business-solutions/eliteservices', priority: 0.6 },
+
+    // Business solutions - Elite services
+    { route: '/business-solutions/elite-services/golden-visa', priority: 0.7 },
+    { route: '/business-solutions/elite-services/will-formation', priority: 0.7 },
+    { route: '/business-solutions/elite-services/wealth-management', priority: 0.7 },
+    { route: '/business-solutions/elite-services/nominee-director-services', priority: 0.7 },
+    { route: '/business-solutions/elite-services/real-estate', priority: 0.7 },
+
+    // Business solutions - Corporate services
+    { route: '/business-solutions/corporate-services/pro-and-visa-services', priority: 0.7 },
+    { route: '/business-solutions/corporate-services/attestation-and-legalisation', priority: 0.7 },
+    { route: '/business-solutions/corporate-services/office-space-solution', priority: 0.7 },
+    { route: '/business-solutions/corporate-services/product-registration', priority: 0.7 },
+    { route: '/business-solutions/corporate-services/corporate-structuring', priority: 0.7 },
+    { route: '/business-solutions/corporate-services/hr-solution', priority: 0.7 },
+    { route: '/business-solutions/corporate-services/design-and-marketing-services', priority: 0.7 },
+  ].map(({ route, priority }) => ({
+    url: `${BASE_URL}${route}`,
+    lastModified: '2026-08-01', // bump this only when you edit the page
+    changeFrequency: 'weekly',
+    priority,
+  }))
+
+  // 2. Dynamic blog routes from DB
+  const posts = await prisma.blogPost.findMany({
+    select: { slug: true, publishedAt: true, updatedAt: true, createdAt: true },
+    where: {
+      status: 'published',
+      noIndex: false,
+      canonicalUrl: null,
+    },
+  })
+
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${BASE_URL}/blogs/${post.slug}`,
+    lastModified: post.publishedAt ?? post.updatedAt ?? post.createdAt,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...staticRoutes, ...blogRoutes]
 }
-
-async function generateSitemap() {
-  const urls = [];
-
-  console.log("🔍 Reading component files from:", componentsDir);
-
-  // ✅ 1. DB-based pages using ROUTE_MAP
-  for (const [route, fileName] of Object.entries(ROUTE_MAP)) {
-    const filePath = path.join(componentsDir, `${fileName}.js`);
-
-    if (!fs.existsSync(filePath)) {
-      console.warn(`⚠️ Missing: ${filePath}`);
-      continue;
-    }
-
-    const content = fs.readFileSync(filePath, "utf8");
-    const matches = [...content.matchAll(/name:\s*["'`](.*?)["'`]/g)];
-    const slugs = matches.map((m) => slugify(m[1]));
-
-    if (slugs.length === 0) {
-      console.warn(`⚠️ No names found in ${fileName}.js`);
-      continue;
-    }
-
-    for (const slug of slugs) {
-      const fullUrl = `${SITE_URL}/${route}/${slug}`
-        .replace("/(user)", "")
-        .replace(/\/{2,}/g, "/")
-        .replace("https:/", "https://");
-
-      urls.push(fullUrl);
-    }
-  }
-
-  const staticFiles = fs
-    .readdirSync(componentsDir)
-    .filter(
-      (file) =>
-        (file.endsWith(".js") || file.endsWith(".jsx")) &&
-        !Object.values(ROUTE_MAP).some(
-          (name) => file.toLowerCase() === `${name.toLowerCase()}.js`
-        )
-    );
-
-  for (const file of staticFiles) {
-    const baseName = path.basename(file, path.extname(file));
-    const slug = slugify(baseName);
-
-    // Skip helper/utility components
-    if (
-      [
-        "button",
-        "footer",
-        "form",
-        "menu",
-        "navbar",
-        "loading",
-        "heading",
-        "logo",
-        "popupform",
-        "breadcrumb",
-        "thirdsection",
-        "fourthsection",
-        "tabularsection",
-        "lenisscroll",
-        "floatingwhatsicon",
-      ].includes(slug)
-    )
-      continue;
-
-    const fullUrl = `${SITE_URL}/business-solutions/${slug}`
-      .replace("/(user)", "")
-      .replace(/\/{2,}/g, "/")
-      .replace("https:/", "https://");
-
-    urls.push(fullUrl);
-  }
-
-  // ✅ 3. Add Elite Services routes BEFORE deduplication
-  STATIC_ELITE_SERVICES.forEach((slug) => {
-    const fullUrl = `${SITE_URL}/business-solutions/elite-services/${slug}`;
-    urls.push(fullUrl);
-  });
-  STATIC_CORPORATE_SERVICES.forEach((slug) => {
-    const fullUrl = `${SITE_URL}/business-solutions/corporate-services/${slug}`;
-    urls.push(fullUrl);
-  });
-
-  // ✅ 4. Deduplicate all URLs
-  const uniqueUrls = [...new Set(urls)];
-
-  // ✅ 5. Build sitemap XML
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${uniqueUrls
-  .map(
-    (url) => `
-  <url>
-    <loc>${url}</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`
-  )
-  .join("")}
-</urlset>`;
-
-  // ✅ 6. Ensure /public exists
-  const publicDir = path.join(process.cwd(), "public");
-  if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir);
-
-  // ✅ 7. Write sitemap.xml
-  const outputPath = path.join(publicDir, "sitemap.xml");
-  fs.writeFileSync(outputPath, xml);
-
-  console.log(`✅ Sitemap generated successfully with ${uniqueUrls.length} URLs`);
-}
-
-generateSitemap();

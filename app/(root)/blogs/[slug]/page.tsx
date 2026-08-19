@@ -317,7 +317,7 @@ export default async function BlogPostPage({
                           <div className="relative shrink-0 w-14 h-12 rounded-lg overflow-hidden border border-border bg-background">
                             {rp.coverImage ? (
                               <Image
-                                src={`${rp.coverImage}`}
+                                src={rp.coverImage}
                                 alt={rp.title}
                                 fill
                                 className="object-cover"
