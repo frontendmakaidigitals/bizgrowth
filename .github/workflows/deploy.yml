@@ -95,6 +95,9 @@ jobs:
             [ -f prisma/dev.db ] && cp prisma/dev.db "prisma_dev.tmp.$(date +%Y%m%d_%H%M%S)" && mv prisma/dev.db prisma_dev.tmp
             [ -f public/sitemap.xml ] && cp public/sitemap.xml public_sitemap.xml.tmp
 
+            # Keep only last 3 prisma dev.db backups
+            ls -t prisma_dev.tmp.* 2>/dev/null | tail -n +4 | xargs -r rm -f
+
             # Extract new build
             tar -xzf /home/milestonehre/bizgrowth-build.tar.gz -C /home/milestonehre/bizgrowth
 
