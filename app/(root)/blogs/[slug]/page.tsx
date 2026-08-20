@@ -142,7 +142,7 @@ export default async function BlogPostPage({
 
   const { related, recent } = await getSidebarData(post.category, slug);
   const rt = readingTime(post.body);
-  const url = `${BASE_URL}/blogs/${slug}`;
+   const url = `${BASE_URL}/blogs/${slug}`;
   const tags =
     post.tags
       ?.split(",")
@@ -161,7 +161,7 @@ export default async function BlogPostPage({
     author: { "@type": "Person", name: post.author ?? "Anonymous" },
     publisher: {
       "@type": "Organization",
-      name: "Your Site Name",
+      name: post.author,
       url: BASE_URL,
     },
     image: post.coverImage
