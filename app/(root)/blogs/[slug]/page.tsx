@@ -23,7 +23,7 @@ const formatDate = (d: string | Date) =>
     day: "numeric",
   });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bizgrowthconsultancy.com/";
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bizgrowthconsultancy.com") 
 
 /* ── Static params ── */
  
@@ -41,11 +41,11 @@ export async function generateMetadata({
   const title = post.metaTitle ?? post.title;
   const description = post.metaDescription ?? post.excerpt ?? "";
 
-  const image = post.ogImage
-    ? `post.ogImage`
-    : post.coverImage
-      ? `post.coverImage`
-      : undefined;
+const image = post.ogImage
+  ? post.ogImage
+  : post.coverImage
+    ? post.coverImage
+    : undefined;
   const url = `${BASE_URL}/blogs/${slug}`;
 
   return {
