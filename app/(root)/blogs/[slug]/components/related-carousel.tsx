@@ -56,11 +56,10 @@ export function RelatedCarousel({ posts }: { posts: RelatedPost[] }) {
               {/* Cover */}
               <div className="relative h-44 overflow-hidden bg-surface">
                 {post.coverImage ? (
-                  <Image
+                  <img
                     src={`${encodeURIComponent(post.coverImage)}`}
                     alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                    className="object-cover absolute inset-0 size-full transition-transform duration-300 group-hover:scale-[1.04]"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-black text-foreground/10 uppercase">
