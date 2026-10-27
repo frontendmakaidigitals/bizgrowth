@@ -322,8 +322,7 @@ const ContactPage = () => {
               </div>
               <div>
                 <p className="text-lg font-Satoshi">
-                  <span className="font-Synonym font-medium">Phone :</span> +97
-                  15593 91238
+                  <span className="font-Synonym font-medium">Phone :</span> +971 5593 91238
                 </p>
               </div>
             </div>
